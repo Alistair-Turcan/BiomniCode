@@ -1,0 +1,401 @@
+diff --git a/src/adapterseed.h b/src/adapterseed.h
+new file mode 100644
+index 0000000..83dba43
+--- /dev/null
++++ b/src/adapterseed.h
+@@ -0,0 +1,102 @@
++#ifndef FASTP_KNOWN_ADAPTER_SEEDS_H
++#define FASTP_KNOWN_ADAPTER_SEEDS_H
++
++#include <cstdint>
++#include <cstring>
++#include <string>
++#include <vector>
++#include <array>
++#include <algorithm>
++
++class ReadFourmerIndex {
++public:
++    static int baseCode(char base) {
++        switch(base) {
++            case 'A': return 0;
++            case 'C': return 1;
++            case 'G': return 2;
++            case 'T': return 3;
++            default: return -1;
++        }
++    }
++    void build(const char* data, int length) {
++        heads.fill(-1);
++        next.resize(length);
++        int key=0, run=0;
++        for(int i=length-1; i>=0; i--) {
++            const int base=baseCode(data[i]);
++            if(base < 0) { key=0; run=0; continue; }
++            key=(key>>2) | (base<<6);
++            if(run < 4) ++run;
++            if(run == 4) {
++                next[i]=heads[key];
++                heads[key]=i;
++            }
++        }
++    }
++    int occurrence(int code, int minimum) const {
++        int pos=heads[code];
++        while(pos >= 0 && pos < minimum)
++            pos=next[pos];
++        return pos;
++    }
++private:
++    std::array<int,256> heads;
++    std::vector<int> next;
++};
++
++class KnownAdapterSeeds {
++public:
++    explicit KnownAdapterSeeds(const std::string& adapter) {
++        const size_t count = adapter.size()/16 + 1;
++        if(count * sizeof(uint32_t) > adapter.size())
++            return;
++        words.resize(count);
++        for(size_t i=0; i<count; i++) {
++            std::memcpy(&words[i], adapter.data()+i*sizeof(uint32_t), sizeof(uint32_t));
++            int code=0;
++            for(int j=0; j<4; j++) {
++                const int base=ReadFourmerIndex::baseCode(adapter[i*4+j]);
++                if(base < 0) { indexed=false; break; }
++                code=(code<<2) | base;
++            }
++            codes.push_back(code);
++        }
++    }
++
++    int nextStart(const ReadFourmerIndex& index, int minimum, int length) const {
++        if(words.empty() || !indexed)
++            return minimum;
++        const int coveredEnd=length-int(words.size()*sizeof(uint32_t));
++        if(minimum > coveredEnd)
++            return minimum;
++        int best=coveredEnd+1;
++        for(size_t i=0; i<codes.size(); i++) {
++            const int seedOffset=int(i*sizeof(uint32_t));
++            const int pos=index.occurrence(codes[i],minimum+seedOffset);
++            if(pos >= 0)
++                best=std::min(best,pos-seedOffset);
++        }
++        return best;
++    }
++
++    bool possible(const char* read, int length) const {
++        if(length < words.size()*sizeof(uint32_t))
++            return true;
++        if(words.empty())
++            return true;
++        for(size_t i=0; i<words.size(); i++) {
++            uint32_t word;
++            std::memcpy(&word, read+i*sizeof(uint32_t), sizeof(uint32_t));
++            if(word == words[i])
++                return true;
++        }
++        return false;
++    }
++
++private:
++    std::vector<uint32_t> words;
++    std::vector<int> codes;
++    bool indexed=true;
++};
++#endif
+diff --git a/src/adaptertrimmer.cpp b/src/adaptertrimmer.cpp
+index 495b6ca..7d6779c 100644
+--- a/src/adaptertrimmer.cpp
++++ b/src/adaptertrimmer.cpp
+@@ -114,6 +114,10 @@ bool AdapterTrimmer::trimBySequence(Read* r, FilterResult* fr, string& adapterse
+                 //cerr << ".";
+                 break;
+             }
++            // These calls use unshifted data pointers. With a full adapter
++            // comparison the next positions repeat exactly the same pure call.
++            if(cmplen == alen)
++                pos = max(pos, rlen-alen-1);
+         }
+     }
+ 
+@@ -131,6 +135,8 @@ bool AdapterTrimmer::trimBySequence(Read* r, FilterResult* fr, string& adapterse
+                 //cerr << "|";
+                 break;
+             }
++            if(cmplen == alen-1)
++                pos = max(pos, rlen-alen+1);
+         }
+     }
+ 
+@@ -182,4 +188,4 @@ bool AdapterTrimmer::test() {
+     }
+ 
+     return true;
+-}
+\ No newline at end of file
++}
+diff --git a/src/bytemismatch.h b/src/bytemismatch.h
+new file mode 100644
+index 0000000..f96ac85
+--- /dev/null
++++ b/src/bytemismatch.h
+@@ -0,0 +1,29 @@
++#ifndef FASTP_BYTE_MISMATCH_H
++#define FASTP_BYTE_MISMATCH_H
++#include <cstdint>
++#include <cstring>
++
++inline int boundedByteMismatches(const char* a, const char* b, int length, int limit) {
++    int count = 0;
++    int i = 0;
++    for(; i <= length-8; i+=8) {
++        uint64_t left, right;
++        std::memcpy(&left, a+i, sizeof(left));
++        std::memcpy(&right, b+i, sizeof(right));
++        uint64_t lanes = left ^ right;
++        lanes |= lanes >> 4;
++        lanes |= lanes >> 2;
++        lanes |= lanes >> 1;
++        lanes &= UINT64_C(0x0101010101010101);
++        count += (lanes * UINT64_C(0x0101010101010101)) >> 56;
++        if(count > limit)
++            return count;
++    }
++    for(; i<length; i++) {
++        count += a[i] != b[i];
++        if(count > limit)
++            return count;
++    }
++    return count;
++}
++#endif
+diff --git a/src/duplicate.cpp b/src/duplicate.cpp
+index ba2d37c..73e6777 100644
+--- a/src/duplicate.cpp
++++ b/src/duplicate.cpp
+@@ -109,6 +109,21 @@ static const uint64 SEQ_HASH_VAL[256] = {
+ };
+ 
+ void Duplicate::seq2intvector(const char* data, int len, uint64* output, int posOffset) {
++    if(mBufNum == 2) {
++        uint64 first = output[0];
++        uint64 second = output[1];
++        for(int p=0; p<len; p++) {
++            const int pos = p + posOffset;
++            const uint64 base = SEQ_HASH_VAL[static_cast<unsigned char>(data[p])];
++            const uint64 value = base + pos;
++            const int offset = (pos * 2) & mOffsetMask;
++            first += mPrimeArrays[offset] * value;
++            second += mPrimeArrays[offset+1] * value;
++        }
++        output[0] = first;
++        output[1] = second;
++        return;
++    }
+     for(int p=0; p<len; p++) {
+         uint64 base = SEQ_HASH_VAL[static_cast<unsigned char>(data[p])];
+         for(int i=0; i<mBufNum; i++) {
+@@ -166,4 +181,4 @@ double Duplicate::getDupRate() {
+     if(mTotalReads == 0)
+         return 0.0;
+     return (double)mDupReads/(double)mTotalReads;
+-}
+\ No newline at end of file
++}
+diff --git a/src/evaluator.cpp b/src/evaluator.cpp
+index 99b0eb9..1070283 100644
+--- a/src/evaluator.cpp
++++ b/src/evaluator.cpp
+@@ -4,6 +4,8 @@
+ #include <memory.h>
+ #include "nucleotidetree.h"
+ #include "knownadapters.h"
++#include "adapterseed.h"
++#include "bytemismatch.h"
+ 
+ Evaluator::Evaluator(Options* opt){
+     mOptions = opt;
+@@ -219,8 +221,15 @@ void Evaluator::evaluateReadNum(long& readNum) {
+ 
+ string Evaluator::checkKnownAdapters(Read** reads, long num) {
+     map<string, string> knownAdapters = getKnownAdapter();
+-    map<string, int> possibleCounts;
+-    map<string, int> mismatches;
++    struct Candidate {
++        const string* sequence;
++        const string* name;
++        int count;
++        int mismatches;
++        KnownAdapterSeeds seeds;
++    };
++    vector<Candidate> candidates;
++    candidates.reserve(knownAdapters.size());
+ 
+     // for performance, up to 100k reads and 100M bases
+     const int MAX_CHECK_READS = 100000;
+@@ -234,14 +243,14 @@ string Evaluator::checkKnownAdapters(Read** reads, long num) {
+     map<string, string>::iterator iter;
+ 
+     for(iter = knownAdapters.begin(); iter!= knownAdapters.end(); iter++) {
+-        string adapter = iter->first;
+-        possibleCounts[adapter] = 0;
+-        mismatches[adapter] = 0;
++        candidates.push_back(Candidate{&iter->first, &iter->second, 0, 0,
++                                       KnownAdapterSeeds(iter->first)});
+     }
+ 
+     long checkedReads = 0;
+     long checkedBases = 0;
+     int curMaxCount = 0;
++    ReadFourmerIndex readIndex;
+     for (long i=0; i<num; i++) {
+         Read* r = reads[i];
+         const char* rdata = r->mSeq->c_str();
+@@ -253,35 +262,29 @@ string Evaluator::checkKnownAdapters(Read** reads, long num) {
+             break;
+         if(curMaxCount > MAX_HIT)
+             break;
+-        for(iter = knownAdapters.begin(); iter!= knownAdapters.end(); iter++) {
+-            string adapter = iter->first;
++        readIndex.build(rdata, rlen);
++        for(Candidate& candidate : candidates) {
++            const string& adapter = *candidate.sequence;
+             const char* adata = adapter.c_str();
+             int alen = adapter.length();
+             if(alen >= rlen)
+                 continue;
+             // this one is not the candidate, skip it for speedup
+-            if(curMaxCount > 20 && possibleCounts[adapter] <curMaxCount/10) {
++            if(curMaxCount > 20 && candidate.count <curMaxCount/10) {
+                 continue; 
+             }
+-            for(int pos = 0; pos<rlen-matchReq; pos++) {
++            for(int pos = candidate.seeds.nextStart(readIndex, 0, rlen);
++                    pos<rlen-matchReq;
++                    pos = candidate.seeds.nextStart(readIndex, pos+1, rlen)) {
+                 int cmplen = min(rlen - pos, alen);
+                 int allowedMismatch = cmplen/allowOneMismatchForEach;
+-                int mismatch = 0;
+-                bool matched = true;
+-                for(int i=0; i<cmplen; i++) {
+-                    if( adata[i] != rdata[i+pos] ){
+-                        mismatch++;
+-                        if(mismatch > allowedMismatch) {
+-                            matched = false;
+-                            break;
+-                        }
+-                    }
+-                }
++                int mismatch = boundedByteMismatches(adata, rdata+pos, cmplen, allowedMismatch);
++                bool matched = mismatch <= allowedMismatch;
+                 if(matched) {
+-                    possibleCounts[adapter]++;
+-                    if(curMaxCount < possibleCounts[adapter])
+-                        curMaxCount = possibleCounts[adapter];
+-                    mismatches[adapter] += mismatch;
++                    candidate.count++;
++                    if(curMaxCount < candidate.count)
++                        curMaxCount = candidate.count;
++                    candidate.mismatches += mismatch;
+                     break;
+                 }
+             }
+@@ -290,15 +293,16 @@ string Evaluator::checkKnownAdapters(Read** reads, long num) {
+ 
+     string adapter = "";
+     int maxCount = 0;
+-    map<string, int>::iterator iter2;
+-    for(iter2 = possibleCounts.begin(); iter2 != possibleCounts.end(); iter2++) {
+-        if(iter2->second > maxCount) {
+-            adapter = iter2->first;
+-            maxCount = iter2->second;
++    const Candidate* best = NULL;
++    for(const Candidate& candidate : candidates) {
++        if(candidate.count > maxCount) {
++            best = &candidate;
++            adapter = *candidate.sequence;
++            maxCount = candidate.count;
+         }
+     }
+-    if(maxCount > checkedReads/50 || (maxCount > checkedReads/200 && mismatches[adapter] < checkedReads)) {
+-        cerr << knownAdapters[adapter] << endl;
++    if(maxCount > checkedReads/50 || (maxCount > checkedReads/200 && best->mismatches < checkedReads)) {
++        cerr << *best->name << endl;
+         cerr << adapter << endl;
+         return adapter;
+     }
+diff --git a/src/matcher.cpp b/src/matcher.cpp
+index c438ca6..53de508 100644
+--- a/src/matcher.cpp
++++ b/src/matcher.cpp
+@@ -25,14 +25,15 @@ bool Matcher::matchWithOneInsertion(const char* insData, const char* normalData,
+         if(accMismatchFromLeft[i] + accMismatchFromRight[cmplen-1] >diffLimit)
+             break;
+     }
++    int firstViableRight = 0;
+     for(int i=cmplen - 2; i>=0; i--) {
+         if(insData[i+1] != normalData[i])
+             accMismatchFromRight[i] = accMismatchFromRight[i+1]+1;
+         else
+             accMismatchFromRight[i] = accMismatchFromRight[i+1];
+         if(accMismatchFromRight[i] + accMismatchFromLeft[0]> diffLimit) {
+-            for(int p=0; p<i; p++)
+-                accMismatchFromRight[p] = diffLimit+1;
++            // Earlier suffixes cannot improve this nonnegative mismatch sum.
++            firstViableRight = i + 1;
+             break;
+         }
+     }
+@@ -45,6 +46,8 @@ bool Matcher::matchWithOneInsertion(const char* insData, const char* normalData,
+     for(int i=1; i<cmplen; i++) {
+         if(accMismatchFromLeft[i-1] + accMismatchFromRight[cmplen-1]> diffLimit)
+             return false;
++        if(i < firstViableRight)
++            continue;
+         int diff = accMismatchFromLeft[i-1] + accMismatchFromRight[i];
+         if(diff <= diffLimit)
+             return true;
+@@ -98,4 +101,4 @@ int Matcher::diffWithOneInsertion(const char* insData, const char* normalData, i
+     }
+ 
+     return minDiff;
+-}
+\ No newline at end of file
++}
+diff --git a/src/overlapanalysis.cpp b/src/overlapanalysis.cpp
+index 24dfc85..f33ccdc 100644
+--- a/src/overlapanalysis.cpp
++++ b/src/overlapanalysis.cpp
+@@ -1,6 +1,8 @@
+ #include "matcher.h"
+ #include "overlapanalysis.h"
+ #include "simd.h"
++#include <cstdint>
++#include <cstring>
+ 
+ OverlapAnalysis::OverlapAnalysis(){
+ }
+@@ -33,6 +35,20 @@ OverlapResult OverlapAnalysis::analyze(string*  r1, string*  r2, int diffLimit,
+ 
+     auto acceptNoGapOverlap = [&](const char* a, const char* b, int len, int overlapDiffLimit, int& mismatchCount) {
+         const int protectedPrefix = min(len, complete_compare_require);
++        if(overlapDiffLimit >= 0 && overlapDiffLimit < protectedPrefix / 4) {
++            bool possible = false;
++            for(int seed = 0; seed <= overlapDiffLimit; ++seed) {
++                uint32_t left, right;
++                memcpy(&left, a + 4*seed, sizeof(left));
++                memcpy(&right, b + 4*seed, sizeof(right));
++                if(left == right) {
++                    possible = true;
++                    break;
++                }
++            }
++            if(!possible)
++                return false;
++        }
+         mismatchCount = fastp_simd::countMismatchesBounded(a, b, protectedPrefix, overlapDiffLimit);
+         if (mismatchCount > overlapDiffLimit) {
+             return false;

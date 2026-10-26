@@ -1,0 +1,20 @@
+.DS_Store
+.Rhistory
+.RData
+.Rproj
+.Rproj.user
+.o
+.so
+.dll
+
+# Build products and local development state
+*.o
+*.so
+*.dll
+*.a
+*.dylib
+*.tar.gz
+.Rcheck/
+.Rproj.user/
+.Rhistory
+.RData

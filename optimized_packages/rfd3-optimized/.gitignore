@@ -1,0 +1,38 @@
+# Local configuration and environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+ENV/
+
+# Python/build/test/editor artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Local model weights, generated runs and evaluation bundles
+*.ckpt
+*.pt
+*.pth
+/checkpoints/
+/outputs/
+/runs/
+/evaluation/
+evaluation.zip
+*_optimized_lite.zip
+wandb/
+.hydra/

@@ -1,0 +1,38 @@
+[
+  {
+    "path": "pySCENIC/src/resources/tests/GSE103322.em.hgnc.sample.cxg.csv",
+    "bytes": 14534634,
+    "sha256": "78be9e48d452f1d3065e80e1222a7a720ce8e37bc08c2dba3c6b79fdb369961b",
+    "url": "https://raw.githubusercontent.com/aertslab/pySCENIC/06bafba412792f6efa5a552a23bb221cc3bdea1b/src/resources/tests/GSE103322.em.hgnc.sample.cxg.csv"
+  },
+  {
+    "path": "pySCENIC/src/resources/tests/c6.all.v6.1.symbols.gmt",
+    "bytes": 212215,
+    "sha256": "f2a662d00a105e68e5679063883d78870efe6112258d46f5b5c72cb98c081f26",
+    "url": "https://raw.githubusercontent.com/aertslab/pySCENIC/06bafba412792f6efa5a552a23bb221cc3bdea1b/src/resources/tests/c6.all.v6.1.symbols.gmt"
+  },
+  {
+    "path": "pySCENIC/src/resources/tests/hg19-tss-centered-10kb-10species.mc9nr.feather",
+    "bytes": 2047808,
+    "sha256": "55b20fbaa4975fe7b1e15dcaa6f412d26b694ae3ac8d2e7dac7d1db51309edc2",
+    "url": "https://raw.githubusercontent.com/aertslab/pySCENIC/06bafba412792f6efa5a552a23bb221cc3bdea1b/src/resources/tests/hg19-tss-centered-10kb-10species.mc9nr.feather"
+  },
+  {
+    "path": "pySCENIC/src/resources/tests/hg19-tss-centered-5kb-10species.mc9nr.db",
+    "bytes": 4942848,
+    "sha256": "6f83045f14c68769870743a8412def94aafc85831bada7f17107c0bb08017796",
+    "url": "https://raw.githubusercontent.com/aertslab/pySCENIC/06bafba412792f6efa5a552a23bb221cc3bdea1b/src/resources/tests/hg19-tss-centered-5kb-10species.mc9nr.db"
+  },
+  {
+    "path": "ctxcore/src/resources/tests/c6.all.v6.1.symbols.gmt",
+    "bytes": 212215,
+    "sha256": "f2a662d00a105e68e5679063883d78870efe6112258d46f5b5c72cb98c081f26",
+    "url": "https://raw.githubusercontent.com/aertslab/ctxcore/f76e0cf48d3262889646fb2d2fabb1df3b87f5df/src/resources/tests/c6.all.v6.1.symbols.gmt"
+  },
+  {
+    "path": "ctxcore/src/resources/tests/hg19-tss-centered-10kb-10species.mc9nr.genes_vs_motifs.rankings.feather",
+    "bytes": 4303570,
+    "sha256": "ca7ca30034fda3abdc6ed65d5ddbd88621a2c683c585fc4d8d040ebfc3a32d77",
+    "url": "https://raw.githubusercontent.com/aertslab/ctxcore/f76e0cf48d3262889646fb2d2fabb1df3b87f5df/src/resources/tests/hg19-tss-centered-10kb-10species.mc9nr.genes_vs_motifs.rankings.feather"
+  }
+]

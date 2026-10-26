@@ -1,0 +1,74 @@
+import numpy as np
+
+import scanpy as sc
+
+import scvelo as scv
+from scvelo.tools import ExpectationMaximizationModel
+
+
+def test_einsum():
+    from scvelo.core import l2_norm, prod_sum
+
+    Ms, Mu = np.random.rand(5, 4), np.random.rand(5, 4)
+    assert np.allclose(prod_sum(Ms, Mu, axis=0), np.sum(Ms * Mu, 0))
+    assert np.allclose(prod_sum(Ms, Mu, axis=1), np.sum(Ms * Mu, 1))
+    assert np.allclose(l2_norm(Ms), np.linalg.norm(Ms, axis=1))
+
+
+def test_dynamical_model():
+    adata = scv.datasets.simulation(random_seed=0, n_vars=10)
+    scv.pp.filter_and_normalize(adata)
+    sc.pp.log1p(adata)
+    scv.pp.moments(adata)
+    em_model = ExpectationMaximizationModel(
+        adata=adata, var_names_key=adata.var_names[0]
+    )
+    em_model.fit(return_model=False, copy=False)
+    adata = em_model.export_results_adata(adata)
+
+    assert np.round(adata[:, adata.var_names[0]].var["fit_alpha"][0], 4) == 6.4272
+
+
+def test_pipeline():
+    adata = scv.datasets.simulation(random_seed=0, n_vars=10)
+
+    scv.pp.filter_and_normalize(adata)
+    sc.pp.log1p(adata)
+    sc.pp.highly_variable_genes(adata, n_top_genes=5, subset=True)
+    sc.pp.pca(adata)
+    scv.pp.moments(adata)
+
+    em_model = ExpectationMaximizationModel(adata=adata)
+    em_model.fit(copy=False)
+    adata = em_model.export_results_adata(adata)
+    scv.tl.velocity(adata)
+    scv.tl.velocity(adata, vkey="dynamical_velocity", mode="dynamical")
+    adata.var.velocity_genes = True
+
+    scv.tl.velocity_graph(adata)
+    scv.tl.velocity_embedding(adata)
+
+    scv.tl.velocity_confidence(adata)
+    scv.tl.latent_time(adata)
+
+    with scv.GridSpec() as pl:
+        pl.velocity_graph(adata)
+        pl.velocity_embedding(adata, arrow_length=3, arrow_size=3, c="latent_time")
+        pl.velocity_embedding_grid(adata, scale=0.5, c="latent_time", cmap="gnuplot")
+        pl.velocity_embedding_stream(adata, c=adata.var_names[0], layer="velocity")
+        pl.scatter(adata, basis=adata.var_names[0], c="velocity", use_raw=True)
+        pl.hist([adata.obs.initial_size_spliced, adata.obs.initial_size_unspliced])
+
+    Ms, Mu = adata.layers["Ms"][0], adata.layers["Mu"][0]
+    Vs, Vd = adata.layers["velocity"][0], adata.layers["dynamical_velocity"][0]
+    Vgraph = adata.uns["velocity_graph"].data[:5]
+    pars = adata[:, 0].var[["fit_alpha", "fit_gamma"]].values
+
+    assert np.allclose(Ms, [0.8269, 1.0772, 0.9396, 1.0846, 1.0398], rtol=1e-2)
+    assert np.allclose(Mu, [3.8412, 3.1976, 3.5523, 3.3433, 3.8006], rtol=1e-2)
+    assert np.allclose(adata.X[0], [0.0, 0.0, 0.0, 0.4981, 0.0], rtol=1e-2)
+    # assert np.allclose(Vpca, [0.0163, 0.0185, 0.0472, 0.0025], rtol=1e-2)
+    assert np.allclose(Vd, [1.7582, 1.2297, 1.73, 0.6615, 1.5118], rtol=1e-2)
+    assert np.allclose(Vs, [3.2961, 2.5254, 2.9926, 2.634, 3.1352], rtol=1e-2)
+    assert np.allclose(Vgraph, [0.915, 0.5997, 0.8494, 0.1615, 0.7708], rtol=1e-2)
+    assert np.allclose(pars, [4.9257, 0.3239], rtol=1e-2)

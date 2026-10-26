@@ -1,0 +1,17 @@
+{
+  "method": "BayesSpace",
+  "package_version": "1.21.2",
+  "optimization_revision": "ext45",
+  "upstream_commit": "ba8b42211ef1581d31a659766559bd6e42be3acc",
+  "cumulative_patch_sha256": "e3eaf1928790c4629e01fda54a08bbfe731850d915219ad6c5ae77d88d81a227",
+  "patch_already_applied": true,
+  "packaging_modified_original_files": [
+    "README.md",
+    ".Rbuildignore",
+    ".gitignore"
+  ],
+  "code_changes_since_evaluation": false,
+  "contains_git_history": false,
+  "native_package_fixtures_included": true,
+  "external_evaluation_data_and_run_outputs_included": false
+}

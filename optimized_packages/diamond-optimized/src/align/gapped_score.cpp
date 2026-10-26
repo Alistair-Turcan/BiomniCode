@@ -1,0 +1,238 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include <map>
+#include <numeric>
+#include "target.h"
+#include "dp/dp.h"
+#include "util/geo/interval.h"
+#include "def.h"
+#include "util/geo/geo.h"
+#include "stats/cbs.h"
+#include "util/memory/mem_profile.h"
+
+using std::runtime_error;
+using std::vector;
+using std::array;
+using std::list;
+using std::map;
+using std::endl;
+using std::unique_ptr;
+using std::pair;
+using std::numeric_limits;
+
+namespace Extension {
+
+int band(int len, const Mode mode) {
+	if (config.padding > 0)
+		return config.padding;
+
+	static constexpr int THRESHOLD[] = { 50, 100, 150, 200, 250, 350, 500 };
+	static constexpr int BAND[2][8] = {
+		{ 15, 20, 30, 50, 60, 100, 120, 150 },  // default
+		{ 12, 16, 30, 30, 30,  40,  64,  64 },  // BANDED_FAST
+	};
+
+	int bucket = 0;
+	for (const int t : THRESHOLD)
+		bucket += (len >= t);
+
+	return BAND[mode == Mode::BANDED_FAST][bucket];
+}
+
+static int hsp_band(int base_band, int qlen, int tlen, const ApproxHsp& hsp) {
+	/*if (!config.classic_band) {
+		return std::max(Loc((hsp.d_max - hsp.d_min) * 0.15), 32);
+	}*/
+	if (config.narrow_band_cov == 0.0)
+		return base_band;
+	if ((double)hsp.query_range.length() / qlen >= config.narrow_band_cov
+		|| (double)hsp.subject_range.length() / tlen >= config.narrow_band_cov) {
+		return (Loc)((hsp.d_max - hsp.d_min) * config.narrow_band_factor);
+	}
+	return base_band;
+}
+
+Match::Match(BlockId target_block_id, const Sequence& seq, unique_ptr<::Stats::TargetMatrix>&& matrix, array<list<Hsp>, MAX_CONTEXT>& hsps, int ungapped_score) :
+	target_block_id(target_block_id),
+	seq(seq),
+	matrix(std::move(matrix)),
+	filter_score(0),
+	filter_evalue(DBL_MAX),
+	ungapped_score(ungapped_score)
+{
+	if (config.max_hsps != 1)
+		throw runtime_error("Match::Match max_hsps != 1.");
+	for (int i = 0; i < align_mode.query_contexts; ++i)
+		hsp.splice(hsp.end(), hsps[i]);
+	if (hsp.empty())
+		throw runtime_error("Match::Match hsp.empty()");
+	hsp.sort();
+	hsp.resize(1);
+	filter_evalue = hsp.front().evalue;
+	filter_score = hsp.front().score;
+}
+
+static void add_dp_targets(const WorkTarget& target,
+	BlockId target_idx,
+	const ::Stats::TargetMatrix* matrix,
+	const Sequence* query_seq,
+	array<DP::Targets, MAX_CONTEXT>& dp_targets,
+	DP::Flags flags, const HspValues hsp_values,
+	const Mode mode,
+	const Search::Config& cfg)
+{
+	const Loc band = Extension::band(query_seq->length(), mode),
+		slen = target.seq.length();
+	const unsigned score_width = matrix ? matrix->score_width() : 0;
+	for (int frame = 0; frame < align_mode.query_contexts; ++frame) {
+
+		const Loc qlen = query_seq[frame].length();
+
+		if (mode == Mode::FULL) {
+			if (target.ungapped_score[frame] == 0)
+				continue;
+			const unsigned b = DP::BandedSwipe::bin(hsp_values, qlen, 0, target.ungapped_score[frame], (int64_t)qlen * (int64_t)slen, score_width, 0);
+			//dp_targets[frame][b].emplace_back(target.seq, slen, 0, 0, Interval(), 0, target_idx, qlen, matrix);
+			dp_targets[frame][b].emplace_back(target.seq, slen, 0, 0, target_idx, qlen, matrix);
+			dp_targets[frame][b].back().query = &query_seq[frame];
+			continue;
+		}
+		if (target.hsp[frame].empty())
+			continue;
+		
+		int d0 = INT_MAX, d1 = INT_MIN, score = 0;
+		Loc j_min = numeric_limits<Loc>::max(), j_max = numeric_limits<Loc>::min();
+		Anchor anchor;
+
+		for (const ApproxHsp &hsp : target.hsp[frame]) {
+			Geo::assert_diag_bounds(hsp.d_max, qlen, slen);
+			Geo::assert_diag_bounds(hsp.d_min, qlen, slen);
+			assert(hsp.score > 0);
+			assert(hsp.max_diag.score > 0);
+			const int b = hsp_band(band, qlen, slen, hsp);
+			const int b0 = std::max(hsp.d_min - b, -(slen - 1)),
+				b1 = std::min(hsp.d_max + 1 + b, qlen);
+			const double overlap = intersect(Interval(d0, d1), Interval(b0, b1)).length();
+			if (overlap / (d1 - d0) > config.min_band_overlap || overlap / (b1 - b0) > config.min_band_overlap) {
+				d0 = std::min(d0, b0);
+				d1 = std::max(d1, b1);
+				score = std::max(score, hsp.score);
+				j_min = std::min(j_min, hsp.subject_range.begin_);
+				j_max = std::max(j_max, hsp.subject_range.end_);
+				if (hsp.max_diag.score > anchor.score) anchor = hsp.max_diag;
+			}
+			else {
+				if (d0 != INT_MAX) {
+					const int64_t dp_size = (int64_t)DpTarget::banded_cols(qlen, slen, d0, d1) * int64_t(d1 - d0);
+					const auto bin = DP::BandedSwipe::bin(hsp_values, d1 - d0, 0, score, dp_size, score_width, 0);
+					//dp_targets[frame][bin].emplace_back(target.seq, slen, d0, d1, Interval(j_min, j_max), score, target_idx, qlen, matrix, DpTarget::CarryOver(), anchor);
+					dp_targets[frame][bin].emplace_back(target.seq, slen, d0, d1, target_idx, qlen, matrix, DpTarget::CarryOver(), anchor);
+					dp_targets[frame][bin].back().prof = &target.profile;
+					dp_targets[frame][bin].back().prof_reverse = &target.profile_rev;
+					dp_targets[frame][bin].back().query = &query_seq[frame];
+				}
+				d0 = b0;
+				d1 = b1;
+				score = hsp.score;
+				j_min = hsp.subject_range.begin_;
+				j_max = hsp.subject_range.end_;
+				anchor = hsp.max_diag;
+			}
+		}
+
+		const int64_t dp_size = (int64_t)DpTarget::banded_cols(qlen, slen, d0, d1) * int64_t(d1 - d0);
+		const auto bin = DP::BandedSwipe::bin(hsp_values, d1 - d0, 0, score, dp_size, score_width, 0);
+		//dp_targets[frame][bin].emplace_back(target.seq, slen, d0, d1, Interval(j_min, j_max), score, target_idx, qlen, matrix, DpTarget::CarryOver(), anchor);
+		dp_targets[frame][bin].emplace_back(target.seq, slen, d0, d1, target_idx, qlen, matrix, DpTarget::CarryOver(), anchor);
+		dp_targets[frame][bin].back().prof = &target.profile;
+		dp_targets[frame][bin].back().prof_reverse = &target.profile_rev;
+		dp_targets[frame][bin].back().query = &query_seq[frame];
+	}
+}
+
+TargetList align(vector<WorkTarget>& targets, const Query& query, DP::Flags flags, const HspValues hsp_values, const Mode mode, ThreadPool& tp,
+	const Search::Config& cfg, Statistics& stat, std::pmr::memory_resource& pool)
+{
+	MEM_SCOPE("extend/dp-targets");
+	array<DP::Targets, MAX_CONTEXT> dp_targets;
+	TargetList r(&pool);
+	if (targets.empty())
+		return r;
+	r.reserve(targets.size());
+	size_t cbs_targets = 0;
+
+	for (size_t i = 0; i < targets.size(); ++i) {
+		r.emplace_back(targets[i].block_id, targets[i].seq, targets[i].ungapped_score.front(), std::move(targets[i].matrix));
+		if (targets[i].done) {
+			assert(targets[i].hsp[0].size() == 1);
+			assert(align_mode.query_contexts == 1);
+			r.back().add_hit(targets[i].hsp[0].front(), query.sequence[targets[i].hsp[0].front().frame].length());
+		}
+		else
+			add_dp_targets(targets[i], (BlockId)i, r.back().matrix.get(), query.sequence.data(), dp_targets, flags, hsp_values, mode, cfg);
+		if (targets[i].matrix)
+			++cbs_targets;
+	}
+	stat.inc(Statistics::TARGET_HITS3_CBS, cbs_targets);
+
+	if (mode == Mode::FULL)
+		flags |= DP::Flags::FULL_MATRIX;
+	if (mode == Mode::GLOBAL)
+		flags |= DP::Flags::SEMI_GLOBAL;
+
+	for (int frame = 0; frame < align_mode.query_contexts; ++frame) {
+		const int64_t n = std::accumulate(dp_targets[frame].begin(), dp_targets[frame].end(), (int64_t)0, [](int64_t n, const DP::TargetVec& v) { return n + v.size(); });
+		if (n == 0)
+			continue;
+		DP::Params params{
+			query.sequence[frame],
+			query.title,
+			Frame(frame),
+			query.source_length,
+			query.composition_bias(frame),
+			flags,
+			false,
+			0,
+			-1,
+			hsp_values,
+			stat,
+			&tp,
+			&pool
+		};
+		list<Hsp> hsp = DP::BandedSwipe::swipe(dp_targets[frame], params);
+		while (!hsp.empty())
+			r[hsp.front().swipe_target].add_hit(hsp, hsp.begin());
+	}
+	
+	TargetList::iterator out = r.begin();
+	for (TargetList::iterator i = r.begin(); i != r.end(); ++i)
+		if (i->filter_evalue != DBL_MAX) {
+			if(config.max_hsps == 1 || have_coords(hsp_values))
+				i->inner_culling();
+			if (out != i)
+				*out = std::move(*i);
+			++out;
+		}
+	r.erase(out, r.end());
+
+	return r;
+}
+
+}

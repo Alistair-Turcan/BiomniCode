@@ -1,0 +1,18 @@
+{
+  "upstream_repository": "https://github.com/privefl/bigsnpr",
+  "upstream_commit": "4bc7f817640d393c7c3997c1a675509c2ea78b6c",
+  "bigsnpr_version": "1.12.21",
+  "vendored_header_origin": "bigsparser 0.7.3 (GPL-3)",
+  "vendored_header_sha256": "22dbec942fdbf41b9a0fe17ab0271103cb33a5b179218a84d5b2de495ffc82de",
+  "source_changes": [
+    "src/Makevars",
+    "src/vendor/bigsparser/SFBM.h"
+  ],
+  "packaging_validation": {
+    "fresh_R_CMD_INSTALL": "passed",
+    "custom_user_Makevars": "disabled during build",
+    "header_include_precedence": "verified (-Ivendor precedes dependency headers)",
+    "real_input_smoke_comparison": "bitwise-identical to evaluated optimized build",
+    "upstream_source_integrity": "unchanged except documented Makevars and Rbuildignore edits"
+  }
+}

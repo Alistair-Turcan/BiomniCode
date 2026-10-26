@@ -1,0 +1,7 @@
+{
+  "source_commit": "e113e4449995dfee3120ce127d849ebd2afcd274",
+  "upstream_repository": "https://github.com/saigegit/SAIGE",
+  "distribution": "source-only GitHub snapshot",
+  "excluded_tracked_subtree": "src/SAIGE/ (embedded installed package)",
+  "retained_source_modified": false
+}

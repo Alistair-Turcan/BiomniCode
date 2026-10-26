@@ -1,0 +1,13 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+*.partial
+**/src/resources/tests/*
+!**/src/resources/tests/__init__.py

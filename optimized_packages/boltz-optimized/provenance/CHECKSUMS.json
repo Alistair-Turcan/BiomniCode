@@ -1,0 +1,872 @@
+{
+  ".gitignore": {
+    "bytes": 3243,
+    "mode": 420,
+    "sha256": "c37095e95c26ab55ab2325b6dd136acf5791ec4d5cac6268315682cb3acd3761"
+  },
+  "LICENSE": {
+    "bytes": 1102,
+    "mode": 420,
+    "sha256": "f0667fd5e66c51e1ba8ddaa0249c6d7225b30037e02c45782d8f2c2943ac2617"
+  },
+  "README.md": {
+    "bytes": 3555,
+    "mode": 420,
+    "sha256": "eb9959fa173b23bd5df7d34a6eca4a7eadabf6ed444dae8e2a924192327384b7"
+  },
+  "docs/UPSTREAM_README.md": {
+    "bytes": 6415,
+    "mode": 420,
+    "sha256": "79149435313841e6f9cc0c8b581259f3952a2469cbe6f9a733f7143b557025c2"
+  },
+  "docs/boltz1_pred_figure.png": {
+    "bytes": 1726552,
+    "mode": 420,
+    "sha256": "41b98b5dc50faf71334f8a30eb43e27e6195bd86b580cf9bb583527638c9706f"
+  },
+  "docs/boltz2_title.png": {
+    "bytes": 82147,
+    "mode": 420,
+    "sha256": "5b716dd223850ab9d784f98f4a0e60edf65a98192731f89025e3cfa729625604"
+  },
+  "docs/evaluation.md": {
+    "bytes": 3478,
+    "mode": 420,
+    "sha256": "ace2ce805df526bcb8199268f526d1a9af092fe311365a7019e3302f9e057b2f"
+  },
+  "docs/pearson_plot.png": {
+    "bytes": 79616,
+    "mode": 420,
+    "sha256": "c581a65888878e3070e4b2cfeadcef5fc1bccfee94d9372b080f2862fcabc4f2"
+  },
+  "docs/plot_test_boltz2.png": {
+    "bytes": 40138,
+    "mode": 420,
+    "sha256": "a3a57b8ca343bd0de1615c2571459e4c6cadc4010a09655bca947bb4828afe3b"
+  },
+  "docs/prediction.md": {
+    "bytes": 28107,
+    "mode": 420,
+    "sha256": "b9cb2ff437389864bde02e7e9fd9fbcc7de189ca2e240a5f3fb6261ca595a795"
+  },
+  "docs/training.md": {
+    "bytes": 10865,
+    "mode": 420,
+    "sha256": "4574fa3cac9d086708dce59de68a144dc337722af3242db9adfd6798bb37e21c"
+  },
+  "examples/affinity.yaml": {
+    "bytes": 585,
+    "mode": 420,
+    "sha256": "631bb444e0deea02db042cf2f766711d17a9372603d01694fbea804a12f7227e"
+  },
+  "examples/cyclic_prot.yaml": {
+    "bytes": 124,
+    "mode": 420,
+    "sha256": "a284a172e93001b21bf8f9415c58a16f84c7fc2048076d02a0c64816717d9199"
+  },
+  "examples/ligand.fasta": {
+    "bytes": 937,
+    "mode": 420,
+    "sha256": "f45a199db903ba2b70e69f467fa88c6b52a02fc04ac400c107422e5adc8c7af4"
+  },
+  "examples/ligand.yaml": {
+    "bytes": 632,
+    "mode": 420,
+    "sha256": "b94a64759245ef4ab04b2075a1733181a6d660167a4b3f003e24bd38873be866"
+  },
+  "examples/msa/seq1.a3m": {
+    "bytes": 112688,
+    "mode": 420,
+    "sha256": "d98f3b09f429e4fb087d67ca3b89f00c3165553444ef221ead6ed2cc01488bd4"
+  },
+  "examples/msa/seq2.a3m": {
+    "bytes": 16796,
+    "mode": 420,
+    "sha256": "0c29947b159a20704ec38ec1a6c4dc3a252af96c0581a47c0be6488b6f63ebec"
+  },
+  "examples/multimer.yaml": {
+    "bytes": 361,
+    "mode": 420,
+    "sha256": "49d84c2dbf0fa511c34fdfec6973e9398e023dded657ff0f3d29edc3e4b4d71c"
+  },
+  "examples/pocket.yaml": {
+    "bytes": 1123,
+    "mode": 420,
+    "sha256": "798ca0bf05d4da318e51f0f5513d79cac4fe128a53979c834f10c285939a18ae"
+  },
+  "examples/prot.fasta": {
+    "bytes": 152,
+    "mode": 420,
+    "sha256": "cde8106e40458b04659ae3f619776654c559d311f768ee052be983f444b72156"
+  },
+  "examples/prot.yaml": {
+    "bytes": 209,
+    "mode": 420,
+    "sha256": "92ddc5b2190f4667171dffb2a076e34d305033cd762df12ce927efd6b376b52b"
+  },
+  "examples/prot_custom_msa.yaml": {
+    "bytes": 244,
+    "mode": 420,
+    "sha256": "0d134612ae5e36288b518c1152b9b02945738951076739d3dbf1ce181e008c8b"
+  },
+  "examples/prot_no_msa.yaml": {
+    "bytes": 225,
+    "mode": 420,
+    "sha256": "c459dc8f6adf65a5b3918c44684680bcf57a00f162c7546425a51283fe930071"
+  },
+  "provenance/SOURCE_MANIFEST.json": {
+    "bytes": 40244,
+    "mode": 420,
+    "sha256": "e828c5f2efc492d0864291ac1f624f0e60d850959d5696097f1f2f7d8715108d"
+  },
+  "provenance/benchmark_environment.txt": {
+    "bytes": 2333,
+    "mode": 420,
+    "sha256": "4a34f607c5aa094673e7b08f7805b59f529ff594af5dfdcf3ee04ce7b70b3a08"
+  },
+  "provenance/source_identity.json": {
+    "bytes": 387,
+    "mode": 420,
+    "sha256": "18667ddc6410e0f74eb2a2a7a67e5e084d175d94ddfbc25d36ffc380e68722e4"
+  },
+  "pyproject.toml": {
+    "bytes": 2558,
+    "mode": 420,
+    "sha256": "2cd9d9f737b1143719f2bdb980325750bfd043e5b71ce19648e4c9c3fadeb9b3"
+  },
+  "scripts/eval/aggregate_evals.py": {
+    "bytes": 26549,
+    "mode": 420,
+    "sha256": "cbbe1703b452591a421c7194b709a34df1c876044a3048c8c3a31aa51c278bf0"
+  },
+  "scripts/eval/physcialsim_metrics.py": {
+    "bytes": 12495,
+    "mode": 420,
+    "sha256": "cc0bd80a64807cbb8b050a0c1e1621b2bb797c73466bfa33d39f44958d558dc8"
+  },
+  "scripts/eval/run_evals.py": {
+    "bytes": 5422,
+    "mode": 420,
+    "sha256": "c06a6c94f8ddaf5fa4bb4a03d55f5567665752ad5e8c17ddd543b12adbfdd4a7"
+  },
+  "scripts/process/README.md": {
+    "bytes": 70,
+    "mode": 420,
+    "sha256": "d5b11ec76c558918dc9c0ee9dfa98f8ac66560880a285db8bcdeaed91c234cdb"
+  },
+  "scripts/process/ccd.py": {
+    "bytes": 7708,
+    "mode": 420,
+    "sha256": "6895922d8fd73331f8fc608794020dc1605cdb5a176d284930c68c0809a93ce5"
+  },
+  "scripts/process/cluster.py": {
+    "bytes": 3168,
+    "mode": 420,
+    "sha256": "ee75d0d2ee41be42c226abd8ff3fb14937ab0682a40355ef04198918512c2e56"
+  },
+  "scripts/process/mmcif.py": {
+    "bytes": 32260,
+    "mode": 420,
+    "sha256": "bb15f932880c694ae5f3d390c4b1e2824507c1c1d2ac54ea03a00dbded8f9c4c"
+  },
+  "scripts/process/msa.py": {
+    "bytes": 3302,
+    "mode": 420,
+    "sha256": "3c88a42b029f8e1a0327e16027cc3f3c285422f7c6705b7e9892c87074e38305"
+  },
+  "scripts/process/rcsb.py": {
+    "bytes": 9513,
+    "mode": 420,
+    "sha256": "dd9187efba52cfb359975e2124025b51a7ae53f51719e8399a40bd43ac9fc173"
+  },
+  "scripts/process/requirements.txt": {
+    "bytes": 44,
+    "mode": 420,
+    "sha256": "b5be22ac41332af97d2acdd1743ccebcdc9ee198d5b04b25ac17014146a291a1"
+  },
+  "scripts/train/README.md": {
+    "bytes": 63,
+    "mode": 420,
+    "sha256": "5e33dc4cf64975850db1949611e7b57facf4a8f34c82c10f867daba6bf80c25c"
+  },
+  "scripts/train/assets/casp15_ids.txt": {
+    "bytes": 490,
+    "mode": 420,
+    "sha256": "b68b29f181bd913657428d1ce9e273c9d60f0d98dc8b895407612739e991cff4"
+  },
+  "scripts/train/assets/test_ids.txt": {
+    "bytes": 2750,
+    "mode": 420,
+    "sha256": "e4ead677ac12ce46b7dd97c9c85ec378d711c63172f00c57531365ae1d4ec3a3"
+  },
+  "scripts/train/assets/validation_ids.txt": {
+    "bytes": 2760,
+    "mode": 420,
+    "sha256": "b73e71f856c0b2b6ab462cc6903475661105cd8b5ec901dc28bcbf8bb9ca310d"
+  },
+  "scripts/train/configs/confidence.yaml": {
+    "bytes": 4813,
+    "mode": 420,
+    "sha256": "8a02ea255267fa3d5beb10e5073e6f5e42f9cab81fe614a750a92d0059a8e4b0"
+  },
+  "scripts/train/configs/full.yaml": {
+    "bytes": 4671,
+    "mode": 420,
+    "sha256": "70aa005d0c29b1c28918e104b92fd43b5cfde6157993dfcd8fe832e9a2e107dc"
+  },
+  "scripts/train/configs/structure.yaml": {
+    "bytes": 4520,
+    "mode": 420,
+    "sha256": "31ca3ffad41aa5fa84cef7186599631021604f7e08313c25ef7c47b9607816dd"
+  },
+  "scripts/train/train.py": {
+    "bytes": 7196,
+    "mode": 420,
+    "sha256": "317a4c34f68fbd8ad0848d5e0c90a347c5f2bd4918597af42e489c738bdadf06"
+  },
+  "src/boltz/__init__.py": {
+    "bytes": 187,
+    "mode": 420,
+    "sha256": "17ffaca374b8d2266b499f3d19ee134ba699ab05b2657abf1f801718395b03f8"
+  },
+  "src/boltz/data/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/const.py": {
+    "bytes": 26779,
+    "mode": 420,
+    "sha256": "d4cfbcf19e8791f298e8c90db6a723ddbf4ffa85fdc445e5ba1dea33fbbc74d5"
+  },
+  "src/boltz/data/crop/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/crop/affinity.py": {
+    "bytes": 5732,
+    "mode": 420,
+    "sha256": "36a1adbc8f3788eb561839805704e95f2233c5e4920070dab860ab9b1aafb18b"
+  },
+  "src/boltz/data/crop/boltz.py": {
+    "bytes": 9840,
+    "mode": 420,
+    "sha256": "6e5a0ff6f93a726288678cd9a0ed3821785ba2e488105bca6f1054a0b1034071"
+  },
+  "src/boltz/data/crop/cropper.py": {
+    "bytes": 1145,
+    "mode": 420,
+    "sha256": "0460e017035550fc8166f72a9c9c0fc87fc87d9d4d018099fca3306d07f81cae"
+  },
+  "src/boltz/data/feature/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/feature/featurizer.py": {
+    "bytes": 44522,
+    "mode": 420,
+    "sha256": "fb0a7ecbbb42d5e02ef85d26e399a4bbb807773bcb5fbb3149a50923f697f860"
+  },
+  "src/boltz/data/feature/featurizerv2.py": {
+    "bytes": 92443,
+    "mode": 420,
+    "sha256": "e6a76939cc867f16e84e217a546b85d4a5f129c8ec43bafcef671ec6b143a0e7"
+  },
+  "src/boltz/data/feature/symmetry.py": {
+    "bytes": 22214,
+    "mode": 420,
+    "sha256": "244ab11b85dc72ceeae14288c4b3d42d7b2fe70622344dc164c0c7d26b0168d0"
+  },
+  "src/boltz/data/feature_cache.py": {
+    "bytes": 4214,
+    "mode": 420,
+    "sha256": "04dca513b06d8dfa0aa83419e873a1c1310e7fd2f82070136e583061fcab88f9"
+  },
+  "src/boltz/data/filter/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/filter/dynamic/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/filter/dynamic/date.py": {
+    "bytes": 2078,
+    "mode": 420,
+    "sha256": "33d92cd4fcfda7433df7ec69a27aeebfefc51df351dc7bf7a17b7f35134c396a"
+  },
+  "src/boltz/data/filter/dynamic/filter.py": {
+    "bytes": 516,
+    "mode": 420,
+    "sha256": "ae7ca9f3e84258c1df3954ca6c3a3ed000efc35ce8bc6c23fd8f8fb8ffe9c625"
+  },
+  "src/boltz/data/filter/dynamic/max_residues.py": {
+    "bytes": 1071,
+    "mode": 420,
+    "sha256": "b6f61a7e4f02e3efedf7a9d6487209e7bcaac568c7ae5257e4bf0a8e9b8a6c4d"
+  },
+  "src/boltz/data/filter/dynamic/resolution.py": {
+    "bytes": 868,
+    "mode": 420,
+    "sha256": "38b84f8f462e992f2de39c7440a2c173a1116f04aa6c539907ca6e11dd7b51f6"
+  },
+  "src/boltz/data/filter/dynamic/size.py": {
+    "bytes": 1087,
+    "mode": 420,
+    "sha256": "7f1f6d65f7f4c723536259da0c3792a2ae8ca4d2bf53e859a67035c581ea4c0a"
+  },
+  "src/boltz/data/filter/dynamic/subset.py": {
+    "bytes": 1106,
+    "mode": 420,
+    "sha256": "c49fcb51e2d635af432046f1a07e3c2e9fc6d17374acb17d7a9e97c9f0ecfaa7"
+  },
+  "src/boltz/data/filter/static/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/filter/static/filter.py": {
+    "bytes": 555,
+    "mode": 420,
+    "sha256": "2bb4ae77861327b8bd44d2bb68f6ccd2e22e3bfd577cbae466b3ca823563eb22"
+  },
+  "src/boltz/data/filter/static/ligand.py": {
+    "bytes": 1042,
+    "mode": 420,
+    "sha256": "2da982f99f488d88f70e67f1c0c1663db28106144c6f2dee5908fbe300d65497"
+  },
+  "src/boltz/data/filter/static/polymer.py": {
+    "bytes": 9386,
+    "mode": 420,
+    "sha256": "2cdb1032c38e9e162978ab8cf404ad92da1340f3191371f4caee26460fa3c0f7"
+  },
+  "src/boltz/data/module/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/module/inference.py": {
+    "bytes": 8149,
+    "mode": 420,
+    "sha256": "3f19e1cc43cb6f2815b8f088ad3b4cdd18903b42c56e4daaa7576c332d6881f7"
+  },
+  "src/boltz/data/module/inferencev2.py": {
+    "bytes": 16330,
+    "mode": 420,
+    "sha256": "f8a9ea590dd892aa09fae539a20ef82c37c88c80d461fdc7cfa12911d13375ee"
+  },
+  "src/boltz/data/module/training.py": {
+    "bytes": 22621,
+    "mode": 420,
+    "sha256": "9a4e3f1487e1056b97ecc2ee50b584a059c6dd8949040a02ab81a20f3c868030"
+  },
+  "src/boltz/data/module/trainingv2.py": {
+    "bytes": 21276,
+    "mode": 420,
+    "sha256": "66c6141d85f17ee3e02296d3c028f940b3b45cafffc63b2a230e8601148d196d"
+  },
+  "src/boltz/data/mol.py": {
+    "bytes": 34268,
+    "mode": 420,
+    "sha256": "99a3a93c71065f55555c220563aa5034617b8140593c07e04afb8f7f640ed727"
+  },
+  "src/boltz/data/msa/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/msa/mmseqs2.py": {
+    "bytes": 10559,
+    "mode": 420,
+    "sha256": "7537c23ca2d6863639187b8815011d592ee433bb145e6fdc86082ca836d3a6e7"
+  },
+  "src/boltz/data/pad.py": {
+    "bytes": 2066,
+    "mode": 420,
+    "sha256": "3b808638e7394f016eb9678fee12a330822c96375f2e3f9526d5d07955c5c7cb"
+  },
+  "src/boltz/data/parse/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/parse/a3m.py": {
+    "bytes": 3318,
+    "mode": 420,
+    "sha256": "2399c3d7a918556d4d3ca78b10c9bb2381a7110aed664f5b16dc70f3dc262a2d"
+  },
+  "src/boltz/data/parse/csv.py": {
+    "bytes": 2518,
+    "mode": 420,
+    "sha256": "1dcabcac95b69e37336a112bf237ddfe8fb3c4b68d4a0277608a02f6cac8aa9c"
+  },
+  "src/boltz/data/parse/fasta.py": {
+    "bytes": 3906,
+    "mode": 420,
+    "sha256": "63828f22d66a859dcc7a3ecfa3799dcdf6c44f2a472fef494f8d34962b4654f4"
+  },
+  "src/boltz/data/parse/mmcif.py": {
+    "bytes": 36822,
+    "mode": 420,
+    "sha256": "db99045c2931f8eb9a6b002cedc773d1fc5d46ee7f0823b4015d34bbce0fae34"
+  },
+  "src/boltz/data/parse/mmcif_with_constraints.py": {
+    "bytes": 51473,
+    "mode": 420,
+    "sha256": "5876197244aa530bbe35bf6f9959b11e60bbbb1c15ac5ec05547952ac739c064"
+  },
+  "src/boltz/data/parse/pdb.py": {
+    "bytes": 1433,
+    "mode": 420,
+    "sha256": "7aa50724cd70fdbd8a4acaeba8ceca0bd76ba9cc95099592a1ddcd1e53081a69"
+  },
+  "src/boltz/data/parse/schema.py": {
+    "bytes": 62148,
+    "mode": 420,
+    "sha256": "c0dae4c89c4c4a22175a433b5a0c68860329d2a292c76224328bdde19b73b743"
+  },
+  "src/boltz/data/parse/yaml.py": {
+    "bytes": 1505,
+    "mode": 420,
+    "sha256": "19115132d0c3e0f4383c8a40fd2d638f4bd1684bb62e565dfe0e2b375cd4acda"
+  },
+  "src/boltz/data/parsed_cache.py": {
+    "bytes": 5251,
+    "mode": 420,
+    "sha256": "2c0b3f422b98e2929c7f6467f880369cca2543473ed57a95ae55df3586681a11"
+  },
+  "src/boltz/data/sample/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/sample/cluster.py": {
+    "bytes": 8175,
+    "mode": 420,
+    "sha256": "f52c7ca8fef3199380c84b29c1816d0936c64c1667b8dfb37c22856db03fea82"
+  },
+  "src/boltz/data/sample/distillation.py": {
+    "bytes": 1789,
+    "mode": 420,
+    "sha256": "001cecb76141aff139e0aa995881dcd5b62d298afbf65c5124cecf9d2e227cad"
+  },
+  "src/boltz/data/sample/random.py": {
+    "bytes": 1142,
+    "mode": 420,
+    "sha256": "8e67a79c335f92eab6501ca7e79c2b413c0d3c2381baeebf8c1253e15ada2f6f"
+  },
+  "src/boltz/data/sample/sampler.py": {
+    "bytes": 1095,
+    "mode": 420,
+    "sha256": "2d757814b40f74c0bf8dae0c8cf8f4922704aebf145d25ab29e84f045e733b14"
+  },
+  "src/boltz/data/tokenize/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/tokenize/boltz.py": {
+    "bytes": 7164,
+    "mode": 420,
+    "sha256": "53c62f3952d95f8d523a258375b0d23431336f0c19db218207ef0c4381f68cd3"
+  },
+  "src/boltz/data/tokenize/boltz2.py": {
+    "bytes": 13530,
+    "mode": 420,
+    "sha256": "e35aeb4b1c63df7abc402cf71ac3261447fd2374e557ab1aebd57ce4ff054422"
+  },
+  "src/boltz/data/tokenize/tokenizer.py": {
+    "bytes": 484,
+    "mode": 420,
+    "sha256": "f689243bcf40d51bd0779b5c5bd54b20a6424afbd400ba2ccb68ad74dd660c81"
+  },
+  "src/boltz/data/types.py": {
+    "bytes": 22170,
+    "mode": 420,
+    "sha256": "e7e5ede40e0c208bcb966acd04caebb3b017e8a50b85b1aa3cae4cdf83b71707"
+  },
+  "src/boltz/data/write/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/data/write/mmcif.py": {
+    "bytes": 12213,
+    "mode": 420,
+    "sha256": "ebf4c5773903bb4f5dbe8121ece2def65855c7f5947157586cca74d26ec3337c"
+  },
+  "src/boltz/data/write/pdb.py": {
+    "bytes": 6278,
+    "mode": 420,
+    "sha256": "a7ec3450deaec04fe4c030a99e778df5ed23a6f483b286d10fed00fa22aa6db9"
+  },
+  "src/boltz/data/write/utils.py": {
+    "bytes": 539,
+    "mode": 420,
+    "sha256": "d8fcef78ce2a67b01a76bbb5433a22d83862b7fb382d7973e1c797a46262e32d"
+  },
+  "src/boltz/data/write/writer.py": {
+    "bytes": 12953,
+    "mode": 420,
+    "sha256": "435c27bfd3987666e7ef2463a3faac28ae23b1ac610ce066825825e7fd54aaca"
+  },
+  "src/boltz/main.py": {
+    "bytes": 78671,
+    "mode": 420,
+    "sha256": "1734b4cf69e1f2a3d07b60f211a96be7a0bde285af2de9f49eb40c116f5d31c5"
+  },
+  "src/boltz/model/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/layers/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/layers/_confidence_consistency/__init__.py": {
+    "bytes": 56,
+    "mode": 420,
+    "sha256": "9dda6d2586f83e6b6d1c334a2848e2b417eca055be2a31ebcaeaaadcc56a578b"
+  },
+  "src/boltz/model/layers/_confidence_consistency/attentionv2.py": {
+    "bytes": 3130,
+    "mode": 420,
+    "sha256": "ae9bbc1eeb56c8dcd403d49693c84cd616ffd6772226364214ffd61d328cd8da"
+  },
+  "src/boltz/model/layers/_confidence_consistency/pairformer.py": {
+    "bytes": 10360,
+    "mode": 420,
+    "sha256": "5e12a3143fc059ddc8539f8553b7b9ee3e404bd09c48256fdde4825211101b9b"
+  },
+  "src/boltz/model/layers/_confidence_consistency/transition.py": {
+    "bytes": 2290,
+    "mode": 420,
+    "sha256": "cc50a51a6aa669455420549de16e29558d7b96f8a7d8da6f69930ab9e738cf37"
+  },
+  "src/boltz/model/layers/_confidence_consistency/triangular_attention/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/layers/_confidence_consistency/triangular_attention/attention.py": {
+    "bytes": 5001,
+    "mode": 420,
+    "sha256": "24810a231876f65cbca3817dd8f5b36e68fa00e69e3123c2dccbfc7395af0dcb"
+  },
+  "src/boltz/model/layers/_confidence_consistency/triangular_attention/primitives.py": {
+    "bytes": 11961,
+    "mode": 420,
+    "sha256": "d7245ffe8eefa580c693967e047da9950ed2b366c3595804e19a4477d789a412"
+  },
+  "src/boltz/model/layers/_confidence_consistency/triangular_mult.py": {
+    "bytes": 6000,
+    "mode": 420,
+    "sha256": "458319d62723c19a672fa650b11a601feaff8ee195179e37e6a43b34a92b3a94"
+  },
+  "src/boltz/model/layers/attention.py": {
+    "bytes": 3782,
+    "mode": 420,
+    "sha256": "ae47793d3228541d644b30e706b65fbade03a041ca1c10b0b836f5a7425f49c9"
+  },
+  "src/boltz/model/layers/attentionv2.py": {
+    "bytes": 14078,
+    "mode": 420,
+    "sha256": "f2c3a518abb9d08317a8759405300e8ac5147e96e99c2fc4c2fa7de1575801c1"
+  },
+  "src/boltz/model/layers/confidence_utils.py": {
+    "bytes": 8533,
+    "mode": 420,
+    "sha256": "50cc0fe50e6088127c04ae715875e612c0f8a690ee8114b86a5ad41aebc63db7"
+  },
+  "src/boltz/model/layers/consistency_ops.py": {
+    "bytes": 315,
+    "mode": 420,
+    "sha256": "900d08183f8b18afce14771cb506e0980931d32a0b106a227be5c7e4318d4808"
+  },
+  "src/boltz/model/layers/dropout.py": {
+    "bytes": 763,
+    "mode": 420,
+    "sha256": "cb22161a9683a8d9d16866f4fd3d1ece2cce663e2e4ed738bcd3bd23f47a77b6"
+  },
+  "src/boltz/model/layers/fused_attention.py": {
+    "bytes": 7519,
+    "mode": 420,
+    "sha256": "f6a52da25be9932de5eb8959ddb578c4c9a1ed07aa4cd3c4332d3e3bf801f910"
+  },
+  "src/boltz/model/layers/fused_elementwise.py": {
+    "bytes": 18863,
+    "mode": 420,
+    "sha256": "61122aeb6ceb56dd6693d433e3ffc0f3e47d105f766d820091fef1b6a470923a"
+  },
+  "src/boltz/model/layers/fused_norm.py": {
+    "bytes": 8998,
+    "mode": 420,
+    "sha256": "32fd3fa8b7a7908c11a85c1d9ad996627438e271eabfcd6ed32dc8e2db36f8fa"
+  },
+  "src/boltz/model/layers/fused_transpose.py": {
+    "bytes": 4334,
+    "mode": 420,
+    "sha256": "d74e8561de074386d656e41d760b06ba5ae567e1b7db3d246ccfb61a03592344"
+  },
+  "src/boltz/model/layers/fused_tri_attention.py": {
+    "bytes": 8484,
+    "mode": 420,
+    "sha256": "3b52ed0d4d784bfb68546a013d34f112bdefba7b47e2967f36651f8127b29f4a"
+  },
+  "src/boltz/model/layers/initialize.py": {
+    "bytes": 3214,
+    "mode": 420,
+    "sha256": "4eb8cb98bf221189ad1f18f2f7a48cf4e3c8138460db55e23623c7a7af469d5e"
+  },
+  "src/boltz/model/layers/outer_product_mean.py": {
+    "bytes": 4292,
+    "mode": 420,
+    "sha256": "0e099759a77984e24f2f4fc9b534ebcd2b9d2f7025f84e35867bed352bb0b998"
+  },
+  "src/boltz/model/layers/pair_averaging.py": {
+    "bytes": 6274,
+    "mode": 420,
+    "sha256": "24f2c377d301c790412bac92f96973477614e14ad0302c5067c9517bcecb2ae0"
+  },
+  "src/boltz/model/layers/pairformer.py": {
+    "bytes": 12438,
+    "mode": 420,
+    "sha256": "7c57a6f107146d55c3d10fbaecb147b544a52b401ade03ba20288edb6df60d15"
+  },
+  "src/boltz/model/layers/relative.py": {
+    "bytes": 1875,
+    "mode": 420,
+    "sha256": "7cb3b00031b95430dd1f61aa8acf8be8bc3c867586c423e37d5eadf2461e1087"
+  },
+  "src/boltz/model/layers/transition.py": {
+    "bytes": 6376,
+    "mode": 420,
+    "sha256": "f42876c06e51a28692a869b5f4f20019551c0f09953d8b065f690795540497e2"
+  },
+  "src/boltz/model/layers/triangular_attention/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/layers/triangular_attention/attention.py": {
+    "bytes": 5745,
+    "mode": 420,
+    "sha256": "e8e4be313db656d159cdafb2373bc0f5f650b202dae63342aa0c1e4e076e1931"
+  },
+  "src/boltz/model/layers/triangular_attention/primitives.py": {
+    "bytes": 15530,
+    "mode": 420,
+    "sha256": "9d5539bc0be35e9524961fe06b8c84810de79cedaed8f7ad7ca5ec07cab6c309"
+  },
+  "src/boltz/model/layers/triangular_attention/utils.py": {
+    "bytes": 12394,
+    "mode": 420,
+    "sha256": "1236df24edde965ec06fcbfc006ef3b16f0a9359fa6e519f0b21cf47e34ecdb5"
+  },
+  "src/boltz/model/layers/triangular_mult.py": {
+    "bytes": 6608,
+    "mode": 420,
+    "sha256": "b5c43b88ff10c97b74182af90142f62ec6d107771097af87c39ff66c63593b51"
+  },
+  "src/boltz/model/loss/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/loss/bfactor.py": {
+    "bytes": 1462,
+    "mode": 420,
+    "sha256": "cd7f4922518011347734c71ba6d0118f34ab870586feb5ab1bca47ac75ab13ff"
+  },
+  "src/boltz/model/loss/confidence.py": {
+    "bytes": 19087,
+    "mode": 420,
+    "sha256": "ca018acad7e8a7ccf05e58dd9625623f45c62816e70a03dc076e5fbf53d47808"
+  },
+  "src/boltz/model/loss/confidencev2.py": {
+    "bytes": 21969,
+    "mode": 420,
+    "sha256": "3c58b678c5c78735ed3f5d78e74e3fe4ccf0bfc6a46f75e6e1961e1ef07b5a24"
+  },
+  "src/boltz/model/loss/diffusion.py": {
+    "bytes": 5044,
+    "mode": 420,
+    "sha256": "e71b74b36a09a4f31241de704fc31fe4bcca821a0abbef035cf3872f77b81076"
+  },
+  "src/boltz/model/loss/diffusionv2.py": {
+    "bytes": 5285,
+    "mode": 420,
+    "sha256": "fcaa6f62cef674af15752fbfd9a0cb8ef6142d269a2852f554ae161aff053bfa"
+  },
+  "src/boltz/model/loss/distogram.py": {
+    "bytes": 1178,
+    "mode": 420,
+    "sha256": "79006491376335f9e46b480c34570c797fe8ecacec4d8e134d97e6fa80db5ee0"
+  },
+  "src/boltz/model/loss/distogramv2.py": {
+    "bytes": 3845,
+    "mode": 420,
+    "sha256": "74580c1b0a5d2cae3eb241c9c2fa44446d7429f1776543754fdfe1523fa25900"
+  },
+  "src/boltz/model/loss/validation.py": {
+    "bytes": 33501,
+    "mode": 420,
+    "sha256": "818a5b6a0f66ba58391c93d78ce50568c57d5d2617fecd9b210d22623880a30d"
+  },
+  "src/boltz/model/models/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/models/boltz1.py": {
+    "bytes": 51877,
+    "mode": 420,
+    "sha256": "c3d605c51f27ae21ff6712b33c41a0667ebe03017aca25875789926619f3620a"
+  },
+  "src/boltz/model/models/boltz2.py": {
+    "bytes": 52448,
+    "mode": 420,
+    "sha256": "d6ef4acb0ebefb5fb15b62b619ec5de4cdc37973d76a7b67f39c7de5e7ba811d"
+  },
+  "src/boltz/model/modules/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/modules/affinity.py": {
+    "bytes": 7041,
+    "mode": 420,
+    "sha256": "164b48db0ae40eab2318724ebafcd5ad92bbf0c38f8d4eb940dd25eac07540f4"
+  },
+  "src/boltz/model/modules/confidence.py": {
+    "bytes": 17504,
+    "mode": 420,
+    "sha256": "af156ef9ac4eb991506b6950b6e1f87e9d466e97c11c295f22a856eaf4d71c5d"
+  },
+  "src/boltz/model/modules/confidence_utils.py": {
+    "bytes": 5254,
+    "mode": 420,
+    "sha256": "2b71b1e9b675544d8cfc435b27df2e2adb719319ea44f94fffb806a05359c88c"
+  },
+  "src/boltz/model/modules/confidencev2.py": {
+    "bytes": 18605,
+    "mode": 420,
+    "sha256": "3754beb5ca63bbb0e7264c4439b9bd465c40831e29f5dd03b1ad3e2d87086fa3"
+  },
+  "src/boltz/model/modules/diffusion.py": {
+    "bytes": 32345,
+    "mode": 420,
+    "sha256": "1db22472de8e7cd9ea135cce44300736a20ce94a2a0c3f77b5a8e12b1f7852d6"
+  },
+  "src/boltz/model/modules/diffusion_conditioning.py": {
+    "bytes": 3682,
+    "mode": 420,
+    "sha256": "6500f3bd894c27d072581810be5548250eba18f1e400af637d554aebc20ce719"
+  },
+  "src/boltz/model/modules/diffusionv2.py": {
+    "bytes": 35757,
+    "mode": 420,
+    "sha256": "514f63a6a6173b88e3430bacc73e4dab7ac6ddb6da3070a19aaacb4a6b424760"
+  },
+  "src/boltz/model/modules/encoders.py": {
+    "bytes": 20438,
+    "mode": 420,
+    "sha256": "cd7410792cd48dfdf28294bf7ab017584a7193cfbad94f0259c0bf5d357db276"
+  },
+  "src/boltz/model/modules/encodersv2.py": {
+    "bytes": 21966,
+    "mode": 420,
+    "sha256": "db3f6135a20508adec18afafee7fe3addc9a8196dcb17b814c21552646adfbc9"
+  },
+  "src/boltz/model/modules/transformers.py": {
+    "bytes": 9078,
+    "mode": 420,
+    "sha256": "2e427fb4940106053a99f4eba9de9966eda3abb1755a93736207a6577fb5b74f"
+  },
+  "src/boltz/model/modules/transformersv2.py": {
+    "bytes": 29439,
+    "mode": 420,
+    "sha256": "f15467833079548cf7063c0d38307f91ff741a5abb79dbd4373d56c09aa498fd"
+  },
+  "src/boltz/model/modules/trunk.py": {
+    "bytes": 21538,
+    "mode": 420,
+    "sha256": "44b4e5b73714d1032cd8ae680abcd5715e38b7dd06991f9b3e1692ae5f4e898d"
+  },
+  "src/boltz/model/modules/trunkv2.py": {
+    "bytes": 27389,
+    "mode": 420,
+    "sha256": "897305a3770f0b8911f0c3b41dca72136cec62fbc36ccadf24ef0be4c6895c31"
+  },
+  "src/boltz/model/modules/utils.py": {
+    "bytes": 10720,
+    "mode": 420,
+    "sha256": "cbe81b18423e097d1cb1f2efd13c592850d5b31fa0b42f08a541d93fd69706aa"
+  },
+  "src/boltz/model/optim/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/optim/ema.py": {
+    "bytes": 11512,
+    "mode": 420,
+    "sha256": "ae3d5df44e53589d84516eb3fca86b80e1007bf8f3077763ecee65c099e9acc7"
+  },
+  "src/boltz/model/optim/scheduler.py": {
+    "bytes": 3505,
+    "mode": 420,
+    "sha256": "9c1e23cf4099e294789f4f0b427804c4bfe937270875823c0175681cf9d9590f"
+  },
+  "src/boltz/model/potentials/__init__.py": {
+    "bytes": 0,
+    "mode": 420,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/boltz/model/potentials/potentials.py": {
+    "bytes": 28810,
+    "mode": 420,
+    "sha256": "1e4a79f1454e5a71ca5a3eb82fca5451a7dc2bed8a45df9f0a814f62a6219f38"
+  },
+  "src/boltz/model/potentials/schedules.py": {
+    "bytes": 1002,
+    "mode": 420,
+    "sha256": "3c4fe0ca97a122e8d3148dc7e5401b2ac1b112f3806a2e98351d719086e9534f"
+  },
+  "tests/model/layers/test_outer_product_mean.py": {
+    "bytes": 1200,
+    "mode": 420,
+    "sha256": "5d114f714910fa5fbf59a77aac777c16de95b244b7caac36a37c6fe7d61a9916"
+  },
+  "tests/model/layers/test_triangle_attention.py": {
+    "bytes": 1155,
+    "mode": 420,
+    "sha256": "f90e9c7806724661829847f37c89e1568a1ecc409485203fd23f319b1c888501"
+  },
+  "tests/profiling.py": {
+    "bytes": 1474,
+    "mode": 420,
+    "sha256": "fe994de715b8b774031112a1748935889116623bbb3868c88bd9b4540ec6b993"
+  },
+  "tests/test_kernels.py": {
+    "bytes": 6828,
+    "mode": 420,
+    "sha256": "d63b06a71f167e8840a239cc600ac380c0c235efed56b99d6a7bc370c1cdbbd9"
+  },
+  "tests/test_regression.py": {
+    "bytes": 4224,
+    "mode": 420,
+    "sha256": "c71642331545a928bf38a08bf15d5f95b6dab34619e19e6f0ba4b278f94cbc2d"
+  },
+  "tests/test_utils.py": {
+    "bytes": 579,
+    "mode": 420,
+    "sha256": "83fefd52705bcd018b60149f74b94647998f55881691180a30c9b545ac71a856"
+  }
+}

@@ -1,0 +1,25 @@
+name: Pinned Python smoke tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-smoke:
+    runs-on: ubuntu-22.04
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.13"
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv --python 3.11.13 .venv
+      - run: uv pip install --python .venv/bin/python -r requirements-tested.txt
+      - run: uv pip install --python .venv/bin/python --no-deps --no-build-isolation -e ./Python-module
+      - run: .venv/bin/python -m pytest -q

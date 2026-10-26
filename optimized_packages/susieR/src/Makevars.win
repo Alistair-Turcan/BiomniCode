@@ -1,0 +1,14 @@
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) 
+PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+
+# Keep the default goal (this file is read before winshlib.mk defines `all`).
+all: $(SHLIB)
+
+# Bitwise-critical SER kernel: disable FMA contraction and auto-vectorized
+# (libmvec) math calls so results match R's scalar libm element-by-element.
+ser_kernel.o: ser_kernel.cpp
+	$(CXX) $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -ffp-contract=off -fno-tree-vectorize -fno-tree-slp-vectorize -c $< -o $@
+
+# Same bitwise-critical flags for the SER helpers (moments, column stats).
+ser_helpers.o: ser_helpers.cpp
+	$(CXX) $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -ffp-contract=off -fno-tree-vectorize -fno-tree-slp-vectorize -c $< -o $@

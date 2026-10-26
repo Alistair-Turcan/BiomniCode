@@ -1,0 +1,378 @@
+{
+  ".Rbuildignore": {
+    "bytes": 253,
+    "sha256": "81553b7c8d12ccc8d53e9305bbb6d9a629fb1c3b0722fc334c9285fd0535a040"
+  },
+  ".clang-format": {
+    "bytes": 792,
+    "sha256": "076cdc1a248254f2fc08f992f5e6d682be57d8a23f129aa61693f58545b39482"
+  },
+  ".github/.gitignore": {
+    "bytes": 7,
+    "sha256": "d602bbe856ef80e101210868601c19d9f27ab76e0994b2437e711542d8cbe835"
+  },
+  ".gitignore": {
+    "bytes": 749,
+    "sha256": "63067c594b6d5ffb388da3b8940c2cd8c71efbfe0251985ddbb2cba1dcf57a8b"
+  },
+  "DESCRIPTION": {
+    "bytes": 2056,
+    "sha256": "0785ed33171fecc96dd900b4660892d3e7bc58f39a75cec3b5a27781a9b9e4f8"
+  },
+  "LICENSE": {
+    "bytes": 68,
+    "sha256": "83c2993a4b9c13d1a147b940a02d8137222b438dcd8f2097d4e429e32e63b559"
+  },
+  "LICENSE.md": {
+    "bytes": 1097,
+    "sha256": "0c162a55ce9bceb77aadce3981546a0ace2533ad58e40315c1369661b9527e49"
+  },
+  "NAMESPACE": {
+    "bytes": 3204,
+    "sha256": "4fa561e273e8a50bd8c2e9a1c49a51b48556736fd60e27bff7e751f61102bc30"
+  },
+  "NEWS.md": {
+    "bytes": 5706,
+    "sha256": "2a3f569b3635f5163059c4ff07686279a3966e64e23a2180f399e1a1420a823e"
+  },
+  "R/BayesSpace.R": {
+    "bytes": 3150,
+    "sha256": "7c71937775795baf07eef55cb81eae8cb16dafd1b757e1ef1badea5c185702fe"
+  },
+  "R/RcppExports.R": {
+    "bytes": 1648,
+    "sha256": "2c7699a481b8494b4634f32ff226e3096f8944d8bc2497a77663844dad974cc5"
+  },
+  "R/enhanceFeatures.R": {
+    "bytes": 10859,
+    "sha256": "5c9623b31fc4f17fce2b90120af5ac1c15ebc4367154eb4298f191fe5d961bba"
+  },
+  "R/mcmcChain.R": {
+    "bytes": 7462,
+    "sha256": "2a0a85568ff48ee6b6c41ae5621e3788c8ea198e65f85c4752138393bb8804cb"
+  },
+  "R/parallelize.R": {
+    "bytes": 3944,
+    "sha256": "b3bae9ef127453c1ae6babffe5d6a5622e6f5f4eb650a3d24c8c2ecd32631941"
+  },
+  "R/qTune.R": {
+    "bytes": 4122,
+    "sha256": "b94ae6c6b5567ce4a1ed1cf7b55e6765ef4673a22fb7195f68e7de372036836b"
+  },
+  "R/readVisium.R": {
+    "bytes": 12060,
+    "sha256": "8c978c3d798807482ba59259317a07540960133c889560e9c472712a5f5a2fbd"
+  },
+  "R/spatialCluster.R": {
+    "bytes": 11732,
+    "sha256": "57f55d8ddedb9995dae53d49d41fc7b3d8921d6d790239d60758e68393680ee5"
+  },
+  "R/spatialEnhance.R": {
+    "bytes": 20575,
+    "sha256": "4699e35ae29c3a433e358022f6b4e73bfc5d35cd1dbf54c28432d912219d6e12"
+  },
+  "R/spatialPlot.R": {
+    "bytes": 15995,
+    "sha256": "5f70fc100450fb14e9209e268f664de87a3546859b4d29950713d3c4aeecc304"
+  },
+  "R/spatialPreprocess.R": {
+    "bytes": 3245,
+    "sha256": "d9aa5fa4aded30abe9b3c79851dccfe7c033e29bb417f7d45e54f56a748e0a29"
+  },
+  "R/utils.R": {
+    "bytes": 9947,
+    "sha256": "ce69a85f2ec6fd1c37a5ae9596a996bea81cda2a9da9b7a644d78bad5163e17b"
+  },
+  "README.md": {
+    "bytes": 3389,
+    "sha256": "19d7ad6a108febff6566b1ce538b34a80b032fb7802a88a96ce0113c2c786777"
+  },
+  "configure": {
+    "bytes": 523,
+    "sha256": "d82209a975c95d1e1fc7922eb2dafff3c8359e6c4ac54c622244078db8386fd2"
+  },
+  "configure.win": {
+    "bytes": 522,
+    "sha256": "517851fd6db5a87bd683a58b04a240632fc19dc9ff7adebfe06ef0696c3e31e6"
+  },
+  "inst/CITATION": {
+    "bytes": 1037,
+    "sha256": "7f154691c21ab51935e2245d43c995c08a306015219804e52e5f457b11000de2"
+  },
+  "inst/extdata/2018_thrane_melanoma/ST_mel1_rep2.Giotto_HMRF.csv": {
+    "bytes": 2296,
+    "sha256": "ecac52969020f143327fd780586f026c8b8e1cffb0986170ce4d654faa747764"
+  },
+  "inst/extdata/2018_thrane_melanoma/ST_mel1_rep2.rds": {
+    "bytes": 1935568,
+    "sha256": "520dca0af35a58bb7040d491fd740dcd3fa3cebae3ed911c1dc702b3434b8826"
+  },
+  "inst/extdata/2020_maynard_prefrontal-cortex/151673.Giotto_HMRF.csv": {
+    "bytes": 83753,
+    "sha256": "f328fc66435fb9fec29fe2f44422b6b3259a05e464c5f96bb2716e45763cceed"
+  },
+  "inst/extdata/2020_maynard_prefrontal-cortex/151673.stLearn_HVGs.csv": {
+    "bytes": 83728,
+    "sha256": "a8aa9e0cb55369c1204ed5f47875b720357f000df93e9d759bca58c025424d7c"
+  },
+  "inst/extdata/2020_maynard_prefrontal-cortex/151673.stLearn_markers.csv": {
+    "bytes": 83728,
+    "sha256": "f8c0ce59c6e0700550237a12597aeeb064edce3909784ce79f049e1bb9ae81f9"
+  },
+  "inst/extdata/README.md": {
+    "bytes": 892,
+    "sha256": "62fa2ffac78a23d0a57db4bc737a59d56b95b8e5464baa21c2261a3824e066c4"
+  },
+  "inst/logo/BayesSpace_logo_alt.png": {
+    "bytes": 317483,
+    "sha256": "69ce7719b2230bbd11b420f50e70f7fa46946b4603b3e9641fae2083c4ec73a9"
+  },
+  "inst/logo/hex_sticker.Rmd": {
+    "bytes": 7349,
+    "sha256": "9d16d4c44812bdb1420cbd1abd3c7f4119b690378cdae49c9476ce87b1087917"
+  },
+  "inst/logo/logo.png": {
+    "bytes": 319989,
+    "sha256": "afd19ffeb003bbdd1018de63c4039579e1978bf866da97e635518979b2223eea"
+  },
+  "inst/testdata/maynard_151673_subset.PCs.csv.gz": {
+    "bytes": 10662,
+    "sha256": "cb69000c8935edbb840faf0c59c9a8d9d408ef0002baaaa64944a2bdc992bb2d"
+  },
+  "inst/testdata/maynard_151673_subset.colData.csv.gz": {
+    "bytes": 3040,
+    "sha256": "94fc1a03db31e20b6299ab7600a4da491f4196919709471ece16e3179b4412c3"
+  },
+  "inst/testdata/maynard_151673_subset.enhance_truth.csv.gz": {
+    "bytes": 145,
+    "sha256": "e8ffdd6ef63f6281e3dd534ebd4430ea26f985b2215e24ad4ffb0411de153d37"
+  },
+  "inst/testdata/maynard_151673_subset.metadata.rds": {
+    "bytes": 144,
+    "sha256": "50465ce31230a429e77b75356c851e2104ed0cf977abf02305edf3812295c683"
+  },
+  "man/BayesSpace.Rd": {
+    "bytes": 1383,
+    "sha256": "368a4ea016d31f27185c93b1d20c1d1ed55e54ac029c7bfa2d76eb6d4025532c"
+  },
+  "man/Mode.Rd": {
+    "bytes": 337,
+    "sha256": "65bce5b6813f55b17a1bff62ff537101678f85ae6c27ac1c9e71cce180ece4ef"
+  },
+  "man/cluster.Rd": {
+    "bytes": 590,
+    "sha256": "fec1e665570e31a5ba68e6a9bc8bdfc298223d804f0b30b247dbc2489aa72637"
+  },
+  "man/clusterPlot.Rd": {
+    "bytes": 1917,
+    "sha256": "0eaa7c4734b068af851acab7ac3e4047f2f9b759553a668bbe56177dc3bb9b1d"
+  },
+  "man/deconvolve.Rd": {
+    "bytes": 761,
+    "sha256": "eee42cf5ec09f530c5ce46fe1ad64bf8bd1838bf540101984e48097baf45e425"
+  },
+  "man/dot-adjust_hex_centers.Rd": {
+    "bytes": 420,
+    "sha256": "48e0c9fce54209f83e802a6bc00e4ef2daada16cf2cebff0a55df6251fb0195f"
+  },
+  "man/dot-bsData.Rd": {
+    "bytes": 377,
+    "sha256": "3b28e754cc7b420b8146e4c5ec245b2add364d402af2344c5cd1bc0a0767fa63"
+  },
+  "man/dot-clean_chain.Rd": {
+    "bytes": 640,
+    "sha256": "acd07bb4091c294b5085ebfae732d5abd6406e2852737b694dd9a09bb058c552"
+  },
+  "man/dot-compute_interspot_distances.Rd": {
+    "bytes": 714,
+    "sha256": "cc8792fb2f6e6aecc979661eb32d0b56634a6613a606f9ccfe0a0ad0c66935a0"
+  },
+  "man/dot-extract_indices.Rd": {
+    "bytes": 773,
+    "sha256": "65025b0cd9a44699842e9b0f725d3a1125c28cdd9224fbfcaeb95fc912d101df"
+  },
+  "man/dot-find_neighbors.Rd": {
+    "bytes": 563,
+    "sha256": "cfc46452a6f903601a86d0571e3ba6e795f8ff35f3bedc363f9ef65d0f6ab43f"
+  },
+  "man/dot-flatten_matrix_list.Rd": {
+    "bytes": 503,
+    "sha256": "d143b0e6e4969fa433c67de99a2cf63fff662e4c5dc09b9f024ed20a331b1879"
+  },
+  "man/dot-flip_axis.Rd": {
+    "bytes": 419,
+    "sha256": "cbff238478e19db66de6e24d54d6d983c39a66aada390399d3efaba3c2e420e8"
+  },
+  "man/dot-infer_param_dims.Rd": {
+    "bytes": 481,
+    "sha256": "c3c1df817e1d7fd259f94394fe46ca908eeff6639173ed219fa1c23926d85d31"
+  },
+  "man/dot-init_cluster.Rd": {
+    "bytes": 564,
+    "sha256": "2111dec6fb7335395838d7129181eec21b9284ce91de986c831e2c75d918e09f"
+  },
+  "man/dot-list2vec.Rd": {
+    "bytes": 417,
+    "sha256": "fc026be28ed524734230d169e1d5f05a2dfce5d07ea6eef394ff5f1dff064d73"
+  },
+  "man/dot-make_hex_spots.Rd": {
+    "bytes": 439,
+    "sha256": "75676dab6161e4baaabdf4dc9c84bc1966dcca6c3f9d3d9c62129b61be8ecf69"
+  },
+  "man/dot-make_index_names.Rd": {
+    "bytes": 635,
+    "sha256": "ccb4d52fcbe095c18971d7c1ec689251aba5220c04f70b460d1db095eb9b1ffc"
+  },
+  "man/dot-make_spot_vertices.Rd": {
+    "bytes": 636,
+    "sha256": "737bbfb1bf24c72be37e0caec10af08c86bd0ff0a9e1c5b216dc93749aaf54f9"
+  },
+  "man/dot-make_square_spots.Rd": {
+    "bytes": 550,
+    "sha256": "ca61a98779717486a3514d619ac3250d98d030dc2cb504a788f79052bdda5808"
+  },
+  "man/dot-make_subspot_coldata.Rd": {
+    "bytes": 896,
+    "sha256": "2d80f84075f4f3bd6935dc6a86b5ba362648e2572448f9656989ec0fa3539885"
+  },
+  "man/dot-make_subspots.Rd": {
+    "bytes": 637,
+    "sha256": "dcc31c6ee8af75cc7f6844180464ad5abce4e6f670bc722a28ad8e7641b3a0f5"
+  },
+  "man/dot-make_triangle_subspots.Rd": {
+    "bytes": 525,
+    "sha256": "caa267cbdf433d27339957fba2be5c53fec78a07c5fde326ed5e818db0cb2c6e"
+  },
+  "man/dot-make_vertices.Rd": {
+    "bytes": 884,
+    "sha256": "bf97e6c2282a62c86c588937ba28e71b3442d5fdae5737020637a7a1bce76ff4"
+  },
+  "man/dot-prepare_inputs.Rd": {
+    "bytes": 581,
+    "sha256": "40776c505496a78f50a1993f5ae18614fe98f50ed7cb6d7992a6adc63fb17fd5"
+  },
+  "man/dot-read_chain.Rd": {
+    "bytes": 506,
+    "sha256": "590c8b0498fcb9a267913c7e801140de36dae48903631f3978d7970cd429ad68"
+  },
+  "man/dot-read_spot_pos.Rd": {
+    "bytes": 592,
+    "sha256": "5f2803281fe4fcb3c06dbf058230b7a4c89aa1a19fd66d094a21c2e8a01c4877"
+  },
+  "man/dot-select_spot_positions.Rd": {
+    "bytes": 454,
+    "sha256": "fc42afa0a512d84164b6d55a515c5f0369eb223774909142f5bdb2438386aa00"
+  },
+  "man/dot-select_subspot_positions.Rd": {
+    "bytes": 613,
+    "sha256": "c38aaa7cc8e6f46990e358fd28b8e44ff800f8520a00748fc899f06f4ca84c4c"
+  },
+  "man/enhanceFeatures.Rd": {
+    "bytes": 3382,
+    "sha256": "d03ae75a463c7e9785f58490235c8f238cd9790c5f5be081953dcb2254157188"
+  },
+  "man/exampleSCE.Rd": {
+    "bytes": 860,
+    "sha256": "139bc64bf89f85ed11527ab47f5330ee8ce41cc8d5d1f2b224fd82ed9df8f954"
+  },
+  "man/featurePlot.Rd": {
+    "bytes": 2348,
+    "sha256": "ba6c034f7ab87eecdf68a21df3e71b73c4e37f8c7cef19a5cedce05dafc14d0b"
+  },
+  "man/find_neighbors.Rd": {
+    "bytes": 711,
+    "sha256": "34dc54f26a5950b941bf243a84f81b7a2fcb9cea14054c9d5a142cc8137392ff"
+  },
+  "man/getRDS.Rd": {
+    "bytes": 1327,
+    "sha256": "c51bb8f20b8185915eb6d10958c85c5322f83d9d0fe84bc083f54a0c3130ae33"
+  },
+  "man/mcmcChain.Rd": {
+    "bytes": 1872,
+    "sha256": "45473914d83f287565fc66e4b0fa253ad09bf2da289c3661488b09df9d46eab0"
+  },
+  "man/parallelize.Rd": {
+    "bytes": 1399,
+    "sha256": "de1f9332907dcacf88cf707b6adce58c3e2836f5f3a35dc08ee914c171dcbcf0"
+  },
+  "man/qTune.Rd": {
+    "bytes": 2190,
+    "sha256": "b27afc1887f45a8639f7fc4a4a9ffcbaaa9e9a43707129a8b592d84b0088618c"
+  },
+  "man/readVisium.Rd": {
+    "bytes": 2298,
+    "sha256": "178b82154c81c0e15a39d397089a786b5dd5a3e57168c5cd366583ebc7aa41e3"
+  },
+  "man/spatialCluster.Rd": {
+    "bytes": 3551,
+    "sha256": "00d4bd97c5e1742a0460a8813f93a64aa246f0eb03619ec62cc0cb5e6b87dcbc"
+  },
+  "man/spatialEnhance.Rd": {
+    "bytes": 6727,
+    "sha256": "a0a0eb2764fd6408693b053186e25c555220739692c9906e7f9bef7263fba861"
+  },
+  "man/spatialPlot.Rd": {
+    "bytes": 1216,
+    "sha256": "394545d98f24fb8ba8548589847157b9a2d5657413b6f02c805cad884d0a1f61"
+  },
+  "man/spatialPreprocess.Rd": {
+    "bytes": 2187,
+    "sha256": "501f0f0628ce2122751777b517080c7dce4dd7004a005ec16cbf185ba760d1b7"
+  },
+  "src/Makevars": {
+    "bytes": 623,
+    "sha256": "1db27d3e73a7807dbcc07108ba65ac9ed9602de7d8b40d09e10c69f585bcb9f5"
+  },
+  "src/Makevars.win": {
+    "bytes": 623,
+    "sha256": "1db27d3e73a7807dbcc07108ba65ac9ed9602de7d8b40d09e10c69f585bcb9f5"
+  },
+  "src/RcppExports.cpp": {
+    "bytes": 11525,
+    "sha256": "5cd95b7c0bc0018132ca729a35aeafe6d1e9fea4aec12f5c7054bfc5ed6fd736"
+  },
+  "src/cluster.cpp": {
+    "bytes": 41385,
+    "sha256": "516b6ff149200284f12cd216cd1b551da99f7d91077cec7c418a6b86e4eae04f"
+  },
+  "src/compare_enhanced.cpp": {
+    "bytes": 3108,
+    "sha256": "47d3ca9f30e4690f3ae7eef5f2d08596bfe7d3d3d2e3bab28d9e4954fb6e7b2a"
+  },
+  "src/double_states_vector.h": {
+    "bytes": 3478,
+    "sha256": "7241f97cae4bfd510f96df591b5529a60d1d7543a907c31851394c916182c8d7"
+  },
+  "src/neighbor.h": {
+    "bytes": 3498,
+    "sha256": "f2884b73ab9a4627f2f1ac155586d2c3b811ab276a2b21dda7b41ac3486ceb54"
+  },
+  "src/utils.h": {
+    "bytes": 1444,
+    "sha256": "98d3fca59b9c6db0efbf9b44725c8bc887e7a98b9b9559f190072a4c65c139e6"
+  },
+  "tests/testthat/test-enhanceFeatures.R": {
+    "bytes": 4686,
+    "sha256": "5306c99f4c462c06c825ddf0d5812710223ddba34e1be2680f5770fda12ec22b"
+  },
+  "tests/testthat/test-find_neighbors.R": {
+    "bytes": 358,
+    "sha256": "b849db1fb2661afae3cfbc3406562441aff25d69bfcb31f81546b8de8ba4140d"
+  },
+  "tests/testthat/test-mcmcChain.R": {
+    "bytes": 2618,
+    "sha256": "aa51a8fa9c1684b03581c92dc14bf203409a8da3b4aed86a6ca56c199fe6715d"
+  },
+  "tests/testthat.R": {
+    "bytes": 64,
+    "sha256": "0d9f7b1aede14b5b41f381fcc18488f6c33fd548032979aa6d4f6f3cae04ecd2"
+  },
+  "vignettes/.gitignore": {
+    "bytes": 11,
+    "sha256": "82ff465239de9c2af5f563626952e82e4a468030a7421f28938c39630e5751b0"
+  },
+  "vignettes/BayesSpace.Rmd": {
+    "bytes": 11261,
+    "sha256": "453ebd0faa426d333453095011fdec378d5b80c704d86f39c3ff9a735f7d0104"
+  }
+}

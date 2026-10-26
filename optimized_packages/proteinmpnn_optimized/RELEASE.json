@@ -1,0 +1,24 @@
+{
+  "release": "iter-011",
+  "upstream_repository": "https://github.com/dauparas/ProteinMPNN",
+  "upstream_commit": "8907e6671bfbfc92303b5f79c4b5e6ce47cdef57",
+  "packaged_utc": "2026-10-26T15:51:23.811112+00:00",
+  "implementation_unchanged_from_evaluated_archive": true,
+  "inference_source_sha256": {
+    "protein_mpnn_run.py": "d4c32532f0e56ee48207a549617d8aea671f56f0c929ab0e4dfb9912d28a1704",
+    "protein_mpnn_utils.py": "38ae70a23ccc2b96cdad27105bf6e10e9868da9b0c7e8e878709186ca7de4a65"
+  },
+  "tested_environment": {
+    "python": "3.11.13",
+    "torch": "2.7.1+cu126",
+    "torch_cuda": "12.6",
+    "numpy": "2.1.0"
+  },
+  "license": "MIT; original copyright retained",
+  "omitted": [
+    "generated outputs",
+    "training experiment checkpoints/logs",
+    "benchmark/evaluation artifacts",
+    "Git history"
+  ]
+}

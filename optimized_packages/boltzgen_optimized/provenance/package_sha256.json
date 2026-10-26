@@ -1,0 +1,1138 @@
+{
+  ".github/workflows/python-publish.yml": {
+    "sha256": "5a29acff388244d91d2b8347ab28e7452e3c8c24b896cb7f5c5afa39bbc0ad98",
+    "bytes": 1616
+  },
+  ".gitignore": {
+    "sha256": "8c739806027ad949d3dc9558af982260820ea8fdf94fcb87ecd764d359c3f65e",
+    "bytes": 3593
+  },
+  "Dockerfile": {
+    "sha256": "8ec8ea5441b95d033a8d689d758f6e971e157f02a77cf02de7b527bb550f868d",
+    "bytes": 1724
+  },
+  "LICENSE": {
+    "sha256": "1d3aafee1429a716ca9afbe1760adf3a461cf61e750e92756dee510bdc0b7911",
+    "bytes": 1070
+  },
+  "OPTIMIZATION.md": {
+    "sha256": "2f7daaf58fec1d76eb600e1b2c84ac6062a0f6645b5a670288a827816ac6ffbf",
+    "bytes": 4409
+  },
+  "PYPI_DESCRIPTION.md": {
+    "sha256": "cfcdfc101a0aaf729614a24d562007915612c1f4807bdf83ebe3d9e7de8d3456",
+    "bytes": 544
+  },
+  "README.md": {
+    "sha256": "be736968698f99529d3af92c8461887645edf3904656fde0ca945d1dd3bd9e38",
+    "bytes": 34306
+  },
+  "assets/boltzgen.png": {
+    "sha256": "fe4bb7087f97c6957250c7f57cab8a61fc26d48197b8045bae6b33be085ae3cc",
+    "bytes": 59215
+  },
+  "assets/cover.png": {
+    "sha256": "5d77249439f23e79c372e8609a6fb7e61e378663c2fe86af1be4840c23859228",
+    "bytes": 290928
+  },
+  "assets/fig1.png": {
+    "sha256": "a37caad4fe0bdc99a8dbd3d20eb6df0176064486a1bb905cd487f742bbd9299e",
+    "bytes": 1019256
+  },
+  "assets/fig_seconds_per_design.png": {
+    "sha256": "05a394500106ea1f2e8329fba3ca0379f3505bc51ce14f80a5120a1273ce320c",
+    "bytes": 89527
+  },
+  "assets/label_seq_id.png": {
+    "sha256": "7313d119bfb57fabae161572affbf0ec970858769ca178ae1f5586e6574e4a25",
+    "bytes": 21792
+  },
+  "example/7rpz.cif": {
+    "sha256": "102fe7dbc630e37624597ee3c204446b839c26079c7014da885114312af576ee",
+    "bytes": 451341
+  },
+  "example/8r3a.cif": {
+    "sha256": "94350d591dd309681e7d46200fd1ea57d0ab968449529e796600d373fefba188",
+    "bytes": 6993299
+  },
+  "example/README.md": {
+    "sha256": "5cdee39dc42174ac5855bde4fdae60373dcbf9ac218b85ac431bf394dbd47b57",
+    "bytes": 14376
+  },
+  "example/binding_disordered_peptides/tpp4.yaml": {
+    "sha256": "dbfcfec142b1ee4023200d1d5cbddd6f8891c8d6a4024475fc57d78c47f81c3d",
+    "bytes": 308
+  },
+  "example/binding_disordered_regions_of_proteins/hoxd13.cif": {
+    "sha256": "36d75ad486684081c6925213ca6d5c068322f20ecca00412ccbba4c287812486",
+    "bytes": 299656
+  },
+  "example/binding_disordered_regions_of_proteins/hoxd13.yaml": {
+    "sha256": "9152930fee9225bd1e223b36bef844257e12acc9e1cda34b69d6596d1044efc1",
+    "bytes": 1805
+  },
+  "example/binding_disordered_regions_of_proteins/npm1.cif": {
+    "sha256": "24f7c4b5639e353259cb53f2abbc022fc0c5133c7ae3ff752b54ee6a7bb2d768",
+    "bytes": 271015
+  },
+  "example/binding_disordered_regions_of_proteins/npm1.yaml": {
+    "sha256": "2cca8d19a23525b366b445f6c615ca10141abbfb905b13ce325d6feb3f347bbc",
+    "bytes": 1026
+  },
+  "example/binding_disordered_regions_of_proteins/nup98.cif": {
+    "sha256": "730094c186cbb82ec4e1e27d2d64182f882b357051aeb509396dd7d923513d43",
+    "bytes": 1647748
+  },
+  "example/binding_disordered_regions_of_proteins/nup98.yaml": {
+    "sha256": "2f6a84487422f840f366644d8efae8aee397d1f49e67a7782bfb60f509319929",
+    "bytes": 685
+  },
+  "example/cyclic_against_hiv_antibody_site/9d3d.cif": {
+    "sha256": "919d69e75aaaf59e4bee90bd9d072d18d05f0bae18a38e455b60f9a805adad43",
+    "bytes": 1840149
+  },
+  "example/cyclic_against_hiv_antibody_site/9d3d.yaml": {
+    "sha256": "8372edb81b77bf36af40af322c81912606be23018c01f49385e1651347e99e15",
+    "bytes": 1242
+  },
+  "example/cyclotide/3ivq.cif": {
+    "sha256": "276de2e397c076820f1e5a4b62268063e9796a3f8cef502e4c2965b75bc990e9",
+    "bytes": 296405
+  },
+  "example/cyclotide/3ivq.yaml": {
+    "sha256": "7eb3d3467a05288afcdb4497085126a2d633fc393f0ae01faf5d4fe57521b9a3",
+    "bytes": 1282
+  },
+  "example/cyclotide/5wrd.cif": {
+    "sha256": "7131affd3a3eb428231a4ce7954e37cb8a535667025fa8126d7fc73b8e8620ac",
+    "bytes": 296792
+  },
+  "example/cyclotide/5wrd.yaml": {
+    "sha256": "d48d43234eb345383f9c661a4c7a39ef0266a7c0eb41f73a7db46c7487ba7ae0",
+    "bytes": 1241
+  },
+  "example/cylcic_against_kras_with_specific_site/8jjs.cif": {
+    "sha256": "b5f060c63d55e51eb882e00f8ed857b790ffd6723963d918ed6255db3e30e98a",
+    "bytes": 264087
+  },
+  "example/cylcic_against_kras_with_specific_site/cyclicdesign.yaml": {
+    "sha256": "896a1b191a5f2ec4e474ae2d201a791b7474f703bc288e51e1ccdb81c44214dd",
+    "bytes": 804
+  },
+  "example/denovo_zinc_finger_against_dna/vanilla_protein.yaml": {
+    "sha256": "b1efe00188798dc6a7adaa19eba86eeeb04cb97229a9c4e2815d026ddb9fa633",
+    "bytes": 470
+  },
+  "example/denovo_zinc_finger_against_dna/zf.cif": {
+    "sha256": "3582641bb6b43d3dbb31c7ee3783050d37f1525fd9aa10acf48d4a964b0769e3",
+    "bytes": 266604
+  },
+  "example/denovo_zinc_finger_against_dna/zinc_finger.yaml": {
+    "sha256": "fe470c079730fb4af9cc2d3e76de5b5dc762dd1b4af1695b2b78d59cef7981be",
+    "bytes": 1558
+  },
+  "example/design_spec_showcasing_all_functionalities.yaml": {
+    "sha256": "d9ad50948aea6c93be3b8397fb877a03513b483b30fdbd09a101c522c8089a7e",
+    "bytes": 4115
+  },
+  "example/disulfide_peptide_with_betahairpin_conditioning/7nre.cif": {
+    "sha256": "4dfbdc9e604ae5e33e9918f4de08bfaf5c1aeecbf63110f17e6d8cbe83e0108c",
+    "bytes": 923578
+  },
+  "example/disulfide_peptide_with_betahairpin_conditioning/cropped_target.yaml": {
+    "sha256": "6c586bac00fa3d47d801d08cef5066065401f4cf57c66c9b1c09b2a0233eba2c",
+    "bytes": 1117
+  },
+  "example/disulfide_peptide_with_betahairpin_conditioning/proximity_cropped_target.yaml": {
+    "sha256": "43ba4044e84c8a2b73b617d68f9a9e2afec2247498348389546ccd6d310cc755",
+    "bytes": 1401
+  },
+  "example/double_disulfide_peptide_against_specific_site/8wtw.cif": {
+    "sha256": "c052a57e8848c973c5d9cf9e92fd7e2ed812002a5ed4a7b6f1060577006fd76f",
+    "bytes": 520333
+  },
+  "example/double_disulfide_peptide_against_specific_site/norepinephrine.yaml": {
+    "sha256": "69a52140cd885f4d7daed086a19aac27642539c900fc2b516e3ee43fbef7107e",
+    "bytes": 1057
+  },
+  "example/fab_scaffolds/adalimumab.6cr1.cif": {
+    "sha256": "5c2ce3decc324d7c0ebf557835f6c355c6d4490fb463ada9a3a2c5f8ce9a13b4",
+    "bytes": 677550
+  },
+  "example/fab_scaffolds/adalimumab.6cr1.yaml": {
+    "sha256": "1fe782958de0f422acfa610594b18e037e3c84f39a3216168604039085c4447f",
+    "bytes": 2185
+  },
+  "example/fab_scaffolds/belimumab.5y9k.cif": {
+    "sha256": "27ddf7e9328345cee32473811e8593a23b7ab547d7fa4aee7ec0df4c2ab92064",
+    "bytes": 692046
+  },
+  "example/fab_scaffolds/belimumab.5y9k.yaml": {
+    "sha256": "44404b60b2f5b52bf863d9844dbb8f757d3e27af913c7619b26988eb1b86ce57",
+    "bytes": 2205
+  },
+  "example/fab_scaffolds/crenezumab.5vzy.cif": {
+    "sha256": "e9f60e63d9a0ff52b52302657f159812edb0bc167c8a1f69fc6aa684e80aa092",
+    "bytes": 619778
+  },
+  "example/fab_scaffolds/crenezumab.5vzy.yaml": {
+    "sha256": "67c96b29159b5efd99c100d2d4062d6b0b9f92bf30d4b1877f21eaadb5b35b5e",
+    "bytes": 2178
+  },
+  "example/fab_scaffolds/dupilumab.6wgb.cif": {
+    "sha256": "66256965b80494f4827c8cb86ae39b96e57f31f865ecaa9367e4f68587cd6c00",
+    "bytes": 694743
+  },
+  "example/fab_scaffolds/dupilumab.6wgb.yaml": {
+    "sha256": "dffd05ed941c054157d0be4237ccdc30949be45504dd07257fdb89dcdc357226",
+    "bytes": 2208
+  },
+  "example/fab_scaffolds/golimumab.5yoy.cif": {
+    "sha256": "90465c48dfaf4760023ff70ee126e1f64e8fabebb1880b96696a58c027ebd530",
+    "bytes": 3729915
+  },
+  "example/fab_scaffolds/golimumab.5yoy.yaml": {
+    "sha256": "2f4374c09ef066b0f2d9476dffea0e051958a729b3d51d24c1fb4a4c95f38f56",
+    "bytes": 2002
+  },
+  "example/fab_scaffolds/guselkumab.4m6m.cif": {
+    "sha256": "0b409c365af3c83736033de106dc8e152d17b5f66b3eb3d36bff52e186f30acb",
+    "bytes": 407651
+  },
+  "example/fab_scaffolds/guselkumab.4m6m.yaml": {
+    "sha256": "8dc3bcb6ee930b491d7612031c2eb0008e333c41b00a10a290835fc7b5b6c756",
+    "bytes": 2187
+  },
+  "example/fab_scaffolds/mab1.3h42.cif": {
+    "sha256": "75cf20e72d3e9c582b39d787432ab0d2529273c5aa5b528ab8a073b6e5438c1f",
+    "bytes": 899870
+  },
+  "example/fab_scaffolds/mab1.3h42.yaml": {
+    "sha256": "62c2938c9ce22a7a47bb26083e93916902f52059be328db1807ddf1661fce2fb",
+    "bytes": 2193
+  },
+  "example/fab_scaffolds/necitumumab.6b3s.cif": {
+    "sha256": "8e423dbf72d9b0bb6a35c2996785a61875c9a6e3db6b5c5e178981e7bc38bcef",
+    "bytes": 1981734
+  },
+  "example/fab_scaffolds/necitumumab.6b3s.yaml": {
+    "sha256": "ba939d3eee547811c106a0ee04785c4e49b55337777901e57cf1cd76438ff50e",
+    "bytes": 2180
+  },
+  "example/fab_scaffolds/nirsevimab.5udc.cif": {
+    "sha256": "93e3c6db56352ae6e0909ecd863bdb01924cc8393891648634772efff35a185b",
+    "bytes": 3953099
+  },
+  "example/fab_scaffolds/nirsevimab.5udc.yaml": {
+    "sha256": "e7cb94414bd1cc63d0f787e83cd1acdfc635668d3d4aee628cbc3d2c49b91fd8",
+    "bytes": 2209
+  },
+  "example/fab_scaffolds/sarilumab.8iow.cif": {
+    "sha256": "08e05982389bd78648b953a628e284614a758d58db98357f4e421bf737b6211f",
+    "bytes": 771575
+  },
+  "example/fab_scaffolds/sarilumab.8iow.yaml": {
+    "sha256": "c395cffaeb9300e8042dabd127dc890fd2730e4d5369319d48c3649cf071b66e",
+    "bytes": 2175
+  },
+  "example/fab_scaffolds/secukinumab.6wio.cif": {
+    "sha256": "3cba1a7a486c6cffd1a0b3e4c0d3004712f6a9bd1e1b588d27e0c1e9d4f0a680",
+    "bytes": 860166
+  },
+  "example/fab_scaffolds/secukinumab.6wio.yaml": {
+    "sha256": "e823ac1dfd5d057c05eb940dcb8a71d24a8869537c9bf4a0180ce8fbb448117c",
+    "bytes": 2192
+  },
+  "example/fab_scaffolds/tezepelumab.5j13.cif": {
+    "sha256": "438291af87290feaf94ed02c76401eeb14dea352cec680f268bcb9161f587827",
+    "bytes": 846893
+  },
+  "example/fab_scaffolds/tezepelumab.5j13.yaml": {
+    "sha256": "52fc6cc130a5c7536128b71b37c5309ad102c61e8bfda519e4f89f246ee36c1a",
+    "bytes": 2267
+  },
+  "example/fab_scaffolds/tralokinumab.5l6y.cif": {
+    "sha256": "e0cf3758e917ffa2ee26216eb5313fbb3acf45430cf6408adde9415e2cc9ffb2",
+    "bytes": 829396
+  },
+  "example/fab_scaffolds/tralokinumab.5l6y.yaml": {
+    "sha256": "b49e341862d08ff15d460495c79634b452eb34594e74386069271e6b7dc9972c",
+    "bytes": 2198
+  },
+  "example/fab_scaffolds/ustekinumab.3hmw.cif": {
+    "sha256": "ebd9c46e6119b233a21719bb9151fdc37380f29da3f674746779e939229d5d06",
+    "bytes": 683889
+  },
+  "example/fab_scaffolds/ustekinumab.3hmw.yaml": {
+    "sha256": "34b2a661ca1add67995ae17083c9f534c1a25b623e8cc2f1ca505c62daba0320",
+    "bytes": 2188
+  },
+  "example/fab_targets/pdl1.yaml": {
+    "sha256": "4c90d9738c63de68443d6f997bf83da336a98ea56d9452e8ff4d07f227baa9c2",
+    "bytes": 855
+  },
+  "example/hard_targets/1g13.cif": {
+    "sha256": "bdcb6b09837ad2ac30e66b13ecc738914c6ff6b98998f6a2425e6829d0c46185",
+    "bytes": 464491
+  },
+  "example/hard_targets/1g13nano.yaml": {
+    "sha256": "f9bc9f4cb654bd90d6e02ff0a69a953a3750a0878a91769c2b9ff0531eea2149",
+    "bytes": 297
+  },
+  "example/hard_targets/1g13prot.yaml": {
+    "sha256": "bce52d97a6d09195b39529154425585ccdb5d18428f2ebc5755ac2f095c78a77",
+    "bytes": 151
+  },
+  "example/hard_targets/1jqd.cif": {
+    "sha256": "cabc1bc29d77bbfef84d1de5e703f2748f42ecde45605339a4f2f207ec8debaa",
+    "bytes": 545482
+  },
+  "example/hard_targets/1jqdnano.yaml": {
+    "sha256": "29423ec412db3237710d7ccbfbe3b1d9343b9822504a8bcf1b1a78c000d4c4e9",
+    "bytes": 293
+  },
+  "example/hard_targets/1jqdprot.yaml": {
+    "sha256": "418cc43ace8fc5676f8282e8c3b1eb0cce2112053902cbbc5b161a0df85e8147",
+    "bytes": 151
+  },
+  "example/hard_targets/1nb0.cif": {
+    "sha256": "a29654b111df0bacd2814c9c2c59fa4d2c1a9c6a22f27640c05a709661476a36",
+    "bytes": 206514
+  },
+  "example/hard_targets/1nb0nano.yaml": {
+    "sha256": "389e8ba92b5cf5eb3d6bf6a63feaf84fc76f4d0d3f18569634dc48d9cc039b40",
+    "bytes": 298
+  },
+  "example/hard_targets/1nb0prot.yaml": {
+    "sha256": "146adecc0ed72233f7a2daa60486693055bdcd54ee9d50a09726c2b6eb0f2bad",
+    "bytes": 151
+  },
+  "example/hard_targets/2a1x.cif": {
+    "sha256": "352ed234feaeec805fa58add1283dac3178d630025961b56c439e134bd6df13e",
+    "bytes": 262162
+  },
+  "example/hard_targets/2a1xnano.yaml": {
+    "sha256": "0342020e4f33731d4bdd6b3f0098b4bb28c582e7d505243780d90e5e47bb8b31",
+    "bytes": 293
+  },
+  "example/hard_targets/2a1xprot.yaml": {
+    "sha256": "1f8adab8a0096f48c4f71e34ea17ef41821b34cf82e76a95e8475b68db02df68",
+    "bytes": 151
+  },
+  "example/hard_targets/2pny.cif": {
+    "sha256": "da9328cc35d146dbdf8f10be9dced63f29872d0f2556cd7913b3d4956f36feca",
+    "bytes": 464216
+  },
+  "example/hard_targets/2pnynano.yaml": {
+    "sha256": "2863665aec603f5bbb723a4f038749a46da27400269de4af10b1545ec88af648",
+    "bytes": 293
+  },
+  "example/hard_targets/2pnyprot.yaml": {
+    "sha256": "5a66bb0fb861a57ea40b6af72d2c0941b5f8633e42ec56facce55b4961455add",
+    "bytes": 151
+  },
+  "example/hard_targets/3apu.cif": {
+    "sha256": "594fa2c888a619d39b1420586a5846e184b10e4d6a1ccd7a5e6ad05e02bdbb83",
+    "bytes": 607369
+  },
+  "example/hard_targets/3apunano.yaml": {
+    "sha256": "3e435eb8e351c1b2b2807c316a6c68cfc85705c06d678d86582499fc97650144",
+    "bytes": 293
+  },
+  "example/hard_targets/3apuprot.yaml": {
+    "sha256": "1a4ea665ca1379110afd076ef83fd58285491259724b9bf75b0366eff020a109",
+    "bytes": 151
+  },
+  "example/hard_targets/3ch4.cif": {
+    "sha256": "91888d9c1d418db40e93635f8af170976300747c209542e5d2e6ec8114e9fa25",
+    "bytes": 219061
+  },
+  "example/hard_targets/3ch4nano.yaml": {
+    "sha256": "adbf3a7c535e0a0f2132fcadb413a389854ef4f8205b0c7feb9bfb012e35ef4c",
+    "bytes": 293
+  },
+  "example/hard_targets/3ch4prot.yaml": {
+    "sha256": "425e734a517827bc96a5aeaf582829f7fa85ad68a3cc72631d4dc07de0b360ff",
+    "bytes": 151
+  },
+  "example/hard_targets/3qkg.cif": {
+    "sha256": "9050589fcac9fab026e1cd709013f02a71e160fee777511d08ab2f85714f9148",
+    "bytes": 320382
+  },
+  "example/hard_targets/3qkgnano.yaml": {
+    "sha256": "38ad5a950ea2a17d820b12c84654b36c15cd8c65378526a7525b9d22f841be22",
+    "bytes": 293
+  },
+  "example/hard_targets/3qkgprot.yaml": {
+    "sha256": "5f2ad4f3ae8999193f757067cf8f8bee078ff6ce7100eccbed1561239387368d",
+    "bytes": 151
+  },
+  "example/hard_targets/6m1u.cif": {
+    "sha256": "090ca99c1be196e7725b525188a3d03b8432754b2bdc2707891c698dbd4bec98",
+    "bytes": 240774
+  },
+  "example/hard_targets/6m1unano.yaml": {
+    "sha256": "b0a3205aa39109dc4d29cc5ff5ec58e94a801fb5a142de3acb8bf6595941807f",
+    "bytes": 293
+  },
+  "example/hard_targets/6m1uprot.yaml": {
+    "sha256": "651effa6c12c964e5b2b0baac6b34231c8b3628fd4dd4a9d7353e8bac65edbb4",
+    "bytes": 151
+  },
+  "example/hard_targets/7aah.cif": {
+    "sha256": "45bb24a5953e55cc3d26dec57f8c913cecf9792372d77d4addef9cfc9d73f8a3",
+    "bytes": 776202
+  },
+  "example/hard_targets/7aahnano.yaml": {
+    "sha256": "d7505bcb274ad87418ad6d0cbc6b043bcb7fb1caefde6a86d93fd4ae1d7cfb65",
+    "bytes": 293
+  },
+  "example/hard_targets/7aahprot.yaml": {
+    "sha256": "d50ed277a6ddc86b6f6f959b0d4aac9122d3c8ff277d7fdfb4bfa4e9f3093be4",
+    "bytes": 152
+  },
+  "example/helicon_against_peptide_in_pmhc/3mrp.cif": {
+    "sha256": "2b234fb1cb17ee4e5db29e11c80189204914bd0438b2d46529aa2955164b55ec",
+    "bytes": 383411
+  },
+  "example/helicon_against_peptide_in_pmhc/mart1.yaml": {
+    "sha256": "acce0e36976037f34b4ef08629dd946419d7ec70f3e6a7824786fd549146d5dd",
+    "bytes": 615
+  },
+  "example/inverse_folding/1brs.cif": {
+    "sha256": "1c98dcc3eac7ccb88657e3ab0f745121d7ddbd2fe11357c65dbaffdd5704f153",
+    "bytes": 553617
+  },
+  "example/inverse_folding/1brs.yaml": {
+    "sha256": "cab0f1fb786d38af6e5a0327d6674182b2f25a38c2170ae1baa649e74245cf57",
+    "bytes": 286
+  },
+  "example/nanobody/9bkq-assembly2.cif": {
+    "sha256": "60c5a196df584eda83a7cb6f13d010f128c53b299cb6c98088989cff730dbf67",
+    "bytes": 372487
+  },
+  "example/nanobody/penguinpox.yaml": {
+    "sha256": "963d63528ff53deeefc10bdb04a6abaf4378d642869a043795d41065d5ccb30f",
+    "bytes": 377
+  },
+  "example/nanobody_against_penguinpox/9bkq-assembly2.cif": {
+    "sha256": "60c5a196df584eda83a7cb6f13d010f128c53b299cb6c98088989cff730dbf67",
+    "bytes": 372487
+  },
+  "example/nanobody_against_penguinpox/penguinpox.yaml": {
+    "sha256": "963d63528ff53deeefc10bdb04a6abaf4378d642869a043795d41065d5ccb30f",
+    "bytes": 377
+  },
+  "example/nanobody_scaffolds/7eow.cif": {
+    "sha256": "c642dd357cd364463d9cc78203ee31dc67b3ee0dad6efc3043b94576897dcbea",
+    "bytes": 647713
+  },
+  "example/nanobody_scaffolds/7eow.yaml": {
+    "sha256": "970d152c7834b32ae99a6f80fe30fd87602682106c4a833ce1aef6f030213ffc",
+    "bytes": 1052
+  },
+  "example/nanobody_scaffolds/7xl0.cif": {
+    "sha256": "0042fd3761f1aee883db62f72f86b8a5fca75198d9e2f265be197b7d44320c34",
+    "bytes": 451294
+  },
+  "example/nanobody_scaffolds/7xl0.yaml": {
+    "sha256": "15dba3e9eaf55b6e5a24cc0b52ee58abe26d7357ba5419eb0fe998bf5eefe7f0",
+    "bytes": 1052
+  },
+  "example/nanobody_scaffolds/8coh.cif": {
+    "sha256": "9d4f66737ca499933bf7a31e3ac064a52a094a388a597c4164f8469cd2b6579f",
+    "bytes": 432568
+  },
+  "example/nanobody_scaffolds/8coh.yaml": {
+    "sha256": "f09e48b23df8a1d3e5b41f2a8f99201476861ffffc5f4aaa1d13d46a2ac35450",
+    "bytes": 1074
+  },
+  "example/nanobody_scaffolds/8z8v.cif": {
+    "sha256": "71674d0516398244d2543d0863dd588689cc8e9b3dcfded1a404784adad57638",
+    "bytes": 616743
+  },
+  "example/nanobody_scaffolds/8z8v.yaml": {
+    "sha256": "d76d2a421edd3c86b04ead4ec72c7f4022906dd703e2b48015222d61b5d82cb5",
+    "bytes": 1047
+  },
+  "example/nanobody_scaffolds/gontivimab.cif": {
+    "sha256": "e91fa5a772c3b7a9f1a6c51190abe3b879925d2a2a18ae093ac14ddcb96e3cab",
+    "bytes": 83986
+  },
+  "example/nanobody_scaffolds/gontivimab.yaml": {
+    "sha256": "237b439cb309b6fcba244aa85cdb408e62c8382cb47ee7c81931df7589898166",
+    "bytes": 946
+  },
+  "example/nanobody_scaffolds/isecarosmab.cif": {
+    "sha256": "b41d13efbed1ca989d04e3238c48a8b02b145a6927c850596c8f673d515a7f67",
+    "bytes": 75503
+  },
+  "example/nanobody_scaffolds/isecarosmab.yaml": {
+    "sha256": "bf25cd10dc65e99b947e915bfe2be3316956fc71216263a66aeb4415edf48b0d",
+    "bytes": 1065
+  },
+  "example/nanobody_scaffolds/sonelokimab.cif": {
+    "sha256": "2a95c49075263ac4aa7580bf225ed512be1ca4deb9d5637e02e73e58d31a2f95",
+    "bytes": 83162
+  },
+  "example/nanobody_scaffolds/sonelokimab.yaml": {
+    "sha256": "87c4d65ea8bac576c4c89acb2d2e0f66fddb2729124d0719ae6c0b6a91580888",
+    "bytes": 943
+  },
+  "example/peptide_against_disordered_region_of_protein/cryptochrome4.yaml": {
+    "sha256": "ccbb13e0badeb69b5040dcb235fdf10640da60cdc12e9cd48c55d798f38e09a8",
+    "bytes": 456
+  },
+  "example/peptide_against_disordered_region_of_protein/cryptochrome4_european_robin_bird_boltz_prediction.cif": {
+    "sha256": "8273fced526b0ef6328ee8322cc3e5e43c8d1225803255ae739ee3d32ba1ddb8",
+    "bytes": 382623
+  },
+  "example/peptide_against_specific_site_on_ragc/6wj3.cif": {
+    "sha256": "f8fd93280e3d730ffadcaddbfbfa161ce5d7526d2b72bc52b3ce692290e36a85",
+    "bytes": 1031764
+  },
+  "example/peptide_against_specific_site_on_ragc/rragc.yaml": {
+    "sha256": "4932243235b3715209f7c439dcbd86a1983d9446cbedcdcb4d4e7799eea16cb4",
+    "bytes": 396
+  },
+  "example/peptide_against_specific_site_on_ragc/rragc_site1.yaml": {
+    "sha256": "b8fda841f60a79691d18ba53f1be6e793b43fddda00ece9f4786b4c98164865f",
+    "bytes": 305
+  },
+  "example/peptide_against_specific_site_on_ragc/rragc_site2.yaml": {
+    "sha256": "a932e1b2fa93f6db1b57709853ca4fd0303677ba6222c11fc9921e8e456aace1",
+    "bytes": 329
+  },
+  "example/protein_binding_small_molecule/brilacidin.yaml": {
+    "sha256": "109a1a876c7457afea69ffa4c083f3a78ff6c788679bb254b1d3085b863f4154",
+    "bytes": 232
+  },
+  "example/protein_binding_small_molecule/chorismite.yaml": {
+    "sha256": "a5b8f9474e43151c7f6b028f2e29b17b58d21c1863ca4a196801c642dc8403f1",
+    "bytes": 99
+  },
+  "example/protein_binding_small_molecule/rucaparib.yaml": {
+    "sha256": "7f46c0101854f80c816b12a5b032ab84e5a7a893d018650b0b4b3bd761bbcd04",
+    "bytes": 115
+  },
+  "example/residue_constraints_test.yaml": {
+    "sha256": "cbf69b30d847ee756e071fbcab928ba68af2652e59fb4bda4499a9b608fad8da",
+    "bytes": 1062
+  },
+  "example/small_molecule_from_file_and_smiles/4g37.pdb": {
+    "sha256": "c797b4ed8edd225c57249a8a6649c1ccf9580dc9a2bd91811a303d762074c3d3",
+    "bytes": 326156
+  },
+  "example/small_molecule_from_file_and_smiles/4g37.yaml": {
+    "sha256": "89b0a2333a2ff6700b7e400e0cdf703e3914e8c45fdb95ea81ebaf3782786aab",
+    "bytes": 1148
+  },
+  "example/streptavidin_partially_flexible_target/1mk5.cif": {
+    "sha256": "7ede44c5fb72bf4ca3ff366c5b3efa46846669854c71cef00fe3c2d33debabe6",
+    "bytes": 442308
+  },
+  "example/streptavidin_partially_flexible_target/cyclic.yaml": {
+    "sha256": "3d187573d9b87a9f764b0d804033b72c4f6c395d1966b288f66fdd449d3c168c",
+    "bytes": 346
+  },
+  "example/streptavidin_partially_flexible_target/disulfide.yaml": {
+    "sha256": "b16d7ece4a182001095786f0ee1a8e525f910965d3abc34520ba680280c6459a",
+    "bytes": 404
+  },
+  "example/streptavidin_partially_flexible_target/exotic_cyclization.yaml": {
+    "sha256": "a533ab9ca52b725f5fc531a0639301f6fbf86695fb448f97bfeb7c545cd48a46",
+    "bytes": 479
+  },
+  "example/streptavidin_partially_flexible_target/helicon.yaml": {
+    "sha256": "b5053ef70a0355f7ac091426ba8fd87fcb318baaa9dd4885818a45300abc06c1",
+    "bytes": 551
+  },
+  "example/streptavidin_partially_flexible_target/helix_plus_staple.yaml": {
+    "sha256": "b5053ef70a0355f7ac091426ba8fd87fcb318baaa9dd4885818a45300abc06c1",
+    "bytes": 551
+  },
+  "example/streptavidin_partially_flexible_target/linear_against_full_assembly.yaml": {
+    "sha256": "a145999a3943d976dee36e28303a484498f5121c5e0e7f2e71f02d979f09e12b",
+    "bytes": 925
+  },
+  "example/vanilla_peptide_with_target_binding_site/5cqg.cif": {
+    "sha256": "622d2d2c387643c89b5731f6aebfe3d66eda9aae5b60aa4178ef358b0ff717a0",
+    "bytes": 1930357
+  },
+  "example/vanilla_peptide_with_target_binding_site/beetletert.yaml": {
+    "sha256": "326e94f0a160ddd9fba418e9bcf66d3c065d6fb7e91faccb6574bde174350a01",
+    "bytes": 866
+  },
+  "example/vanilla_protein/1g13.cif": {
+    "sha256": "bdcb6b09837ad2ac30e66b13ecc738914c6ff6b98998f6a2425e6829d0c46185",
+    "bytes": 464491
+  },
+  "example/vanilla_protein/1g13prot.yaml": {
+    "sha256": "5d163e849eb74f89ad2716a8afcf6289a48defd23a0f4437b3c2007fcd15d37e",
+    "bytes": 410
+  },
+  "filter.ipynb": {
+    "sha256": "63d74d62366ccb05ef9824f973e4cbe689ad7164239f481931c24f83b13ae3f5",
+    "bytes": 1987092
+  },
+  "provenance/accepted_source_manifest.json": {
+    "sha256": "307df449617ca90d0fd61c5160e28ff4e48a6617fd7ed62dc4388f5d2e414eb9",
+    "bytes": 32951
+  },
+  "pyproject.toml": {
+    "sha256": "f1260cddbafb6b83f31951481ccc1602120f36979dc0ffc315f89d19bd62428d",
+    "bytes": 3426
+  },
+  "requirements-evaluation.lock": {
+    "sha256": "2d0fa3c4f59a2fe1a236cbddfc74ac3c7da87f9f2166b8ee4a581720892077ff",
+    "bytes": 2002
+  },
+  "slurm-example/README.md": {
+    "sha256": "f5d95a3cbb50930176c8de2a985014941dc9350733ad837833b321f12dffeafd",
+    "bytes": 1067
+  },
+  "slurm-example/run.sh": {
+    "sha256": "20748950e00bba82bf69218f44ff028ae0bdbbb5613b2c57398496fb8fe17d6a",
+    "bytes": 1051
+  },
+  "slurm-example/run_job_array.slurm": {
+    "sha256": "e70d49647e2d0549f6ed8643e8cf5785e41c4449433f7755b7dca448cd2bd978",
+    "bytes": 1475
+  },
+  "src/boltzgen/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/cli/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/cli/boltzgen.py": {
+    "sha256": "56b1f311b8499cbee43ae79a6b5a1435cebe907923e8a7418c9e74e7e487c01b",
+    "bytes": 67221
+  },
+  "src/boltzgen/data/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/const.py": {
+    "sha256": "76562e4eaae84156e0081b76f5e5890b9c11598ae3b953c269faaf62a0a1313a",
+    "bytes": 73594
+  },
+  "src/boltzgen/data/crop/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/crop/cropper.py": {
+    "sha256": "b95aa8ecf370d731e9e9ebda78e00060ee9499c04cc348b10c70cd62d5a537df",
+    "bytes": 1001
+  },
+  "src/boltzgen/data/crop/multimer.py": {
+    "sha256": "e8b87cb5386bc4bb12ccf209f841e915e3461bb1ee155b7cf1ecf4421eadedfb",
+    "bytes": 13872
+  },
+  "src/boltzgen/data/data.py": {
+    "sha256": "6d6edac16695a1671dbdc3be3ad434dacd375ef599dd4ae632fff7b661b43dac",
+    "bytes": 75818
+  },
+  "src/boltzgen/data/feature/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/feature/featurizer.py": {
+    "sha256": "c5efa28e70cb84138bc2308e393bee22fd6c12b4bda3da59cb06018e4971615c",
+    "bytes": 85052
+  },
+  "src/boltzgen/data/filter/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/filter/dynamic/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/filter/dynamic/confidence.py": {
+    "sha256": "26e9d0682845a5193b6f8282e0814862366290aff8033178f6c6a3bce8bfbe1c",
+    "bytes": 2286
+  },
+  "src/boltzgen/data/filter/dynamic/date.py": {
+    "sha256": "1a3289022fad9b99d9aae29df703a274996809f58804dcab3d9e1875fdc54483",
+    "bytes": 2266
+  },
+  "src/boltzgen/data/filter/dynamic/error.py": {
+    "sha256": "bbc31573b97eae595ab62dc02b0b6f8c775c8a4530d6f4e7ec6fa67c1095d22e",
+    "bytes": 1575
+  },
+  "src/boltzgen/data/filter/dynamic/filter.py": {
+    "sha256": "a4b31d567695bb6d74805b973597087c986c03e1b485c50652f7cb4084709d40",
+    "bytes": 518
+  },
+  "src/boltzgen/data/filter/dynamic/max_residues.py": {
+    "sha256": "1e3ab80660d16dab540156b69adfeda0a3264a13b354f8e6a2d91fff40202357",
+    "bytes": 1076
+  },
+  "src/boltzgen/data/filter/dynamic/min_protein_residues.py": {
+    "sha256": "feb2d4a4f4ec0293e3e014bb247ac19f961c3323999272d193949ffab390e130",
+    "bytes": 1223
+  },
+  "src/boltzgen/data/filter/dynamic/pdb_id_txtfile.py": {
+    "sha256": "502d95eaa97fefd0c1c2e108e1b868c2d9111dbe981d0a4264f6d2e71bfbe4b2",
+    "bytes": 1532
+  },
+  "src/boltzgen/data/filter/dynamic/resolution.py": {
+    "sha256": "b13d2ec37163ef8bfa0de80ddacb55ab13c237bc4f4b23c58b263f5d7b5ddbe0",
+    "bytes": 1000
+  },
+  "src/boltzgen/data/filter/dynamic/size.py": {
+    "sha256": "110c1177af53bb513b0b060dda7372ad856352d30009bbe738153a6b369a70d0",
+    "bytes": 1092
+  },
+  "src/boltzgen/data/filter/static/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/filter/static/filter.py": {
+    "sha256": "f0e6dc83fb4bc15b31bcbdd4ba1a8c6733ce89e16ecc6e15c395d3f46ecc05d6",
+    "bytes": 557
+  },
+  "src/boltzgen/data/filter/static/ligand.py": {
+    "sha256": "ab3b6bcf7ab53484a4cc49fee6a243cd0f888b0616a7245c4a5fd7c5d17cadb1",
+    "bytes": 1050
+  },
+  "src/boltzgen/data/filter/static/polymer.py": {
+    "sha256": "89f8a906166f0466d9edc8a08843cac71834cd380880346a574a22558d395dd4",
+    "bytes": 9418
+  },
+  "src/boltzgen/data/mol.py": {
+    "sha256": "eb50e2cef8378d68b2305f4e21484c4b6bb5aed55b438e649f3c09feb2684641",
+    "bytes": 42570
+  },
+  "src/boltzgen/data/pad.py": {
+    "sha256": "13d40002839a54e3a102eb864109bceda41fce0b857cb83db8d7c1f3a4a04ae1",
+    "bytes": 1907
+  },
+  "src/boltzgen/data/parse/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/parse/a3m.py": {
+    "sha256": "493f0324bb3be158b8e13654ad4d5e3b49af25632d9f7551e1a764ad428d0c42",
+    "bytes": 3369
+  },
+  "src/boltzgen/data/parse/mmcif.py": {
+    "sha256": "cf9fe6d596592a3bf59106a48b129c5c7dfedfef8a594a80f51407862388c723",
+    "bytes": 44347
+  },
+  "src/boltzgen/data/parse/pdb_parser.py": {
+    "sha256": "ffe371df3123e30be0defa383fdec822baf5969f91785ae910beb70d46d02c95",
+    "bytes": 4860
+  },
+  "src/boltzgen/data/parse/schema.py": {
+    "sha256": "8026046bfcd7ae663d6ffe6ede2ba8e1d159c4ffbfaa6aaf4d3331adb6594ea4",
+    "bytes": 94735
+  },
+  "src/boltzgen/data/rmsd_computation.py": {
+    "sha256": "139f91fee1b753d2e72616f30fe95c2280fff7d34baf46663ffefe562e22cc52",
+    "bytes": 4406
+  },
+  "src/boltzgen/data/sample/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/sample/cluster.py": {
+    "sha256": "b10f117ee0d84eea8ddb69d0bb6f20aff25b2ab9b18bc0f55512c253cddabde9",
+    "bytes": 8367
+  },
+  "src/boltzgen/data/sample/sampler.py": {
+    "sha256": "23e88818559db4ff73fb969a6f4040dd68998e003424a9193b3e7527497e8c60",
+    "bytes": 1022
+  },
+  "src/boltzgen/data/select/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/select/protein.py": {
+    "sha256": "122bbcdbfe293bb21fbda3752cf95c9e6c094d318d3443331dcbbea7836368d8",
+    "bytes": 28812
+  },
+  "src/boltzgen/data/select/selector.py": {
+    "sha256": "a0e53a88b79ab95f164e52f3f70c77269fc4fc1133be8e5102590c134d2589a6",
+    "bytes": 807
+  },
+  "src/boltzgen/data/template/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/template/features.py": {
+    "sha256": "80759c3674b746c78106de47d5567579a0c8d311a4f1294bca1409bca4cff7e1",
+    "bytes": 1590
+  },
+  "src/boltzgen/data/tokenize/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/tokenize/tokenizer.py": {
+    "sha256": "1de1517cb927e7f4b10c4199dd25f90b948d0a136db0c16b01f9b000d16fa9b6",
+    "bytes": 16363
+  },
+  "src/boltzgen/data/write/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/data/write/mmcif.py": {
+    "sha256": "a89a0f2d4549fa4b5db69d555f58ccfb5217e72a407fe95801e90ed5f58cf7b0",
+    "bytes": 16775
+  },
+  "src/boltzgen/data/write/pdb.py": {
+    "sha256": "65ef2225077611499530263d700db482ccf25aea9a8a7999d65b7e2eaaf75dd6",
+    "bytes": 4545
+  },
+  "src/boltzgen/model/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/layers/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/layers/attention.py": {
+    "sha256": "5c167e7cdaabd9f22270a97fe08f4d477b10284386409691a230e48439face6d",
+    "bytes": 5336
+  },
+  "src/boltzgen/model/layers/confidence_utils.py": {
+    "sha256": "a1742219dc75250ddfa31169edfd83323625ddbc957dabcb8c11003b0e862cbf",
+    "bytes": 15766
+  },
+  "src/boltzgen/model/layers/design_rng_advance.cpp": {
+    "sha256": "360dd966e94f0e51b64133303e0c0fdf04ddbd42e29b23defce5202379d17ebf",
+    "bytes": 1269
+  },
+  "src/boltzgen/model/layers/design_rng_advance.py": {
+    "sha256": "3cf9a11ffd052413f8f9b65bf9a9e472383794920be5e85567723ca17a06bf57",
+    "bytes": 3405
+  },
+  "src/boltzgen/model/layers/dropout.py": {
+    "sha256": "5e7510ada6dc6ec3ad92108e3a7e3e819fada0772763c390effbfb430a03c463",
+    "bytes": 1970
+  },
+  "src/boltzgen/model/layers/initialize.py": {
+    "sha256": "aa07fd2c56d4a9d986903b19d07c731e1239ac6fbcc8a0389db04f9904859c09",
+    "bytes": 8584
+  },
+  "src/boltzgen/model/layers/miniformer.py": {
+    "sha256": "095639e3777cf7ed807ba3abb368f36189c03439573c427a27277c6b0f3cb6b5",
+    "bytes": 6104
+  },
+  "src/boltzgen/model/layers/outer_product_mean.py": {
+    "sha256": "ded03a6de3ea0c0c17a7f518d829f51059166881ba2f9b182e8655ceadd1e42f",
+    "bytes": 3437
+  },
+  "src/boltzgen/model/layers/pair_averaging.py": {
+    "sha256": "aa5258976b5b71f3c3587f0f4e0e946ef3e432a2a664ce43c8158f2c46f6546f",
+    "bytes": 3991
+  },
+  "src/boltzgen/model/layers/pairformer.py": {
+    "sha256": "1221cfe353fcdd2d2941ececf04e0ea57e61b0201b8fc184121ce5d3e44b6e6d",
+    "bytes": 9939
+  },
+  "src/boltzgen/model/layers/relative.py": {
+    "sha256": "7cb3b00031b95430dd1f61aa8acf8be8bc3c867586c423e37d5eadf2461e1087",
+    "bytes": 1875
+  },
+  "src/boltzgen/model/layers/transition.py": {
+    "sha256": "454d942378de4c8eeca1e12ebed2665326494615979dee9b63420fb911e84cb8",
+    "bytes": 2137
+  },
+  "src/boltzgen/model/layers/triangular.py": {
+    "sha256": "bae700d41fde923bc7ebedefe5a9e2e94c67c58807fd6d4a2d7ae4b0620754cc",
+    "bytes": 9140
+  },
+  "src/boltzgen/model/layers/triangular_attention/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/layers/triangular_attention/attention.py": {
+    "sha256": "0512af79e41ae551539700542ac7911294326754f443e8a384a3ec31a131d05f",
+    "bytes": 4983
+  },
+  "src/boltzgen/model/layers/triangular_attention/primitives.py": {
+    "sha256": "48d42e20fe2344bc96b15deb42989c731c9ca3a6ec3cb84b38f9e6e894ec49ea",
+    "bytes": 11819
+  },
+  "src/boltzgen/model/layers/triangular_attention/utils.py": {
+    "sha256": "319f58b75f10bd841a83ad36e19c1fd989a1636013171abc5efbffebbbb0f830",
+    "bytes": 12393
+  },
+  "src/boltzgen/model/loss/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/loss/bfactor.py": {
+    "sha256": "ff53eb2c18d29c11ced75d59b168e832e2f8eca705c3704c689494e801027cbd",
+    "bytes": 1472
+  },
+  "src/boltzgen/model/loss/confidence.py": {
+    "sha256": "580c97387675abaf94829cd33d72bb2f8387d39c4e26b208aad8755ff76b70bf",
+    "bytes": 19804
+  },
+  "src/boltzgen/model/loss/diffusion.py": {
+    "sha256": "91a175d7506ab7e435271a9061b3e54e624aa29388265a5ee068495f575409de",
+    "bytes": 7354
+  },
+  "src/boltzgen/model/loss/distogram.py": {
+    "sha256": "e7382e274ef625fab03cc15bc6f9aa0ebc2d1f8e8beb4692e127c3de003e0c1a",
+    "bytes": 3871
+  },
+  "src/boltzgen/model/loss/res_type.py": {
+    "sha256": "a0210257a142dffff8f0da944c77236103d6ed9557ddce712a09f5a5723d49ae",
+    "bytes": 1680
+  },
+  "src/boltzgen/model/loss/validation.py": {
+    "sha256": "4e2156062935e452131286ba825b147b67ef09e4620246b7266cb225b4ed12a6",
+    "bytes": 62720
+  },
+  "src/boltzgen/model/models/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/models/boltz.py": {
+    "sha256": "742c36697f7eae8879275e4f7cc6df643996a648471445c996ea633e0e7de531",
+    "bytes": 64596
+  },
+  "src/boltzgen/model/modules/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/modules/affinity.py": {
+    "sha256": "7333e9306aadb0d3f5d036dd3427a4066c14c11e0fa7bc5b12f3936bbda49f39",
+    "bytes": 6991
+  },
+  "src/boltzgen/model/modules/confidence.py": {
+    "sha256": "143b9ea559d7a5411d532058a8dc95fa661184b37f031d719994720c3950f940",
+    "bytes": 24606
+  },
+  "src/boltzgen/model/modules/diffusion.py": {
+    "sha256": "37642afb84665784cdef8ce52ea933eef148c5904f454c6147ab1fbb65f5ad5f",
+    "bytes": 33045
+  },
+  "src/boltzgen/model/modules/diffusion_conditioning.py": {
+    "sha256": "27cafb78814a556de55365363f13729bcafdacb1701064e5a4eede6a2a6bd30d",
+    "bytes": 3468
+  },
+  "src/boltzgen/model/modules/encoders.py": {
+    "sha256": "8a3cd3fab8480226b7666d3c0c5f53b42c0c8650f5bd47d94da1be7f958a0e7d",
+    "bytes": 24353
+  },
+  "src/boltzgen/model/modules/inverse_fold.py": {
+    "sha256": "b5c2baacbe59674afd8c320efb66c3182e1182d7266e79098f0b9f4499494463",
+    "bytes": 29166
+  },
+  "src/boltzgen/model/modules/masker.py": {
+    "sha256": "d5d151cc49ec99820a170860825fb3a86fa22062f1120aa575e43a12fad0fb58",
+    "bytes": 10478
+  },
+  "src/boltzgen/model/modules/scatter_utils.py": {
+    "sha256": "82fdb3d92806ea12b8561a9158570b8e814e52595b5e0a3c71c36dbd2c544224",
+    "bytes": 4098
+  },
+  "src/boltzgen/model/modules/transformers.py": {
+    "sha256": "18d3e586f95cdf64a2e0a122d0fa581109eb47c247f4e479557718b422af158c",
+    "bytes": 7203
+  },
+  "src/boltzgen/model/modules/trunk.py": {
+    "sha256": "873f8e7515041f31c1700dcee67e19255908706ddb465f7abf54a7dedb0f0257",
+    "bytes": 28360
+  },
+  "src/boltzgen/model/modules/utils.py": {
+    "sha256": "4e495117a75f93a2d79b43e53a0192ae5d85946341201bd02fd2216e5d326bfc",
+    "bytes": 6817
+  },
+  "src/boltzgen/model/optim/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/model/optim/ema.py": {
+    "sha256": "e9f72cd9d1a4fe39a633a6781dc106cdd8fcdbf040a04cbc091076b2b086da53",
+    "bytes": 11532
+  },
+  "src/boltzgen/model/optim/scheduler.py": {
+    "sha256": "04d80bc0cf5a666e1473b43b1cf3b8ea8daa5430a752ce76d437d06646415a53",
+    "bytes": 2720
+  },
+  "src/boltzgen/model/validation/design.py": {
+    "sha256": "8cfb92a20fb068d6bfc9ad3a0f03eee0dfc9ad122901745419c86752cdddd85c",
+    "bytes": 13837
+  },
+  "src/boltzgen/model/validation/rcsb.py": {
+    "sha256": "b6cb884eb3b96226c173719d16382cdffd5c37bbafa9ff381508b953576687ed",
+    "bytes": 1721
+  },
+  "src/boltzgen/model/validation/refolding.py": {
+    "sha256": "b56391376d40dcb867d996ee1acaff5b8f5626ccbae6356f6f08ed853db99b01",
+    "bytes": 13142
+  },
+  "src/boltzgen/model/validation/validator.py": {
+    "sha256": "eaa2a5c1010517e04bc886d690e7e8793be788863e5981085319e0a1624fb34f",
+    "bytes": 23157
+  },
+  "src/boltzgen/resources/config/affinity.yaml": {
+    "sha256": "4dde4438659746d1733bc2cceb8c962611c4225b6ce3dba0fe3e7361ccc48249",
+    "bytes": 1131
+  },
+  "src/boltzgen/resources/config/analysis.yaml": {
+    "sha256": "cf9b6bae1e7985053332a938b3ed9bcbc06b0269a25fbd2220798ab22444d638",
+    "bytes": 1695
+  },
+  "src/boltzgen/resources/config/design.yaml": {
+    "sha256": "a721b9fb2d8bb5acab76523b169701d55158c109c49976843636570f177a99da",
+    "bytes": 2355
+  },
+  "src/boltzgen/resources/config/filtering.yaml": {
+    "sha256": "b8c828d4cce7ca1cf1ce973ae18641eddf211b793d747138826a2c6b5b4fe86f",
+    "bytes": 930
+  },
+  "src/boltzgen/resources/config/fold.yaml": {
+    "sha256": "a15a61fd39a434f08b00e709cebdff60beb51f4c3ce7bc908be3c7324b375559",
+    "bytes": 1369
+  },
+  "src/boltzgen/resources/config/inverse_fold.yaml": {
+    "sha256": "eee4ae8ce493d93ca99d81b7b5a76446e8b5820b29f27ce5efdf2a20da49c521",
+    "bytes": 2359
+  },
+  "src/boltzgen/resources/config/inverse_fold_only.yaml": {
+    "sha256": "786c09c7721ecb34bc9f1735d5a31027563305e61babd0240778b4d2c12249f3",
+    "bytes": 2119
+  },
+  "src/boltzgen/resources/config/train/boltzgen.no_distillation.yaml": {
+    "sha256": "a7e817fcfdf55bbd2325abbe83613d8ff3e14a1e9929caf1dfc96a82cc5cec8f",
+    "bytes": 12839
+  },
+  "src/boltzgen/resources/config/train/boltzgen.yaml": {
+    "sha256": "f90d482400ebe2a60164526fb9b7434a265f9f3223ec357f47d68f23c58787ab",
+    "bytes": 16619
+  },
+  "src/boltzgen/resources/config/train/boltzgen_small.yaml": {
+    "sha256": "6a0dd9fd3f42c45d0b041ce9c966c448606ea09921c21e0bcb5670c4a917d05c",
+    "bytes": 9180
+  },
+  "src/boltzgen/resources/config/train/inverse_folding.yaml": {
+    "sha256": "3380040c01f5c03c32f449d2b37ad4c94d46e4a2b2208db7fd3c7ee378ea3d77",
+    "bytes": 10114
+  },
+  "src/boltzgen/resources/main.py": {
+    "sha256": "80e02c29a50879b1358f8f58d2607e6bdf970f3dbb5f8f76f6b6d9bf0b23e6f4",
+    "bytes": 1861
+  },
+  "src/boltzgen/resources/metrics_normalization.json": {
+    "sha256": "11da5140c946d65dd06a505ce2d2cb14440083ed120f7a9921bf7fb8631a5e34",
+    "bytes": 978
+  },
+  "src/boltzgen/resources/splits/val_ccd_pdb_pairs_boltzgen.txt": {
+    "sha256": "012139995e737450d927c733830529e11b934977da4d409423e19b1931955a3c",
+    "bytes": 909
+  },
+  "src/boltzgen/resources/splits/val_monomers_boltzgen_min50_max220.txt": {
+    "sha256": "2782570b827b1ca84997d8b68ff6a043b2305fd185c9847cbd6529cbd09473f6",
+    "bytes": 550
+  },
+  "src/boltzgen/resources/splits/validation_ids_boltz2_all.txt": {
+    "sha256": "b3e155ba67a59f11ff909999c6d5bf593a4b24b9bef3694688e5372b612c415c",
+    "bytes": 1990
+  },
+  "src/boltzgen/task/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/task/analyze/analyze.py": {
+    "sha256": "fa0de117caeea55e5399c40f7a18b2e289d00c3d6d0089c29e815d6923790c6d",
+    "bytes": 62054
+  },
+  "src/boltzgen/task/analyze/analyze_utils.py": {
+    "sha256": "a5c74cfa93a1fba7e71e6e47e127c3763cfd25620a07cbdafbd0a4905a534051",
+    "bytes": 47562
+  },
+  "src/boltzgen/task/filter/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/task/filter/filter.py": {
+    "sha256": "b8aecfbb54a187125a9668239e813cf5e1454a6934b94292fc0fa82c7a29fdb1",
+    "bytes": 55612
+  },
+  "src/boltzgen/task/filter/seqplot_utils.py": {
+    "sha256": "3f4936d553bf4fbd8eeab9939966d41cd44575903848c7dc23f1f22de75c8d3f",
+    "bytes": 15575
+  },
+  "src/boltzgen/task/predict/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/task/predict/data_from_generated.py": {
+    "sha256": "3bd0d46b05a09f8022338e0495718b29de2df52b0686f4d520380f231aad735b",
+    "bytes": 33595
+  },
+  "src/boltzgen/task/predict/data_from_yaml.py": {
+    "sha256": "ee48b780ff43fab1428a6bb53bb23134360962c455a3d4857461e122fe217217",
+    "bytes": 14511
+  },
+  "src/boltzgen/task/predict/data_ligands.py": {
+    "sha256": "9a04bb17a36d81adfb854131e4addbcf91f95ba07eeb5f70852e9ac4fad01fdb",
+    "bytes": 12616
+  },
+  "src/boltzgen/task/predict/data_protein_binder.py": {
+    "sha256": "eade64121fbd15222bc307757300f97148a0bb3f7bb3da76ca497c6d6b047fcc",
+    "bytes": 19931
+  },
+  "src/boltzgen/task/predict/loading_utils.py": {
+    "sha256": "b2819e8c00c6990526e000487ff9af3a3d199f3125b54709dce33717edecd863",
+    "bytes": 996
+  },
+  "src/boltzgen/task/predict/predict.py": {
+    "sha256": "fa06230cc4a4ae8cc96c69e4259ab969574a95ef5405dc865317bc071665b3dc",
+    "bytes": 7223
+  },
+  "src/boltzgen/task/predict/writer.py": {
+    "sha256": "5338dad02460795eb87b9a7f120ac78f219a057eb75d2cd32a92684e41190520",
+    "bytes": 21535
+  },
+  "src/boltzgen/task/task.py": {
+    "sha256": "c6264b97e9bded4a3a89af48a7bf4a5556fa901f146d265d93be571a24edadf5",
+    "bytes": 370
+  },
+  "src/boltzgen/task/train/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/task/train/data.py": {
+    "sha256": "90e901edd4765751ec0a2da26030b0e6d7e3b14cc12bdaadd8c7eea28f020b81",
+    "bytes": 43399
+  },
+  "src/boltzgen/task/train/train.py": {
+    "sha256": "eb99e6dd16057dd1a085e7fda4620666041405d24a39e88e21693b461987eada",
+    "bytes": 8520
+  },
+  "src/boltzgen/utils/__init__.py": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "src/boltzgen/utils/pipeline_progress_bar.py": {
+    "sha256": "c2d65492797e122206c500f162eed7e03fa47000673096dbdf4b03daadf4df0e",
+    "bytes": 7019
+  },
+  "src/boltzgen/utils/quiet.py": {
+    "sha256": "c267587d3f59f740d156074095595cef1692c59bd88db5e384b2659e13315e94",
+    "bytes": 485
+  },
+  "tests/conftest.py": {
+    "sha256": "5f88009e08f6b732541d7b4cb90ac37ffaac24cc869086ca6d2a92e8f16925ec",
+    "bytes": 1916
+  },
+  "tests/test_inverse_fold_constraint_masks.py": {
+    "sha256": "d754ca67918f61b0f1f0b96767082379d8cc2798295c3af7935c59f3c4cef766",
+    "bytes": 3055
+  },
+  "tests/test_residue_constraints.py": {
+    "sha256": "a622f435c47e110bf2a4c114510794766d2a3c21f58e5f0d585e219cd99d5e1d",
+    "bytes": 15389
+  }
+}

@@ -1,0 +1,410 @@
+"Package"	"LibPath"	"Version"	"Priority"	"Depends"	"Imports"	"LinkingTo"	"Suggests"	"Enhances"	"License"	"License_is_FOSS"	"License_restricts_use"	"OS_type"	"MD5sum"	"NeedsCompilation"	"Built"	"Repository"	"RemoteType"	"RemoteUrl"	"RemoteSha"
+"abind"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.4-8"		"R (>= 1.5.0)"	"methods, utils"				"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"arrow"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"25.0.0"		"R (>= 4.2)"	"assertthat,
+bit64 (>= 0.9-7),
+glue,
+methods,
+purrr,
+R6,
+rlang (>= 1.0.0),
+stats,
+tidyselect (>= 1.0.0),
+utils,
+vctrs"	"cpp11 (>= 0.4.2)"	"blob,
+curl,
+cli,
+DBI,
+dbplyr,
+decor,
+distro,
+dplyr,
+duckdb (>= 0.2.8),
+hms,
+jsonlite,
+knitr,
+lubridate,
+pillar,
+pkgload,
+reticulate,
+rmarkdown,
+stringi,
+stringr,
+sys,
+testthat (>= 3.3.0),
+tibble,
+tzdb,
+withr"		"Apache License (>= 2.0)"						"4.5.3"				
+"askpass"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.1"			"sys (>= 2.1)"		"testthat"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"assertthat"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.2.1"			"tools"		"testthat, covr"		"GPL-3"					"no"	"4.5.1"	"CRAN"			
+"assorthead"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.4.0"					"knitr, rmarkdown, BiocStyle"		"MIT + file LICENSE"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"base64enc"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.1-6"		"R (>= 2.9.0)"				"png"	"GPL-2 | GPL-3"					"yes"	"4.5.2"	"CRAN"			
+"BayesSpace"	"/workspace/biomnicode/BayesSpace_realdata_evaluation/env/original_lib"	"1.21.2"		"R (>= 4.0.0),
+SingleCellExperiment"	"Rcpp (>= 1.0.4.6),
+stats,
+methods,
+purrr,
+scater,
+scran,
+SummarizedExperiment,
+coda,
+rhdf5,
+S4Vectors,
+Matrix,
+magrittr,
+assertthat,
+arrow,
+mclust,
+RCurl,
+DirichletReg,
+xgboost (>= 3.0.0),
+utils,
+dplyr,
+rlang,
+ggplot2,
+tibble,
+rjson,
+tidyr,
+scales,
+microbenchmark,
+BiocFileCache,
+BiocSingular,
+BiocParallel"	"Rcpp,
+RcppArmadillo,
+RcppDist,
+RcppProgress"	"testthat,
+knitr,
+rmarkdown,
+igraph,
+spatialLIBD,
+viridis,
+patchwork,
+RColorBrewer,
+Seurat"		"MIT + file LICENSE"					"yes"	"4.5.3"				
+"beachmat"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.26.0"			"methods, DelayedArray (>= 0.27.2), SparseArray, BiocGenerics,
+Matrix, Rcpp"	"Rcpp, assorthead (>= 1.3.3)"	"testthat, BiocStyle, knitr, rmarkdown, rcmdcheck,
+BiocParallel, HDF5Array, beachmat.hdf5"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"beeswarm"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4.0"			"stats, graphics, grDevices, utils"				"Artistic-2.0"					"yes"	"4.5.1"	"CRAN"			
+"BH"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.90.0-1"							"BSL-1.0"					"no"	"4.5.2"	"CRAN"			
+"Biobase"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.70.0"		"R (>= 2.10), BiocGenerics (>= 0.27.1), utils"	"methods"		"tools, tkWidgets, ALL, RUnit, golubEsets, BiocStyle, knitr,
+limma"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"BiocFileCache"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.0.0"		"R (>= 3.4.0), dbplyr (>= 1.0.0)"	"methods, stats, utils, dplyr, RSQLite, DBI, filelock, curl,
+httr2"		"testthat, knitr, BiocStyle, rmarkdown, rtracklayer"		"Artistic-2.0"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"BiocGenerics"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.56.0"		"R (>= 4.0.0), methods, utils, graphics, stats, generics"	"methods, utils, graphics, stats"		"Biobase, S4Vectors, IRanges, S4Arrays, SparseArray,
+DelayedArray, HDF5Array, GenomicRanges, pwalign, Rsamtools,
+AnnotationDbi, affy, affyPLM, DESeq2, flowClust, MSnbase,
+annotate, MultiAssayExperiment, RUnit"		"Artistic-2.0"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"BiocNeighbors"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.4.0"			"Rcpp, methods"	"Rcpp, assorthead"	"BiocParallel, testthat, BiocStyle, knitr, rmarkdown"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"BiocParallel"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.44.0"		"methods, R (>= 4.1.0)"	"stats, utils, futile.logger, parallel, snow, codetools"	"BH (>= 1.87.0), cpp11"	"BiocGenerics, tools, foreach, BBmisc, doParallel,
+GenomicRanges, RNAseqData.HNRNPC.bam.chr14,
+TxDb.Hsapiens.UCSC.hg19.knownGene, VariantAnnotation,
+Rsamtools, GenomicAlignments, ShortRead, RUnit, BiocStyle,
+knitr, batchtools, data.table"	"Rmpi"	"GPL-2 | GPL-3 | BSL-1.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"BiocSingular"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.26.1"			"BiocGenerics, S4Vectors, Matrix, methods, utils, DelayedArray,
+BiocParallel, ScaledMatrix, irlba, rsvd, Rcpp, beachmat (>=
+2.25.1)"	"Rcpp, beachmat, assorthead"	"testthat, BiocStyle, knitr, rmarkdown, ResidualMatrix"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"bit"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.6.0"		"R (>= 3.4.0)"			"testthat (>= 3.0.0), roxygen2, knitr, markdown, rmarkdown,
+microbenchmark, bit64 (>= 4.0.0), ff (>= 4.0.0)"		"GPL-2 | GPL-3"					"yes"	"4.5.1"	"CRAN"			
+"bit64"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.8.6"		"R (>= 3.5.0)"	"bit (>= 4.0.0), graphics, methods, stats, utils"		"patrick (>= 0.3.0), testthat (>= 3.3.0), withr"		"GPL-2 | GPL-3"					"yes"	"4.5.3"	"CRAN"			
+"bitops"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.1-0"							"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"blob"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.0"			"methods, rlang, vctrs (>= 0.2.1)"		"covr, crayon, pillar (>= 1.2.1), testthat (>= 3.0.0)"		"MIT + file LICENSE"					"no"	"4.5.2"	"CRAN"			
+"bluster"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.20.0"			"stats, methods, utils, cluster, Matrix, Rcpp, igraph,
+S4Vectors, BiocParallel, BiocNeighbors"	"Rcpp, assorthead"	"knitr, rmarkdown, testthat, BiocStyle, dynamicTreeCut,
+scRNAseq, scuttle, scater, scran, pheatmap, viridis, mbkmeans,
+kohonen, apcluster, DirichletMultinomial, vegan, fastcluster"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"cachem"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.1.0"			"rlang, fastmap (>= 1.2.0)"		"testthat"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"Cairo"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.7-0"		"R (>= 2.7.0)"	"grDevices, graphics"		"png"	"FastRWeb"	"GPL-2 | GPL-3"					"yes"	"4.5.2"	"CRAN"			
+"cli"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.6.6"		"R (>= 3.4)"	"utils"		"callr, covr, crayon, digest, glue (>= 1.6.0), grDevices,
+htmltools, htmlwidgets, knitr, methods, processx, ps (>=
+1.3.4.9000), rlang (>= 1.0.2.9003), rmarkdown, rprojroot,
+rstudioapi, testthat (>= 3.2.0), tibble, whoami, withr"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"cluster"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.1.8.3"	"recommended"	"R (>= 3.5.0)"	"graphics, grDevices, stats, utils"		"MASS, Matrix"	"mvoutlier, fpc, ellipse, sfsmisc"	"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"coda"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.19-4.1"		"R (>= 2.14.0)"	"lattice"				"GPL (>= 2)"					"no"	"4.5.1"	"CRAN"			
+"codetools"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.2-20"	"recommended"	"R (>= 2.1)"					"GPL"					"no"	"4.5.1"	"CRAN"			
+"compiler"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"						"Part of R 4.5.3"						"4.5.3"				
+"cpp11"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.5.5"		"R (>= 4.0.0)"			"bench, brio, callr, cli, covr, decor, desc, ggplot2, glue,
+knitr, lobstr, mockery, progress, rmarkdown, scales, Rcpp,
+testthat (>= 3.2.0), tibble, utils, vctrs, withr"		"MIT + file LICENSE"					"no"	"4.5.3"	"CRAN"			
+"curl"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"8.0.0"		"R (>= 3.0.0)"			"spelling, testthat (>= 1.0.0), knitr, jsonlite, later,
+rmarkdown, httpuv (>= 1.4.4), webutils"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"data.table"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.18.6.1"		"R (>= 3.4.0)"	"methods"		"bit64 (>= 4.0.0), bit (>= 4.0.4), R.utils (>= 2.13.0), xts,
+zoo (>= 1.8-1), yaml, knitr, markdown"		"MPL-2.0 | file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"DBI"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.0"		"methods, R (>= 3.0.0)"			"arrow, blob, callr, covr, DBItest (>= 1.8.2), dbplyr,
+downlit, dplyr, glue, hms, knitr, magrittr, nanoarrow (>=
+0.3.0.1), otel, otelsdk, RMariaDB, rmarkdown, rprojroot,
+RSQLite (>= 1.1-2), testthat (>= 3.0.0), vctrs, xml2"		"LGPL (>= 2.1)"					"no"	"4.5.2"	"CRAN"			
+"dbplyr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.6.0"		"R (>= 4.1)"	"blob (>= 1.2.0), cli (>= 3.6.1), DBI (>= 1.1.3), dplyr (>=
+1.1.2), glue (>= 1.6.2), lifecycle (>= 1.0.3), magrittr,
+methods, pillar (>= 1.9.0), purrr (>= 1.0.1), R6 (>= 2.2.2),
+rlang (>= 1.1.1), tibble (>= 3.2.1), tidyr (>= 1.3.0),
+tidyselect (>= 1.2.1), utils, vctrs (>= 0.6.3), withr (>=
+2.5.0)"		"adbcdrivermanager, adbcsqlite, adbi, bit64, covr, knitr,
+Lahman, nycflights13, odbc (>= 1.4.2), RJDBC, RMariaDB (>=
+1.2.2), rmarkdown, RPostgres (>= 1.4.5), RPostgreSQL, RSQLite
+(>= 2.3.8), testthat (>= 3.1.10)"		"MIT + file LICENSE"					"no"	"4.5.3"	"CRAN"			
+"DelayedArray"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.36.1"		"R (>= 4.0.0), methods, stats4, Matrix, BiocGenerics (>=
+0.53.3), MatrixGenerics (>= 1.1.3), S4Vectors (>= 0.47.6),
+IRanges (>= 2.17.3), S4Arrays (>= 1.9.3), SparseArray (>=
+1.7.5)"	"stats"		"BiocParallel, HDF5Array (>= 1.17.12), genefilter,
+SummarizedExperiment, airway, lobstr, DelayedMatrixStats,
+knitr, rmarkdown, BiocStyle, RUnit"		"Artistic-2.0"					"no"	"4.5.3"	"Bioconductor 3.22"			
+"digest"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.6.39"		"R (>= 3.3.0)"	"utils"		"tinytest, simplermarkdown, rbenchmark"		"GPL (>= 2)"					"yes"	"4.5.2"	"CRAN"			
+"DirichletReg"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.7-2"		"R (>= 3.0.0), Formula"	"stats, graphics, methods, maxLik"		"rgl, knitr, rmarkdown, formatR, testthat"		"GPL (>= 2)"					"yes"	"4.5.1"	"CRAN"			
+"dplyr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.1"		"R (>= 4.1.0)"	"cli (>= 3.6.2), generics, glue (>= 1.3.2), lifecycle (>=
+1.0.5), magrittr (>= 1.5), methods, pillar (>= 1.9.0), R6,
+rlang (>= 1.1.7), tibble (>= 3.2.0), tidyselect (>= 1.2.0),
+utils, vctrs (>= 0.7.1)"		"broom, covr, DBI, dbplyr (>= 2.2.1), ggplot2, knitr, Lahman,
+lobstr, nycflights13, purrr, rmarkdown, RSQLite, stringi (>=
+1.7.6), testthat (>= 3.1.5), tidyr (>= 1.3.0), withr"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"dqrng"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.3.2"		"R (>= 3.5.0)"	"Rcpp (>= 0.12.16)"	"Rcpp, BH (>= 1.64.0-1), sitmo (>= 2.0.0)"	"testthat, knitr, rmarkdown, mvtnorm (>= 1.2-3), bench, sitmo"		"AGPL-3 | file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"edgeR"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.8.2"		"R (>= 3.6.0), limma (>= 3.63.6)"	"methods, graphics, stats, utils, locfit"		"arrow, jsonlite, knitr, Matrix, readr, rhdf5, SeuratObject,
+splines, AnnotationDbi, Biobase, BiocStyle, org.Hs.eg.db,
+SummarizedExperiment"		"GPL (>=2)"					"yes"	"4.5.3"	"Bioconductor 3.22"			
+"farver"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.1.2"					"covr, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"fastmap"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.0"					"testthat (>= 2.1.1)"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"filelock"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.3"		"R (>= 3.4)"			"callr (>= 2.0.0), covr, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"FNN"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.1.4.1"		"R (>= 4.0.0)"			"chemometrics, mvtnorm"		"GPL (>= 2)"					"yes"	"4.5.1"	"CRAN"			
+"formatR"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.14"		"R (>= 3.2.3)"			"rstudioapi, shiny, testit, rmarkdown, knitr"		"GPL"					"no"	"4.5.1"	"CRAN"			
+"Formula"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2-6"		"R (>= 2.0.0), stats"			"knitr, rmarkdown"		"GPL-2 | GPL-3"					"no"	"4.5.3"	"CRAN"			
+"futile.logger"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.4.9"		"R (>= 3.0.0)"	"utils, lambda.r (>= 1.1.0), futile.options"		"testit, jsonlite, httr, crayon, rsyslog, glue"		"LGPL-3"					"no"	"4.5.2"	"CRAN"			
+"futile.options"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.1"		"R (>= 2.8.0)"					"LGPL-3"					"no"	"4.5.1"	"CRAN"			
+"generics"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.1.4"		"R (>= 3.6)"	"methods"		"covr, pkgload, testthat (>= 3.0.0), tibble, withr"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"GenomicRanges"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.62.1"		"R (>= 4.0.0), methods, stats4, BiocGenerics (>= 0.53.2),
+S4Vectors (>= 0.45.2), IRanges (>= 2.43.6), Seqinfo (>= 0.99.3)"	"utils, stats"	"S4Vectors, IRanges"	"GenomeInfoDb, Biobase, AnnotationDbi, annotate, Biostrings
+(>= 2.77.2), SummarizedExperiment (>= 1.39.1), Rsamtools,
+GenomicAlignments, BSgenome, GenomicFeatures, UCSC.utils,
+txdbmaker, Gviz, VariantAnnotation, AnnotationHub, DESeq2,
+DEXSeq, edgeR, KEGGgraph, RNAseqData.HNRNPC.bam.chr14,
+pasillaBamSubset, KEGGREST, hgu95av2.db, hgu95av2probe,
+BSgenome.Scerevisiae.UCSC.sacCer2, BSgenome.Hsapiens.UCSC.hg38,
+BSgenome.Mmusculus.UCSC.mm10,
+TxDb.Athaliana.BioMart.plantsmart22,
+TxDb.Dmelanogaster.UCSC.dm3.ensGene,
+TxDb.Hsapiens.UCSC.hg38.knownGene,
+TxDb.Mmusculus.UCSC.mm10.knownGene, RUnit, digest, knitr,
+rmarkdown, BiocStyle"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"ggbeeswarm"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.7.3"		"R (>= 3.5.0), ggplot2 (>= 3.3.0)"	"beeswarm, lifecycle, vipor, cli"		"gridExtra"		"GPL (>= 3)"					"no"	"4.5.2"	"CRAN"			
+"ggplot2"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.0.3"		"R (>= 4.1)"	"cli, grDevices, grid, gtable (>= 0.3.6), isoband, lifecycle (>
+1.0.1), rlang (>= 1.1.0), S7, scales (>= 1.4.0), stats, vctrs
+(>= 0.6.0), withr (>= 2.5.0)"		"broom, covr, dplyr, ggplot2movies, hexbin, Hmisc, hms, knitr,
+mapproj, maps, MASS, mgcv, multcomp, munsell, nlme, profvis,
+quantreg, quarto, ragg (>= 1.2.6), RColorBrewer, roxygen2,
+rpart, sf (>= 0.7-3), svglite (>= 2.1.2), testthat (>= 3.1.5),
+tibble, vdiffr (>= 1.0.6), xml2"	"sp"	"MIT + file LICENSE"					"no"	"4.5.3"	"CRAN"			
+"ggrastr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.2"		"R (>= 3.2.2)"	"ggplot2 (>= 2.1.0), Cairo (>= 1.5.9), ggbeeswarm, grid, png,
+ragg"		"knitr, maps, rmarkdown, sf"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"ggrepel"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.9.8"		"R (>= 4.1.0), ggplot2 (>= 3.5.2)"	"grid, Rcpp, rlang (>= 1.1.6), S7, scales (>= 1.4.0), withr (>=
+3.0.2)"	"Rcpp"	"knitr, rmarkdown, testthat, svglite, vdiffr, gridExtra, ggpp,
+patchwork, devtools, prettydoc, ggbeeswarm, dplyr, magrittr,
+readr, stringr, marquee, rsvg, sf"		"GPL-3 | file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"glue"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.8.1"		"R (>= 4.1)"	"methods"		"crayon, DBI (>= 1.2.0), dplyr, knitr, rlang, rmarkdown,
+RSQLite, testthat (>= 3.2.0), vctrs (>= 0.3.0), waldo (>=
+0.5.3), withr"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"graphics"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"grDevices"			"vcd"	"Part of R 4.5.3"					"yes"	"4.5.3"				
+"grDevices"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"				"KernSmooth"		"Part of R 4.5.3"					"yes"	"4.5.3"				
+"grid"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"grDevices, utils"				"Part of R 4.5.3"					"yes"	"4.5.3"				
+"gridExtra"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.3.1"			"gtable, grid, grDevices, graphics, utils"		"ggplot2, egg, lattice, knitr, testthat"		"GPL (>= 2)"					"no"	"4.5.3"	"CRAN"			
+"gtable"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.3.6"		"R (>= 4.0)"	"cli, glue, grid, lifecycle, rlang (>= 1.1.0), stats"		"covr, ggplot2, knitr, profvis, rmarkdown, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"httr2"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.0"		"R (>= 4.1)"	"cli (>= 3.0.0), curl (>= 6.4.0), glue, lifecycle, magrittr,
+openssl, R6, rlang (>= 1.3.0), vctrs (>= 0.6.3), withr"		"askpass, bench, clipr, covr, digest, docopt, httpuv, jose,
+jsonlite, knitr, later (>= 1.4.0), nanonext, otel (>= 0.2.0),
+otelsdk (>= 0.2.0), paws.common (>= 0.8.0), promises, rappdirs,
+rmarkdown, testthat (>= 3.1.8), tibble, webfakes (>= 1.4.0),
+xml2"		"MIT + file LICENSE"					"no"	"4.5.3"	"CRAN"			
+"igraph"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.3.4"		"methods, R (>= 3.5.0)"	"cli, graphics, grDevices, lifecycle, magrittr, Matrix,
+pkgconfig (>= 2.0.0), rlang (>= 1.1.0), stats, utils, vctrs"	"cpp11 (>= 0.5.0)"	"ape (>= 5.7-0.1), callr, decor, digest, igraphdata, knitr,
+rgl (>= 1.3.14), rmarkdown, scales, stats4, tcltk, testthat,
+vdiffr, withr"	"graph"	"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"IRanges"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.44.0"		"R (>= 4.0.0), methods, utils, stats, BiocGenerics (>= 0.53.2),
+S4Vectors (>= 0.47.6)"	"stats4"	"S4Vectors"	"XVector, GenomicRanges, Rsamtools, GenomicAlignments,
+GenomicFeatures, BSgenome.Celegans.UCSC.ce2, pasillaBamSubset,
+RUnit, BiocStyle"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"irlba"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.4.1"		"R (>= 3.6.2), Matrix"	"stats, methods"	"Matrix"			"GPL-3"					"yes"	"4.5.3"	"CRAN"			
+"isoband"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.3.0"			"cli, grid, rlang, utils"	"cpp11"	"covr, ggplot2, knitr, magick, bench, rmarkdown, sf, testthat
+(>= 3.0.0), xml2"		"MIT + file LICENSE"					"yes"	"4.5.2"	"CRAN"			
+"jsonlite"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.0.0"		"methods"			"httr, vctrs, testthat, knitr, rmarkdown, R.rsp, sf"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"labeling"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4.3"			"stats, graphics"				"MIT + file LICENSE | Unlimited"					"no"	"4.5.1"	"CRAN"			
+"lambda.r"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.4"		"R (>= 3.0.0)"	"formatR"		"testit"		"LGPL-3"					"no"	"4.5.1"	"CRAN"			
+"lattice"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.23-1"	"recommended"	"R (>= 4.0.0)"	"grid, grDevices, graphics, stats, utils"		"KernSmooth, MASS, latticeExtra, colorspace"	"chron, zoo"	"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"lifecycle"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.5"		"R (>= 3.6)"	"cli (>= 3.4.0), rlang (>= 1.1.0)"		"covr, knitr, lintr (>= 3.1.0), rmarkdown, testthat (>=
+3.0.1), tibble, tidyverse, tools, vctrs, withr, xml2"		"MIT + file LICENSE"					"no"	"4.5.2"	"CRAN"			
+"limma"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.66.0"		"R (>= 3.6.0)"	"grDevices, graphics, stats, utils, methods, statmod"		"BiasedUrn, ellipse, gplots, knitr, locfit, MASS, splines,
+affy, AnnotationDbi, Biobase, BiocStyle, GO.db, illuminaio,
+org.Hs.eg.db, vsn"		"GPL (>=2)"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"locfit"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5-9.12"		"R (>= 4.1.0)"	"lattice"		"interp, gam"		"GPL (>= 2)"					"yes"	"4.5.1"	"CRAN"			
+"magrittr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.0.5"		"R (>= 3.4.0)"			"covr, knitr, rlang, rmarkdown, testthat"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"Matrix"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.7-6"	"recommended"	"R (>= 4.4), methods"	"grDevices, graphics, grid, lattice, stats, utils"		"MASS, datasets, sfsmisc, tools"	"SparseM, graph"	"GPL (>= 2) | file LICENCE"					"yes"	"4.5.3"	"CRAN"			
+"MatrixGenerics"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.22.0"		"matrixStats (>= 1.4.1)"	"methods"		"Matrix, sparseMatrixStats, SparseArray, DelayedArray,
+DelayedMatrixStats, SummarizedExperiment, testthat (>= 2.1.0)"		"Artistic-2.0"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"matrixStats"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5.0"		"R (>= 3.4.0)"			"utils, base64enc, ggplot2, knitr, markdown, microbenchmark,
+R.devices, R.rsp"		"Artistic-2.0"					"yes"	"4.5.1"	"CRAN"			
+"maxLik"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5-2.2"		"R (>= 2.4.0), miscTools (>= 0.6-8), methods"	"sandwich, generics"		"MASS, clue, dlm, plot3D, tibble, tinytest"		"GPL (>= 2)"					"no"	"4.5.2"	"CRAN"			
+"mclust"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"6.1.3"		"R (>= 3.0)"	"stats, utils, graphics, grDevices"		"knitr (>= 1.4), rmarkdown (>= 2.10), mix (>= 1.0), geometry
+(>= 0.4), MASS"		"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"memoise"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.0.1"			"rlang (>= 0.4.10), cachem"		"digest, aws.s3, covr, googleAuthR, googleCloudStorageR, httr,
+testthat"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"metapod"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.18.0"			"Rcpp"	"Rcpp"	"testthat, knitr, BiocStyle, rmarkdown"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"methods"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"utils, stats"		"codetools"		"Part of R 4.5.3"					"yes"	"4.5.3"				
+"microbenchmark"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5.0"		"R (>= 3.2.0)"	"graphics, stats"		"ggplot2, multcomp, RUnit"		"BSD_2_clause + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"miscTools"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.6-30"		"R (>= 2.14.0)"	"digest"		"Ecdat (>= 0.1-5)"		"GPL (>= 2)"					"no"	"4.5.2"	"CRAN"			
+"openssl"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.4.2"			"askpass"		"curl, testthat (>= 2.1.0), digest, knitr, rmarkdown,
+jsonlite, jose, sodium"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"parallel"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"tools, compiler"		"methods"	"snow, Rmpi, mirai"	"Part of R 4.5.3"					"yes"	"4.5.3"				
+"pheatmap"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.13"		"R (>= 2.0)"	"grid, RColorBrewer, scales, gtable, stats, grDevices, graphics"				"GPL-2"					"no"	"4.5.1"	"CRAN"			
+"pillar"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.11.1"			"cli (>= 2.3.0), glue, lifecycle, rlang (>= 1.0.2), utf8 (>=
+1.1.0), utils, vctrs (>= 0.5.0)"		"bit64, DBI, debugme, DiagrammeR, dplyr, formattable, ggplot2,
+knitr, lubridate, nanotime, nycflights13, palmerpenguins,
+rmarkdown, scales, stringi, survival, testthat (>= 3.1.1),
+tibble, units (>= 0.7.2), vdiffr, withr"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"pkgconfig"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.0.3"			"utils"		"covr, testthat, disposables (>= 1.0.3)"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"png"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.1-9"		"R (>= 2.9.0)"					"GPL-2 | GPL-3"					"yes"	"4.5.3"	"CRAN"			
+"purrr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.2"		"R (>= 4.1)"	"cli (>= 3.6.1), lifecycle (>= 1.0.3), magrittr (>= 1.5.0),
+rlang (>= 1.1.1), vctrs (>= 0.6.3)"	"cli"	"carrier (>= 0.3.0), covr, dplyr (>= 0.7.8), httr, knitr,
+lubridate, mirai (>= 2.5.1), rmarkdown, testthat (>= 3.0.0),
+tibble, tidyselect"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"R6"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.6.1"		"R (>= 3.6)"			"lobstr, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"ragg"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5.2"			"systemfonts (>= 1.0.3), textshaping (>= 0.3.0)"	"systemfonts, textshaping"	"covr, graphics, grid, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"RColorBrewer"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.1-3"		"R (>= 2.0.0)"					"Apache License 2.0"					"no"	"4.5.1"	"CRAN"			
+"Rcpp"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.1.2"		"R (>= 3.5.0)"	"methods, utils"		"tinytest, inline, rbenchmark, pkgKitten (>= 0.1.2)"		"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"RcppAnnoy"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.0.23"		"R (>= 3.1)"	"methods, Rcpp"	"Rcpp"	"tinytest"		"GPL (>= 2)"					"yes"	"4.5.2"	"CRAN"			
+"RcppArmadillo"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"15.6.0-1"		"R (>= 3.3.0)"	"Rcpp (>= 1.1.1), stats, utils, methods"	"Rcpp"	"tinytest, Matrix (>= 1.3.0), pkgKitten, reticulate, slam"		"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"RcppDist"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.1.1.1"		"R (>= 3.0.0)"	"Rcpp"	"Rcpp, RcppArmadillo"	"testthat, knitr, rmarkdown"		"GPL (>= 2.0)"					"yes"	"4.5.2"	"CRAN"			
+"RcppEigen"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.3.4.0.2"		"R (>= 3.6.0)"	"Rcpp (>= 0.11.0), stats, utils"	"Rcpp"	"Matrix, inline, tinytest, pkgKitten, microbenchmark"		"GPL (>= 2) | file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"RcppML"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.3.7.1"			"Rcpp, Matrix, methods, stats"	"Rcpp, RcppEigen"	"knitr, rmarkdown, testthat (>= 3.0.0)"		"GPL (>= 2)"					"yes"	"4.5.3"	"CRAN"			
+"RcppProgress"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4.2"					"RcppArmadillo, devtools, roxygen2, testthat"		"GPL (>= 3)"					"no"	"4.5.1"	"CRAN"			
+"RCurl"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.98-1.19"		"R (>= 3.4.0), methods"	"bitops"		"XML"		"BSD_3_clause + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"rhdf5"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.54.1"		"R (>= 4.0.0), methods"	"Rhdf5lib (>= 1.13.4), rhdf5filters (>= 1.15.5)"	"Rhdf5lib"	"bit64, BiocStyle, knitr, rmarkdown, testthat, bench, dplyr,
+ggplot2, mockery, BiocParallel"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"rhdf5filters"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.22.0"				"Rhdf5lib"	"BiocStyle, knitr, rmarkdown, tinytest, rhdf5 (>= 2.47.7)"		"BSD_2_clause + file LICENSE"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"Rhdf5lib"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.32.0"		"R (>= 4.2.0)"			"BiocStyle, knitr, rmarkdown, tinytest, mockery"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"rjson"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.2.23"		"R (>= 4.0.0)"					"GPL-2"					"yes"	"4.5.1"	"CRAN"			
+"rlang"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.0"		"R (>= 4.0.0)"	"utils"		"cli (>= 3.1.0), covr, crayon, desc, fs, glue, knitr,
+magrittr, methods, pillar, pkgload, rmarkdown, stats, testthat
+(>= 3.3.2), tibble, usethis, vctrs (>= 0.2.3), withr"	"winch"	"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"RSpectra"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.16-2"		"R (>= 3.0.2)"	"Matrix (>= 1.1-0), Rcpp (>= 0.11.5)"	"Rcpp, RcppEigen (>= 0.3.3.3.0)"	"knitr, rmarkdown, prettydoc"		"MPL (>= 2)"					"yes"	"4.5.1"	"CRAN"			
+"RSQLite"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.53.3"		"R (>= 3.1.0)"	"bit64, blob (>= 1.2.0), DBI (>= 1.2.0), memoise, methods,
+pkgconfig, rlang"	"cpp11 (>= 0.4.0)"	"callr, cli, DBItest (>= 1.8.0), decor, gert, gh, hms, httpuv,
+knitr, magrittr, rmarkdown, rvest, testthat (>= 3.0.0), withr,
+xml2"		"LGPL (>= 2.1)"					"yes"	"4.5.3"	"CRAN"			
+"rsvd"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.5"		"R (>= 4.0.0)"	"Matrix"		"ggplot2, testthat"		"GPL (>= 3)"					"no"	"4.5.1"	"CRAN"			
+"Rtsne"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.17"			"Rcpp (>= 0.11.0), stats"	"Rcpp"	"irlba, testthat"		"file LICENSE"	"yes"				"yes"	"4.5.1"	"CRAN"			
+"S4Arrays"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.10.1"		"R (>= 4.3.0), methods, Matrix, abind, BiocGenerics (>=
+0.45.2), S4Vectors (>= 0.47.6), IRanges"	"stats"	"S4Vectors"	"BiocParallel, SparseArray (>= 0.0.4), DelayedArray,
+HDF5Array, testthat, knitr, rmarkdown, BiocStyle"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"S4Vectors"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.48.1"		"R (>= 4.0.0), methods, utils, stats, stats4, BiocGenerics (>=
+0.53.2)"			"IRanges, GenomicRanges, SummarizedExperiment, Matrix,
+DelayedArray, ShortRead, graph, data.table, RUnit, BiocStyle,
+knitr"		"Artistic-2.0"					"yes"	"4.5.3"	"Bioconductor 3.22"			
+"S7"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.2.2"		"R (>= 3.5.0)"	"utils"		"bench, callr, covr, knitr, methods, rmarkdown, testthat (>=
+3.2.0), tibble"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"sandwich"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.1-3"		"R (>= 3.0.0)"	"stats, utils, zoo"		"AER, car, geepack, lattice, lme4, lmtest, MASS, multiwayvcov,
+parallel, pcse, plm, pscl, scatterplot3d, stats4, strucchange,
+survival"		"GPL-2 | GPL-3"					"no"	"4.5.3"	"CRAN"			
+"ScaledMatrix"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.18.0"			"methods, Matrix, S4Vectors, DelayedArray"		"testthat, BiocStyle, knitr, rmarkdown, BiocSingular,
+DelayedMatrixStats"		"GPL-3"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"scales"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.4.0"		"R (>= 4.1)"	"cli, farver (>= 2.0.3), glue, labeling, lifecycle, R6,
+RColorBrewer, rlang (>= 1.1.0), viridisLite"		"bit64, covr, dichromat, ggplot2, hms (>= 0.5.0), stringi,
+testthat (>= 3.0.0)"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"scater"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.38.1"		"SingleCellExperiment, scuttle, ggplot2"	"stats, utils, methods, Matrix, BiocGenerics, S4Vectors,
+SummarizedExperiment, MatrixGenerics, SparseArray,
+DelayedArray, beachmat, BiocNeighbors, BiocSingular,
+BiocParallel, rlang, ggbeeswarm, viridis, Rtsne, RColorBrewer,
+RcppML, uwot, pheatmap, ggrepel, ggrastr"		"BiocStyle, DelayedMatrixStats, snifter, densvis, cowplot,
+biomaRt, knitr, scRNAseq, robustbase, rmarkdown, testthat,
+Biobase, scattermore"		"GPL-3"					"no"	"4.5.3"	"Bioconductor 3.22"			
+"scran"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.38.1"		"SingleCellExperiment, scuttle"	"SummarizedExperiment, S4Vectors, BiocGenerics, BiocParallel,
+Rcpp, stats, methods, utils, Matrix, edgeR, limma, igraph,
+statmod, MatrixGenerics, S4Arrays, DelayedArray, BiocSingular,
+bluster, metapod, dqrng, beachmat"	"Rcpp, beachmat, BH, dqrng, scuttle"	"testthat, BiocStyle, knitr, rmarkdown, DelayedMatrixStats,
+HDF5Array, scRNAseq, dynamicTreeCut, ResidualMatrix,
+ScaledMatrix, DESeq2, pheatmap, scater"		"GPL-3"					"yes"	"4.5.3"	"Bioconductor 3.22"			
+"scuttle"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.20.0"		"SingleCellExperiment"	"methods, utils, stats, Matrix, Rcpp, BiocGenerics, S4Vectors,
+BiocParallel, GenomicRanges, SummarizedExperiment, S4Arrays,
+MatrixGenerics, SparseArray, DelayedArray, beachmat"	"Rcpp, beachmat"	"BiocStyle, knitr, scRNAseq, rmarkdown, testthat,
+sparseMatrixStats, DelayedMatrixStats, scran"		"GPL-3"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"Seqinfo"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.0"		"methods, BiocGenerics"	"stats, S4Vectors (>= 0.47.6), IRanges"		"GenomeInfoDb, GenomicRanges, BSgenome, GenomicFeatures,
+TxDb.Hsapiens.UCSC.hg38.knownGene,
+TxDb.Dmelanogaster.UCSC.dm3.ensGene,
+BSgenome.Hsapiens.UCSC.hg38, BSgenome.Celegans.UCSC.ce2, RUnit,
+knitr, rmarkdown, BiocStyle"		"Artistic-2.0"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"SingleCellExperiment"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.32.0"		"SummarizedExperiment"	"methods, utils, stats, S4Vectors, BiocGenerics, GenomicRanges,
+DelayedArray"		"testthat, BiocStyle, knitr, rmarkdown, Matrix, scRNAseq (>=
+2.9.1), Rtsne"		"GPL-3"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"sitmo"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"2.0.2"		"R (>= 3.2.0)"	"Rcpp (>= 0.12.13)"	"Rcpp"	"knitr, rmarkdown, ggplot2"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"snow"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4-4"		"R (>= 2.13.1), utils"			"rlecuyer"	"Rmpi"	"GPL"					"no"	"4.5.1"	"CRAN"			
+"SparseArray"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.10.10"		"R (>= 4.3.0), methods, Matrix, BiocGenerics (>= 0.43.1),
+MatrixGenerics (>= 1.11.1), S4Vectors (>= 0.43.2), S4Arrays (>=
+1.10.1)"	"utils, stats, matrixStats, IRanges, XVector"	"S4Vectors, IRanges, XVector"	"HDF5Array, ExperimentHub, testthat, knitr, rmarkdown,
+BiocStyle"		"Artistic-2.0"					"yes"	"4.5.3"	"Bioconductor 3.22"			
+"statmod"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.5.2"		"R (>= 3.0.0)"	"stats, graphics"		"MASS, tweedie"		"GPL-2 | GPL-3"					"yes"	"4.5.3"	"CRAN"			
+"stats"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"utils, grDevices, graphics"		"MASS, Matrix, SuppDists, methods, stats4"	"Kendall, coin, multcomp, pcaPP, pspearman, robustbase"	"Part of R 4.5.3"					"yes"	"4.5.3"				
+"stats4"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"		"graphics, methods, stats"				"Part of R 4.5.3"						"4.5.3"				
+"stringi"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.8.9"		"R (>= 3.4)"	"tools, utils, stats"				"file LICENSE"	"yes"				"yes"	"4.5.3"	"CRAN"			
+"stringr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.6.0"		"R (>= 4.1.0)"	"cli, glue (>= 1.6.1), lifecycle (>= 1.0.3), magrittr, rlang
+(>= 1.0.0), stringi (>= 1.5.3), vctrs (>= 0.4.0)"		"covr, dplyr, gt, htmltools, htmlwidgets, knitr, rmarkdown,
+testthat (>= 3.0.0), tibble"		"MIT + file LICENSE"					"no"	"4.5.2"	"CRAN"			
+"SummarizedExperiment"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.40.0"		"R (>= 4.0.0), methods, MatrixGenerics (>= 1.1.3),
+GenomicRanges (>= 1.61.4), Biobase"	"utils, stats, tools, Matrix, BiocGenerics (>= 0.51.3),
+S4Vectors (>= 0.33.7), IRanges (>= 2.23.9), Seqinfo, S4Arrays
+(>= 1.1.1), DelayedArray (>= 0.31.12)"		"GenomeInfoDb (>= 1.45.5), rhdf5, HDF5Array (>= 1.7.5),
+annotate, AnnotationDbi, GenomicFeatures, SparseArray,
+SingleCellExperiment, TxDb.Hsapiens.UCSC.hg19.knownGene,
+hgu95av2.db, airway (>= 1.15.1), BiocStyle, knitr, rmarkdown,
+RUnit, testthat, digest"		"Artistic-2.0"					"no"	"4.5.2"	"Bioconductor 3.22"			
+"sys"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.4.3"					"unix (>= 1.4), spelling, testthat"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"systemfonts"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.2"		"R (>= 3.2.0)"	"base64enc, grid, jsonlite, lifecycle, tools, utils"	"cpp11 (>= 0.2.1)"	"covr, farver, ggplot2, graphics, knitr, ragg, rmarkdown,
+svglite, testthat (>= 2.1.0)"		"MIT + file LICENSE"					"yes"	"4.5.2"	"CRAN"			
+"textshaping"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.0.5"		"R (>= 3.2.0)"	"lifecycle, stats, stringi, systemfonts (>= 1.3.0), utils"	"cpp11 (>= 0.2.1), systemfonts (>= 1.0.0)"	"covr, grDevices, grid, knitr, rmarkdown, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"yes"	"4.5.2"	"CRAN"			
+"tibble"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.3.1"		"R (>= 3.4.0)"	"cli, lifecycle (>= 1.0.0), magrittr, methods, pillar (>=
+1.8.1), pkgconfig, rlang (>= 1.0.2), utils, vctrs (>= 0.5.0)"		"bench, bit64, blob, brio, callr, DiagrammeR, dplyr, evaluate,
+formattable, ggplot2, here, hms, htmltools, knitr, lubridate,
+nycflights13, pkgload, purrr, rmarkdown, stringi, testthat (>=
+3.0.2), tidyr, withr"		"MIT + file LICENSE"					"yes"	"4.5.2"	"CRAN"			
+"tidyr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.3.2"		"R (>= 4.1.0)"	"cli (>= 3.4.1), dplyr (>= 1.1.0), glue, lifecycle (>= 1.0.3),
+magrittr, purrr (>= 1.0.1), rlang (>= 1.1.1), stringr (>=
+1.5.0), tibble (>= 2.1.1), tidyselect (>= 1.2.1), utils, vctrs
+(>= 0.5.2)"	"cpp11 (>= 0.4.0)"	"covr, data.table, knitr, readr, repurrrsive (>= 1.1.0),
+rmarkdown, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"yes"	"4.5.2"	"CRAN"			
+"tidyselect"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.1"		"R (>= 3.4)"	"cli (>= 3.3.0), glue (>= 1.3.0), lifecycle (>= 1.0.3), rlang
+(>= 1.0.4), vctrs (>= 0.5.2), withr"		"covr, crayon, dplyr, knitr, magrittr, rmarkdown, stringr,
+testthat (>= 3.1.1), tibble (>= 2.1.3)"		"MIT + file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"tools"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"				"codetools, methods, xml2, curl, commonmark, knitr, xfun, mathjaxr, V8"		"Part of R 4.5.3"					"yes"	"4.5.3"				
+"utf8"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.2.6"		"R (>= 2.10)"			"cli, covr, knitr, rlang, rmarkdown, testthat (>= 3.0.0),
+withr"		"Apache License (== 2.0) | file LICENSE"					"yes"	"4.5.1"	"CRAN"			
+"utils"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"4.5.3"	"base"				"methods, xml2, commonmark, knitr, jsonlite"		"Part of R 4.5.3"					"yes"	"4.5.3"				
+"uwot"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.2.5"		"Matrix"	"FNN, irlba, methods, Rcpp, RcppAnnoy (>= 0.0.17), RSpectra"	"dqrng, Rcpp, RcppAnnoy, RcppProgress"	"bigstatsr, covr, knitr, RcppHNSW, rmarkdown, rnndescent,
+testthat"		"GPL (>= 3)"					"yes"	"4.5.3"	"CRAN"			
+"vctrs"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.7.3"		"R (>= 4.0.0)"	"cli (>= 3.4.0), glue, lifecycle (>= 1.0.3), rlang (>= 1.1.7)"		"bit64, covr, crayon, dplyr (>= 0.8.5), generics, knitr,
+pillar (>= 1.4.4), pkgdown (>= 2.0.1), rmarkdown, testthat (>=
+3.0.0), tibble (>= 3.1.3), waldo (>= 0.2.0), withr, xml2,
+zeallot"		"MIT + file LICENSE"					"yes"	"4.5.3"	"CRAN"			
+"vipor"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4.7"		"R (>= 3.5.0)"	"stats, graphics"		"testthat, beeswarm, lattice, ggplot2, beanplot, vioplot,
+ggbeeswarm,"		"GPL (>= 2)"					"no"	"4.5.1"	"CRAN"			
+"viridis"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.6.5"		"R (>= 2.10), viridisLite (>= 0.4.0)"	"ggplot2 (>= 1.0.1), gridExtra"		"hexbin (>= 1.27.0), scales, MASS, knitr, dichromat,
+colorspace, httr, mapproj, vdiffr, svglite (>= 1.2.0),
+testthat, covr, rmarkdown, maps, terra"		"MIT + file LICENSE"					"no"	"4.5.1"	"CRAN"			
+"viridisLite"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.4.3"		"R (>= 2.10)"			"hexbin (>= 1.27.0), ggplot2 (>= 1.0.1), testthat, covr"		"MIT + file LICENSE"					"no"	"4.5.2"	"CRAN"			
+"withr"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.0.3"		"R (>= 3.6.0)"	"graphics, grDevices"		"callr, DBI, knitr, methods, rlang, rmarkdown (>= 2.12),
+RSQLite, testthat (>= 3.0.0)"		"MIT + file LICENSE"					"no"	"4.5.3"	"CRAN"			
+"xgboost"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"3.4.2.1"		"R (>= 4.3.0)"	"Matrix (>= 1.1-0),
+methods,
+data.table (>= 1.9.6),
+jsonlite (>= 1.0)"		"knitr,
+rmarkdown,
+ggplot2 (>= 1.0.1),
+DiagrammeR (>= 0.9.0),
+DiagrammeRsvg,
+rsvg,
+htmlwidgets,
+Ckmeans.1d.dp (>= 3.3.1),
+vcd (>= 1.3),
+testthat,
+igraph (>= 1.0.1),
+float,
+titanic,
+RhpcBLASctl,
+survival"		"Apache License (== 2.0) | file LICENSE"					"yes"	"4.5.3"				
+"XVector"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"0.50.0"		"R (>= 4.0.0), methods, BiocGenerics (>= 0.37.0), S4Vectors (>=
+0.27.12), IRanges (>= 2.43.8)"	"methods, utils, stats, tools, BiocGenerics, S4Vectors, IRanges"	"S4Vectors, IRanges"	"Biostrings, drosophila2probe, RUnit"		"Artistic-2.0"					"yes"	"4.5.2"	"Bioconductor 3.22"			
+"zoo"	"/workspace/biomnicode/BayesSpace/env/r/lib/R/library"	"1.9-0"		"R (>= 3.1.0), stats"	"utils, graphics, grDevices, lattice (>= 0.20-27)"		"AER, coda, chron, ggplot2 (>= 3.5.0), knitr, mondate, scales,
+stinepack, strucchange, timeDate, timeSeries (>= 4021.104),
+tinyplot, tis, tseries, xts"		"GPL-2 | GPL-3"					"yes"	"4.5.3"	"CRAN"			

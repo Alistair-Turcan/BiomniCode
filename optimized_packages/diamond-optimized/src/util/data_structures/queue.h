@@ -1,0 +1,247 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#pragma once
+#include <atomic>
+#include <assert.h>
+#include <type_traits>
+#include <new>
+#include <utility>
+#include "../parallel/semaphore.h"
+
+template <class T>
+class Queue {
+
+public:
+    using value_type = T;
+
+#if _MSC_VER || __GNUC__ >= 5
+    static_assert(std::is_default_constructible_v<T>, "T must be default constructible");
+#endif
+
+    explicit Queue(size_t capacity, int producer_count, int consumer_count, T poison_pill)
+        : capacity_(round_up_to_power_of_two(capacity ? capacity : 1)),
+        mask_(capacity_ - 1),
+        producer_count_(producer_count),
+        consumer_count_(consumer_count),
+        poison_pill_(std::move(poison_pill)),
+#if defined(__cpp_aligned_new) && __cpp_aligned_new >= 201606L
+        buffer_(static_cast<Cell*>(::operator new[](capacity_ * sizeof(Cell), std::align_val_t{ alignof(Cell) }))),
+#else
+        buffer_(static_cast<Cell*>(::operator new[](capacity_ * sizeof(Cell)))),        
+#endif
+        enqueue_pos_(0),
+        dequeue_pos_(0),
+        pills_received_(0) {
+        assert(producer_count == 1 || consumer_count == 1);
+        for (size_t i = 0; i < capacity_; ++i) {
+            new (&buffer_[i]) Cell();
+            buffer_[i].seq.store(i, std::memory_order_relaxed);
+        }
+    }
+
+    ~Queue() {
+        T tmp;
+        while (try_dequeue(tmp)) {}
+
+        for (size_t i = 0; i < capacity_; ++i) {
+            buffer_[i].~Cell();
+        }
+#if defined(__cpp_aligned_new) && __cpp_aligned_new >= 201606L
+        ::operator delete[](buffer_, std::align_val_t{ alignof(Cell) });
+#else
+        ::operator delete[](buffer_);
+#endif
+    }
+
+    Queue(const Queue&) = delete;
+    Queue& operator=(const Queue&) = delete;
+
+    void enqueue(const T& v) { (void)emplace_impl(v); }
+    void enqueue(T&& v) { (void)emplace_impl(std::move(v)); }
+    bool enqueue_or_abort(const T& v) { return emplace_impl(v); }
+    bool enqueue_or_abort(T&& v) { return emplace_impl(std::move(v)); }
+   
+    bool wait_and_dequeue(T& out) {
+        while (true) {
+            items_.acquire();
+            if (aborted_.load(std::memory_order_acquire))
+                return false;
+            while (!try_dequeue(out)) {
+                if (aborted_.load(std::memory_order_acquire))
+                    return false;
+                std::this_thread::yield();
+            }
+            spaces_.release();
+            if (out == poison_pill_) {
+                if (producer_count_ > 1) {
+                    size_t seen = pills_received_.fetch_add(1, std::memory_order_relaxed) + 1;
+                    if (seen == static_cast<size_t>(producer_count_)) {
+                        return false;
+                    }
+                    continue;
+                }
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    bool empty() const {
+        return approx_size() == 0;
+    }
+
+    size_t capacity() const { return capacity_; }
+
+    size_t approx_size() const {
+        size_t enq = enqueue_pos_.load(std::memory_order_relaxed);
+        size_t deq = dequeue_pos_.load(std::memory_order_relaxed);
+        return enq >= deq ? (enq - deq) : 0;
+    }
+
+    // call once per producer
+    void close() {
+        if (aborted_.load(std::memory_order_acquire))
+            return;
+        for (int i = 0; i < consumer_count_; ++i) {
+            enqueue(poison_pill_);
+        }
+    }
+
+    void abort() {
+        if (!aborted_.exchange(true, std::memory_order_acq_rel)) {
+            spaces_.release(producer_count_ + consumer_count_ + 1);
+            items_.release(consumer_count_ + 1);
+        }
+    }
+
+    int producer_count() const {
+		return producer_count_;
+    }
+
+private:
+
+    struct Cell {
+        struct Storage {
+            alignas(T) unsigned char storage[sizeof(T)];
+        };
+        std::atomic<size_t> seq;
+        Storage storage;
+        char pad[(64 - ((sizeof(std::atomic<size_t>) + sizeof(Storage)) % 64)) % 64];
+        Cell() : seq(0) {}
+    };
+
+    static constexpr bool is_power_of_two(size_t x) {
+        return (x & (x - 1)) == 0;
+    }
+
+    static size_t round_up_to_power_of_two(size_t x) {
+        if (is_power_of_two(x)) return x;
+        --x;
+        for (size_t i = 1; i < sizeof(size_t) * 8; i <<= 1)
+            x |= x >> i;
+        return x + 1;
+    }
+
+    static T* cell_value_ptr(Cell* c) noexcept {
+#if defined(__cpp_lib_launder) && __cpp_lib_launder >= 201606L
+        return std::launder(reinterpret_cast<T*>(c->storage.storage));
+#else
+#warning "old compiler missing support for std::launder"
+        return reinterpret_cast<T*>(&c->storage);
+#endif
+    }
+
+    size_t index(size_t pos) const noexcept { return pos & mask_; }
+
+    template <class... Args>
+    bool emplace_impl(Args&&... args) {
+        if (aborted_.load(std::memory_order_acquire))
+            return false;
+        spaces_.acquire();
+        if (aborted_.load(std::memory_order_acquire))
+            return false;
+        size_t pos = enqueue_pos_.load(std::memory_order_relaxed);
+        for (;;) {
+            if (aborted_.load(std::memory_order_acquire))
+                return false;
+            Cell* cell = &buffer_[index(pos)];
+            size_t seq = cell->seq.load(std::memory_order_acquire);
+            intptr_t dif = static_cast<intptr_t>(seq) - static_cast<intptr_t>(pos);
+
+            if (dif == 0) {
+                if (enqueue_pos_.compare_exchange_weak(pos, pos + 1, std::memory_order_relaxed)) {
+                    new (cell_value_ptr(cell)) T(std::forward<Args>(args)...);
+                    cell->seq.store(pos + 1, std::memory_order_release);
+                    items_.release();                    
+                    return true;
+                }
+            }
+            else {
+                std::this_thread::yield();
+                pos = enqueue_pos_.load(std::memory_order_relaxed);
+            }
+        }
+    }
+
+    bool try_dequeue(T& out) {
+        size_t pos = dequeue_pos_.load(std::memory_order_relaxed);
+        for (;;) {
+            Cell* cell = &buffer_[index(pos)];
+            size_t seq = cell->seq.load(std::memory_order_acquire);
+            intptr_t dif = static_cast<intptr_t>(seq) - static_cast<intptr_t>(pos + 1);
+            if (dif == 0) {
+                if (dequeue_pos_.compare_exchange_weak(
+                    pos, pos + 1,
+                    std::memory_order_relaxed,
+                    std::memory_order_relaxed)) {
+                    T* p = cell_value_ptr(cell);
+                    out = std::move(*p);
+                    p->~T();
+                    cell->seq.store(pos + capacity_, std::memory_order_release);
+                    return true;
+                }
+            }
+            else if (dif < 0) {
+                return false;
+            }
+            else {
+                std::this_thread::yield();
+                pos = dequeue_pos_.load(std::memory_order_relaxed);
+            }
+        }
+    }
+
+    const size_t capacity_;
+    const size_t mask_;
+    const int producer_count_;
+    const int consumer_count_;
+    const T poison_pill_;
+    Cell* const buffer_;
+    alignas(64) std::atomic<size_t> enqueue_pos_;
+    char _pad0[(64 - sizeof(enqueue_pos_) % 64) % 64]{};
+    alignas(64) std::atomic<size_t> dequeue_pos_;
+    char _pad1[(64 - sizeof(dequeue_pos_) % 64) % 64]{};
+    CountingSemaphore<> items_{ (ptrdiff_t)0 };
+    CountingSemaphore<> spaces_{ (ptrdiff_t)capacity_ };
+    std::atomic<size_t> pills_received_;
+    std::atomic<bool> aborted_{ false };
+
+};

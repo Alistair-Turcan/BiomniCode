@@ -1,0 +1,52 @@
+{
+  "accepted_iterations": [
+    "iter002",
+    "iter012"
+  ],
+  "accepted_patch_sha256": "72770c8743a96a8c83d1b55040ae8b39504413a6368096fbbe868d839934beb9",
+  "accepted_source_archive_sha256": "86935332cb1a1a1c37a4c6e483c68704aad61d8035d790f4ac8040a0a0aecf3f",
+  "baseline": "Corrected stock/off OpenFold3-preview2 port, not pristine upstream xfold",
+  "evaluated_settings": {
+    "autocast": "bfloat16",
+    "cuda_matmul_tf32": false,
+    "diffusion_steps": 200,
+    "effective_trunk_passes": 11,
+    "fastnn": "triton",
+    "fp32_weights": true,
+    "inter_op_threads": 1,
+    "intra_op_threads": 8,
+    "levers": [],
+    "model_api": "af3_torch_api",
+    "num_recycles": 10,
+    "num_samples": 5
+  },
+  "evaluated_stack": {
+    "cpu_jax": "0.10.2",
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "python": "3.12.1",
+    "torch": "2.13.0+cu130",
+    "triton": "3.7.1"
+  },
+  "external_weights": {
+    "checkpoint_sha256": "3ae79a701f55dbc184002d010c92d347a35faabb981314c2fd1325211af40b77",
+    "converted_sha256": "0c9a00607352395486e33a98367810e1ad56c87459289f40974579525d3959cf",
+    "included": false
+  },
+  "featurizer": {
+    "commit": "bc32b22ff5902e3daffd5d1f7203d7f2ab6cb997",
+    "historical_wheel_included": false,
+    "historical_wheel_sha256": "62b751f5133b1ed3239e3d64b9f0478d90cd2e8366e81e557f39812588ae2735",
+    "repository": "https://github.com/sokrypton/alphafold3"
+  },
+  "packaging_does_not_rerun_inference": true,
+  "source_build_setup_available": true,
+  "supporting_repository": {
+    "commit": "f4f62fa6592ae4938d49b1757bea0cfeff9f468e",
+    "repository": "https://github.com/anthropics/uplifting-biomolecular-modeling"
+  },
+  "unchanged_original_tree": true,
+  "upstream": {
+    "commit": "22bdeedfa309ef4ff6f9199910d8403915de69d6",
+    "repository": "https://github.com/Shenggan/xfold"
+  }
+}

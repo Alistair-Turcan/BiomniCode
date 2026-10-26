@@ -1,0 +1,19 @@
+{
+  "method": "DIAMOND",
+  "upstream_version": "2.2.8",
+  "upstream_commit": "745cd3b275da3dfe0e4721b75420122daa7e4d07",
+  "retained_optimization": "iter006",
+  "original_local_optimized_commit": "e098397",
+  "current_best_patch_sha256": "634dd1d224977d57616f6f0852145f52b1516dd27b12848deef9e73ece416a2c",
+  "original_source_tar_sha256": "67eeb203cd3caae03cc70b3e79fb59f43b348c86210cc37ddc93ce23d74171a7",
+  "delivered_source_zip_sha256": "be4d7718ca26f12ed5f3ad8c72431838160f5c336dc48fb116d81245c5c54525",
+  "delivered_source_files": 601,
+  "changed_source_paths": [
+    "src/search/seed_array/enum_seeds.h",
+    "src/search/seed_array/reduced_seed_simd.h"
+  ],
+  "full_source_matches_pinned_baseline_plus_retained_patch": true,
+  "git_history_included": false,
+  "source_code_changed_during_packaging": false,
+  "note": "Historical commit IDs identify the tested work; this clean archive has no .git directory."
+}

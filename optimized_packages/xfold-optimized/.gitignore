@@ -1,0 +1,35 @@
+# Local Python caches, not source-vendored build outputs or kernel binaries.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Root-local environments and generated assets.
+/.venv/
+/venv/
+/env/
+/.conda/
+/out/
+/outputs/
+/predictions/
+/weights/
+/data/
+/jit/
+/cache/
+/_jitcache/
+/af3_torch/out/
+/af3_torch/jit/
+
+# Optional external featurizer binaries/data are deliberately not redistributed.
+/af3_torch/stock/wheels/*
+!/af3_torch/stock/wheels/.keep
+
+# Private local settings; card config *.env files remain tracked.
+.env
+.env.*
+!.env.example
+/.ssh/
+
+# Do not ignore *.so, *.cubin, *.pt, *.tar.gz, or generic build/ directories:
+# the frozen source tree contains intentional vendored assets of these forms.

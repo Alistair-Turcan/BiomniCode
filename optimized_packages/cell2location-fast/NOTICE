@@ -1,0 +1,41 @@
+cell2location-fast
+==================
+
+This product includes software developed by the original cell2location authors:
+
+  cell2location — High-throughput spatial mapping of cell types
+  https://github.com/BayraktarLab/cell2location
+  Copyright (c) the cell2location authors (Wellcome Sanger Institute,
+  Bayraktar Lab and collaborators)
+  Licensed under the Apache License, Version 2.0 (see LICENSE)
+
+  If you use this software, please cite:
+  Kleshchevnikov, V., Shmatko, A., Dann, E. et al. Cell2location maps
+  fine-grained cell types in spatial transcriptomics. Nat Biotechnol 40,
+  661–671 (2022). https://doi.org/10.1038/s41587-021-01139-4
+
+Modifications in this derivative work (cell2location-fast), relative to
+upstream cell2location version 0.1.5:
+
+1. GPU performance optimizations (by the upstream-fork authors of the
+   "cell2location_optimized" snapshot this repository is based on):
+   - Added cell2location/models/_cell2location_torch_module.py: a Pyro-free,
+     pure-PyTorch re-implementation of the spatial-mapping model's ELBO.
+   - torch.compile (reduce-overhead), bfloat16 GPU data preloading, fused
+     Adam optimizer, init_to_mean initialization.
+   - GPU-backed data splitter and related training-loop changes in
+     cell2location/models/base/_pyro_mixin.py.
+   - TF32 / cuDNN-benchmark enablement and minor NumPy compatibility fixes.
+
+2. Initialization bug fix (2026, Alistair Turcan):
+   - _cell2location_torch_module.py: variational scale parameters are now
+     initialized to the unconstrained value softplus^-1(init_scale) =
+     log(expm1(init_scale)) instead of the raw value init_scale, so that
+     after the softplus transform the effective initial posterior scale is
+     exactly init_scale (0.1), matching Pyro AutoNormal's
+     PyroParam(0.1, constraint=softplus_positive). Previously the effective
+     initial scale was softplus(0.1) ~= 0.744 (7.4x too large) on all 17
+     latent sites. See validation/torch_module_init_fix.patch.
+
+All original copyright and license notices are retained. This derivative
+work is distributed under the same Apache License, Version 2.0.

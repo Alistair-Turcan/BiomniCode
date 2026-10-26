@@ -1,0 +1,225 @@
+---
+title: "Computing polygenic scores using Stacked Clumping and Thresholding (SCT)"
+author: "Florian Privé and Michael Blum"
+date: "May 23, 2019"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+In this document, we show how to compute polygenic risk scores using Stacked Clumping and Thresholding (SCT).
+
+## Downloading genotype data and summary statistics
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, width = 75)
+knitr::opts_knit$set(global.par = TRUE, root.dir = "..")
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', dev = 'png')
+```
+
+You can download [data](https://github.com/privefl/bigsnpr/raw/master/data-raw/public-data.zip) and unzip files in R. We store those files in a directory called `"tmp-data"` here.
+
+```{r, echo=FALSE, eval=FALSE}
+unzip("data-raw/public-data.zip")
+```
+
+```{r, echo=FALSE}
+unlink(paste0("tmp-data/public-data", c(".bk", ".rds")))
+unlink(paste0("tmp-data/public-data-scores", c(".bk", ".rds")))
+```
+
+You can see [there](https://github.com/privefl/bigsnpr/blob/master/data-raw/public-data.R) how we generated these data from [the 1000 Genomes project](https://www.nature.com/articles/nature15393).
+Note that these data are for educational purposes only, not for use as a reference panel.
+
+First, you need to read genotype data from the PLINK files (or BGEN files) as well as the text file containing summary statistics.
+
+```{r}
+# Load packages bigsnpr and bigstatsr
+library(bigsnpr)
+# Read from bed/bim/fam, it generates .bk and .rds files.
+snp_readBed("tmp-data/public-data.bed")
+# Attach the "bigSNP" object in R session
+obj.bigSNP <- snp_attach("tmp-data/public-data.rds")
+# See how the file looks like
+str(obj.bigSNP, max.level = 2, strict.width = "cut")
+# Get aliases for useful slots
+G   <- obj.bigSNP$genotypes
+CHR <- obj.bigSNP$map$chromosome
+POS <- obj.bigSNP$map$physical.pos
+y   <- obj.bigSNP$fam$affection - 1
+NCORES <- nb_cores()
+# Check some counts for the 10 first variants
+big_counts(G, ind.col = 1:10)
+# Read external summary statistics
+sumstats <- bigreadr::fread2("tmp-data/public-data-sumstats.txt", 
+                             select = c(1:6, 10))
+str(sumstats)
+```
+
+We split genotype data using part of the data to learn parameters of stacking and another part of the data to evaluate statistical properties of polygenic risk score such as AUC. Here we consider that there are 400 individuals in the training set.
+
+```{r}
+set.seed(1)
+ind.train <- sample(nrow(G), 400)
+ind.test <- setdiff(rows_along(G), ind.train)
+```
+
+## Matching variants between genotype data and summary statistics 
+
+To match variants contained in genotype data and summary statistics, the variables `"chr"` (chromosome number), `"pos"` (genetic position), `"a0"` (reference allele) and `"a1"` (derived allele) should be available in the summary statistics and in the genotype data. These 4 variables are used to match variants between the two data frames.
+
+```{r}
+names(sumstats) <- c("chr", "rsid", "pos", "a0", "a1", "beta", "p")
+map <- obj.bigSNP$map[,-(2:3)]
+names(map) <- c("chr", "pos", "a0", "a1")
+info_snp <- snp_match(sumstats, map)
+```
+
+If no or few variants are actually flipped, you might want to disable the strand flipping option. Here, these are simulated data so all variants use the same strand and the same reference.
+
+```{r}
+info_snp <- snp_match(sumstats, map, strand_flip = FALSE)
+# beta and lpval need to have the same length as ncol(G), CHR and POS
+# -> one solution is to use missing values and use the 'exclude' parameter
+beta <- rep(NA, ncol(G))
+beta[info_snp$`_NUM_ID_`] <- info_snp$beta
+lpval <- rep(NA, ncol(G))
+lpval[info_snp$`_NUM_ID_`] <- -log10(info_snp$p)
+```
+
+## Computing C+T scores for a grid of parameters and chromosomes
+
+### Clumping
+
+First, the function `snp_grid_clumping()` computes sets of variants resulting from the clumping procedure that is applied repeatedly with different values of hyper-parameters (threshold of correlation for clumping, window size, and possibly imputation accuracy threshold). By default, the function uses 28 (7 thresholds of correlation x 4 window sizes) different sets of hyper-parameters for generating sets of variants resulting from clumping.
+
+```{r, cache=TRUE}
+# The clumping step might take some time to complete
+all_keep <- snp_grid_clumping(G, CHR, POS, ind.row = ind.train,
+                              lpS = lpval, exclude = which(is.na(lpval)),
+                              ncores = NCORES)
+attr(all_keep, "grid")
+```
+
+### Thresholding
+
+Then, for each chromosome, for each set of variants resulting from clumping and for each p-value threshold, the function `snp_grid_PRS()` computes C+T scores.
+
+```{r}
+multi_PRS <- snp_grid_PRS(G, all_keep, beta, lpval, ind.row = ind.train,
+                          backingfile = "tmp-data/public-data-scores", 
+                          n_thr_lpS = 50, ncores = NCORES)
+dim(multi_PRS)  ## 4200 C+T scores for 400 individuals
+```
+
+## Stacking C+T predictions
+
+A penalized regression is finally used to learn an optimal linear combination of C+T scores. 
+
+```{r}
+final_mod <- snp_grid_stacking(multi_PRS, y[ind.train], ncores = NCORES, K = 4)
+summary(final_mod$mod)
+```
+
+Here, I use `K = 4` folds because this example data is very small; the default is to use `10`.
+For options for fitting penalized regressions, see [this vignette](https://privefl.github.io/bigstatsr/articles/penalized-regressions.html).
+
+From stacking C+T scores, we can derive a unique vector of weights and compare effects resulting from stacking to the initial regression coefficients provided as summary statistics.
+
+```{r}
+new_beta <- final_mod$beta.G
+ind <- which(new_beta != 0)
+```
+
+```{r}
+library(ggplot2)
+ggplot(data.frame(y = new_beta, x = beta)[ind, ]) +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  geom_abline(slope = 0, intercept = 0, color = "blue") +
+  geom_point(aes(x, y), size = 0.6) +
+  theme_bigstatsr() +
+  labs(x = "Effect sizes from GWAS", y = "Non-zero effect sizes from SCT")
+```
+
+We can use this vector of variant weights to compute polygenic risk scores on the test set and evaluate the Area Under the Curve (AUC). 
+
+```{r}
+pred <- final_mod$intercept + 
+  big_prodVec(G, new_beta[ind], ind.row = ind.test, ind.col = ind)
+AUCBoot(pred, y[ind.test])
+```
+
+```{r}
+ggplot(data.frame(
+  Phenotype = factor(y[ind.test], levels = 0:1, labels = c("Control", "Case")),
+  Probability = 1 / (1 + exp(-pred)))) + 
+  theme_bigstatsr() +
+  geom_density(aes(Probability, fill = Phenotype), alpha = 0.3)
+```
+
+## Best C+T predictions
+
+Instead of stacking, an alternative is to choose the best C+T score based on the computed grid. This procedure is appealing when there are not enough individuals to learn the stacking weights.
+
+```{r, message=FALSE}
+library(dplyr)
+grid2 <- attr(all_keep, "grid") %>%
+  mutate(thr.lp = list(attr(multi_PRS, "grid.lpS.thr")), id = row_number()) %>%
+  tidyr::unnest(cols = "thr.lp")
+s <- nrow(grid2)
+grid2$auc <- big_apply(multi_PRS, a.FUN = function(X, ind, s, y.train) {
+  # Sum over all chromosomes, for the same C+T parameters
+  single_PRS <- rowSums(X[, ind + s * (0:2)])  ## REPLACE (0:2) BY (0:21) IN REAL DATA
+  bigstatsr::AUC(single_PRS, y.train)
+}, ind = 1:s, s = s, y.train = y[ind.train],
+a.combine = 'c', block.size = 1, ncores = NCORES)
+```
+
+```{r}
+max_prs <- grid2 %>% arrange(desc(auc)) %>% slice(1:10) %>% print() %>% slice(1)
+```
+
+```{r}
+ind.keep <- unlist(purrr::map(all_keep, max_prs$id))
+sum(lpval[ind.keep] > max_prs$thr.lp)
+final_PRS <- snp_PRS(G, beta[ind.keep], ind.test = ind.test, ind.keep = ind.keep,
+          lpS.keep = lpval[ind.keep], thr.list = max_prs$thr.lp)
+AUCBoot(final_PRS, y[ind.test])
+```
+
+For this example, the best C+T predictions provides an AUC of 67% whereas stacking, which should be preferred, provides an AUC of 68.5%.
+
+
+## Alternative to AUC
+
+You can also perform statistical tests instead of using the AUC to get the best performing score. It can then be applied to both continuous traits (with `lm(...)`) and binary traits (with `glm(..., family = "binomial")`) and you can also add covariates in the model such as age, sex, PCs, etc.
+
+```{r}
+covar <- NULL  ## REPLACE IF YOU WANT TO USE COVARIATES
+
+grid2$score <- big_apply(multi_PRS, a.FUN = function(X, ind, s, y.train, covar.train) {
+  # Sum over all chromosomes, for the same C+T parameters
+  single_PRS <- rowSums(X[, ind + s * (0:2)])  ## ## REPLACE (0:2) BY (0:21) IN REAL DATA
+  formula <- `if`(is.null(covar.train), y.train ~ single_PRS, y.train ~ single_PRS + covar.train)
+  mod <- glm(formula, family = "binomial")
+  summary(mod)$coef["single_PRS", 3]
+}, ind = 1:s, s = s, y.train = y[ind.train], covar.train = covar[ind.train, ],
+a.combine = 'c', block.size = 1, ncores = NCORES)
+```
+
+```{r}
+ggplot(grid2, aes(auc, score)) + 
+  geom_point() + 
+  theme_bigstatsr()
+```
+
+For assessing the final model when the phenotype is continuous, you can use `pcor()`, which computes partial correlations (and 95% CI) where you can adjust for covariates.
+
+```{r}
+pcor(final_PRS, y[ind.test], covar[ind.test, ])
+```
+
+
+## Reference
+
+Privé, Florian, et al. ["Making the most of Clumping and Thresholding for polygenic scores."](https://doi.org/10.1016/j.ajhg.2019.11.001) Am J Hum Genet (2019).

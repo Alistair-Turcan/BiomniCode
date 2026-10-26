@@ -1,0 +1,173 @@
+{
+  "$schema": "./external-mutations.schema.json",
+  "schema_version": 1,
+  "recorded_at": "2026-08-25",
+  "repository": "songlab-cal/gpn",
+  "applied": [
+    {
+      "id": "pypi-alpha-claim",
+      "system": "pypi",
+      "operation": "published the genuine gpn 0.9.0a1 package through Trusted Publishing",
+      "targets": [
+        "https://pypi.org/project/gpn/0.9.0a1/"
+      ],
+      "evidence": [
+        "wheel sha256 0d50bf0e7fa408b10e6f8c34062da9c5023bb7e2bf0d257a940c61ef4feb9ff6",
+        "sdist sha256 3f73be70efd6c61ea4cba650ef0153d8472e08bcb1889b4591c11d3675ae7caf"
+      ]
+    },
+    {
+      "id": "pypi-trusted-publisher-binding",
+      "system": "pypi",
+      "operation": "bound the gpn project to the repository release workflow through GitHub OIDC",
+      "targets": [
+        "PyPI project gpn",
+        "GitHub owner songlab-cal",
+        "GitHub repository gpn",
+        "workflow release.yml",
+        "environment pypi"
+      ],
+      "evidence": [
+        "gpn 0.9.0a1 was published successfully without a long-lived PyPI token"
+      ]
+    },
+    {
+      "id": "alpha-release",
+      "system": "github",
+      "operation": "merged PR 80 and published prerelease v0.9.0a1",
+      "targets": [
+        "songlab-cal/gpn#80",
+        "songlab-cal/gpn@v0.9.0a1"
+      ],
+      "evidence": [
+        "release commit 637aaac",
+        "the release workflow completed successfully"
+      ]
+    },
+    {
+      "id": "trusted-publisher-environment",
+      "system": "github",
+      "operation": "created the pypi environment used by the PyPI Trusted Publisher",
+      "targets": [
+        "songlab-cal/gpn:environment:pypi"
+      ],
+      "evidence": [
+        "the environment exists with no deployment protection rule, avoiding a solo-maintainer deadlock"
+      ]
+    },
+    {
+      "id": "delete-merged-branches",
+      "system": "github",
+      "operation": "enabled automatic deletion of merged pull-request branches",
+      "targets": [
+        "songlab-cal/gpn:delete_branch_on_merge"
+      ],
+      "evidence": [
+        "the 2026-08-19 repository API audit returned true"
+      ]
+    },
+    {
+      "id": "merge-modernization-pr",
+      "system": "github",
+      "operation": "squash-merged the approved modernization pull request",
+      "targets": [
+        "https://github.com/songlab-cal/gpn/pull/100",
+        "songlab-cal/gpn@ebb3df3548fc8f364c339f0e5ddad86330c1f949"
+      ],
+      "evidence": [
+        "the merge commit tree aebc93d290f5d202511827be724cec70acefe07a matched the reviewed PR tree",
+        "all four required GitHub Actions contexts passed on the approved head"
+      ]
+    },
+    {
+      "id": "publish-read-the-docs",
+      "system": "readthedocs",
+      "operation": "imported the repository and published the reviewed Sphinx site",
+      "targets": [
+        "https://app.readthedocs.org/projects/gpn/",
+        "https://gpn.readthedocs.io/en/latest/"
+      ],
+      "evidence": [
+        "Read the Docs build 34233153 succeeded for main commit ebb3df3548fc8f364c339f0e5ddad86330c1f949",
+        "the live root, model, tutorial, and citation pages returned HTTP 200",
+        "the build used the committed .readthedocs.yaml and did not execute notebooks"
+      ]
+    },
+    {
+      "id": "protect-main",
+      "system": "github",
+      "operation": "created the active Protect main repository ruleset",
+      "targets": [
+        "songlab-cal/gpn:ruleset:21510261"
+      ],
+      "evidence": [
+        "the active ruleset targets only the default branch and requires the four GitHub Actions contexts",
+        "squash is the only merge method; zero approvals are required; resolved conversations are required",
+        "require_extra_approval_for_unattributed_changes is explicitly false"
+      ]
+    },
+    {
+      "id": "enable-security-features",
+      "system": "github",
+      "operation": "enabled the reviewed repository security features and private vulnerability reporting",
+      "targets": [
+        "songlab-cal/gpn:security-and-analysis",
+        "songlab-cal/gpn:private-vulnerability-reporting"
+      ],
+      "evidence": [
+        "Dependabot security updates are enabled",
+        "secret scanning, non-provider patterns, validity checks, and push protection are enabled",
+        "private vulnerability reporting is enabled",
+        "the repository API returned no open Dependabot alerts after the historical manifest left main"
+      ]
+    },
+    {
+      "id": "publish-analysis-archive",
+      "system": "github",
+      "operation": "published the annotated historical archive tag and lightweight GitHub Release",
+      "targets": [
+        "https://github.com/songlab-cal/gpn/releases/tag/analysis-archive-2026-08-18",
+        "tag object 312a6c70de6700e729bcea4c9a67ab42a72f05f7",
+        "commit 30dee6cf45849dfdcfc043ca8baf44fd6ba51d74"
+      ],
+      "evidence": [
+        "the remote ref is an annotated tag with object ID 312a6c70de6700e729bcea4c9a67ab42a72f05f7",
+        "the tag peels to commit 30dee6cf45849dfdcfc043ca8baf44fd6ba51d74",
+        "the public release states that the archived code is historical and unsupported"
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "id": "publish-gpn-0-9-0",
+      "system": "github",
+      "authorization": "explicit_final_maintainer_approval",
+      "disposition": "approval_ready",
+      "operation": "publish GitHub Release v0.9.0 from the exact approved main commit, triggering the Trusted Publishing workflow",
+      "targets": [
+        "songlab-cal/gpn@v0.9.0",
+        "https://pypi.org/project/gpn/0.9.0/"
+      ],
+      "source": "release/0.9.0/review.md",
+      "depends_on": [
+        "merge-modernization-pr",
+        "protect-main",
+        "publish-analysis-archive"
+      ],
+      "preconditions": [
+        "the final release PR body records the exact approved head and tree and the maintainer approves that candidate",
+        "the resulting main commit is recorded after squash-merging the final release PR and has exactly the approved tree",
+        "the package version is exactly 0.9.0 and the tag target is the approved main commit",
+        "the final review packet records a clean Python 3.13 install plus wheel and sdist hashes",
+        "the release workflow and pypi environment are unchanged from the reviewed versions"
+      ],
+      "verification": [
+        "the workflow publishes exactly one wheel and one source distribution with PyPI attestations",
+        "a clean CPU install on Python 3.13 reproduces the documented package and model-registration smoke tests"
+      ],
+      "failure_response": [
+        "never overwrite artifacts or reuse the version; stop downstream writes, document the incident, yank if appropriate, and prepare a patch release"
+      ]
+    }
+  ]
+}

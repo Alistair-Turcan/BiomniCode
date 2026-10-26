@@ -1,0 +1,122 @@
+diff --git a/R/bmind_de.r b/R/bmind_de.r
+index 51615cc..0f8798e 100644
+--- a/R/bmind_de.r
++++ b/R/bmind_de.r
+@@ -156,7 +156,7 @@ bmind_all = function(X, W, y = NULL, mu = NULL, var_fe = NULL, var_fe_co = NULL,
+     for(i in 1:nrow(X)) var_fe_ca[i,,] = diag(.5, K)
+   }
+   
+-  cl = makeCluster(ncore)
++  cl = .epic_make_cluster(ncore)
+   registerDoParallel(cl)
+   getDoParWorkers()
+   ng = nrow(X)
+@@ -392,17 +392,19 @@ bmind1 = function(x, W, mu = NULL, var_fe, covariate = NULL, covariate_bulk = NU
+   nsamp = (nitt - burnin)/thin
+   if(noRE) {
+     
+-    if(np) lme = MCMCglmm(fe_formula, data = df, verbose = F, nitt = nitt, burnin = burnin, thin = thin) else 
+-      lme = MCMCglmm(fe_formula, data = df, verbose = F, prior = list(B = list(mu = mu, V = V_fe)), nitt = nitt, burnin = burnin, thin = thin)
++    if(np) lme = .epic_mcmc(fe_formula, data = df, verbose = F, nitt = nitt, burnin = burnin, thin = thin) else
++      lme = .epic_mcmc(fe_formula, data = df, verbose = F, prior = list(B = list(mu = mu, V = V_fe)), nitt = nitt, burnin = burnin, thin = thin)
+     
+   } else {
+     
+-    if(np) lme = MCMCglmm(fe_formula, random, data = df, verbose = F, pr = T, nitt = nitt, burnin = burnin, thin = thin) else 
+-      lme = MCMCglmm(fe_formula, random, data = df, verbose = F, pr = T, prior = list(B = list(mu = mu, V = V_fe), G = list(G1 = list(nu = nu, V = V_re))), 
++    if(np) lme = .epic_mcmc(fe_formula, random, data = df, verbose = F, pr = T, nitt = nitt, burnin = burnin, thin = thin) else
++      lme = .epic_mcmc(fe_formula, random, data = df, verbose = F, pr = T, prior = list(B = list(mu = mu, V = V_fe), G = list(G1 = list(nu = nu, V = V_re))),
+                      nitt = nitt, burnin = burnin, thin = thin)
+   }
+   
+-  if(noRE) return(list(coef = (summary(lme)$solutions)[, 1], res_mcmcglmm = lme$Sol, noRE = noRE)) else {
++  # Only fixed-effect posterior means are returned; full MCMC diagnostics are unused.
++  coef_mean = colMeans(lme$Sol[, seq_len(lme$Fixed$nfl), drop = FALSE])
++  if(noRE) return(list(coef = coef_mean, res_mcmcglmm = lme$Sol, noRE = noRE)) else {
+     N = length(unique(sample_id))
+     
+     ## lme$Sol's column in the order of cell1.sample1:N ... cellK.sample1:N
+@@ -428,6 +430,6 @@ bmind1 = function(x, W, mu = NULL, var_fe, covariate = NULL, covariate_bulk = NU
+     colnames(se) = colnames(re) = sample_name
+     rownames(se) = rownames(re) = cell
+     
+-    return(list(coef = (summary(lme)$solutions)[, 1], res_mcmcglmm = lme$Sol, A = re[,sample_id], se = se[,sample_id]))
++    return(list(coef = coef_mean, res_mcmcglmm = lme$Sol, A = re[,sample_id], se = se[,sample_id]))
+   }
+ }
+diff --git a/R/bmind_func.r b/R/bmind_func.r
+index a82b68b..c614b8b 100644
+--- a/R/bmind_func.r
++++ b/R/bmind_func.r
+@@ -104,9 +104,61 @@ bMIND = function(bulk, frac = NULL, sample_id = NULL, ncore = NULL, profile = NU
+ 
+ # bmind with input of 2-dimensional data: X (gene x sample), W (sample x cell type); sample should be in the same order
+ 
++.epic_mcmc = local({
++  engine = NULL
++  function(...) {
++    if(!identical(as.character(utils::packageVersion("MCMCglmm")), "2.36"))
++      return(MCMCglmm(...))
++    if(is.null(engine)) {
++      original_build = get("buildZ", asNamespace("MCMCglmm"))
++      keys = list()
++      values = list()
++      memo_build = function(x, data, nginverse = NULL, covu = FALSE) {
++        variables = tryCatch(unique(c(all.vars(as.formula(paste("~", x))), "trait")),
++                             error = function(e) character())
++        eligible = is.data.frame(data) && length(variables) > 0L &&
++          all(variables %in% names(data))
++        if(eligible) eligible = all(vapply(data[,variables,drop=FALSE], function(v)
++          (is.numeric(v) || is.character(v) || is.factor(v) || is.logical(v)) &&
++          !anyNA(v), logical(1)))
++        if(!eligible) return(original_build(x, data, nginverse, covu))
++        key = serialize(list(x, data[,variables,drop=FALSE], nginverse, covu,
++                             getOption("contrasts"), getOption("na.action")), NULL)
++        hit = which(vapply(keys, identical, logical(1), y = key))
++        if(length(hit)) return(values[[hit[1L]]])
++        warned = FALSE
++        value = withCallingHandlers(original_build(x, data, nginverse, covu),
++                                    warning = function(w) warned <<- TRUE)
++        if(!warned) {
++          keys <<- c(list(key), head(keys, 3L))
++          values <<- c(list(value), head(values, 3L))
++        }
++        value
++      }
++      engine <<- MCMCglmm
++      env = new.env(parent = environment(MCMCglmm))
++      env$buildZ = memo_build
++      environment(engine) <<- env
++    }
++    engine(...)
++  }
++})
++
++.epic_make_cluster = function(ncore) {
++  # Fork only in conservative batch settings; retain isolated PSOCK otherwise.
++  can_fork = identical(Sys.info()[["sysname"]], "Linux") && !interactive() &&
++    is.numeric(ncore) && length(ncore) == 1L &&
++    identical(Sys.getenv("OPENBLAS_NUM_THREADS"), "1") &&
++    identical(Sys.getenv("OMP_NUM_THREADS"), "1") &&
++    identical(RNGkind(), c("Mersenne-Twister", "Inversion", "Rejection")) &&
++    identical(unname(getOption("contrasts")), c("contr.treatment", "contr.poly")) &&
++    identical(getOption("na.action"), "na.omit")
++  if(can_fork) parallel::makeForkCluster(ncore) else makeCluster(ncore)
++}
++
+ bmind = function(X, W, sample_id, ncore = 30, profile = NULL, covariance = NULL, nu = 50, nitt = 1300, burnin = 300, thin = 1, V_fe = NULL, covariate = NULL, seed = 123) {
+   
+-  cl = makeCluster(ncore)
++  cl = .epic_make_cluster(ncore)
+   registerDoParallel(cl)
+   getDoParWorkers()
+   
+@@ -185,7 +237,7 @@ lme_mc2 = function(x, W, sample_id, mu, V_fe, V_re, nu = 50, nitt = 1300, burnin
+   variables = cell
+   fe_formula = as.formula(paste('x ~ -1 + ', paste(variables, collapse = '+')))
+ 
+-  lme2 = MCMCglmm(fe_formula, random, data = df, 
++  lme2 = .epic_mcmc(fe_formula, random, data = df,
+                   verbose = F, pr = T, prior = list(B = list(mu = mu, V = V_fe), 
+                                                     G = list(G1 = list(nu = nu, V = V_re))), 
+                   nitt = nitt, burnin = burnin, thin = thin) # check the order of subjects' output

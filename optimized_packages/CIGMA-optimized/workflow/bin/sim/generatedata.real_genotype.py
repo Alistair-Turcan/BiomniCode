@@ -1,0 +1,236 @@
+import os, math, re, sys
+import numpy as np
+import pandas as pd
+from scipy import linalg
+
+
+def add_fixed(levels, ss, rng):
+    ''' Add a test fixed effect'''
+    a = rng.integers(levels, size=ss)
+    while len(np.unique(a)) < levels:
+        a = rng.integers(levels, size=ss)
+    X = pd.get_dummies(a, dtype='int8')
+
+    b = X.columns.to_numpy() / np.std(a) # to shrink
+    # centralize b
+    b = b - np.mean(X @ b)
+
+    return X.to_numpy(), b
+
+
+def add_random(levels, ss, rng):
+    ''' Add a test random effect'''
+    b = rng.normal(0, 1, levels)
+    a = rng.choice(b, ss)
+    while len(np.unique(a)) < levels:
+        a = rng.choice(b, ss)
+
+    X = pd.get_dummies(a, dtype='int8')
+    b = X.columns.to_numpy()
+
+    return X.to_numpy(), b
+
+
+def adjust_min_value(arr, cut=0.01):
+    for i in range(arr.shape[0]):
+        row = arr[i]
+        deficit = 0
+        
+        # Identify elements less than 0.01
+        mask = row < cut
+        deficit = np.sum(cut - row[mask])
+        
+        # Set the minimum value to 0.01 for elements that are less than 0.01
+        row[mask] = cut
+        
+        # Redistribute the deficit proportionally to elements greater than 0.01
+        row[~mask] -= deficit * (row[~mask] / np.sum(row[~mask]))
+    
+    return arr
+
+
+def main():
+    # par
+    beta = np.loadtxt(snakemake.input.beta)
+    V = np.loadtxt(snakemake.input.V)
+    W = np.loadtxt(snakemake.input.W)
+    C = len(beta)
+    L = snakemake.wildcards.L
+    Lp = None
+    if float(L) <= 1:
+        Lp = float(L)
+    else:
+        L = int(L)
+
+    sig_g = float(snakemake.wildcards.vc.split('_')[1])
+    sig_e = float(snakemake.wildcards.vc.split('_')[2])
+    mean_nu = float(snakemake.wildcards.vc.split('_')[-1])
+    var_nu = (float(snakemake.wildcards.std_nu_scale) * mean_nu) ** 2
+    a = np.array([float(x) for x in snakemake.wildcards.a.split('_')])
+    ss = int(float(snakemake.wildcards.ss))
+
+    # select genes
+    out = np.load(snakemake.params.out, allow_pickle=True).item()
+    onek1k_genes = out['gene']
+
+    genes = []
+    gene_fs = []
+    for gene_f in snakemake.input.genes:
+        gene_data = np.load(gene_f, allow_pickle=True).item()
+        new_genes = list(set(onek1k_genes) & set(gene_data.keys()))
+        genes += new_genes
+        gene_fs += [gene_f] * len(new_genes)
+    gene_fs = {gene: gene_f for gene, gene_f in zip(genes, gene_fs)}
+    assert len(genes) == len(onek1k_genes)
+    # check duplicate gene
+    assert len(genes) == len(set(genes))
+    # Randomly select genes 
+    n_select = 1000
+    indices = np.random.default_rng(12).choice(len(genes), n_select, replace=False)
+    indices = np.sort(indices)
+    genes = list(np.array(genes)[indices])
+
+
+    # simulation
+    nbatch = len(snakemake.output.data)
+    batches = np.array_split(genes, nbatch)
+    old_gene_f = ''
+    inds = None
+    for k, batch in enumerate(batches):
+        out_f = snakemake.output.data[k]
+        print(f"Processing batch {k+1}/{nbatch}, saving to {out_f}")
+        data = {}
+        for gene_name in batch:
+            gene_f = gene_fs[gene_name]
+            if gene_f != old_gene_f:
+                print(f"Loading genotype data from {gene_f} for gene {gene_name}")
+                old_gene_f = gene_f
+                gene_data = np.load(gene_f, allow_pickle=True).item()
+            else:
+                print(f"Reusing loaded genotype data for gene {gene_name}")
+            
+            G = gene_data[gene_name]['G']
+            assert G.shape[0] > ss, f"{G.shape[0]} samples in genotype but {ss} needed"
+            if inds is None:
+                inds = np.random.default_rng(123).choice(G.shape[0], ss, replace=False)
+            G = G[inds, :]
+            n_snps = G.shape[1]
+
+            # number of causal SNPs
+            if Lp is not None:
+                L = max(1, int(Lp * G.shape[1]))
+            L = min(L, G.shape[1])
+
+            ## standardize
+            maf = np.mean(G, axis=0) / 2
+            G = (G - 2 * maf) / np.sqrt(2 * maf * (1 - maf))
+
+            # calculate K
+            K = G @ G.T / G.shape[1]
+
+            data[gene_name] = {}
+            data[gene_name]['K'] = K
+
+            # set random seed for each gene 
+            i = genes.index(gene_name)
+            rng = np.random.default_rng(snakemake.params.seed + i + ss + n_snps)
+
+            # randomly select L SNPs
+            if L != G.shape[1]:
+                snp_inds = rng.choice(G.shape[1], L, replace=False)
+                G = G[:, snp_inds]
+
+            # simulate SNP effect
+            ## additive effect
+            ### draw from normal distribution of N(0, hom2/L)
+            if sig_g == 0:
+                add = np.zeros(L)
+            else:
+                add = rng.normal(0, math.sqrt(sig_g / L), L)
+
+            ## CT-specific SNP effect
+            if np.all(V == np.zeros_like(V)):
+                H = np.zeros((L, C))
+            else:
+                H = rng.multivariate_normal(np.zeros(C), V / L, L)  # of shape SNP x cell type
+            # data[gene_name]['sig_g'] = np.var(add)
+            # data[gene_name]['V'] = np.var(H, axis=0)
+
+            # calculate alpha, shared genetic effect
+            alpha_g = G @ add
+            # data[gene_name]['alpha_g'] = np.var(alpha_g)
+
+            # simulate shared noise
+            alpha_e = rng.normal(0, math.sqrt(sig_e), ss)
+
+            # simulate cell type proportions
+            P = rng.dirichlet(alpha=a, size=ss)
+            P = adjust_min_value(P, 0.05)
+            assert np.allclose(P.sum(axis=1), np.ones(P.shape[0]))
+            data[gene_name]['P'] = P
+            pi = np.mean(P, axis=0)
+            data[gene_name]['pi'] = pi
+
+            ## estimate S
+            ### demean P
+            pd = P - pi
+            ### covariance
+            s = (pd.T @ pd) / ss
+            # print(bmatrix(s))
+            data[gene_name]['s'] = s
+
+            # calculate ct fixed effect
+            ct_main = P @ beta
+
+            # calculate ct-specific genetic
+            ct_g = linalg.khatri_rao(G.T, P.T).T @ H.flatten()
+
+            # simulate cell type-specific noise
+            gamma_e = rng.multivariate_normal(np.zeros(C), W, ss)
+            # calculate cell type-specific noise for OP
+            ct_e = linalg.khatri_rao(np.eye(ss), P.T).T @ gamma_e.flatten()
+
+            # draw residual error
+            ## draw variance of residual error for each individual from gamma distribution \Gamma(k, theta)
+            ## with mean = k * theta, var = k * theta^2, so theta = var / mean, k = mean / theta
+            ## since mean = 0.2 and assume var = 0.01, we can get k and theta
+            if mean_nu == 0:
+                nu = np.zeros(ss)
+                data[gene_name]['nu'] = nu
+                ctnu = np.zeros((ss, C))
+                data[gene_name]['ctnu'] = ctnu
+            else:
+                theta = var_nu / mean_nu
+                k = mean_nu / theta
+                ### variance of error for each individual
+                nu = rng.gamma(k, scale=theta, size=ss)
+                data[gene_name]['nu'] = nu
+                #### variance of error for each individual-cell type
+                ctnu = nu.reshape(-1, 1) * (1 / P)
+                data[gene_name]['ctnu'] = ctnu
+
+            ## draw residual error from normal distribution with variance drawn above
+            error = rng.normal(loc=0, scale=np.sqrt(nu))
+            ct_error = rng.normal(loc=0, scale=np.sqrt(ctnu))
+
+            # generate overall pseudobulk
+            y = ct_main + alpha_g + alpha_e + ct_g + ct_e + error
+            GH = G @ H
+            # data[gene_name]['GH'] = np.var(GH, axis=0)
+            Y = np.outer(np.ones(ss), beta) + np.outer(alpha_g + alpha_e, np.ones(C)) + GH + gamma_e + ct_error
+
+            data[gene_name]['y'] = y
+            data[gene_name]['Y'] = Y
+
+        np.save(out_f, data)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+
+
+    

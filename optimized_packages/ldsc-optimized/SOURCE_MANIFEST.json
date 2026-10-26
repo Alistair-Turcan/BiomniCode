@@ -1,0 +1,25 @@
+{
+  "python_source_sha256": {
+    "ldsc.py": "c50407d8235e281dfa5cb3afd666fb9d9876bcc32bc23e372c3f05554868e3f7",
+    "ldscore/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ldscore/irwls.py": "8dc44de7d07ba126ee6944f97ea3ae1170d7422896e087790ba14e0dadcab78e",
+    "ldscore/jackknife.py": "0cebc532de28f4b12fcbb40cdfd501da50bb242d8b7c9029bed04ba0a01cf5a9",
+    "ldscore/ldscore.py": "017ebde5c8ffab3a2482324a0a9be62bf52f5fa98f1b2c52a56cd8b346ba0dd1",
+    "ldscore/parse.py": "7610b96278ff3b857b90a37741d17bcfb513ec226250ead4142096a12c348f0f",
+    "ldscore/regressions.py": "342d67b3df6cd42e0306f3b653887ed76ef02813a133774ce7223385891f1159",
+    "ldscore/sumstats.py": "573c6dcab46ae078d6088248ca87641b27ca17d7be336825a3af403eea9d67c0",
+    "make_annot.py": "11c107ec79732f278f28e374b7995b8f94b735f75cbf065598534e3f60145344",
+    "munge_sumstats.py": "e57e130e5553d8ef6def92619f670f8227723dc1957c884ce85a6b666b540bef",
+    "setup.py": "ac8c99a11422e28f267df6fb7d1365917bfecd7a50a4abf2061aac25646a8cd8",
+    "test/simulate.py": "88e7376761bce77db8041d910977202ccd9a2d2df861c2e11cd24e1e679c7abc",
+    "test/test_irwls.py": "ff550f49c65695b09e5aabf35e3637b80e43dd702a413e29fb1bc558465edad1",
+    "test/test_jackknife.py": "baeabf08f0c843f75453ccda078795126abda73b7b19b27ed5ba0c2ede2c8121",
+    "test/test_ldscore.py": "11e21c8f890366650d0f106dd4edfe8ddc5c4a228d158aca0347cd7d6d3028cd",
+    "test/test_munge_sumstats.py": "420e24f87d5ca142d18cc687300f09d439ba42860c24f12051a10028ba07cf70",
+    "test/test_parse.py": "cfb27ca614608a01df4d85c202b673f073a8cb6ec03c528f01d2716942cecd55",
+    "test/test_regressions.py": "e7a815b0c63208aed8412ef94b1b501cd5963d7c6c7aa3e310b69a55a8793221",
+    "test/test_sumstats.py": "f4dff75840d79f14ca442e30021c07316164523a340b3ddcdc06cbf2d2811c85"
+  },
+  "source_archive": "ldsc-opt-py3.zip",
+  "source_archive_sha256": "4f23a97f2524eddbb376a85708603d351df67a5b10650bb6958adf18491556d1"
+}

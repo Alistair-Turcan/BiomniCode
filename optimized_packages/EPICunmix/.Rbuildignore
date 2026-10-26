@@ -1,0 +1,13 @@
+^\.git$
+^\.gitignore$
+^\.github$
+^docs$
+^README\.md$
+^RELEASE_NOTES\.md$
+^SOURCE_MANIFEST\.json$
+^SHA256SUMS$
+^.*\.Rproj$
+^\.Rproj\.user$
+^results$
+^outputs$
+^scratch$

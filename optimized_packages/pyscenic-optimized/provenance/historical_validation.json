@@ -1,0 +1,30 @@
+{
+  "measured_stage_processes": 36,
+  "matched_stage_pairs": 18,
+  "score_values_compared": 121358937,
+  "recovery_values_compared": 75376372500,
+  "score_tolerance_failures": 0,
+  "recovery_tolerance_failures": 0,
+  "structural_discrete_checks": 20595,
+  "structural_discrete_failures": 0,
+  "repeatability_tolerance_failures": 0,
+  "repeatability_structural_failures": 0,
+  "score_dtype_failures": 0,
+  "signed_zero_mismatches": 0,
+  "all_scores_bitwise_equal": true,
+  "all_recovery_bitwise_equal": true,
+  "max_score_abs_error": 0.0,
+  "max_recovery_abs_error": 0.0,
+  "description": "Previously completed real-data evaluation; not rerun for this source package.",
+  "stages": [
+    "AUCell",
+    "cisTarget enrichment/recovery"
+  ],
+  "datasets": [
+    "PBMC",
+    "brain",
+    "pancreas"
+  ],
+  "replicates_per_version_dataset_stage": 3,
+  "full_evaluation_artifact": "pyscenic_real_data_evaluation.zip"
+}

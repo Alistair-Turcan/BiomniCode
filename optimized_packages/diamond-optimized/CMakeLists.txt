@@ -1,0 +1,635 @@
+# DIAMOND protein sequence aligner
+# Copyright (C) 2012-2026 Benjamin J. Buchfink
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+cmake_minimum_required (VERSION 2.6...3.5)
+project (DIAMOND)
+include(CheckCXXCompilerFlag)
+include(CheckIncludeFileCXX)
+include(CheckSymbolExists)
+include(CheckTypeSize)
+
+option(BUILD_STATIC "BUILD_STATIC" OFF)
+option(STATIC_LIBGCC "STATIC_LIBGCC" OFF)
+option(STATIC_LIBSTDC++ "STATIC_LIBSTDC++" OFF)
+option(X86 "X86" ON)
+option(ARM "ARM" OFF)
+option(AARCH64 "AARCH64" OFF)
+option(LOONGARCH64 "LOONGARCH64" OFF)
+option(WITH_ZSTD "WITH_ZSTD" OFF)
+option(CROSS_COMPILE "CROSS_COMPILE" OFF)
+
+# experimental options not suitable for deployment purposes
+option(EXTRA "EXTRA" OFF)
+option(STRICT_BAND "STRICT_BAND" ON)
+option(LEFTMOST_SEED_FILTER "LEFTMOST_SEED_FILTER" ON)
+option(SEQ_MASK "SEQ_MASK" ON)
+option(DP_STAT "DP_STAT" OFF)
+option(HIT_KEEP_TARGET_ID "HIT_KEEP_TARGET_ID" OFF)
+option(LONG_SEEDS "LONG_SEEDS" OFF)
+option(WITH_AVX512 "WITH_AVX512" OFF)
+option(WITH_AVX512_WIDE "WITH_AVX512_WIDE" OFF)
+option(WITH_DNA "WITH_DNA" OFF)
+option(WITH_MCL "WITH_MCL" OFF)
+option(USE_TLS "USE_TLS" OFF)
+option(MEM_PROFILE "MEM_PROFILE" OFF)
+
+set(MAX_SHAPE_LEN 19)
+
+if(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64.*|AARCH64.*|arm64.*)")
+  set(X86 OFF)
+  set(AARCH64 ON)
+elseif(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm.*|ARM.*)")
+  set(X86 OFF)
+  set(ARM ON)
+elseif(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "PPC64*|ppc64*|powerpc64*")
+  set(X86 OFF)
+  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -maltivec")
+elseif(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(loongarch64.*|LOONGARCH64.*|loong64.*)")
+  set(X86 OFF)
+  set(LOONGARCH64 ON)
+elseif(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^(loongarch.*|LOONGARCH.*|loong.*)")
+  set(X86 OFF)
+elseif(NOT CROSS_COMPILE AND CMAKE_SYSTEM_PROCESSOR MATCHES "^s390|sparc")
+  set(X86 OFF)
+endif()
+
+if(STATIC_LIBSTDC++)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++")
+endif()
+
+if(STRICT_BAND)
+  add_definitions(-DSTRICT_BAND)
+endif()
+
+if(USE_TLS)
+  add_definitions(-DUSE_TLS)
+endif()
+
+if(SEQ_MASK)
+  add_definitions(-DSEQ_MASK)
+endif()
+
+if(LEFTMOST_SEED_FILTER)
+  add_definitions(-DLEFTMOST_SEED_FILTER)
+endif()
+
+if(DP_STAT)
+  add_definitions(-DDP_STAT)
+endif()
+
+if(MEM_PROFILE)
+  add_definitions(-DMEM_PROFILE)
+endif()
+
+if(EXTRA)
+  add_definitions(-DEXTRA)
+endif()
+
+if(HIT_KEEP_TARGET_ID)
+  add_definitions(-DHIT_KEEP_TARGET_ID)
+endif()
+
+if(LONG_SEEDS)
+  add_definitions(-DLONG_SEEDS)
+endif()
+
+if(WITH_AVX512)
+  add_definitions(-DWITH_AVX512)
+endif()
+
+# Enables the 512 bit wide kernels (seed fingerprints, tantan) inside the AVX512
+# code path. Off by default: they measured slower than their 256 bit counterparts
+# on Ice Lake SP. See the comment in src/util/simd.h.
+if(WITH_AVX512_WIDE)
+  if(NOT WITH_AVX512)
+    message(FATAL_ERROR "WITH_AVX512_WIDE requires WITH_AVX512")
+  endif()
+  add_definitions(-DWITH_AVX512_WIDE)
+endif()
+
+if(WITH_DNA)
+  add_definitions(-DWITH_DNA)
+endif()
+
+if(WITH_MCL)
+  add_definitions(-DWITH_MCL)
+endif()
+
+if(WITH_FAMSA)
+  add_definitions(-DWITH_FAMSA)
+endif()
+
+add_definitions(-DMAX_SHAPE_LEN=${MAX_SHAPE_LEN})
+# _ITERATOR_DEBUG_LEVEL must match the CRT that is linked: 0 for /MD, 2 for /MDd.
+# Forcing 0 in an MSVC Debug build (/MDd) changes the layout of std::string and every
+# std container in our objects, but msvcp140d.dll is still built with level 2, so any
+# container crossing that boundary (e.g. a std::string returned from an overridden
+# numpunct::do_grouping) is read at the wrong offsets and crashes. Only set it where
+# it is a no-op anyway.
+if(MSVC)
+  set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<NOT:$<CONFIG:Debug>>:_ITERATOR_DEBUG_LEVEL=0>)
+endif()
+
+IF(STATIC_LIBGCC)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc")
+endif()
+
+if(BUILD_STATIC)
+  set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+  set(BUILD_SHARED_LIBRARIES OFF)
+  set(CMAKE_EXE_LINKER_FLAGS "-static")
+endif()
+
+function(set_cxx_standard std flag)
+  if(${CMAKE_VERSION} VERSION_LESS "3.1.0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${flag}" PARENT_SCOPE)
+  else()
+    set(CMAKE_CXX_STANDARD ${std} PARENT_SCOPE)
+  endif()
+endfunction(set_cxx_standard)
+
+check_type_size(ptrdiff_t SIZEOF_PTRDIFF_T)
+check_type_size(int SIZEOF_INT)
+
+check_cxx_compiler_flag("-std=gnu++14" HAS_GNUPP14)
+check_cxx_compiler_flag("-std=gnu++17" HAS_GNUPP17)
+check_cxx_compiler_flag("-std=gnu++20" HAS_GNUPP20)
+check_cxx_compiler_flag("-std=gnu++23" HAS_GNUPP23)
+if(HAS_GNUPP23 OR ${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+  set_cxx_standard(23 "-std=gnu++23")
+elseif(HAS_GNUPP20)
+  set_cxx_standard(20 "-std=gnu++20")
+elseif(HAS_GNUPP17)
+  set_cxx_standard(17 "-std=gnu++17")
+elseif (HAS_GNUPP14)
+  set_cxx_standard(14 "-std=gnu++14")
+else()
+  set_cxx_standard(11 "-std=gnu++11")
+endif()
+
+check_symbol_exists(sysinfo "sys/sysinfo.h" HAVE_SYSINFO)
+if(HAVE_SYSINFO)
+  add_definitions(-DHAVE_SYSINFO)
+endif()
+
+# malloc.h/malloc_trim are glibc-specific: absent on macOS/BSD and on musl.
+check_include_file_cxx("malloc.h" HAVE_MALLOC_H)
+if(HAVE_MALLOC_H)
+  add_definitions(-DHAVE_MALLOC_H)
+  check_symbol_exists(malloc_trim "malloc.h" HAVE_MALLOC_TRIM)
+  if(HAVE_MALLOC_TRIM)
+    add_definitions(-DHAVE_MALLOC_TRIM)
+  endif()
+endif()
+
+if(CMAKE_BUILD_MARCH)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=${CMAKE_BUILD_MARCH}")
+endif()
+
+find_package(ZLIB REQUIRED)
+find_package(Threads REQUIRED)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+  add_definitions(-D_HAS_STD_BYTE=0)
+  add_definitions(-D_SILENCE_ALL_CXX23_DEPRECATION_WARNINGS)
+else()
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffp-contract=off -Wall -Wextra -Wno-implicit-fallthrough -Wreturn-type -Wno-unused -Wno-unused-parameter -Wno-unused-variable -Wno-uninitialized -Wno-deprecated-copy -Wno-unknown-warning-option ")#-g -fsanitize=address -fno-omit-frame-pointer ")
+endif()
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-pragma-clang-attribute -Wno-overloaded-virtual -Wno-missing-braces") #-g -fsanitize=thread -fno-omit-frame-pointer" )
+endif()
+
+if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 5)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fabi-version=7")
+  message("Setting -fabi-version for GCC 4.x")
+endif()
+
+set(DISPATCH_OBJECTS
+        "src/dp/swipe/banded_3frame_swipe.cpp"
+        "src/search/hamming/stage1_2.cpp"
+        "src/search/stage0.cpp"
+        "src/search/seed_array/seed_array.cpp"
+        "src/search/seed_array/seed_array_extra.cpp"
+        "src/tools/benchmark.cpp"
+        "src/dp/swipe/swipe_wrapper.cpp"
+        "src/masking/tantan.cpp"
+        "src/dp/scan_diags.cpp"
+        "src/dp/ungapped_simd.cpp"
+        "src/dp/anchored_swipe/anchored_wrapper.cpp"
+        "src/dp/long_profile/score_profile.cpp"
+        "src/stats/matrix_adjust/matrix_adjust.cpp"
+        "src/stats/matrix_adjust/matrix_adjust_scalar.cpp"
+        "src/align/reseek.cpp"
+        "src/search/lin_index/scan.cpp"
+        )
+
+if(EXTRA)
+  LIST(APPEND DISPATCH_OBJECTS "src/tools/benchmark_swipe.cpp")
+endif()
+
+add_library(arch_generic OBJECT ${DISPATCH_OBJECTS})
+target_compile_options(arch_generic PUBLIC -DDISPATCH_ARCH=ARCH_GENERIC -DARCH_ID=0)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    target_compile_options(arch_generic PUBLIC /Zc:__cplusplus)
+else()
+    include(CheckCXXCompilerFlag)
+
+    set(ARCH_GENERIC_CXX_FLAGS
+        -fno-stack-protector
+    )
+
+    check_cxx_compiler_flag("-mtune=generic" HAVE_CXX_FLAG_MTUNE_GENERIC)
+
+    if(HAVE_CXX_FLAG_MTUNE_GENERIC)
+        list(APPEND ARCH_GENERIC_CXX_FLAGS -mtune=generic)
+    endif()
+
+    check_cxx_compiler_flag("-fcf-protection=none"
+                            HAVE_CXX_FLAG_FCF_PROTECTION_NONE)
+
+    if(HAVE_CXX_FLAG_FCF_PROTECTION_NONE)
+        list(APPEND ARCH_GENERIC_CXX_FLAGS -fcf-protection=none)
+    endif()
+
+    target_compile_options(arch_generic PUBLIC ${ARCH_GENERIC_CXX_FLAGS})
+endif()
+
+if(X86)
+  add_library(arch_sse4_1 OBJECT ${DISPATCH_OBJECTS})
+  add_library(arch_avx2 OBJECT ${DISPATCH_OBJECTS})
+  if(WITH_AVX512)
+    add_library(arch_avx512 OBJECT ${DISPATCH_OBJECTS})
+  endif()
+  add_definitions(-DWITH_AVX2)
+  add_definitions(-DWITH_SSE4_1)
+  if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+    target_compile_options(arch_sse4_1 PUBLIC -DDISPATCH_ARCH=ARCH_SSE4_1 -DARCH_ID=1 -D__SSSE3__ -D__SSE4_1__ -D__POPCNT__ /Zc:__cplusplus)
+    target_compile_options(arch_avx2 PUBLIC -DDISPATCH_ARCH=ARCH_AVX2 -DARCH_ID=2 /arch:AVX2 -D__SSSE3__ -D__SSE4_1__ -D__POPCNT__ /Zc:__cplusplus)
+    if(WITH_AVX512)
+      target_compile_options(arch_avx512 PUBLIC -DDISPATCH_ARCH=ARCH_AVX512 -DARCH_ID=3 /arch:AVX512 -D__SSSE3__ -D__SSE4_1__ -D__POPCNT__ /Zc:__cplusplus)
+    endif()
+  else()
+    target_compile_options(arch_sse4_1 PUBLIC -DDISPATCH_ARCH=ARCH_SSE4_1 -DARCH_ID=1 -mssse3 -mpopcnt -msse4.1 -msse4.2 -mcx16 -msahf)
+    target_compile_options(arch_avx2 PUBLIC -DDISPATCH_ARCH=ARCH_AVX2 -DARCH_ID=2 -mssse3 -mpopcnt -msse4.1 -msse4.2 -mavx -mavx2 -mfma -mcx16 -msahf -mbmi -mbmi2 -mlzcnt -mf16c -mmovbe -maes -mpclmul -mxsave -mxsaveopt)
+    if(WITH_AVX512)      
+      check_cxx_compiler_flag("-march=x86-64-v4" HAVE_MARCH_X86_64_V4)
+      if(HAVE_MARCH_X86_64_V4)
+        set(ARCH_AVX512_CXX_FLAGS -march=x86-64-v4)
+      else()
+        set(ARCH_AVX512_CXX_FLAGS -mssse3 -mpopcnt -msse4.1 -msse4.2 -mavx -mavx2 -mfma
+            -mcx16 -msahf -mbmi -mbmi2 -mlzcnt -mf16c -mmovbe -maes -mpclmul -mxsave
+            -mxsaveopt -mavx512f -mavx512bw -mavx512cd -mavx512dq -mavx512vl)
+      endif()
+      target_compile_options(arch_avx512 PUBLIC -DDISPATCH_ARCH=ARCH_AVX512 -DARCH_ID=3 ${ARCH_AVX512_CXX_FLAGS})
+    endif()
+  endif()
+endif(X86)
+
+# NEON is mandatory on Aarch64
+#if(AARCH64)
+#  add_definitions(-DWITH_NEON)
+#  add_library(arch_neon OBJECT ${DISPATCH_OBJECTS})
+#  target_compile_options(arch_neon PUBLIC -DDISPATCH_ARCH=ARCH_NEON -DARCH_ID=4 -D__ARM_NEON -D__aarch64__)
+#endif(AARCH64)
+
+# NEON is optional on Armv7, so we need to check for compiler support,
+# and for the <sys/auxv.h> header used for runtime detection.
+#if(ARM)
+#check_symbol_exists(getauxval "sys/auxv.h" HAVE_GETAUXVAL)
+#check_cxx_compiler_flag("-mfpu=neon" HAVE_MFPU_NEON)
+#if(HAVE_MFPU_NEON)
+#  message(STATUS "Compiler supports NEON architecture")
+#    add_definitions(-DWITH_NEON)
+#    add_definitions(-DHAVE_MFPU_NEON)
+#    add_library(arch_neon OBJECT ${DISPATCH_OBJECTS})
+#    target_compile_options(arch_neon PUBLIC -DDISPATCH_ARCH=ARCH_NEON -DARCH_ID=4 -D__ARM_NEON -mfpu=neon)
+#  endif()
+#  if(HAVE_GETAUXVAL)
+#    add_definitions(-DHAVE_GETAUXVAL)
+#  endif()
+#endif(ARM)
+
+check_symbol_exists(getauxval "sys/auxv.h" HAVE_GETAUXVAL)
+if(AARCH64)
+  add_definitions(-DWITH_NEON)
+  add_library(arch_neon OBJECT ${DISPATCH_OBJECTS})
+  target_compile_options(arch_neon PUBLIC -DDISPATCH_ARCH=ARCH_NEON -DARCH_ID=4 -D__ARM_NEON -D__aarch64__)
+elseif(ARM)
+  check_cxx_compiler_flag("-mfpu=neon" HAVE_MFPU_NEON)
+  if(HAVE_MFPU_NEON)
+    add_definitions(-DWITH_NEON)
+    add_definitions(-DHAVE_MFPU_NEON)
+    add_library(arch_neon OBJECT ${DISPATCH_OBJECTS})
+    target_compile_options(arch_neon PUBLIC -DDISPATCH_ARCH=ARCH_NEON -DARCH_ID=4 -D__ARM_NEON -mfpu=neon)
+  endif()
+  if(HAVE_GETAUXVAL)
+    add_definitions(-DHAVE_GETAUXVAL)
+  endif()
+endif()
+
+set(OBJECTS
+        src/run/main.cpp
+        src/basic/config.cpp
+        src/stats/score_matrix.cpp
+        src/data/queries.cpp
+        src/search/seed_array/seed_histogram.cpp
+        src/legacy/daa/daa_record.cpp
+        src/util/command_line_parser.cpp
+        src/util/util.cpp
+        src/basic/basic.cpp
+        src/basic/hssp.cpp
+        src/dp/ungapped_align.cpp
+        src/legacy/tools.cpp
+        src/legacy/chaining/greedy_align.cpp
+        src/output/output_format.cpp
+        src/output/join_blocks.cpp
+        src/data/frequent_seeds.cpp
+        src/legacy/frameshift/query_mapper.cpp
+        src/output/blast_tab_format.cpp
+        src/output/blast_pairwise_format.cpp
+        src/run/double_indexed.cpp
+        src/output/sam_format.cpp
+        src/align/align.cpp
+        src/search/setup.cpp
+        src/data/taxonomy.cpp
+        src/masking/masking.cpp
+        src/data/seed_set.cpp
+        src/util/simd.cpp
+        src/output/taxon_format.cpp
+        src/legacy/daa/view.cpp
+        src/output/output_sink.cpp
+        src/output/target_culling.cpp
+        src/legacy/frameshift/banded_swipe_pipeline.cpp
+        src/util/io/compressed_buffer.cpp
+        src/util/io/file.cpp
+        src/data/taxon_list.cpp
+        src/data/taxonomy_nodes.cpp
+        src/lib/murmurhash/MurmurHash3.cpp
+        src/output/paf_format.cpp
+        src/util/system/system.cpp
+        src/util/memory/mem_profile.cpp
+        src/util/sequence/sequence.cpp
+        src/tools/tools.cpp
+        src/tools/count_distinct.cpp
+        src/tools/composition_matrix.cpp
+        src/util/system/getRSS.cpp
+        src/lib/tantan/LambdaCalculator.cc
+        src/util/string/string.cpp
+        src/align/extend.cpp
+        src/test/test.cpp
+        src/align/ungapped.cpp
+        src/align/gapped_score.cpp
+        src/align/gapped_final.cpp
+        src/align/full_db.cpp
+        src/align/culling.cpp
+        src/align/output.cpp
+        src/legacy/chaining/smith_waterman.cpp
+        src/output/xml_format.cpp
+        src/align/gapped_filter.cpp
+        src/util/parallel/filestack.cpp
+        src/util/parallel/parallelizer.cpp
+        src/util/parallel/multiprocessing.cpp
+        src/lib/alp/njn_dynprogprob.cpp
+        src/lib/alp/njn_dynprogproblim.cpp
+        src/lib/alp/njn_dynprogprobproto.cpp
+        src/lib/alp/njn_ioutil.cpp
+        src/lib/alp/njn_localmaxstat.cpp
+        src/lib/alp/njn_localmaxstatmatrix.cpp
+        src/lib/alp/njn_localmaxstatutil.cpp
+        src/lib/alp/njn_random.cpp
+        src/lib/alp/sls_alignment_evaluer.cpp
+        src/lib/alp/sls_alp.cpp
+        src/lib/alp/sls_alp_data.cpp
+        src/lib/alp/sls_alp_regression.cpp
+        src/lib/alp/sls_alp_sim.cpp
+        src/lib/alp/sls_basic.cpp
+        src/lib/alp/sls_pvalues.cpp
+        src/align/global_ranking/global_ranking.cpp
+        src/align/global_ranking/extend.cpp
+        src/lib/blast/blast_seg.cpp
+        src/lib/blast/blast_filter.cpp
+        src/lib/blast/nlm_linear_algebra.cpp
+        src/stats/stats.cpp
+        src/stats/cbs.cpp
+        src/stats/comp_based_stats.cpp
+        src/stats/hauser_correction.cpp
+        src/stats/matrix_adjust/matrix_adjust_wrapper.cpp
+        src/data/index.cpp
+        src/legacy/dmnd/dmnd.cpp
+        src/data/sequence_file.cpp
+        src/data/block/block.cpp
+        src/data/block/block_wrapper.cpp
+        src/run/config.cpp
+        src/data/sequence_set.cpp
+        src/align/global_ranking/table.cpp
+        src/legacy/daa/daa_write.cpp
+        src/search/seed_complexity.cpp
+        src/basic/value.cpp
+        src/masking/motifs.cpp
+        src/align/alt_hsp.cpp
+        src/data/fasta/fasta_file.cpp
+        src/data/fasta/volumed_fasta_file.cpp
+        src/cluster/output.cpp
+        src/cluster/realign.cpp
+        src/cluster/reassign.cpp
+        src/util/io/read_text_mt.cpp
+        src/tools/greedy_vertex_cover.cpp
+        #src/cluster/cascaded/recluster.cpp
+        src/cluster/helpers.cpp
+        src/search/kmer_ranking.cpp
+        src/legacy/chaining/hamming_ext.cpp
+        src/lib/blast/blast_message.cpp
+        src/lib/blast/blast_stat.cpp
+        src/lib/blast/blastn_score.cpp
+        src/lib/blast/ncbi_std.cpp
+        src/legacy/daa/merge.cpp
+        src/legacy/chaining/backtrace.cpp
+        src/dp/scalar/smith_waterman.cpp
+        #src/util/algo/mcl.cpp
+        src/stats/matrix_adjust/ncbi.cpp
+        src/search/hit_buffer.cpp
+        src/data/blastdb/phr.cpp
+        src/data/blastdb/psq.cpp
+        src/data/blastdb/pin.cpp
+        src/data/blastdb/pal.cpp
+        src/data/blastdb/asn1.cpp
+        src/data/blastdb/blastdb.cpp
+        src/test/queue.cpp
+        src/test/hit_buffer_stress.cpp
+        src/cluster/multinode.cpp
+        src/cluster/data.cpp
+        src/cluster/len_sort.cpp
+        src/cluster/make_blocks.cpp
+        src/cluster/merge.cpp
+        src/cluster/search.cpp
+        src/cluster/lin_index.cpp
+        src/cluster/combine_blocks.cpp
+        src/cluster/count_seeds.cpp
+        src/search/lin_index/lin_index.cpp
+        src/search/lin_index/web_graph.cpp
+        src/util/io/zlib_bridge.cpp
+        src/util/sequence/seqindex.cpp
+        src/align/new/extension_pipeline.cpp
+)
+
+if(WITH_DNA)
+  list(APPEND OBJECTS
+          src/contrib/dna/smith_watermann.cpp
+          src/contrib/dna/dna_index.cpp
+          src/contrib/dna/seed_set_dna.cpp
+          src/contrib/dna/extension.cpp
+          src/contrib/dna/chain.cpp
+          src/contrib/dna/extension_chain.cpp
+          src/contrib/dna/alignment.cpp
+          src/contrib/dna/extension_seed_matches.cpp
+          src/contrib/dna/smith_watermann.cpp
+          src/lib/ksw2/ksw2_extz2_sse.c
+          src/lib/ksw2/ksw2_extz.c
+          src/lib/WFA2-lib.diamond/bindings/cpp/WFAligner.cpp
+          src/contrib/dna/build_score.cpp
+  )
+endif()
+
+if(WITH_MCL)
+  list(APPEND OBJECTS src/contrib/mcl/mcl.cpp
+                      src/contrib/mcl/clustering_variables.cpp
+                      src/contrib/mcl/clustering_format.cpp)
+endif()
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}")
+
+if(WITH_ZSTD)
+  set(ZSTD_OBJ  "src/util/io/zstd_bridge.cpp")
+endif()
+
+if(X86)
+  if(WITH_AVX512)
+    add_executable(diamond $<TARGET_OBJECTS:arch_generic> $<TARGET_OBJECTS:arch_sse4_1> $<TARGET_OBJECTS:arch_avx2> $<TARGET_OBJECTS:arch_avx512> ${OBJECTS} ${ZSTD_OBJ})
+  else()
+    add_executable(diamond $<TARGET_OBJECTS:arch_generic> $<TARGET_OBJECTS:arch_sse4_1> $<TARGET_OBJECTS:arch_avx2> ${OBJECTS} ${ZSTD_OBJ})
+  endif()
+elseif(ARM OR AARCH64)
+  if(AARCH64 OR HAVE_MFPU_NEON)
+    add_executable(diamond $<TARGET_OBJECTS:arch_generic> $<TARGET_OBJECTS:arch_neon> ${OBJECTS} ${ZSTD_OBJ})
+  else()
+    add_executable(diamond $<TARGET_OBJECTS:arch_generic> ${OBJECTS} ${ZSTD_OBJ})
+  endif()
+else()
+  add_executable(diamond $<TARGET_OBJECTS:arch_generic> ${OBJECTS} ${ZSTD_OBJ})
+endif()
+
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+  target_compile_options(diamond PUBLIC /Zc:__cplusplus)
+endif()
+
+include_directories("${CMAKE_SOURCE_DIR}/src/" "${ZLIB_INCLUDE_DIR}" "${CMAKE_SOURCE_DIR}/src/lib")
+#find_package(SQLite3)
+#target_link_libraries(diamond SQLite::SQLite3 ${CMAKE_DL_LIBS})
+find_path(${SQLite3_INCLUDE_DIR} NAMES sqlite3.h PATHS ${SQLite3_INCLUDE_DIR})
+find_library(SQLite3_LIBRARY NAMES libsqlite3.a libsqlite3.so libsqlite3.so.0 sqlite3 HINTS /opt/homebrew/opt/sqlite/lib /usr/local/opt/sqlite/lib)
+message(STATUS "SQLite3 Library: ${SQLite3_LIBRARY}")
+target_include_directories(diamond PRIVATE "${SQLite3_INCLUDE_DIR}")
+target_link_libraries(diamond ${SQLite3_LIBRARY} ${CMAKE_DL_LIBS})
+
+if(WITH_ZSTD)
+  find_path(ZSTD_INCLUDE_DIR NAMES zstd.h)
+  find_library(ZSTD_LIBRARY NAMES zstd libzstd_static libzstd.a)
+  message(STATUS "Zstd Library: ${ZSTD_LIBRARY}")
+  message(STATUS "Zstd include: ${ZSTD_INCLUDE_DIR}")
+  if(NOT ZSTD_INCLUDE_DIR)
+    message(FATAL_ERROR "Could not find zstd.h")
+  endif()
+  if(NOT ZSTD_LIBRARY)
+    message(FATAL_ERROR "Could not find zstd library")
+  endif()
+  #target_include_directories(diamond PRIVATE "${ZSTD_INCLUDE_DIR}")
+  include_directories("${ZSTD_INCLUDE_DIR}")
+  target_link_libraries(diamond "${ZSTD_LIBRARY}")
+  add_definitions(-DWITH_ZSTD)
+endif()
+
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+  find_library(BCRYPT_LIBRARY BCrypt)
+  find_library(WS2_32_LIBRARY Ws2_32)
+  target_link_libraries(diamond ${BCRYPT_LIBRARY} ${WS2_32_LIBRARY})
+endif()
+
+target_link_libraries(diamond ${ZLIB_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
+
+install(TARGETS diamond DESTINATION bin)
+
+enable_testing()
+SET(TD ${CMAKE_SOURCE_DIR}/src/test)
+SET(SP -DTEST_DIR=${CMAKE_SOURCE_DIR}/src/test -P ${CMAKE_SOURCE_DIR}/src/test/test.cmake)
+SET(SP_EC -DTEST_DIR=${CMAKE_SOURCE_DIR}/src/test -P ${CMAKE_SOURCE_DIR}/src/test/test_exit_code.cmake)
+function(add_diamond_test NAME ARGS)
+  add_test(NAME ${NAME} COMMAND ${CMAKE_COMMAND} -DNAME=${NAME} "-DARGS=${ARGS}" ${SP})
+endfunction()
+function(add_diamond_test_exit_code NAME ARGS)
+  add_test(NAME ${NAME} COMMAND ${CMAKE_COMMAND} -DNAME=${NAME} "-DARGS=${ARGS}" ${SP_EC})
+endfunction()
+
+add_diamond_test_exit_code(makedb-nr_10k "makedb --in ${TD}/nr_10k.faa -d nr_10k --taxonmap ${TD}/nr_10k.taxids.tsv --taxonnames ${TD}/mini_names.dmp --taxonnodes ${TD}/mini_nodes.dmp")
+
+#add_test(NAME new-ext COMMAND ${CMAKE_COMMAND} -DNAME=new-ext "-DARGS=blastp -q ${TD}/nr_10k.faa -d nr_10k.dmnd -c1 -p1 -k0 --new-ext --comp-based-stats 0 -f 6 qseqid sseqid qstart qend sstart send evalue" ${SP})
+add_test(NAME blastp COMMAND ${CMAKE_COMMAND} -DNAME=blastp "-DARGS=blastp -q ${TD}/1.faa -d ${TD}/2.faa -p1" ${SP})
+add_test(NAME blastp_nr10k COMMAND ${CMAKE_COMMAND} -DNAME=blastp_nr10k "-DARGS=blastp -q ${TD}/nr_10k.faa -d nr_10k.dmnd -p4 -f 6 qseqid sseqid evalue staxids skingdoms sphylums" ${SP})
+add_test(NAME blastp-cbs6 COMMAND ${CMAKE_COMMAND} -DNAME=blastp-cbs6 "-DARGS=blastp -q ${TD}/nr_10k.faa -d ${TD}/nr_10k.faa -p4 -c1 -k0 --comp-based-stats 6 --fpu-compat" ${SP})
+add_test(NAME blastp_blastdb COMMAND ${CMAKE_COMMAND} -DNAME=blastp_blastdb "-DARGS=blastp -q ${TD}/nr_10k.faa -d ${TD}/blast/nr_10k -p4 -c1 -k0" ${SP})
+add_test(NAME blastp_blastaliasdb-seqidlist COMMAND ${CMAKE_COMMAND} -DNAME=blastp_blastaliasdb_seqidlist "-DARGS=blastp -q ${TD}/nr_10k.faa -d ${TD}/blast/nr_10k_filtered -p4 -c1 -k0" ${SP})
+add_test(NAME blastp-mid-sens COMMAND ${CMAKE_COMMAND} -DNAME=blastp-mid-sens "-DARGS=blastp -q ${TD}/3.faa -d ${TD}/4.faa --mid-sensitive -p1" ${SP})
+add_test(NAME blastp-f0 COMMAND ${CMAKE_COMMAND} -DNAME=blastp-f0 "-DARGS=blastp -q ${TD}/1.faa -d ${TD}/2.faa -f0 -p1" ${SP})
+add_test(NAME galaxy_7 COMMAND ${CMAKE_COMMAND} -DNAME=galaxy_7 "-DARGS=blastx --threads 2 --db ${TD}/galaxy/db.dmnd --query ${TD}/galaxy/nucleotide.fasta --query-gencode 1 --strand both --min-orf 1 --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore --header 0 --compress 0 --matrix BLOSUM62 --comp-based-stats 1 --masking tantan --max-target-seqs 25 --evalue 0.001 --id 0.0 --approx-id 0.0 --query-cover 0.0 --subject-cover 0.0 --block-size 2.0 --motif-masking 0 --soft-masking 0  --swipe --algo 0 --index-chunks 4 --file-buffer-size 67108864" ${SP})
+add_test(NAME galaxy_9 COMMAND ${CMAKE_COMMAND} -DNAME=galaxy_9 "-DARGS=blastx --threads 2 --db ${TD}/galaxy/db.dmnd --query ${TD}/galaxy/nucleotide.fasta --query-gencode 1 --strand both --min-orf 1 --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore --header 0 --compress 0 --matrix BLOSUM62 --comp-based-stats 1 --masking tantan --max-target-seqs 25 --evalue 0.001 --id 0.0 --approx-id 0.0 --query-cover 0.0 --subject-cover 0.0 --block-size 2.0 --motif-masking 0 --soft-masking 0  --algo 0 --global-ranking 10 --index-chunks 4 --file-buffer-size 67108864" ${SP})
+add_test(NAME blastx-nanopore COMMAND ${CMAKE_COMMAND} -DNAME=blastx-nanopore "-DARGS=blastx -q ${TD}/SRR14011045_1.fastq -d ${TD}/nr_10k.faa -p4 -c1 -k0" ${SP})
+add_test(NAME blastx-nanopore-fna COMMAND ${CMAKE_COMMAND} -DNAME=blastx-nanopore-fna "-DARGS=blastx -q ${TD}/SRR14011045_1.fna.gz -d ${TD}/nr_10k.faa -p4 -c1 -k0" ${SP})
+add_test(NAME blastx-frameshift COMMAND ${CMAKE_COMMAND} -DNAME=blastx-frameshift "-DARGS=blastx -q ${TD}/SRR14011045_1.fastq -d ${TD}/nr_10k.faa -p4 -c1 -k0 -F 15 -f 0" ${SP})
+add_test(NAME blastp-global-ranking COMMAND ${CMAKE_COMMAND} -DNAME=blastp-global-ranking "-DARGS=blastp -q ${TD}/nr_10k.faa -d ${TD}/nr_10k.faa -p4 -c1 -k0 --sensitive -s1 -g10 -b0.002" ${SP})
+add_test(NAME blastp-blocked COMMAND ${CMAKE_COMMAND} -DNAME=blastp-blocked "-DARGS=blastp -q ${TD}/nr_10k.faa -d ${TD}/nr_10k.faa -p4 -c1 -b0.002" ${SP})
+add_test(NAME linclust COMMAND ${CMAKE_COMMAND} -DNAME=linclust "-DARGS=linclust -d ${TD}/nr_10k.faa -p4 --approx-id 0" ${SP})
+add_test(NAME deepclust COMMAND ${CMAKE_COMMAND} -DNAME=deepclust "-DARGS=deepclust -d ${TD}/nr_10k.faa -p4 --fpu-compat" ${SP})
+add_test(NAME deepclust-multiblock COMMAND ${CMAKE_COMMAND} -DNAME=deepclust-multiblock "-DARGS=deepclust -d ${TD}/nr_10k.faa -p4 --fpu-compat --approx-id 50 -M 0.005G --linclust-minichunk 500K" ${SP})
+add_test(NAME realign COMMAND ${CMAKE_COMMAND} -DNAME=realign "-DARGS=realign -d ${TD}/nr_10k.faa -p1 --clusters ${TD}/linclust.out" ${SP})
+add_test(NAME blastp-daa COMMAND ${CMAKE_COMMAND} -DNAME=blastp-daa "-DARGS=blastp -q ${TD}/nr_300.faa -d nr_10k.dmnd -p1 -f 100 -c1 --no-auto-append --daa-build-version 179" ${SP})
+add_test(NAME view COMMAND ${CMAKE_COMMAND} -DNAME=view "-DARGS=view -a ${TD}/test.daa -p4 -k0" ${SP})
+#add_diamond_test(greedy_vertex_cover_numeric "greedy-vertex-cover --edges ${TD}/greedy_vertex_cover_numeric.tsv --edge-format triplet --symmetric --max-id 4 -p1")
+add_diamond_test(diamond-test-blastp-default "blastp -q ${TD}/data.faa -d ${TD}/data.faa -p1")
+add_diamond_test(diamond-test-blastp-multithreaded "blastp -q ${TD}/data.faa -d ${TD}/data.faa -p4")
+add_diamond_test(diamond-test-blastp-blocked "blastp -q ${TD}/data.faa -d ${TD}/data.faa -c1 -b0.00002 -p4")
+add_diamond_test(diamond-test-blastp-more-sensitive "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4")
+add_diamond_test(diamond-test-blastp-very-sensitive "blastp -q ${TD}/data.faa -d ${TD}/data.faa --very-sensitive -c1 -p4")
+add_diamond_test(diamond-test-blastp-ultra-sensitive "blastp -q ${TD}/data.faa -d ${TD}/data.faa --ultra-sensitive -c1 -p4")
+add_diamond_test(diamond-test-blastp-max-hsps "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --max-hsps 0")
+add_diamond_test(diamond-test-blastp-target-parallel "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --query-parallel-limit 1")
+add_diamond_test(diamond-test-blastp-query-indexed "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --algo 1")
+add_diamond_test(diamond-test-blastp-comp-based-stats-0 "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --comp-based-stats 0")
+add_diamond_test(diamond-test-blastp-comp-based-stats-2 "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --comp-based-stats 2")
+add_diamond_test(diamond-test-blastp-comp-based-stats-3 "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --comp-based-stats 3")
+add_diamond_test(diamond-test-blastp-comp-based-stats-4 "blastp -q ${TD}/data.faa -d ${TD}/data.faa --more-sensitive -c1 -p4 --comp-based-stats 4")
+add_diamond_test(diamond-test-blastp-target-seqs "blastp -q ${TD}/data.faa -d ${TD}/data.faa -k3 -c1 -p4")
+add_diamond_test(diamond-test-blastp-top "blastp -q ${TD}/data.faa -d ${TD}/data.faa --top 10 -p4")
+add_diamond_test(diamond-test-blastp-evalue "blastp -q ${TD}/data.faa -d ${TD}/data.faa -e10000 --more-sensitive -c1 -p4")
+add_diamond_test(diamond-test-blastp-blosum50 "blastp -q ${TD}/data.faa -d ${TD}/data.faa --matrix blosum50 -p4")
+add_diamond_test(diamond-test-blastp-pairwise-format "blastp -q ${TD}/data.faa -d ${TD}/data.faa -c1 -f0 -p4")
+# add_diamond_test(diamond-test-blastp-xml-format "blastp -q ${TD}/data.faa -d ${TD}/data.faa -c1 -f xml -p4")
+add_diamond_test(diamond-test-blastp-paf-format "blastp -q ${TD}/data.faa -d ${TD}/data.faa -c1 -f paf -p1")

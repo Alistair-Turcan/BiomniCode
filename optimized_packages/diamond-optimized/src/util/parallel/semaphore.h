@@ -1,0 +1,182 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#pragma once
+
+#include <cstddef>
+#if defined(__APPLE__)
+#include <dispatch/dispatch.h>
+#elif defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#include <atomic>
+#pragma comment(lib, "Synchronization.lib") // Required for WaitOnAddress
+#elif defined(__linux__)
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/futex.h>
+#include <atomic>
+#else
+#define NO_FUTEX
+#endif
+
+#ifndef NO_FUTEX
+
+template <ptrdiff_t least_max_value = 2147483647>
+class CountingSemaphore {
+
+#if defined(__APPLE__)
+    dispatch_semaphore_t sem;
+#else
+    std::atomic<int32_t> count;
+#endif
+
+public:
+    static constexpr ptrdiff_t max() noexcept { return least_max_value; }
+
+    explicit CountingSemaphore(ptrdiff_t desired)
+#if defined(__APPLE__)
+        : sem(dispatch_semaphore_create(static_cast<intptr_t>(desired)))
+#else
+        : count(static_cast<int32_t>(desired))
+#endif
+    {
+    }
+
+#if defined(__APPLE__)
+    ~CountingSemaphore() {
+#if !__has_feature(objc_arc)
+        dispatch_release(sem);
+#endif
+    }
+#else
+    ~CountingSemaphore() = default;
+#endif
+
+    CountingSemaphore(const CountingSemaphore&) = delete;
+    CountingSemaphore& operator=(const CountingSemaphore&) = delete;
+
+    void release(ptrdiff_t update = 1) {
+#if defined(__APPLE__)        
+        for (ptrdiff_t i = 0; i < update; ++i) {
+            dispatch_semaphore_signal(sem);
+        }
+#else
+        count.fetch_add(static_cast<int32_t>(update), std::memory_order_release);
+        sys_wake(static_cast<int32_t>(update));
+#endif
+    }
+
+    void acquire() {
+#if defined(__APPLE__)
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+#else
+        int32_t old = count.load(std::memory_order_relaxed);
+        while (true) {
+            if (old > 0) {
+                if (count.compare_exchange_weak(old, old - 1, std::memory_order_acquire, std::memory_order_relaxed)) {
+                    return;
+                }
+            }
+            else {
+                sys_wait(old);
+                old = count.load(std::memory_order_relaxed);
+            }
+        }
+#endif
+    }
+
+private:
+
+#if defined(_WIN32)
+
+    void sys_wake(int32_t upd) {
+        if (upd == 1) {
+            WakeByAddressSingle(reinterpret_cast<void*>(&count));
+        }
+        else {
+            WakeByAddressAll(reinterpret_cast<void*>(&count));
+        }
+    }
+
+    void sys_wait(int32_t expected) {
+        WaitOnAddress(reinterpret_cast<volatile void*>(&count), &expected, sizeof(int32_t), INFINITE);
+    }
+    
+#elif defined(__linux__)
+
+    void sys_wake(int32_t upd) {
+        syscall(SYS_futex, reinterpret_cast<int32_t*>(&count), FUTEX_WAKE_PRIVATE, upd, nullptr, nullptr, 0);
+    }
+
+    void sys_wait(int32_t expected) {
+        syscall(SYS_futex, reinterpret_cast<int32_t*>(&count), FUTEX_WAIT_PRIVATE, expected, nullptr, nullptr, 0);
+    }
+
+#endif
+
+};
+
+#else
+
+#warning "Futex not supported on this platform."
+
+#include <mutex>
+#include <condition_variable>
+
+template <std::ptrdiff_t LeastMaxValue = -1>
+class CountingSemaphore {
+private:
+    std::ptrdiff_t counter;
+    std::mutex mtx;
+    std::condition_variable cv;
+
+public:
+    explicit CountingSemaphore(std::ptrdiff_t desired = 0) : counter(desired) {}
+    CountingSemaphore(const CountingSemaphore&) = delete;
+    CountingSemaphore& operator=(const CountingSemaphore&) = delete;
+
+    void release(std::ptrdiff_t update = 1) {
+        std::lock_guard<std::mutex> lock(mtx);
+        counter += update;
+        if (update > 1) {
+            cv.notify_all();
+        } else {
+            cv.notify_one();
+        }
+    }
+
+    void acquire() {
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait(lock, [this] { return counter > 0; });
+        --counter;
+    }
+    
+    static constexpr std::ptrdiff_t max() noexcept {
+        return LeastMaxValue;
+    }
+
+};
+
+#endif

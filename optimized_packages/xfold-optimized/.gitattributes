@@ -1,0 +1,2 @@
+# Preserve the frozen source bytes on checkout, including original line endings.
+* -text

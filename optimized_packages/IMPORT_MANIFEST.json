@@ -1,0 +1,217 @@
+{
+  "source_url": "https://drive.google.com/file/d/1U7ay5vUm3L99w_IXwZNXGLNnqB0rMOuv/view",
+  "outer_archive": "30_githubs.zip",
+  "outer_archive_sha256": "b46aa4cb98dcfaf096c7c5ed84219b0482bbbd65b054959b24e0260c2607038d",
+  "packages": [
+    {
+      "directory": "BayesSpace-optimized",
+      "archive": "BayesSpace_optimized_github.zip",
+      "archive_sha256": "71427561561816f9dd9b614c3f74ebeff4d84cabcc44dba8349cf07cb537e902",
+      "files": 103,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "CIGMA-optimized",
+      "archive": "CIGMA_optimized_github_ready.zip",
+      "archive_sha256": "3cad76735ba5856dc0f527a8fdbd26fdf4aa162558d10346e509afa914553229",
+      "files": 174,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "CellChat-optimized",
+      "archive": "CellChat_optimized_github_ready.zip",
+      "archive_sha256": "52ae73340787d315617c9773ff0df71f2933a7ff5b67244d014aa09fbc493dc7",
+      "files": 182,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "EPICunmix",
+      "archive": "EPICunmix_optimized_github.zip",
+      "archive_sha256": "0fcf8c0792e7610eb88ed5ce2d5a483294661b010fa339195fd0bfd76c9c31b8",
+      "files": 25,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "MAGIC_optimized",
+      "archive": "MAGIC_optimized_github.zip",
+      "archive_sha256": "b0d65fa518cf6c24998c816cf046bb06c972c0d3c9bd241dbec91b60100e9dce",
+      "files": 27,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "SAIGE-optimized",
+      "archive": "SAIGE_optimized_github_ready.zip",
+      "archive_sha256": "161faa3ede58225053591d0e50013bd14477bca9e172354d2abb5b06854b2791",
+      "files": 462,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "SCENT",
+      "archive": "SCENT_optimized_github_ready.zip",
+      "archive_sha256": "eeeb029f73fa1adf0454f23c9c564bd07804db085d2ff5c870f58ea8ce9fffce",
+      "files": 27,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "SpatialDE",
+      "archive": "SpatialDE_optimized_github.zip",
+      "archive_sha256": "00800b9033a4892884a7a9ac1d37c56e6c9fce846c1146bd6df7233befd31754",
+      "files": 119,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "ThermoMPNN-optimized",
+      "archive": "ThermoMPNN_optimized_github.zip",
+      "archive_sha256": "5dc5d54c2817966eacbe20197d60668128ffa27c921cf061af834de7a3fa8acb",
+      "files": 54,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "alphafold-round5-af5-014",
+      "archive": "alphafold-round5-af5-014.zip",
+      "archive_sha256": "7d5d094206d96b53606164255af5a63f5966af97be1b50eab5c1a9b93c56b231",
+      "files": 124,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "alphafold3",
+      "archive": "alphafold3_optimized_github.zip",
+      "archive_sha256": "5909741432c07872853af56e0b4cda7bbf7529df09e6c2f11850961dcc6ce694",
+      "files": 221,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "bigsnpr-optimized",
+      "archive": "bigsnpr_optimized_github_ready.zip",
+      "archive_sha256": "f82eeb0b939aff1b21d368b01b8f4020a0d2da38a75808464ef0f8cd699b8cda",
+      "files": 795,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "boltz-optimized",
+      "archive": "boltz_optimized_github.zip",
+      "archive_sha256": "64ee32b1baa9c5e32e1cd5262173ad46cf285c6b04fc290a6d818ad1d9492d21",
+      "files": 175,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "boltzgen_optimized",
+      "archive": "boltzgen_optimized_github.zip",
+      "archive_sha256": "176e07b47061233b7fa1ae47a2e7b683ffad0a6f7ab1af07f1d0fd123b3c51d1",
+      "files": 285,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "cell2location-fast",
+      "archive": "cell2location-fast_github.zip",
+      "archive_sha256": "3ad79a22e98e39c2e2945073e3a3d41dfda9f30e8ca11a23f58b3b4f8e2a5cf3",
+      "files": 126,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "chrombpnet-optimized",
+      "archive": "chrombpnet_optimized_github.zip",
+      "archive_sha256": "c8e86efe3fd5f89a3795e0758d6f18c471abc15bafdcaa27491e0ea14ecd7c6a",
+      "files": 134,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "diamond-optimized",
+      "archive": "diamond_optimized_github_ready.zip",
+      "archive_sha256": "f1323021a503b3516297e797f867713824b10eba343167724de562476f7605f4",
+      "files": 606,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "fastp-optimized",
+      "archive": "fastp_optimized_github_ready.zip",
+      "archive_sha256": "f66202dfb2fcfc624fee285bde7fe23ef5117fdca4fd5b8214a92a61099b6e05",
+      "files": 82,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "gpn_star_optimized",
+      "archive": "gpn_star_optimized_github_ready.zip",
+      "archive_sha256": "7eb8d1410d90d5540ffca5a2a2be134535e642c417bcef3470d476681a990963",
+      "files": 107,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "LAVA-optimized",
+      "archive": "lava_optimized_github_ready.zip",
+      "archive_sha256": "5b5532b8baac048f7d620865447cdad14f21f44184575e2d543cae1997ca463c",
+      "files": 64,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "ldsc-optimized",
+      "archive": "ldsc_optimized_py3_github_ready.zip",
+      "archive_sha256": "19cfbb0b42b31a4877180d1fb962813823ada68dde20594b83c12617d3d90c95",
+      "files": 1106,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "ligandmpnn_optimized",
+      "archive": "ligandmpnn_github_ready.zip",
+      "archive_sha256": "3f8d81a0998d39fb1f7f4aa654b8577dbba7f1139cd8f2f196e8f8e8f4f55dff",
+      "files": 62,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "minimap2",
+      "archive": "minimap2_optimized_github.zip",
+      "archive_sha256": "57e37a21fa525110f8084104b8e3e079daef25d95cbde016fa69b299c2040f7c",
+      "files": 94,
+      "omitted_git_entries": 73
+    },
+    {
+      "directory": "proteinmpnn_optimized",
+      "archive": "proteinmpnn_optimized_github.zip",
+      "archive_sha256": "1e7aeeae8249cbe1f30a685bace76131b9b9176ae5a3e1ae0585ffb2282bcd48",
+      "files": 66,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "pyscenic-optimized",
+      "archive": "pyscenic_optimized_github.zip",
+      "archive_sha256": "2e87b8d442e5da9d949cb9b543f117f848183f43fce4ccd3be6521fac43f3db9",
+      "files": 116,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "rfd3-optimized",
+      "archive": "rfd3_optimized_github.zip",
+      "archive_sha256": "c8afda20383ae8f2397d7b9665073d7ec8e3071e880e976e27a903b89e37311f",
+      "files": 927,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "scvelo-optimized",
+      "archive": "scvelo_optimized_github.zip",
+      "archive_sha256": "798990c78a5020f03d828e2a0e40fcfaeedfb4214ff8b475589cdf06a403097d",
+      "files": 406,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "susieR",
+      "archive": "susieR_optimized.zip",
+      "archive_sha256": "11915bd7fc70ae2ba785858852619a8d6b21063c75fb8fbe898f26609cfb6695",
+      "files": 247,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "tangram_optimized",
+      "archive": "tangram_optimized_github.zip",
+      "archive_sha256": "b4b1cf5ebbedb319f748c8359a7a493bd0d1598a44de5a79e9b9a68a51a8a3e4",
+      "files": 118,
+      "omitted_git_entries": 0
+    },
+    {
+      "directory": "xfold-optimized",
+      "archive": "xfold_optimized_github.zip",
+      "archive_sha256": "70e0f4bb625ef2caedaac9703b767bb3a1b14c4d1c4003b7d56a799aed35ef41",
+      "files": 1472,
+      "omitted_git_entries": 0
+    }
+  ]
+}

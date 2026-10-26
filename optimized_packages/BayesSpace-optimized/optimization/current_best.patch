@@ -1,0 +1,482 @@
+diff --git a/NAMESPACE b/NAMESPACE
+index 9129835..5e42f51 100644
+--- a/NAMESPACE
++++ b/NAMESPACE
+@@ -18,8 +18,6 @@ export(removeChain)
+ export(spatialCluster)
+ export(spatialEnhance)
+ export(spatialPreprocess)
+-importFrom(BiocFileCache,BiocFileCache)
+-importFrom(BiocFileCache,bfcrpath)
+ importFrom(BiocParallel,MulticoreParam)
+ importFrom(BiocParallel,SerialParam)
+ importFrom(BiocParallel,SnowParam)
+@@ -28,12 +26,9 @@ importFrom(BiocSingular,ExactParam)
+ importFrom(BiocSingular,FastAutoParam)
+ importFrom(BiocSingular,IrlbaParam)
+ importFrom(BiocSingular,RandomParam)
+-importFrom(DirichletReg,DR_data)
+-importFrom(DirichletReg,DirichReg)
+ importFrom(Matrix,colSums)
+ importFrom(Matrix,readMM)
+ importFrom(Matrix,sparseMatrix)
+-importFrom(RCurl,url.exists)
+ importFrom(Rcpp,evalCpp)
+ importFrom(S4Vectors,"metadata<-")
+ importFrom(S4Vectors,metadata)
+@@ -54,7 +49,6 @@ importFrom(SummarizedExperiment,assay)
+ importFrom(SummarizedExperiment,assayNames)
+ importFrom(SummarizedExperiment,colData)
+ importFrom(SummarizedExperiment,rowData)
+-importFrom(arrow,read_parquet)
+ importFrom(assertthat,assert_that)
+ importFrom(coda,mcmc)
+ importFrom(dplyr,"%>%")
+@@ -90,20 +84,9 @@ importFrom(purrr,discard)
+ importFrom(purrr,imap)
+ importFrom(purrr,keep)
+ importFrom(purrr,map)
+-importFrom(rhdf5,h5createDataset)
+-importFrom(rhdf5,h5createFile)
+-importFrom(rhdf5,h5createGroup)
+-importFrom(rhdf5,h5ls)
+-importFrom(rhdf5,h5read)
+-importFrom(rhdf5,h5write)
+ importFrom(rjson,fromJSON)
+ importFrom(rlang,.data)
+ importFrom(scales,muted)
+-importFrom(scater,logNormCounts)
+-importFrom(scater,runPCA)
+-importFrom(scater,uniquifyFeatureNames)
+-importFrom(scran,getTopHVGs)
+-importFrom(scran,modelGeneVar)
+ importFrom(stats,coef)
+ importFrom(stats,cor)
+ importFrom(stats,cov)
+@@ -121,9 +104,5 @@ importFrom(tidyr,uncount)
+ importFrom(utils,download.file)
+ importFrom(utils,read.csv)
+ importFrom(utils,read.table)
+-importFrom(xgboost,xgb.DMatrix)
+-importFrom(xgboost,xgb.params)
+-importFrom(xgboost,xgb.train)
+-importFrom(xgboost,xgboost)
+ useDynLib(BayesSpace)
+ useDynLib(BayesSpace, .registration=TRUE)
+diff --git a/R/BayesSpace.R b/R/BayesSpace.R
+index d1b6f43..2850e38 100644
+--- a/R/BayesSpace.R
++++ b/R/BayesSpace.R
+@@ -23,3 +23,39 @@
+ #' @useDynLib BayesSpace
+ #' @useDynLib BayesSpace, .registration=TRUE
+ "_PACKAGE"
++
++.onLoad <- function(libname, pkgname) {
++    ns <- environment(.onLoad)
++    delayedAssign("DR_data", DirichletReg::DR_data,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("DirichReg", DirichletReg::DirichReg,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("xgboost", xgboost::xgboost,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("xgb.DMatrix", xgboost::xgb.DMatrix,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("xgb.train", xgboost::xgb.train,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("xgb.params", xgboost::xgb.params,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("logNormCounts", scater::logNormCounts,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("runPCA", scater::runPCA,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("uniquifyFeatureNames", scater::uniquifyFeatureNames,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("getTopHVGs", scran::getTopHVGs,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("modelGeneVar", scran::modelGeneVar,
++                  eval.env = baseenv(), assign.env = ns)
++    delayedAssign("BiocFileCache", BiocFileCache::BiocFileCache, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("bfcrpath", BiocFileCache::bfcrpath, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("url.exists", RCurl::url.exists, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("read_parquet", arrow::read_parquet, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5createDataset", rhdf5::h5createDataset, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5createFile", rhdf5::h5createFile, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5createGroup", rhdf5::h5createGroup, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5ls", rhdf5::h5ls, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5read", rhdf5::h5read, eval.env = baseenv(), assign.env = ns)
++    delayedAssign("h5write", rhdf5::h5write, eval.env = baseenv(), assign.env = ns)
++}
+diff --git a/R/enhanceFeatures.R b/R/enhanceFeatures.R
+index 3f9d4c6..9d8828a 100644
+--- a/R/enhanceFeatures.R
++++ b/R/enhanceFeatures.R
+@@ -110,7 +110,7 @@ NULL
+     Y.enhanced
+ }
+ 
+-#' @importFrom DirichletReg DR_data DirichReg
++# Feature-only exports are bound lazily in .onLoad.
+ #' @importFrom stats predict
+ .dirichlet_enhance <- function(X.ref, X.enhanced, Y.ref) {
+     features <- DR_data(t(Y.ref))
+@@ -125,7 +125,7 @@ NULL
+     Y.enhanced
+ }
+ 
+-#' @importFrom xgboost xgboost xgb.DMatrix xgb.train xgb.params
++# Feature-only exports are bound lazily in .onLoad.
+ .xgboost_enhance <- function(X.ref, X.enhanced, Y.ref, feature_names,
+                              nrounds, train.n, nthread) {
+     Y.enhanced <- matrix(nrow = length(feature_names), ncol = nrow(X.enhanced))
+diff --git a/R/mcmcChain.R b/R/mcmcChain.R
+index 8f5a9c2..957e75e 100644
+--- a/R/mcmcChain.R
++++ b/R/mcmcChain.R
+@@ -44,7 +44,7 @@
+ #' @md
+ NULL
+ 
+-#' @importFrom rhdf5 h5createFile h5createDataset h5write
++# Chain-storage exports are bound lazily in .onLoad.
+ .write_chain <- function(chain, h5.fname = NULL, params = NULL, 
+     chunk.length = 1000) {
+     
+@@ -106,7 +106,7 @@ NULL
+ #' 
+ #' @keywords internal
+ #' 
+-#' @importFrom rhdf5 h5ls h5read
++# Chain-storage exports are bound lazily in .onLoad.
+ #' @importFrom coda mcmc
+ #' @importFrom purrr map
+ .read_chain <- function(h5.fname, params = NULL, is.enhanced = FALSE) {
+diff --git a/R/readVisium.R b/R/readVisium.R
+index 1d50922..416711a 100644
+--- a/R/readVisium.R
++++ b/R/readVisium.R
+@@ -40,7 +40,7 @@ NULL
+ 
+ #' @export
+ #' @importFrom utils read.csv read.table
+-#' @importFrom scater uniquifyFeatureNames
++# Preprocessing-only exports are bound lazily in .onLoad.
+ #' @importFrom Matrix readMM colSums
+ #' @importFrom SingleCellExperiment SingleCellExperiment counts
+ #' @importFrom S4Vectors metadata metadata<-
+@@ -101,7 +101,7 @@ readVisium <- function(
+ #' @importFrom Matrix sparseMatrix colSums readMM
+ #' @importFrom SingleCellExperiment SingleCellExperiment counts
+ #' @importFrom S4Vectors metadata metadata<-
+-#' @importFrom rhdf5 h5read
++# File-I/O exports are bound lazily in .onLoad.
+ #' @importFrom dplyr %>% group_by mutate select n case_when
+ #' @importFrom tibble column_to_rownames
+ #' @importFrom rlang .data
+@@ -190,7 +190,7 @@ read10Xh5 <- function(
+ }
+ 
+ #' @export
+-#' @importFrom rhdf5 h5read h5createFile h5createGroup h5write
++# File-I/O exports are bound lazily in .onLoad.
+ #' @rdname readVisium
+ counts2h5 <- function(dirname) {
+   h5_file <- file.path(dirname, "filtered_feature_bc_matrix.h5")
+@@ -255,7 +255,7 @@ counts2h5 <- function(dirname) {
+ #' @importFrom magrittr %>%
+ #' @importFrom dplyr inner_join rename
+ #' @importFrom tidyr uncount
+-#' @importFrom arrow read_parquet
++# File-I/O exports are bound lazily in .onLoad.
+ #' @importFrom stats cor
+ #' @importFrom methods as
+ #' @importFrom rlang .data
+diff --git a/R/spatialPreprocess.R b/R/spatialPreprocess.R
+index 6b8b6a2..18ddd2a 100644
+--- a/R/spatialPreprocess.R
++++ b/R/spatialPreprocess.R
+@@ -35,8 +35,7 @@
+ #' sce <- spatialPreprocess(sce)
+ #' 
+ #' @export
+-#' @importFrom scater logNormCounts runPCA
+-#' @importFrom scran modelGeneVar getTopHVGs
++# Preprocessing-only exports are bound lazily in .onLoad.
+ #' @importFrom SummarizedExperiment rowData<-
+ #' @importFrom BiocSingular ExactParam IrlbaParam RandomParam FastAutoParam
+ #' @importFrom BiocParallel SerialParam MulticoreParam SnowParam
+diff --git a/R/utils.R b/R/utils.R
+index 5cc9020..728dabb 100644
+--- a/R/utils.R
++++ b/R/utils.R
+@@ -130,7 +130,7 @@ Mode <- function(x) {
+ #'
+ #' @importFrom stats rnorm
+ #' @importFrom SingleCellExperiment SingleCellExperiment logcounts
+-#' @importFrom scater logNormCounts
++# Preprocessing-only exports are bound lazily in .onLoad.
+ #' @importFrom stats prcomp rnbinom runif
+ #' @importFrom S4Vectors metadata<-
+ #'
+@@ -203,10 +203,10 @@ exampleSCE <- function(nrow = 8, ncol = 12, n_genes = 100, n_PCs = 10) {
+ #' sce <- getRDS("2018_thrane_melanoma", "ST_mel1_rep2", cache = FALSE)
+ #'
+ #' @export
+-#' @importFrom RCurl url.exists
++# Remote-cache exports are bound lazily in .onLoad.
+ #' @importFrom utils download.file
+ #' @importFrom assertthat assert_that
+-#' @importFrom BiocFileCache BiocFileCache bfcrpath
++# Remote-cache exports are bound lazily in .onLoad.
+ getRDS <- function(dataset, sample, cache = TRUE) {
+     # url <- "https://fh-pi-gottardo-r-eco-public.s3.amazonaws.com/SpatialTranscriptomes/%s/%s.rds"
+     # url <- sprintf(url, dataset, sample)
+diff --git a/src/cluster.cpp b/src/cluster.cpp
+index 10c0ec1..ab13c7e 100644
+--- a/src/cluster.cpp
++++ b/src/cluster.cpp
+@@ -105,6 +105,117 @@ dmvnrm_arma_fast(
+   return exp(out);
+ }
+ 
++// Evaluate a single log density with an already computed covariance factor.
++static double density_log_diagonal_sum(const arma::mat &rooti) {
++  double even = 0.0, odd = 0.0;
++  arma::uword i = 0;
++  for (; i + 1 < rooti.n_rows; i += 2) {
++    even += std::log(rooti.at(i, i));
++    odd += std::log(rooti.at(i + 1, i + 1));
++  }
++  if (i < rooti.n_rows) even += std::log(rooti.at(i, i));
++  return even + odd;
++}
++
++static inline void density_tri_mult_seven(arma::rowvec &z, const arma::mat &rooti) {
++  double *x = z.memptr();
++  const double *r = rooti.memptr();
++  double t = 0.0;
++  t += r[0] * x[0];
++  t += r[7] * x[1];
++  t += r[14] * x[2];
++  t += r[21] * x[3];
++  t += r[28] * x[4];
++  t += r[35] * x[5];
++  t += r[42] * x[6];
++  x[0] = t;
++  t = 0.0;
++  t += r[8] * x[1];
++  t += r[15] * x[2];
++  t += r[22] * x[3];
++  t += r[29] * x[4];
++  t += r[36] * x[5];
++  t += r[43] * x[6];
++  x[1] = t;
++  t = 0.0;
++  t += r[16] * x[2];
++  t += r[23] * x[3];
++  t += r[30] * x[4];
++  t += r[37] * x[5];
++  t += r[44] * x[6];
++  x[2] = t;
++  t = 0.0;
++  t += r[24] * x[3];
++  t += r[31] * x[4];
++  t += r[38] * x[5];
++  t += r[45] * x[6];
++  x[3] = t;
++  t = 0.0;
++  t += r[32] * x[4];
++  t += r[39] * x[5];
++  t += r[46] * x[6];
++  x[4] = t;
++  t = 0.0;
++  t += r[40] * x[5];
++  t += r[47] * x[6];
++  x[5] = t;
++  t = 0.0;
++  t += r[48] * x[6];
++  x[6] = t;
++}
++
++double
++dmvnrm_log_precomputed(
++    const arma::subview_row<double> &x, const arma::subview_row<double> &mean,
++    const arma::mat &rooti, double other_terms, arma::rowvec &z
++) {
++  z = x - mean;
++  if (z.n_elem == 7 && rooti.n_rows == 7 && rooti.n_cols == 7) {
++    density_tri_mult_seven(z, rooti);
++    const double *p = z.memptr();
++    double even = 0.0, odd = 0.0;
++    even += p[0] * p[0];
++    odd += p[1] * p[1];
++    even += p[2] * p[2];
++    odd += p[3] * p[3];
++    even += p[4] * p[4];
++    odd += p[5] * p[5];
++    even += p[6] * p[6];
++    return other_terms - 0.5 * (even + odd);
++  } else {
++    inplace_tri_mat_mult_t(z, rooti);
++  }
++  return other_terms - 0.5 * arma::dot(z, z);
++}
++
++// Fixed-size version of Rcpp's weighted replacement sampler. Keep its
++// normalization order, R reverse-sort tie handling and uniform draw unchanged.
++int
++sample_two_labels(int previous, int proposed, double proposal_probability) {
++  double p[2] = {1 - proposal_probability, proposal_probability};
++  int permutation[2] = {1, 2};
++  double total = 0.0;
++  int positive = 0;
++  for (int i = 0; i < 2; ++i) {
++    if (!R_FINITE(p[i]) || p[i] < 0) {
++      stop("Probabilities must be finite and non-negative!");
++    }
++    positive += p[i] > 0.0;
++    total += p[i];
++  }
++  if (!positive) {
++    stop("Too few positive probabilities!");
++  }
++  for (int i = 0; i < 2; ++i) {
++    p[i] /= total;
++  }
++  Rf_revsort(p, permutation, 2);
++  p[1] += p[0];
++  const double uniform = unif_rand();
++  const int selected = (uniform <= p[0]) ? 0 : 1;
++  return permutation[selected] == 1 ? previous : proposed;
++}
++
+ // Use precision matrix
+ arma::vec
+ dmvnrm_prec_arma_fast(
+@@ -470,6 +581,17 @@ iterate_t(
+ 
+   // Iterate
+   colvec mu0vec = as<colvec>(mu0);
++  const IntegerVector qvec = seq_len(q);
++  std::vector<IntegerVector> proposal_labels;
++  proposal_labels.reserve(q);
++  for (int k = 1; k <= q; ++k) {
++    proposal_labels.emplace_back(qvec[qvec != k]);
++  }
++  mat rooti;
++  rowvec density_residual(d);
++  NumericVector plogLikj(n, NA_REAL);
++  vec weighted_sums(d);
++  mat posterior_var;
+   for (int i = 1; i < nrep; i++) {
+     // Check for interrupt every ~1-2 seconds (timing based on 5k spots)
+     if (i % 10 == 0)
+@@ -477,19 +599,18 @@ iterate_t(
+ 
+     // Update mu
+     mat mu_i(q, d);
+-    NumericVector Ysums;
+     for (int k = 1; k <= q; k++) {
+       uvec index_1k = find(z == k);
+       double n_i    = sum(w(index_1k));
+       mat Yrows     = Y.rows(index_1k);
+       Yrows.each_col() %= w(index_1k);
+-      Ysums = sum(Yrows, 0);
++      weighted_sums = sum(Yrows, 0).t();
+       vec mean_i =
+           inv(lambda0 + n_i * lambda_i) *
+-          (lambda0 * mu0vec + lambda_i * as<colvec>(Ysums));   // posterior mean
+-      mat var_i = inv(lambda0 + n_i * lambda_i);   // posterior variance
++          (lambda0 * mu0vec + lambda_i * weighted_sums);   // posterior mean
++      posterior_var = inv(lambda0 + n_i * lambda_i);   // posterior variance
+       mu_i.row(k - 1) =
+-          rmvnorm(1, mean_i, var_i);   // sample from posterior for mu
++          rmvnorm(1, mean_i, posterior_var);   // sample from posterior for mu
+     }
+ 
+     // Update lambda
+@@ -507,8 +628,6 @@ iterate_t(
+     // Update z and w
+     double w_alpha = (d + 4) / 2;   // shape parameter
+     double w_beta;
+-    IntegerVector qvec = seq_len(q);
+-    NumericVector plogLikj(n, NA_REAL);
+     for (int j = 0; j < n; j++) {
+       w_beta = as_scalar(
+           2 / ((Y.row(j) - mu_i_long.row(j)) * lambda_i *
+@@ -517,37 +636,57 @@ iterate_t(
+       );                                   // scale parameter
+       w[j] = R::rgamma(w_alpha, w_beta);   // sample from posterior for w
+ 
+-      int z_j_prev         = z(j);
+-      IntegerVector qlessk = qvec[qvec != z_j_prev];
+-      int z_j_new          = sample(qlessk, 1)[0];
++      int z_j_prev = z(j);
++      int z_j_new;
++      if (z_j_prev >= 1 && z_j_prev <= q && q > 1) {
++        const IntegerVector &qlessk = proposal_labels[z_j_prev - 1];
++        const int choices = qlessk.size();
++        // Rcpp::EmpiricalSample's size-one path consumes this exact draw.
++        z_j_new = qlessk[static_cast<int>(choices * unif_rand())];
++      } else {
++        IntegerVector qlessk = qvec[qvec != z_j_prev];
++        z_j_new = sample(qlessk, 1)[0];
++      }
+       uvec j_vector        = df_j[j];
++      if (!chol(rooti, sigma_i / w[j])) {
++        throw std::runtime_error("chol(): decomposition failed");
++      }
++      if (rooti.n_rows > 3 && !rooti.is_diagmat()) {
++        if (!arma::auxlib::inv_tr(rooti, 0)) {
++          rooti.soft_reset();
++          throw std::runtime_error("inv(): matrix is singular");
++        }
++      } else {
++        rooti = inv(trimatu(rooti));
++      }
++      const double rootisum = density_log_diagonal_sum(rooti);
++      const double constants = -(double) d / 2.0 * log2pi;
++      const double other_terms = rootisum + constants;
+       double h_z_prev;
+       double h_z_new;
+       if (j_vector.size() != 0) {
+         h_z_prev =
+             gamma / j_vector.size() * 2 * accu((z(j_vector) == z_j_prev)) +
+-            dmvnrm_arma_fast(
+-                Y.row(j), mu_i.row(z_j_prev - 1), sigma_i / w[j], true
+-            )[0];
++            dmvnrm_log_precomputed(
++                Y.row(j), mu_i.row(z_j_prev - 1), rooti, other_terms, density_residual
++            );
+         h_z_new = gamma / j_vector.size() * 2 * accu((z(j_vector) == z_j_new)) +
+-                  dmvnrm_arma_fast(
+-                      Y.row(j), mu_i.row(z_j_new - 1), sigma_i / w[j], true
+-                  )[0];
++                  dmvnrm_log_precomputed(
++                      Y.row(j), mu_i.row(z_j_new - 1), rooti, other_terms, density_residual
++                  );
+       } else {
+-        h_z_prev = dmvnrm_arma_fast(
+-            Y.row(j), mu_i.row(z_j_prev - 1), sigma_i / w[j], true
+-        )[0];
+-        h_z_new = dmvnrm_arma_fast(
+-            Y.row(j), mu_i.row(z_j_new - 1), sigma_i / w[j], true
+-        )[0];
++        h_z_prev = dmvnrm_log_precomputed(
++            Y.row(j), mu_i.row(z_j_prev - 1), rooti, other_terms, density_residual
++        );
++        h_z_new = dmvnrm_log_precomputed(
++            Y.row(j), mu_i.row(z_j_new - 1), rooti, other_terms, density_residual
++        );
+       }
+       double prob_j = exp(h_z_new - h_z_prev);
+       if (prob_j > 1) {
+         prob_j = 1;
+       }
+-      IntegerVector zsample = {z_j_prev, z_j_new};
+-      NumericVector probs   = {1 - prob_j, prob_j};
+-      z(j)                  = sample(zsample, 1, true, probs)[0];
++      z(j) = sample_two_labels(z_j_prev, z_j_new, prob_j);
+       plogLikj[j]           = h_z_prev;
+     }
+     plogLik[i] = sum(plogLikj);

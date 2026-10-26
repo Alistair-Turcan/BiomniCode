@@ -1,0 +1,35 @@
+name: CPU tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OMP_NUM_THREADS: "2"
+      MKL_NUM_THREADS: "2"
+      OPENBLAS_NUM_THREADS: "2"
+      PYTHONHASHSEED: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v6
+      - name: Create environment
+        run: uv venv --python 3.11 .venv
+      - name: Install CPU Torch and tested scientific versions
+        run: |
+          uv pip install --python .venv/bin/python torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+          uv pip install --python .venv/bin/python numpy==2.1.0 scipy==1.15.0 pandas==2.3.1 scanpy==1.11.4 anndata==0.12.1 pytest
+          uv pip install --python .venv/bin/python -e .
+      - name: Run unchanged suites with test-only legacy NumPy alias
+        run: |
+          .venv/bin/python -c 'import numpy as np, pytest; np.float = float; raise SystemExit(pytest.main(["-q", "tests/"]))'

@@ -1,0 +1,15 @@
+name: Manual Docker build (no publishing)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build local image only
+        run: docker build --file dockerfile --tag chrombpnet-optimized:local .

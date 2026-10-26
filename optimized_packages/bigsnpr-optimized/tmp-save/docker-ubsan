@@ -1,0 +1,24 @@
+docker run -v "/${PWD}":/home/bigsnpr --rm -ti --security-opt seccomp=unconfined bigstatsr-debug2
+
+RDcsan -e 'remotes::install_github("privefl/bigstatsr")'
+RDcsan -e 'remotes::install_deps("home/bigsnpr", dependencies = TRUE)'
+
+docker run -v "/${PWD}":/home/bigsnpr --rm -ti --security-opt seccomp=unconfined bigsnpr-debug
+
+RDcsan CMD INSTALL --preclean --install-tests home/bigsnpr
+
+RDcsan -e 'devtools::test("home/bigsnpr", reporter = testthat::LocationReporter)' &> /home/test.out
+RDcsan -e 'devtools::test("home/bigsnpr", filter = "3-", reporter = testthat::LocationReporter)' &> /home/test.out
+grep Sanitizer /home/test.out
+grep failure /home/test.out
+
+RDcsan -e 'devtools::run_examples("home/bigsnpr")' &> /home/ex.out
+grep Sanitizer /home/ex.out
+
+
+docker ps
+docker commit
+docker images
+
+docker run -v "/${PWD}":/home/bigsnpr -ti bigsnpr_1_2_3
+setwd("home/bigsnpr/tmp-data")

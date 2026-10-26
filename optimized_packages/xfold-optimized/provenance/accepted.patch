@@ -1,0 +1,70 @@
+diff --git a/af3_torch/opt/forward/af3t/af3_torch/af3_torch_api.py b/af3_torch/opt/forward/af3t/af3_torch/af3_torch_api.py
+index ffe79620421d191dd4921c1fe7299c9090827af9..e6cf119498c012ba9325006b04c6b99689b7a194 100644
+--- a/af3_torch/opt/forward/af3t/af3_torch/af3_torch_api.py
++++ b/af3_torch/opt/forward/af3t/af3_torch/af3_torch_api.py
+@@ -363,10 +363,28 @@ def run_diffusion(model, batch, embeddings, seed=None, ext=None, steps=None, num
+             torch.manual_seed(int(seed)); torch.cuda.manual_seed_all(int(seed))
+         old = (model.diffusion_steps, model.num_samples)
+         model.diffusion_steps = steps; model.num_samples = num_samples or model.num_samples
++        head = model.diffusion_head
++        # The inherited graph/hoist pair is safe only for an inference request
++        # with no externally managed static state. Never capture user hooks:
++        # they must retain their normal per-call effects and error behavior.
++        scoped_graph = (
++            torch.is_inference_mode_enabled() and not model.training
++            and b.predicted_structure_info.atom_mask.device.type == "cuda"
++            and not getattr(head, "use_hoist", False)
++            and not getattr(head, "use_step_graph", False)
++            and getattr(head, "_static", None) is None
++            and not any(m._forward_pre_hooks or m._forward_hooks
++                        for m in head.modules())
++        )
++        if scoped_graph:
++            head.use_hoist = head.use_step_graph = True
+         try:
+             return model._sample_diffusion(b, embeddings)["atom_positions"].float()
+         finally:
+             model.diffusion_steps, model.num_samples = old
++            if scoped_graph:
++                head.clear_static()
++                head.use_hoist = head.use_step_graph = False
+     mask = b.predicted_structure_info.atom_mask
+     dev = mask.device
+     nl = dh.noise_schedule(torch.linspace(0, 1, steps + 1, device=dev, dtype=torch.float32))
+diff --git a/af3_torch/opt/forward/af3t/af3_torch/xfold/nn/diffusion_transformer.py b/af3_torch/opt/forward/af3t/af3_torch/xfold/nn/diffusion_transformer.py
+index 6963388a00076c5579355399be7cbd815cdc7686..74d31058acd05a5cf7a1fe0f04cb65340349088c 100644
+--- a/af3_torch/opt/forward/af3t/af3_torch/xfold/nn/diffusion_transformer.py
++++ b/af3_torch/opt/forward/af3t/af3_torch/xfold/nn/diffusion_transformer.py
+@@ -120,6 +120,32 @@ class DiffusionTransition(nn.Module):
+ 
+     def forward(self, x: torch.Tensor, single_cond: Optional[torch.Tensor] = None) -> torch.Tensor:
+         x = self.adaptive_layernorm(x, single_cond)
++        from torch.nn.modules import module as module_hooks
++        if (torch.is_inference_mode_enabled() and not self.training
++                and self.c_x == 128 and x.is_cuda
++                and x.dtype in (torch.float32, torch.bfloat16)
++                and torch.is_autocast_enabled("cuda")
++                and torch.get_autocast_dtype("cuda") == torch.bfloat16
++                and not any(m._forward_pre_hooks or m._forward_hooks
++                            for m in self.adaptive_zero_init.modules())
++                and not module_hooks._global_forward_pre_hooks
++                and not module_hooks._global_forward_hooks):
++            from xfold.fastnn import config
++            if config.gated_linear_unit_implementation == "triton":
++                # Attributed selective af3t_glu_proj reuse: keep the original
++                # adaptive normalization and final conditioning multiplication.
++                from af3t_glu_proj import glu_proj
++                zero = self.adaptive_zero_init
++                hidden = zero.transition2.weight.shape[1]
++                weight = self.transition1.weight
++                output = glu_proj(
++                    x, weight[:hidden].to(x.dtype).contiguous(),
++                    weight[hidden:].to(x.dtype).contiguous(),
++                    zero.transition2.weight.to(torch.bfloat16).contiguous())
++                if zero.use_single_cond:
++                    cond = zero.adaptive_zero_cond(single_cond)
++                    output = torch.sigmoid(cond) * output
++                return output
+         c = fastnn.gated_linear_unit(x, self.transition1.weight.T)
+         return self.adaptive_zero_init(c, single_cond)
+ 

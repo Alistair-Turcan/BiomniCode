@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "validated_at_utc": "2026-10-26T15:48:08.903086+00:00",
+  "method": "Fresh candidate ZIP extracted into a clean directory; documented installer and test helper executed.",
+  "software": {
+    "python": "3.11.13",
+    "platform": "Linux",
+    "machine_architecture": "x86_64",
+    "distributions": {
+      "pyscenic": "0+unknown",
+      "ctxcore": "0.2.1.dev23+gf76e0cf48.d20261014",
+      "pytest": "8.4.1",
+      "numpy": "2.1.0",
+      "numba": "0.61.2",
+      "scipy": "1.15.0",
+      "pandas": "2.3.1",
+      "pyarrow": "21.0.0",
+      "setuptools": "80.10.2",
+      "setuptools-scm": "10.3.4"
+    }
+  },
+  "clean_installation": true,
+  "local_source_imports_verified": true,
+  "pyscenic_cli_help_exit_code": 0,
+  "fixtures": {
+    "downloaded_from_exact_upstream_commits": 6,
+    "all_size_and_sha256_checks_passed": true,
+    "fallback_required": false,
+    "bundled_in_zip": false
+  },
+  "repository_tests": [
+    {
+      "repository": "pySCENIC",
+      "passed": 8,
+      "warnings": 1,
+      "pytest_elapsed_seconds": 13.58,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "repository": "ctxcore",
+      "passed": 40,
+      "warnings": 1,
+      "pytest_elapsed_seconds": 23.55,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "test_process_measurement": {
+    "returncode": 0,
+    "elapsed_seconds": 39.821904937,
+    "subprocess_peak_rss_kib": 552588
+  },
+  "test_warnings": "Existing pkg_resources deprecation warning in each pytest process; assertions unchanged.",
+  "source_integrity": {
+    "protected_upstream_files": 100,
+    "protected_python_files": 48,
+    "all_hashes_match_after_install_and_tests": true,
+    "implementation_helpers_and_lock_match_tested_candidate": true
+  },
+  "packaging_fix": "Install helper temporarily supplies supported Versioneer metadata 0+unknown during build, then restores original version modules; prevents folder-name version inference.",
+  "final_only_changes_after_tests": [
+    "README clarification",
+    "this validation receipt",
+    "archive manifest"
+  ],
+  "scope": "Software packaging validation only. Historical real-data AUCell/cisTarget results are separate and were not rerun.",
+  "limitations": [
+    "Linux/Python 3.11 only validated",
+    "Optional test downloads require network access",
+    "No new CI configured; nested upstream CI metadata retained",
+    "No GitHub repository created or pushed"
+  ]
+}

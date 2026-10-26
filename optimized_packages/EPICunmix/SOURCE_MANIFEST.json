@@ -1,0 +1,78 @@
+{
+  "package": "EPICunmix",
+  "upstream_commit": "b512206e3e0bcb9f0720423293094935861fdcde",
+  "optimized_patch_sha256": "efaca5c3ae1a077e0063ad3e7b97b106da5562e583678bf9422468bd552ec2b1",
+  "scientific_code_changed_for_packaging": false,
+  "package_metadata_changed_for_packaging": false,
+  "retained_source_files": {
+    "DESCRIPTION": {
+      "bytes": 890,
+      "sha256": "b2681a20bd94e9491e2d9cd29b6d23a0de0c67c8a26d68cc32880b19a914b72d"
+    },
+    "LICENSE": {
+      "bytes": 35108,
+      "sha256": "9bc4e667074623e2c1a5615368c1435f800d0b582d204c91f370030bd5381996"
+    },
+    "NAMESPACE": {
+      "bytes": 886,
+      "sha256": "e20caf9379df7ed5b1bd0c8524fd6901db763f4852296378dc11b782047107c7"
+    },
+    "R/bmind_de.r": {
+      "bytes": 22290,
+      "sha256": "8bd9558dbbc4a72407d1c6fbf856f6a8e9338dc18e744c3b2134a8d31cd75a65"
+    },
+    "R/bmind_func.r": {
+      "bytes": 21304,
+      "sha256": "37b13a6fcf60318288c80f1bc46729749723a20933f94417ca404be4f0f5b1ca"
+    },
+    "R/deconv_em_func.r": {
+      "bytes": 8156,
+      "sha256": "d79c9d2c32f23d6db547dfbc426de6813c75b21a51cdf9423516de1212125e72"
+    },
+    "R/epic_unmix_func.R": {
+      "bytes": 5242,
+      "sha256": "595cf2ad45ece1c8659f59baf72b8ce7f8ca4be875149806af56dced16dc85c6"
+    },
+    "data/Signature_matrix_Darmanis.csv": {
+      "bytes": 50944,
+      "sha256": "0e81568275b963fd1476670de0d062e29611d9a5b546371acc3a3b4eae20e717"
+    },
+    "data/example.rda": {
+      "bytes": 61728,
+      "sha256": "b01f1ef85cf368c1be72419589d8cff3f57a9891440c1a25e141d51e5cf6bd09"
+    },
+    "data/signature_brain_darmanis.rda": {
+      "bytes": 34729,
+      "sha256": "6cd860331670f7a5f36a2b0bdca7fdcfb178de91092eda0cf9d332e489771874"
+    },
+    "man/bMIND.Rd": {
+      "bytes": 4989,
+      "sha256": "ad94235e0932c033d9556d8399954ef7c8dd0bfcff5006cdf852824622b7ad3a"
+    },
+    "man/bmind_de.Rd": {
+      "bytes": 4911,
+      "sha256": "9a34f39feeb1d50badb995ae04232b6fe2ceebba36c52654388edf8803b584c7"
+    },
+    "man/est_frac.Rd": {
+      "bytes": 748,
+      "sha256": "0e1a1f4b1d884c4976014899f895c04436310aac1ecbea7b088da24cf814be05"
+    },
+    "man/example.Rd": {
+      "bytes": 406,
+      "sha256": "54f46d437dc9a7cd41dfbe4a5ced1c4cf9cdf15eb9b26b4168c1e524e83e36ad"
+    },
+    "man/get_prior.Rd": {
+      "bytes": 1231,
+      "sha256": "024eb7d3dbbe306b1e7be27def0749f14098b5ea4f57d348db9e1dc08b111319"
+    },
+    "man/mind.Rd": {
+      "bytes": 1877,
+      "sha256": "83fdf49f398c22efc3e36962eab382a42dfdcfcb7d58959daea2f1394ad66b64"
+    },
+    "man/run_epic_unmix.Rd": {
+      "bytes": 3459,
+      "sha256": "cdd51b0c693e11581ff5ff216f37929f85fd57bdd6449aa34de559e907d89fe1"
+    }
+  },
+  "verification_basis": "optimization delivery and evaluated frozen source manifests"
+}

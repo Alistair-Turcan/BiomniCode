@@ -1,0 +1,90 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include <assert.h>
+#include "score_vector_int8.h"
+#include "ungapped_simd.h"
+#include "util/simd/transpose.h"
+#include "ungapped.h"
+#include "util/simd/dispatch.h"
+
+using namespace DISPATCH_ARCH;
+
+namespace DP { namespace DISPATCH_ARCH {
+
+void window_ungapped(const Letter *query, const Letter **subjects, int subject_count, int window, int *out) {
+#if defined(__SSE4_1__) | defined(__aarch64__)
+	using Sv = ScoreVector<int8_t, SCHAR_MIN>;
+	using Register = decltype(Sv::data_);
+	constexpr int CHANNELS = ::DISPATCH_ARCH::ScoreTraits<Sv>::CHANNELS;
+	assert(subject_count <= CHANNELS);
+	
+	alignas(CHANNELS) Letter subject_vector[CHANNELS * CHANNELS];
+	Sv score, best;
+	const Letter* subject_ptr[CHANNELS], * query_end = query + window;
+	std::copy(subjects, subjects + subject_count, subject_ptr);
+
+	for (int i = 0; i < window; i += CHANNELS) {
+		transpose(subject_ptr, subject_count, subject_vector, Register());
+		for (size_t j = 0; j < CHANNELS && query < query_end;) {
+			const Sv subject_letters(&subject_vector[j * CHANNELS]);
+			unsigned query_letter = unsigned(*query);
+#ifdef SEQ_MASK
+			query_letter &= (unsigned)LETTER_MASK;
+#endif
+			const Sv match(query_letter, subject_letters.data_);
+			score = score + match;
+			best = max(best, score);
+			++query;
+			subject_ptr[j] += CHANNELS;
+			++j;
+		}
+	}
+
+	int8_t best2[CHANNELS];
+	best.store(best2);
+	const int d = CHANNELS - subject_count;
+	for (int i = 0; i < subject_count; ++i)
+		out[i] = ScoreTraits<Sv>::int_score(best2[d + i]);
+#endif
+}
+
+void window_ungapped_best(const Letter* query, const Letter** subjects, int subject_count, int window, int* out) {
+#if defined(__SSE4_1__) | defined(__aarch64__)
+	if (subject_count < 4) {
+		for (int i = 0; i < subject_count; ++i)
+			out[i] = ungapped_window(query, subjects[i], window);
+	}
+	else {
+		window_ungapped(query, subjects, subject_count, window, out);
+	}
+#else
+	for (int i = 0; i < subject_count; ++i)
+		out[i] = ungapped_window(query, subjects[i], window);
+#endif
+	//else if (subject_count <= 16)
+		//::DP::ARCH_SSE4_1::window_ungapped(query, subjects, subject_count, window, out);
+}
+
+}
+
+DISPATCH_5(void, window_ungapped, const Letter*, query, const Letter**, subjects, int, subject_count, int, window, int*, out);
+DISPATCH_5(void, window_ungapped_best, const Letter*, query, const Letter**, subjects, int, subject_count, int, window, int*, out);
+
+}

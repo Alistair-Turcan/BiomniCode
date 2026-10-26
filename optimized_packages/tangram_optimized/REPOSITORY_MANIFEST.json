@@ -1,0 +1,590 @@
+{
+  "self_excluded": "REPOSITORY_MANIFEST.json",
+  "files": [
+    {
+      "path": ".github/workflows/test_workflow.yml",
+      "bytes": 1111,
+      "sha256": "636130c86b552c2cbdae3acec6fdf9a0d7336735686ce5525b7139a00ed95494"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 750,
+      "sha256": "26dba97ac189e73fe06cbbe017cc0b60d1c34b1b358b2463479f855b6bb1aff3"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 1523,
+      "sha256": "576da33f78a74fe966fdda80b6f8aaa2eafdc2ff0dd856b393e37f5ade1a98f6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4395,
+      "sha256": "d34543acc588d15b0bd665765b350a77d1f77b1e7fb014a66f29f2daca9421b4"
+    },
+    {
+      "path": "REPOSITORY_CHECKS.json",
+      "bytes": 681,
+      "sha256": "16eff14dbffc44b24244656d664e6463d979b00b4a6cd1406860c9b07e1da709"
+    },
+    {
+      "path": "SOURCE_PROVENANCE.json",
+      "bytes": 4345,
+      "sha256": "8fdd5549163b7c258a78b57215f42a9ed3095d535c42ddd386d28f8420d41a94"
+    },
+    {
+      "path": "UPSTREAM_README.md",
+      "bytes": 9432,
+      "sha256": "e39f004fac1efc7b94c9e9aea9c5f52cb884606e38c4797d6563f72ea7f36dbc"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 4774,
+      "sha256": "b66b1b2194ab0bd0979f1b70cd18661581fa0024d0637eba60c3e05d783b69d0"
+    },
+    {
+      "path": "VALIDATION_REPAIR.md",
+      "bytes": 2047,
+      "sha256": "f0ca49025e95a44c4f4c18810d21d78d5a3126a9f3754a1195faa7c12f45046c"
+    },
+    {
+      "path": "cell_selection/__init__.py",
+      "bytes": 28,
+      "sha256": "f0f6bc38a78af01b60d99a69ed5bdb84ce8a4a92cc979ce633bc59d04e6e7435"
+    },
+    {
+      "path": "cell_selection/cell_sampling.py",
+      "bytes": 2079,
+      "sha256": "f83d9f82e8f2af9afdee473bc7ed4d1a9300dd0efe05756e49fcb13986da439d"
+    },
+    {
+      "path": "data/test_ad_sc.h5ad",
+      "bytes": 27999723,
+      "sha256": "fa49de9d37a2cfcc57e28e4c4b341aa040b000568f91a931099e5e5364ece3e4"
+    },
+    {
+      "path": "data/test_ad_sp.h5ad",
+      "bytes": 10763824,
+      "sha256": "4a66814ab1d714cf6105a860188ee1155e6aec0b2f65c6ee957bec4c7778914d"
+    },
+    {
+      "path": "data/test_df.csv",
+      "bytes": 1482800,
+      "sha256": "a75d7c0dad44c90817d73ff43dcb3445a80fa7e724f6bab5caedf86029fab606"
+    },
+    {
+      "path": "docs/Makefile",
+      "bytes": 638,
+      "sha256": "e33bf74d59130029ba24168a813112dd923d7044d780ce942db6645d93f56acf"
+    },
+    {
+      "path": "docs/make.bat",
+      "bytes": 799,
+      "sha256": "e7302d938728984369c2a45c22e67016c7472a1d46ebd4fee145261aa4bb7e9d"
+    },
+    {
+      "path": "docs/requirements.txt",
+      "bytes": 184,
+      "sha256": "15f122be1ec8cf46e4b576b54d2172f081ec4c7ee7e453877d6052a159329700"
+    },
+    {
+      "path": "docs/source/_contributors.rst",
+      "bytes": 470,
+      "sha256": "65f6b4683fb4aa20dd900415ccd0c32a9a3b6dad8a3c2579f90bdaa7b379f1da"
+    },
+    {
+      "path": "docs/source/_static/css/custom.css",
+      "bytes": 860,
+      "sha256": "18c5af70e027d3e52dcc9fafeffb4c06d9b922335d32e1ce32271be0b49b221c"
+    },
+    {
+      "path": "docs/source/_static/images/tangram.png",
+      "bytes": 38321,
+      "sha256": "ee7cf50fe82a9274b4aa2d478b541eb2307f99cceadae588284f2567797583d3"
+    },
+    {
+      "path": "docs/source/_static/images/tangram_loss.gif",
+      "bytes": 7694,
+      "sha256": "20ec9b536be62177303193a5910949367e07e0714d1fa3d3b47d0a7dafa9b33e"
+    },
+    {
+      "path": "docs/source/_static/images/tangram_overview.png",
+      "bytes": 799622,
+      "sha256": "dccdac02a282b5943cc449be139e9c1667cc246d081eb2259680208e1d7480f1"
+    },
+    {
+      "path": "docs/source/_templates/autosummary/base.rst",
+      "bytes": 106,
+      "sha256": "01f1bda1e0cc4ca06c05fda550aafe36894e795ec8993fc9aca1b72909041b31"
+    },
+    {
+      "path": "docs/source/_templates/autosummary/class.rst",
+      "bytes": 677,
+      "sha256": "ace58cfe11d724b7bbb91f6b1b7bd6e4361fd597e83ccb589aa1e685df011ff7"
+    },
+    {
+      "path": "docs/source/_templates/autosummary/module.rst",
+      "bytes": 438,
+      "sha256": "27083cb5fd69013aec27122fa6b07ba37cb4d803427924e71f6f0d55d4a5fc4b"
+    },
+    {
+      "path": "docs/source/cite.rst",
+      "bytes": 364,
+      "sha256": "572071b556330be2b7682803d6ba689766425eefc50b0664261a0ff3c9b4bd07"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_optimizer.Mapper.rst",
+      "bytes": 240,
+      "sha256": "9f8cf7ca095ccd19bf3cd50057cae587685dd9b32ef753fac366a369cad5edd5"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_optimizer.Mapper.train.rst",
+      "bytes": 155,
+      "sha256": "ddd9fd1d1fcbd8626045f56c4391abab825af0262815d800dd8bda8e5337f5a4"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_optimizer.MapperConstrained.rst",
+      "bytes": 284,
+      "sha256": "8d8b0a0fa846c5a023e17bb3deabe30cc8a7c8fa520ab780f45884ca38059eae"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_optimizer.MapperConstrained.train.rst",
+      "bytes": 188,
+      "sha256": "32b9f33b35504be5a0cbbb9a635f3d1f1f93519b82ba91458df28f17a13d6e28"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_optimizer.rst",
+      "bytes": 278,
+      "sha256": "c8f5edca42a0a2536d8e38acb288ccac4da751015f068c7efd5fb03a79863afa"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_utils.adata_to_cluster_expression.rst",
+      "bytes": 196,
+      "sha256": "92d82a6ab3d5e49e9cfd5633c34dbedbcfacf5e5187515d6104650d961441ad8"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_utils.map_cells_to_space.rst",
+      "bytes": 169,
+      "sha256": "7ee7e51b33ff991d824e5d7aa050d55063f1afea56c3e74d4a1ad60e8188dff3"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_utils.pp_adatas.rst",
+      "bytes": 138,
+      "sha256": "ebb60956c499049982e0c3ee7b225e91a075ddc294e0de6427b401fd121ac46b"
+    },
+    {
+      "path": "docs/source/classes/tangram.mapping_utils.rst",
+      "bytes": 305,
+      "sha256": "05a3ea5bf8a3e20453eff7adad33fa2102569f0e68588fc2fbcfa53fa547a0b5"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.construct_obs_plot.rst",
+      "bytes": 158,
+      "sha256": "0d99beaf9ca98df28f510ab115dce6978770a259fc4a142854e0dd6c8d053733"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.convert_adata_array.rst",
+      "bytes": 161,
+      "sha256": "63d5c3f6292abc3dbeb3738663f40c99308763f685b03e47ed293436f4ac0ca5"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.ordered_predictions.rst",
+      "bytes": 159,
+      "sha256": "801d07b109584393554ae9259758cd1be9b1db573f6c45ba836afd000c71e424"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_annotation_entropy.rst",
+      "bytes": 173,
+      "sha256": "809b304596390847a0ed47017ea11bac847e4876e95f6f51c343ced6a055f526"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_auc.rst",
+      "bytes": 126,
+      "sha256": "08c3fcad324e0f5748f7fb55dbd5f91654e5c6c0281dc7edc9c3863d3a0da1eb"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_cell_annotation.rst",
+      "bytes": 164,
+      "sha256": "9c280740a7282b71727dfbc381a74c16146b5f0f713a110f9d1d3788b0d1f75b"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_cell_annotation_sc.rst",
+      "bytes": 175,
+      "sha256": "3d2308903dd7a3dd3d0e208995f89dd5a4bdf2aad3a00ec5f5beebb66f9eb56e"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_gene_sparsity.rst",
+      "bytes": 158,
+      "sha256": "4a20d0bcb93124d4b4c14f3f4ed836a67a69e4a6be0198738b109325f89fd301"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_genes.rst",
+      "bytes": 132,
+      "sha256": "54905e8306e3bf2555a538e65692afe495b5b9ac2a17aaabfc14ba38297bcdac"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_genes_sc.rst",
+      "bytes": 143,
+      "sha256": "9106fe8f0eae0c192358d3db0a489f4e081112b5aeba26ab671fe157f2626a81"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_test_scores.rst",
+      "bytes": 152,
+      "sha256": "cf4ced52b7ceae752c2400c00dcf5d6cd691f772871ea9d492bd7e8d2e745efc"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.plot_training_scores.rst",
+      "bytes": 164,
+      "sha256": "10439cfc6ab6a97ea07809d88154435ef9a45c98fe1567e2f813ceef69fae351"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.q_value.rst",
+      "bytes": 123,
+      "sha256": "dbd2ee8bde962071f3ae6658ef7ecde858105adcb4f3ef17a600f57f17dbd44c"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.quick_plot_gene.rst",
+      "bytes": 149,
+      "sha256": "edb8c29e36c0265ff93880cc1a65a8c0cf60455fdd113604173c74660460f606"
+    },
+    {
+      "path": "docs/source/classes/tangram.plot_utils.rst",
+      "bytes": 578,
+      "sha256": "cf04ee3401af2dc36c14d76449cd95162c9b1b75112c8b1a1750596dfa31a46a"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.annotate_gene_sparsity.rst",
+      "bytes": 153,
+      "sha256": "151875ce7da8c7427b37711d961d8c8c3eab87d85123351f10009d8bd53a5960"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.compare_spatial_geneexp.rst",
+      "bytes": 156,
+      "sha256": "c5f1f6fd1743f4919ff3d86f3747174651c07a14d75e5fd9f6135179c3557190"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.count_cell_annotations.rst",
+      "bytes": 153,
+      "sha256": "a229b97c100bb489c848b9a186eaadb45722427857a44369c75028fac19ee07f"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.create_segment_cell_df.rst",
+      "bytes": 155,
+      "sha256": "ddafd090954aca6b31d4a8b865e93f7efd8e21056623aa28ba5cda9515b5e115"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.cross_val.rst",
+      "bytes": 112,
+      "sha256": "9f4ba1579dba24b98ee642f08ce04f47eb30fff96ea70b4edbb463af0ab8ddec"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.cv_data_gen.rst",
+      "bytes": 120,
+      "sha256": "cef4f7a4d5b08567991f8129168eeaf0853f597d617633a4f114f1d8faf3afe4"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.deconvolve_cell_annotations.rst",
+      "bytes": 168,
+      "sha256": "3feddcfdbb1e635b968ad9188a65fc3262d2939b2aa3260b99c6e6eefee7e39c"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.df_to_cell_types.rst",
+      "bytes": 137,
+      "sha256": "af3a20d7dba8df1df70d305c54a5d6835ff1c3438875fce493363457aee1bdd1"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.eval_metric.rst",
+      "bytes": 118,
+      "sha256": "c0ab642c458f178ec3ef2052de5167fbb6e2bece22b7fee4be2aff57439beaa1"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.get_matched_genes.rst",
+      "bytes": 138,
+      "sha256": "506e6b80743003866c87c0853ac522da6dc90be9993e4e47d629360f94c5feda"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.one_hot_encoding.rst",
+      "bytes": 135,
+      "sha256": "87b7062eca1d565985494a6385eaaab7be995b4cbab5beaba29c17a587d272da"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.project_cell_annotations.rst",
+      "bytes": 159,
+      "sha256": "3ff184c31fde890b1113f2ef159a8ef061b37c0e13a7cfacd48cc6e26f1ae5d9"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.project_genes.rst",
+      "bytes": 124,
+      "sha256": "4f5a133852160419f86ec1a985856facf8cdc0dc675489ab81d7e177f345cdd8"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.read_pickle.rst",
+      "bytes": 118,
+      "sha256": "54af521e8df1e03e7ac5572feb984a5bddfde9483c51a08cee47ccba3028bc5e"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.rst",
+      "bytes": 648,
+      "sha256": "7d26f632c039363e77f849fa688387e71e2beb6c47522d76955c48d7caecd316"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.transfer_annotations_prob.rst",
+      "bytes": 162,
+      "sha256": "fe9ec507769c0ac2f991971816645f48408f68b36355b2ba3b5b7b3467296e26"
+    },
+    {
+      "path": "docs/source/classes/tangram.utils.transfer_annotations_prob_filter.rst",
+      "bytes": 185,
+      "sha256": "7514abea25e23045ccd7492e8f6251992ec981556d0798b71e591e02364f2a1e"
+    },
+    {
+      "path": "docs/source/classes.rst",
+      "bytes": 185,
+      "sha256": "8db83db424225957245cddea4914eeaef019f01bce0b73a95be7ec30d8cd879f"
+    },
+    {
+      "path": "docs/source/conf.py",
+      "bytes": 2603,
+      "sha256": "88956deb066cceddec6773ca240cc49a3eb5ac3761a841238cab0b122b51dc0c"
+    },
+    {
+      "path": "docs/source/getting_started.rst",
+      "bytes": 3729,
+      "sha256": "caabbb0e46c8d7475c1e05aed176d8fd30702a7e412bfe5a48523feb45611322"
+    },
+    {
+      "path": "docs/source/index.rst",
+      "bytes": 1828,
+      "sha256": "0a4e726a228ceded68ff6fc1cfd642710f0e2b4c25a01de5344cca44fb7d6fcd"
+    },
+    {
+      "path": "docs/source/news.rst",
+      "bytes": 756,
+      "sha256": "40e279f1f2a900058eb82bb79fc70f09118bb6813721ce7cd1d2a3247feb2924"
+    },
+    {
+      "path": "docs/source/questions.rst",
+      "bytes": 1181,
+      "sha256": "1b3322d58fbfac5bee80caab0ed998cd79b3bfd9aa697e7f1d29e3089862a14b"
+    },
+    {
+      "path": "docs/source/release_notes.rst",
+      "bytes": 75,
+      "sha256": "a38492a213ec940f62d255f5b7380922e39c4df7ef7444d085371d74fb5463af"
+    },
+    {
+      "path": "docs/source/tutorial_link.nblink",
+      "bytes": 48,
+      "sha256": "701427309071e4ff9a088bdd3c51200cb39db254c3f69a2a0a9d07d047cae85c"
+    },
+    {
+      "path": "docs/source/tutorial_sq_link.nblink",
+      "bytes": 50,
+      "sha256": "554f1f82be0f90d9fcb7b9d06c524cab392ca66529ff2171824e787da3a8c3a9"
+    },
+    {
+      "path": "docs/source/tutorials.rst",
+      "bytes": 101,
+      "sha256": "8a44d8cdf7c2483a0f38e06d8177d051d428b87ec0a9a70aa0de2e3c9f0fca73"
+    },
+    {
+      "path": "docs/source/working.rst",
+      "bytes": 1070,
+      "sha256": "dc97a37f6b4f9f55273979af69189248161bc42619a8a3c3a11f56db73e3bf1c"
+    },
+    {
+      "path": "environment.yml",
+      "bytes": 280,
+      "sha256": "c0041836605a11f05342e2f34b1fb1b20b17b78dfe14720c51ddbc6a6a24c1f6"
+    },
+    {
+      "path": "figures/how_tangram_works.png",
+      "bytes": 2865062,
+      "sha256": "e1522c6ef5f0a172e283b16a80a5fd8ab813ed64d380edf46368a56454534e2d"
+    },
+    {
+      "path": "figures/logo_ RGB_greyscale/TANGRAM logo screen _ RGB greyscale LARGE.jpg",
+      "bytes": 123132,
+      "sha256": "4d4ec429ff37772b2cad47bff17b7cf447406b1c82fef00e3cba26ae2583b61e"
+    },
+    {
+      "path": "figures/logo_ RGB_greyscale/TANGRAM logo screen _ RGB greyscale MEDIUM.jpg",
+      "bytes": 56284,
+      "sha256": "1cc8a220d2bc829a2381cef84169eedddaec6bbfbf5a8bb31a4be5d3f09fca0e"
+    },
+    {
+      "path": "figures/logo_ RGB_greyscale/TANGRAM logo screen _ RGB greyscale SMALL.jpg",
+      "bytes": 31773,
+      "sha256": "7f15f966a7423f5e30b8b8c10c19a43a7b82090710f3f2de331b0c4964904a4b"
+    },
+    {
+      "path": "figures/logo_ RGB_greyscale/TANGRAM logo screen _ RGB greyscale.pdf",
+      "bytes": 54291,
+      "sha256": "4ade355def1365aa65d79a00d8ab41a032f23c4c9d6f7357ba5d3017aa13f579"
+    },
+    {
+      "path": "figures/logo_ RGB_greyscale/TANGRAM logo screen _ RGB greyscale.png",
+      "bytes": 13855,
+      "sha256": "77547a8813158b70277b398961e8d1c741ee47211c12e5f38b43c936b6a7d1a5"
+    },
+    {
+      "path": "figures/logo_ RGB_white/TANGRAM logo screen _ RGB white.pdf",
+      "bytes": 54274,
+      "sha256": "f5f42f6cef34c3959c2d6ac98d77c3954ede5fd50a8f89f7ffe376efbc6d5966"
+    },
+    {
+      "path": "figures/logo_ RGB_white/TANGRAM logo screen _ RGB white.png",
+      "bytes": 13138,
+      "sha256": "480f8c69ac550349ce4544f3044ec6c92c36ec346e12cabb20177d4aef3149ac"
+    },
+    {
+      "path": "figures/logo_RGB colour/TANGRAM logo screen _ RGB colour LARGE.jpg",
+      "bytes": 169100,
+      "sha256": "cff4440eb9e908d8629a776ceb53ca62e981a67835f25de423e4b0b9b3795fce"
+    },
+    {
+      "path": "figures/logo_RGB colour/TANGRAM logo screen _ RGB colour MEDIUM.jpg",
+      "bytes": 83810,
+      "sha256": "c01263f024a9a491ff8306758b6f17cb0dd3f78fbac37968cf22856b7e56e2ca"
+    },
+    {
+      "path": "figures/logo_RGB colour/TANGRAM logo screen _ RGB colour SMALL.jpg",
+      "bytes": 45587,
+      "sha256": "06c33bbaaeedd9917f4fc94a78dd14720518cb5db895c707fc9879a4e44e2998"
+    },
+    {
+      "path": "figures/logo_RGB colour/TANGRAM logo screen _ RGB colour.pdf",
+      "bytes": 54411,
+      "sha256": "d33b80b56cc528867bc7d1948bd7552e8b6cec01c6b98f275ce600613ac632b8"
+    },
+    {
+      "path": "figures/logo_RGB colour/TANGRAM logo screen _ RGB colour.png",
+      "bytes": 13923,
+      "sha256": "6a05859b16550919e2b11054a7a95fa40b034aceee102433b172786bec0fb89b"
+    },
+    {
+      "path": "figures/tangram_large.png",
+      "bytes": 38321,
+      "sha256": "ee7cf50fe82a9274b4aa2d478b541eb2307f99cceadae588284f2567797583d3"
+    },
+    {
+      "path": "figures/tangram_loss.gif",
+      "bytes": 7694,
+      "sha256": "20ec9b536be62177303193a5910949367e07e0714d1fa3d3b47d0a7dafa9b33e"
+    },
+    {
+      "path": "figures/tangram_overview.png",
+      "bytes": 799622,
+      "sha256": "dccdac02a282b5943cc449be139e9c1667cc246d081eb2259680208e1d7480f1"
+    },
+    {
+      "path": "gene_selection/__init__.py",
+      "bytes": 144,
+      "sha256": "b646a3476eeb40fd354551123602f7f2c9ca26417c6c1fdd09b1f05ceb6a190c"
+    },
+    {
+      "path": "gene_selection/celltype_specific_genes.py",
+      "bytes": 361,
+      "sha256": "eba8feddb9e858eb4ded654bf303de484c9732b2a58ebff179828365b80e2d58"
+    },
+    {
+      "path": "gene_selection/highly_variable_genes.py",
+      "bytes": 211,
+      "sha256": "a3a16ed5aa65a9a9032fc1bdbdaecc02ab70a30bdbd79822c161119e2a81951a"
+    },
+    {
+      "path": "gene_selection/spapros_genes.py",
+      "bytes": 301,
+      "sha256": "b3886326b6cbcfd665f9e740e93706de9db351d4d808063950de4a803eea48b6"
+    },
+    {
+      "path": "gene_selection/spatially_variable_genes.py",
+      "bytes": 286,
+      "sha256": "b4d498c783903abb78386775a63b6f420ce2aef4feac3da79929193c88c81908"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 94,
+      "sha256": "458c4c26430b0adde676a38254b422eec4bd39aa0601196231755e08ef06a3e4"
+    },
+    {
+      "path": "setup.py",
+      "bytes": 1023,
+      "sha256": "e04bba6aa7a43ff64228f75553fcaf9d67250a225685f1f4d0b1ee1e0dbc10bf"
+    },
+    {
+      "path": "tangram/__init__.py",
+      "bytes": 1711,
+      "sha256": "e39e6fbc97642604bdb5ef25c8764b48d125676c9f49599f8218e8a7a57946dc"
+    },
+    {
+      "path": "tangram/_cpu_update.cpp",
+      "bytes": 2436,
+      "sha256": "3c624581cdc54048dab3bb30c4b4e11503bb2c93ff3ca225d05d777cbbd59214"
+    },
+    {
+      "path": "tangram/_cpu_update.py",
+      "bytes": 4090,
+      "sha256": "c6eab3820144faa82a0a104168295c90d8c42293c9a243b2a19752781718f06e"
+    },
+    {
+      "path": "tangram/_optim.py",
+      "bytes": 3198,
+      "sha256": "da45e06d05e414ae595608075ef2d9dd244874e08cd9c644d43f61aaa6dccbaf"
+    },
+    {
+      "path": "tangram/_version.py",
+      "bytes": 33,
+      "sha256": "6b0cdd3e99141c22071f64c23a24084f04f900ef010206bf1c1e5d99ea189eb9"
+    },
+    {
+      "path": "tangram/mapping_optimizer.py",
+      "bytes": 36400,
+      "sha256": "67ebdead3ad1babb128b4cda5745b33b5f8e32d5276bc7f588604ed13b5484ea"
+    },
+    {
+      "path": "tangram/mapping_parameter_tuning.py",
+      "bytes": 11488,
+      "sha256": "24f6be4b4654f7418b43d810da215e90a2aad02848d3be520911049b63357dca"
+    },
+    {
+      "path": "tangram/mapping_utils.py",
+      "bytes": 20100,
+      "sha256": "12cbdf61b6b04e3f87eb3583576b26dfc67d378cec004e1bfaf7a6d022310a63"
+    },
+    {
+      "path": "tangram/plot_utils.py",
+      "bytes": 24628,
+      "sha256": "fd10fd5a9bee359797a54ca4d353c27515648b3caa58486b45d3a40ba32bf7a3"
+    },
+    {
+      "path": "tangram/spatial_weights.py",
+      "bytes": 1080,
+      "sha256": "3aa4c1d71ba611dd5f445037c505c9f9fb4e0c8647d5b2ee6992e9428c7be356"
+    },
+    {
+      "path": "tangram/utils.py",
+      "bytes": 34627,
+      "sha256": "f669754ec5c0d6d3023f6ee60a3a867b2b8d2ad3e5eac9a3172bd953db0cfaa3"
+    },
+    {
+      "path": "tests/tangram_test.py",
+      "bytes": 6693,
+      "sha256": "9c1b12388733bbc2d8df7abad40d9da9138058efa36f018ff57121d2b11404c7"
+    },
+    {
+      "path": "tests/test_numerical_regressions.py",
+      "bytes": 6617,
+      "sha256": "68066fbb9c4d02e30e49416e43175c50f7cd98892b536b8ff12721f39c6b9d00"
+    },
+    {
+      "path": "tutorial_tangram_with_squidpy.ipynb",
+      "bytes": 8601850,
+      "sha256": "56a5e01319f823596e0104dd4abfaaeb0ab06005ba6096451c7c2955f39b3408"
+    },
+    {
+      "path": "tutorial_tangram_without_squidpy.ipynb",
+      "bytes": 2350262,
+      "sha256": "ab36ee09896dea76ed087e6aaeb62c6660c78abaf3d73cd32e15b00c802c03bb"
+    }
+  ]
+}

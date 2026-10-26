@@ -1,0 +1,68 @@
+
+colorpalette: bright
+
+# programs
+plink_load: module load gcc/11.3.0 plink/1.9
+partition1: tier1q
+partition2: tier2q
+partition3: tier3q
+
+sim:
+  # color for expected values
+  pointcolor: red
+  replicates: 1000
+  batch_no: 500
+  noise_alpha: [0.1, 0.5, 20]
+  L: 20
+  nL: 80
+
+
+yazar:
+  yazar_ind_col: individual
+  yazar_ct_col: cell_label
+  yazar_pool_col: pool
+  he_nbatch: 500
+  reml_nbatch: 4000
+  radius: 5e5   # cis region size
+  maf: 0.05
+  gwas:
+    # traits from Perez
+    # negative
+    Height: data/ldsc/gwas/alkes/PASS_Height1.sumstats
+    CAD: data/ldsc/gwas/alkes/PASS_Coronary_Artery_Disease.sumstats
+    SCZ: data/ldsc/gwas/alkes/PASS_Schizophrenia.sumstats
+    # positive (still missing Ezcema. Perez didn't use Lupus from Alkes)
+    UC: data/ldsc/gwas/alkes/PASS_Ulcerative_Colitis.sumstats
+    RA: data/ldsc/gwas/alkes/PASS_Rheumatoid_Arthritis.sumstats
+    PBC: data/ldsc/gwas/alkes/PASS_Primary_biliary_cirrhosis.sumstats
+    MS: data/ldsc/gwas/alkes/PASS_Multiple_sclerosis.sumstats
+    IBD: data/ldsc/gwas/alkes/PASS_IBD.sumstats  # doesn't have A1/A2 columns
+    Crohns: data/ldsc/gwas/alkes/PASS_Crohns_Disease.sumstats
+    Celiac: data/ldsc/gwas/alkes/PASS_Celiac.sumstats
+    Lupus: data/ldsc/gwas/alkes/PASS_Lupus.sumstats
+  neg_traits:
+    - Height
+    - CAD
+    - SCZ
+  pos_traits:
+    - UC
+    - RA
+    - PBC
+    - MS
+    - Crohns
+    - Celiac
+    - Lupus
+
+
+perez:
+  he_nbatch: 500
+  reml_nbatch: 10000
+  radius: 5e5   # cis region size
+
+# GWAS has already removed 6:25-34Mb https://storage.googleapis.com/broad-alkesgroup-public/sumstats_formatted/readme.txt
+# https://www.ncbi.nlm.nih.gov/grc/human/regions/MHC?asm=GRCh37
+ldsc: 
+  mhc:
+    chr: 6
+    start: 28477797
+    end: 33448354

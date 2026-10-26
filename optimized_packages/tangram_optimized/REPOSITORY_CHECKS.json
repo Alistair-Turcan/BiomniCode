@@ -1,0 +1,13 @@
+{
+  "scope": "GitHub handoff packaging checks, not a new scientific evaluation",
+  "isolated_wheel_build_passed": true,
+  "wheel_name": "tangram_sc-1.0.4-py3-none-any.whl",
+  "wheel_library_python_and_cpp_sources_match_checkout": true,
+  "native_cpp_source_in_wheel": true,
+  "github_ci_test_command_python_syntax_valid": true,
+  "pyproject_toml_valid": true,
+  "automated_pypi_publishing_enabled": false,
+  "numerical_benchmarks_rerun_for_packaging": false,
+  "full_repository_tests_rerun_for_packaging": false,
+  "build_note": "An initial no-isolation probe found an older local setuptools; the normal isolated uv build supplied the declared build dependencies and succeeded."
+}

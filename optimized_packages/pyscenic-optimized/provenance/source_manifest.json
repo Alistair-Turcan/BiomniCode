@@ -1,0 +1,602 @@
+[
+  {
+    "path": "pySCENIC/.dockerignore",
+    "bytes": 49,
+    "sha256": "813917493f3915d16132c72e7f39f56ff8fb85dfeff8d202b8ba85ea8876902a",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.git-blame-ignore-revs",
+    "bytes": 72,
+    "sha256": "9724536ccb5df58d669075289446e2998dc2d11afa0bbbda69e1f1c266d67afe",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.gitattributes",
+    "bytes": 68,
+    "sha256": "9faefafbee35cacd7397f6142cedee2962367918a03c3bddf52018bd6b155fc5",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.github/ISSUE_TEMPLATE/bug-error-report.md",
+    "bytes": 1331,
+    "sha256": "f871d89e024811ecf4a5dd8a30e43297ecdb21ed595fdd96193705cf58d27a5f",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.github/ISSUE_TEMPLATE/no-questions-here-please-.md",
+    "bytes": 547,
+    "sha256": "175c23b3f436c470b9be5c1247bba028c407286dd51b0671cf0859a7734a8288",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.gitignore",
+    "bytes": 239,
+    "sha256": "b9cdfb1e44fda12027c20078d1523c000dcf12352d10cd046d31b2dbc9949ad4",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/.travis.yml",
+    "bytes": 152,
+    "sha256": "9906bf2f618cad44f33f7e28c14f4b9587b3726304c2c8322faf24821f91a47b",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/CODE_OF_CONDUCT.md",
+    "bytes": 3366,
+    "sha256": "66b44d7a9e7435ca6b40738d50f8ce3fa6baa5b583c274883152480dae6c97a1",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/CONTRIBUTING.md",
+    "bytes": 908,
+    "sha256": "aae8da876ed246be40787a67632076dbe908d373d0976055eb3506000b388f24",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/Dockerfile",
+    "bytes": 1215,
+    "sha256": "b8de899f56006f71896fbef04c80ffd54384433e38a164cd3e23197ae2fa6a22",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/LICENSE.txt",
+    "bytes": 35176,
+    "sha256": "480cf3b68c7be050bd59d28f5f7b67cd6c837001411dd087a4858273d167c7c6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/MANIFEST.in",
+    "bytes": 320,
+    "sha256": "32fa418a70d91ce7f2b22edc5f30467768382eff18cc2389dcbcde0042bd4061",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/README.rst",
+    "bytes": 8503,
+    "sha256": "1f466e468b2db9a744069f40d0ba83017b8791c7da14ed291fee886921520b42",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/pypi.sh",
+    "bytes": 122,
+    "sha256": "96e65396f92b32300ce80a731a1c013c75957ef9b8761e7f5000f6d03bf46ba5",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/pyscenic_with_scanpy.Dockerfile",
+    "bytes": 712,
+    "sha256": "7e3090e42aa410369d65e2c13d135918a0bfae054986e9e241b56742560dfc19",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/requirements.doc.txt",
+    "bytes": 46,
+    "sha256": "946ca6b0738e2a802c0f211b299e7dec5c5e0d11ad2580b52e7b8c2110f53d9e",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/requirements.txt",
+    "bytes": 206,
+    "sha256": "b37c29e6d9bac69231b3d504eeda076cc3ae6bb2f990bf30fc8387d6c463c52b",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/requirements_docker_with_scanpy.txt",
+    "bytes": 208,
+    "sha256": "b866c72b14436c3b10a3d5c4c63b78b98518df80037f657cb2ab359f5767d6eb",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/resources/allTFs_dmel.txt",
+    "bytes": 4726,
+    "sha256": "ddf0dc4384b98c27a0923780283f8ea5aedbbba8084809a3b6384529d90cd021",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/resources/hs_hgnc_curated_tfs.txt",
+    "bytes": 8585,
+    "sha256": "a105805afdfb8cdd1c8b94f028667301cf6fd78c446a9aa26c6901fe98957a98",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/resources/hs_hgnc_tfs.txt",
+    "bytes": 11353,
+    "sha256": "b3d59559bc1c04df61954b4051f1a4e0c17c849f532cd6271f749d832a18509a",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/resources/lambert2018.txt",
+    "bytes": 10199,
+    "sha256": "373b64d3dbc058a7388b795b396cd28dddbf79480ad1cb21ec9fa7a8fc93c27d",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/resources/mm_mgi_tfs.txt",
+    "bytes": 10775,
+    "sha256": "69a5e70c0fcf16443e2c6dc77735c5b5118964f3caa6e03eead2b6e9cfce1870",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/runtox.sh",
+    "bytes": 891,
+    "sha256": "9fd601f3c538b30849c9d0137d3bcfc41c5a669d8f6a9af7ae6a8b1d0de9d91b",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/scripts/cli_test_script.sh",
+    "bytes": 4312,
+    "sha256": "44a11234b8ed5153b5bb3ac04130823bc8866149082af778443ff73c7aad8e1e",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/scripts/fabfile.py",
+    "bytes": 935,
+    "sha256": "25f69a6567c6c1ef95573a96930173c89e368e7e3dfeba18608891e8b3f02634",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/scripts/hpc-grnboost.ini",
+    "bytes": 212,
+    "sha256": "4e05f0d928888d30f82253139b865668b591670ce330fbb48e2004fcdfa2a985",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/scripts/hpc-grnboost.py",
+    "bytes": 3596,
+    "sha256": "a24abe4fefb43d7345e95e1260e685c5f43558eb88ba48832c2a1aa1bf81b67b",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/scripts/hpc-modules.py",
+    "bytes": 2535,
+    "sha256": "7e80529abfae2c2d8108ce9944ba1bf339a6f1118be22810af2f75258dc10ad6",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/scripts/hpc-prune.ini",
+    "bytes": 615,
+    "sha256": "c67eabdaee85c0575d40178741a9f29d55c5e2a143433d85713ffa739f4cb2a6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/scripts/hpc-prune.py",
+    "bytes": 4352,
+    "sha256": "bb1d8f09f16888f2dcd34c0b5f927fd1388ca12565221743f3db4c45b6d185c3",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/setup.cfg",
+    "bytes": 209,
+    "sha256": "a965083aabec1bfa23a5353a95ed2e03950c2de44089d2f496e121f8c98f6520",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/setup.py",
+    "bytes": 3099,
+    "sha256": "c7343af4f39dc170367eeebe227d00f47b86727fb2738065714a21f3d76aeaef",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/__init__.py",
+    "bytes": 315,
+    "sha256": "2958756dd614091e96d8084f8562a39252ecf84615a7eb171308852668e46035",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/_version.py",
+    "bytes": 23667,
+    "sha256": "69c6209715e099cd73d8253e50105c1fe0e7445770633db274688f4fc97346e7",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/aucell.py",
+    "bytes": 18333,
+    "sha256": "3762f95c95d201ef363e02554f23d8bab8997a2cfb57e0bb74cba112729849c8",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/binarization.py",
+    "bytes": 4167,
+    "sha256": "fa7a800077a000469c5fb6f0c09a900b709797750bceb0c349247f4987d3a918",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/cli/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/cli/arboreto_with_multiprocessing.py",
+    "bytes": 5818,
+    "sha256": "74901e993548b9b17e09447547b600148107f4b5d8fd778f30c5194502df8ddd",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/cli/csv2loom.py",
+    "bytes": 1268,
+    "sha256": "a1bee1272a6ec9a325774a3d64a5919654885cd5d7d7150ee2c07a27a682b73b",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/cli/pyscenic.py",
+    "bytes": 24708,
+    "sha256": "3ac2e942b675266ca41047081d367e655e3de1020743bf7829c3668b557653a3",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/cli/utils.py",
+    "bytes": 12936,
+    "sha256": "14b56f2e0d1138af90c372f95f1bbc3e7d8066994445fc1219f24a6c2b55ebe2",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/export.py",
+    "bytes": 13372,
+    "sha256": "830e8dba5d953aa842c0324fcc92fc83b5eee338d58289a7b7050c4a3becd200",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/featureseq.py",
+    "bytes": 7071,
+    "sha256": "fc05b0824d6de08f4bfa0f4c6e59c96b7f436e6a976ef61deecba143dd1f0355",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/log.py",
+    "bytes": 811,
+    "sha256": "6167d304afb0b2027bc27e2cfa50493905ddf467f59e3fb125f698f9336ce755",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/math.py",
+    "bytes": 2592,
+    "sha256": "f747ae0d7adf82bec7c1692f845aec484732dfa7a6c2690280a652716d4fd18f",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/plotting.py",
+    "bytes": 1851,
+    "sha256": "434ff9f933aead15a70c0d16f47aaa4cb1afd1ce3e6bafbd5adac70f40da5f5d",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/prune.py",
+    "bytes": 22361,
+    "sha256": "7c6a736ab537dedb8a0943b3fa6a0b774fcb476789aa22b05576b28b80a817d3",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/rss.py",
+    "bytes": 1312,
+    "sha256": "7015e323dd2c8140c86e3e180225fe2259ff873b76c65c23aee25b7119ffa287",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/transform.py",
+    "bytes": 21221,
+    "sha256": "4041e7cbb15e901ae4b465047f9d6379034aebb3f45b70a88892ccea26cbe530",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/pyscenic/utils.py",
+    "bytes": 18590,
+    "sha256": "5d73ee991328e7b7d4770fe91d29d5af33c7bedfabbcacd07e2dc2bc86cbcf8c",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/resources/__init__.py",
+    "bytes": 15,
+    "sha256": "7a867a19f89f6ea84c2cdce396a44356297ecb20643a654df6e8d280958d0656",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/resources/delineations/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/src/resources/delineations/hg19-limited-upstream10000-tss-downstream10000-full-transcript.bed.gz",
+    "bytes": 941406,
+    "sha256": "e81ae294b3d9cbfc36dbdf68e1ed25030b4d432feb3c42ca4b958d47378d343c",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "pySCENIC/src/resources/delineations/hg19-limited-upstream500.bed.gz",
+    "bytes": 311877,
+    "sha256": "796e5f4462706b7042f4a111ae418c8fc53dfa6b6b18827d6e4f115e8c6e67b6",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "pySCENIC/src/resources/delineations/hg19-limited-upstream5000-tss-downstream5000-full-transcript.bed.gz",
+    "bytes": 720587,
+    "sha256": "8a021544a02178923ffa65c38b4d0da3325d88d868e565e71e904cc12a02a59f",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "pySCENIC/src/resources/scenic.args.txt",
+    "bytes": 249,
+    "sha256": "18d7c0b4ffd67ec1afc3e74a3df3bb1598738e9d79d874d5bc78a6679fcf7a01",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "pySCENIC/src/resources/tests/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/tests/test_aucell.py",
+    "bytes": 1620,
+    "sha256": "14b8397d67e0e9ceff09ffeb79894bbe7d4bf104425490bf62e4b62b62ac9632",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/tests/test_featureseq.py",
+    "bytes": 1233,
+    "sha256": "ee1f6447522c30f89a697db66d261acc765805ad8340a0e95caac0f2c3e8b0f5",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/tests/test_math.py",
+    "bytes": 368,
+    "sha256": "cd80dce83031e2619316b2d8f1662fa0e9327ea29d97105a9cff2bebac60677f",
+    "kind": "python_source"
+  },
+  {
+    "path": "pySCENIC/tox.ini",
+    "bytes": 354,
+    "sha256": "04e28708ec8bd33abae9b8b0783faf6d78058992a01bb6d59642c27aab331ca1",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "pySCENIC/versioneer.py",
+    "bytes": 81181,
+    "sha256": "185096bb24ce355bb7b1bf9f9c9e60a37ebb6a0a2b3904158750077624da9302",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/.coveragerc",
+    "bytes": 388,
+    "sha256": "bffc927393741311e6520d5ca753a968763ef7effe45a84e90444b9575e1cee6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/.github/workflows/ci.yml",
+    "bytes": 1463,
+    "sha256": "d6aaaf9fb09b5843c3e9dfca8157ece74c6b9e1cd2a0b87a3c5444db8f984563",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/.gitignore",
+    "bytes": 1274,
+    "sha256": "7700bb301a1eba5a7a6ce851e859730986b29ae2aadb25b3afbc715cc8ef97c6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/.pylintrc",
+    "bytes": 20698,
+    "sha256": "f1a203fd0a5c90fde9a86b48302a43c47b7937c9aaf78e591f26398f8b897236",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/CHANGELOG.rst",
+    "bytes": 892,
+    "sha256": "664eea7dc8a6008e5fcb9bf33923032ec00eb70aa48d7a3db4b1f0a601e1f39b",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/CONTRIBUTING.rst",
+    "bytes": 3643,
+    "sha256": "e41291d7297a425445489c8b435e44cef6a031c54f98e8f210f954c2dbb97072",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/LICENSE.txt",
+    "bytes": 35176,
+    "sha256": "480cf3b68c7be050bd59d28f5f7b67cd6c837001411dd087a4858273d167c7c6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/MANIFEST.in",
+    "bytes": 143,
+    "sha256": "67a1fb1323adb8d4492572dca7b5a8c4211910d49040fb8fab7f7638889b4e76",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/Makefile",
+    "bytes": 3765,
+    "sha256": "9d314924a361873689f7993955e2bca938f2324bba48474ea1f7b5ab0755afc4",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/README.rst",
+    "bytes": 1386,
+    "sha256": "597f57e50a10b1a69690efeb12475349ec1f75413e2574649e32ba67356c0e59",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/docs/Makefile",
+    "bytes": 588,
+    "sha256": "c7f744b763dc579763db24e4d5c410e7912529a2fc6fb982f9ac9c6db47a5e02",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/docs/source/conf.py",
+    "bytes": 4130,
+    "sha256": "4977d0f108facd9a728b7170614dc6f3228efa1e3c84a06d17edf2e83dab52ac",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/docs/source/index.rst",
+    "bytes": 168,
+    "sha256": "a3c6e0364ed90ee52ff36748732c1b20715b736e1fbad037658caa9f16bbb113",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/pyproject.toml",
+    "bytes": 5161,
+    "sha256": "23ab94dcec07f6db664155efd316c16b397411bcc68281759f238172546f03c6",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/requirements.dev.txt",
+    "bytes": 166,
+    "sha256": "83c9072cb7a964d64cd214c70619452f6e9b02879d77902a1a52332419e3075e",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/requirements.txt",
+    "bytes": 114,
+    "sha256": "d03415fae791ae87a98b90cb3e271ab3a9a04e732ef65bd1d4fa2afb2446ffaf",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/__init__.py",
+    "bytes": 252,
+    "sha256": "39637f5eb8dbbc4952bf83a6640313d44970a340c4a823f883edcfea3660886a",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/_version.py",
+    "bytes": 568,
+    "sha256": "a36e1d3dbf803e3f60169d0651319758b80d2feab1f4b3dde76a14100b7e6231",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/aucell.py",
+    "bytes": 9314,
+    "sha256": "f3c9bdf2525cdcbe8e6c04d542a68d1b673335ebfb59c4a02d1f57fba5293626",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/binarization.py",
+    "bytes": 4512,
+    "sha256": "f686252016bee652d55c23fc12a5a066f7d908141ea4e61fb8533db882d44651",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/ctdb.py",
+    "bytes": 34155,
+    "sha256": "81c415eda31c5d4772325818949f30356cd92f40bd7c93e60a16b60402b26531",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/datatypes.py",
+    "bytes": 17243,
+    "sha256": "e8bf5f15b20ba6a784a3e27237cf8853455129c375a5a1312b4e98ba7f2cf6dc",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/genesig.py",
+    "bytes": 17263,
+    "sha256": "080828628b0603f6c6100ae821f2b803b44f1f15e58f620cecff7ddb6393ca01",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/recovery.py",
+    "bytes": 28844,
+    "sha256": "b1d5b4d3dab69305722ec52ea6f02cb75e57f29593560126d91c8556eebd70f4",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/ctxcore/rnkdb.py",
+    "bytes": 5042,
+    "sha256": "c9694aaf9eecc768224d417270c5026e360b68ad11b6a3f74f02fb97f735b815",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/resources/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/resources/delineations/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/src/resources/delineations/hg19-limited-upstream10000-tss-downstream10000-full-transcript.bed.gz",
+    "bytes": 941406,
+    "sha256": "e81ae294b3d9cbfc36dbdf68e1ed25030b4d432feb3c42ca4b958d47378d343c",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "ctxcore/src/resources/delineations/hg19-limited-upstream500.bed.gz",
+    "bytes": 311877,
+    "sha256": "796e5f4462706b7042f4a111ae418c8fc53dfa6b6b18827d6e4f115e8c6e67b6",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "ctxcore/src/resources/delineations/hg19-limited-upstream5000-tss-downstream5000-full-transcript.bed.gz",
+    "bytes": 720587,
+    "sha256": "8a021544a02178923ffa65c38b4d0da3325d88d868e565e71e904cc12a02a59f",
+    "kind": "runtime_resource"
+  },
+  {
+    "path": "ctxcore/src/resources/tests/__init__.py",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/tests/test-dist.bash",
+    "bytes": 886,
+    "sha256": "e997905ad053132bebc06e243fe8679d23806377f85935ab302e5dfa1bf4061a",
+    "kind": "upstream_package_file"
+  },
+  {
+    "path": "ctxcore/tests/test_datatypes.py",
+    "bytes": 6946,
+    "sha256": "f74f3e9024e4228edef2c7622fd7ab92d4ab73b0d3d9a12baff2330f8d029f8e",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/tests/test_featherdb.py",
+    "bytes": 1364,
+    "sha256": "7d862694e547f945529b2afd1da7d73cd09aafecd1da40de63590effd4716e8f",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/tests/test_genesig.py",
+    "bytes": 5492,
+    "sha256": "d016a367c35df4c4a81600094e12742626fe3cc9e5eb6c9c52c2fbe215f33e86",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/tests/test_recovery.py",
+    "bytes": 4511,
+    "sha256": "12e77d89308d675dace3a724cde149e941616e5ce6cd183b26ffcbadeaade27e",
+    "kind": "python_source"
+  },
+  {
+    "path": "ctxcore/tests/test_version.py",
+    "bytes": 343,
+    "sha256": "206d7f5ec621cafee84f8691ebc87ef424fb47daaba47256c8a03bd6c777367f",
+    "kind": "python_source"
+  }
+]

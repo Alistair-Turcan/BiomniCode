@@ -1,0 +1,9 @@
+{
+  "upstream_url": "https://github.com/jwohlwend/boltz",
+  "upstream_commit": "cb04aeccdd480fd4db707f0bbafde538397fa2ac",
+  "upstream_tag": "v2.2.1",
+  "optimized_archive_sha256": "7f6e96ec4d43511ef30e3542b1c8196b7ed9fd2c62aade24072aceefda954c1e",
+  "ancestry_verified": false,
+  "comparison_basis": "same declared release version",
+  "frozen_utc": "2026-10-18T19:17:55.458738+00:00"
+}

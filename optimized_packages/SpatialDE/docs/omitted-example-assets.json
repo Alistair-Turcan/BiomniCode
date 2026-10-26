@@ -1,0 +1,257 @@
+{
+  "Analysis/BreastCancer/BC_MS_results.csv": {
+    "lfs_oid": "94f516d1400e8757ae20a8c68d9af7ed7d3031c9b8fb78d12b2f00e66dfead24",
+    "data_bytes": 41121,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/BreastCancer/BC_final_results.csv": {
+    "lfs_oid": "097361d9c87b286c87959b74cca75dab97ae4df441127ff3a3e9ecca7c18b044",
+    "data_bytes": 3817002,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/BreastCancer/BC_gProfiler.csv": {
+    "lfs_oid": "8ee1e07a2abae13868d64f9c409bfb9c01edabf6190a0482884b22f4c980243a",
+    "data_bytes": 83025,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/BreastCancer/BC_sample_info.csv": {
+    "lfs_oid": "1c9abd5687268d2a794f72089dfb313ad3fde3187aeb014697c8437f9e2d362d",
+    "data_bytes": 8025,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/BreastCancer/data/HE_layer2_BC.jpg": {
+    "lfs_oid": "c91c71b54eb49bf6f5fcaac0b672aefd03fa42f150d0da7d968b12ceb27c8095",
+    "data_bytes": 4351003,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/BreastCancer/data/Layer2_BC_count_matrix-1.tsv": {
+    "lfs_oid": "fe19a57e382bd35009f5552eec4f94254fab9b6834e74ea7525f219cac559ae2",
+    "data_bytes": 7530255,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Comparison/performance.csv": {
+    "lfs_oid": "8935eefff84f80337781c6235cd0ad9b900cfb02388bd42dab0b7edbba4b3174",
+    "data_bytes": 891,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Frog/Frog_MS_results.csv": {
+    "lfs_oid": "b59c25cbc82fdde9870cc8620496d2e23242f7b6b18f13dfba4d1e14fa707369",
+    "data_bytes": 7497754,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Frog/Frog_final_results.csv": {
+    "lfs_oid": "7e341fc30344506b8ed77d63d7f08ddf61ce6521553411bf530ab9a77bd600bd",
+    "data_bytes": 6770355,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Frog/Frog_sample_info.csv": {
+    "lfs_oid": "35c6194ec201ff1ec6be438d9b31d2ddc681ecb43c06449834b15d51088a0594",
+    "data_bytes": 3438,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Frog/data/GSE65785_clutchApolyA_relative_TPM.csv": {
+    "lfs_oid": "cfea100a1763003f16ae383ef1dfc5d93aaf1d19a074ccaa90acb1f49370c5d0",
+    "data_bytes": 21334097,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/Frog/data/sample_info.csv": {
+    "lfs_oid": "160f7053f56213c73821c8e7f179a87761a34174bb7b19dcad7a9ddcf1c601d3",
+    "data_bytes": 3493,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/codebook.csv": {
+    "lfs_oid": "60bb9e05c4ec23b0975e3080baf9a3362746d15e78cc30aee9e26f3ca632362b",
+    "data_bytes": 6116,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/middle_exp_mat.csv": {
+    "lfs_oid": "5ee0257f0380c89e9f002093d7e2f8740ef6e51304994eef86ad10b662d49714",
+    "data_bytes": 648997,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/middle_sample_info.csv": {
+    "lfs_oid": "f001f81b62f2fc9684c61faec32cbdea4039dc615914b874e57b349a27085f54",
+    "data_bytes": 87941,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part1.csv": {
+    "lfs_oid": "f46a5dee5e2498302569b197cf4494c9ecc4f41ad4ca8dd2ef92b2143cd470b6",
+    "data_bytes": 77993340,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part10.csv": {
+    "lfs_oid": "58c879a1f94c51a23f7c69f1979b5d20baa3d6713f28a19c61fa4e65251573a9",
+    "data_bytes": 77870989,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part11.csv": {
+    "lfs_oid": "863b3fa42163d16f2b7d6e5f51ec3b2e987d242c32fdbbd649c041662b6496be",
+    "data_bytes": 77634672,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part12.csv": {
+    "lfs_oid": "e368254c393eced0c19e505774d316e02aeaded79ffbd422639d902516f35b20",
+    "data_bytes": 78057020,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part13.csv": {
+    "lfs_oid": "271c1205a9fc2f1e67b3ac260cf74d3b941591dc3c42454d912905edf7d4c09c",
+    "data_bytes": 77575542,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part14.csv": {
+    "lfs_oid": "072cdab3eb22df6243d4345a66f0178d1b99eff02f089618b3f44b3bc2516f8c",
+    "data_bytes": 78087108,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part15.csv": {
+    "lfs_oid": "4035d1b56dfa07b60772dd9e79bde7d0b5319a59dd0c2ac663df522b5f57608c",
+    "data_bytes": 77592581,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part16.csv": {
+    "lfs_oid": "4c5f10434f7da461d392e987dc393469c020b6b6bae72e9e50c171e50fdd39c4",
+    "data_bytes": 78135885,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part17.csv": {
+    "lfs_oid": "e008424ddb69a607e80062325efa6477f2cbfd6c81e1a36dbe2648e4e7d1d5b1",
+    "data_bytes": 77790305,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part18.csv": {
+    "lfs_oid": "a0dd7b4cf806e95ca92b74d088a0721e4454beceeae9f248a325435ecbf88057",
+    "data_bytes": 77936631,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part19.csv": {
+    "lfs_oid": "8b1e5dfd3ea635f218a0bd3bd67dcd0f4bdf0e9da6ae5bd4ae208c1b3d15a64c",
+    "data_bytes": 77865489,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part2.csv": {
+    "lfs_oid": "04792a11572583dbe7675a0b9c5a78c99d0127174ccfec6020e884f5061dae80",
+    "data_bytes": 77547432,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part20.csv": {
+    "lfs_oid": "da24e0cb7cde5d120c430e0dd6b1d7861feee1ee26f0af7102e64c8ad7e74197",
+    "data_bytes": 77793055,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part3.csv": {
+    "lfs_oid": "d03bb955623b90b7c43a027f1a6d2b81b489117131a88a81c78bfae57f1f2304",
+    "data_bytes": 78085974,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part4.csv": {
+    "lfs_oid": "c6b647b1590ef24083534aca2795b923e5410b70cd26b6076e0dd631ed468a00",
+    "data_bytes": 77492100,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part5.csv": {
+    "lfs_oid": "4405fc43fb41168d0023c3d92e0fed76eb17942b315a574c7a37c70bb1449f64",
+    "data_bytes": 78105388,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part6.csv": {
+    "lfs_oid": "e8afb782c9626f16366933097ac7063d5ab35b3806a1c199735473f72716f3a7",
+    "data_bytes": 77518759,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part7.csv": {
+    "lfs_oid": "b9dfbffaec1162c667065adc6a60558d84abba59d7e2480f628d5ac19c97e49e",
+    "data_bytes": 78006221,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part8.csv": {
+    "lfs_oid": "3c53111c0dd39f2ef0335f0e0855b95d7915274a855885b020a4b3fb5918e317",
+    "data_bytes": 77617092,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/data/rep6/rep6-part9.csv": {
+    "lfs_oid": "a0ac359c52fc370cc0c0c6b210282a454aff655a435fd85c4aa473af08a3e67c",
+    "data_bytes": 77934422,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/middle_MS_results.csv": {
+    "lfs_oid": "84f0d740c0dcb50029e625a2ee492b24ad3706739b17f2e11fb0dbb4877da91a",
+    "data_bytes": 32225,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/middle_final_results.csv": {
+    "lfs_oid": "0d92236960d4f6a8eab2c4ed87ce9e41cba8825e89ae90f7db0db71a43d77fa4",
+    "data_bytes": 41750,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MERFISH/middle_sample_info.csv": {
+    "lfs_oid": "5c237284e128eb2eb83f291784c0a8fe851cceea3deacc6da6d2c9f608443ecc",
+    "data_bytes": 86440,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/AEH_times.csv": {
+    "lfs_oid": "e3ac2634e1017c58e951e377abe730811dacf502cbb6d106d8e3b75a9b4ce3e0",
+    "data_bytes": 1104,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/MOB_MS_results.csv": {
+    "lfs_oid": "d3799af2b3f4ef2a8332c0dfc6d0af543ea03633802e9bcccc569515dc233989",
+    "data_bytes": 24224,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/MOB_clustering.csv": {
+    "lfs_oid": "56f2733266efc303609997b2c4591464b8e9df750e1ac4f21c3813460762ddfc",
+    "data_bytes": 21245,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/MOB_final_results.csv": {
+    "lfs_oid": "b236ba01bb8ad6b41cc6378ac6f029df5dd68a0f2c5dd85ba244deb5ca54aa62",
+    "data_bytes": 4413096,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/MOB_sample_info.csv": {
+    "lfs_oid": "b1678ba2e04342053efd5d3bc277d98e65280800ff4da0a1a3fc64e74c3214e8",
+    "data_bytes": 8684,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/data/HE_Rep11_MOB.jpg": {
+    "lfs_oid": "1a61865897f76b1404e0951e77930fe2fa95160a89c38f10a46f295923ff743a",
+    "data_bytes": 5096401,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/data/Rep11_MOB_0.csv": {
+    "lfs_oid": "df7cb0b838e2a9b9de3424024d084f38cbfc16b20fbd64ed2787a942039b6c3e",
+    "data_bytes": 8790005,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/MouseOB/data/Rep12_MOB_0.csv": {
+    "lfs_oid": "f6f41966a2554be155a45c2797b3ecb473f299204aa9de3518c89a9b85b8902a",
+    "data_bytes": 9188521,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/SeqFISH/MS_results_43.csv": {
+    "lfs_oid": "2b0d36d2297c6862d694583da3555244570c39ff6a57f926930a47a04fcb5429",
+    "data_bytes": 14020,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/SeqFISH/exp_mat_43.csv": {
+    "lfs_oid": "a6229820d917eab59582652a5f8ffcf8fa5ed124477ae2dd1046834f6bb5062d",
+    "data_bytes": 164964,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/SeqFISH/final_results_43.csv": {
+    "lfs_oid": "dd3e898ab05f7d7d191f95c1b3258d3d59941addc55c40a41c1b78879cbe5b80",
+    "data_bytes": 73342,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/SeqFISH/mmc6.xlsx": {
+    "lfs_oid": "90db449fb3eb792e1b103105cd9147d4c3a7daf82891bf57376d86bd4e527f1a",
+    "data_bytes": 3907928,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  },
+  "Analysis/SeqFISH/sample_info_43.csv": {
+    "lfs_oid": "8f40e082985198819ac5a55129272c64d4cf047cc688313b911ead6df82ebae4",
+    "data_bytes": 6038,
+    "reason": "upstream large example data/result pointer, not bundled source"
+  }
+}

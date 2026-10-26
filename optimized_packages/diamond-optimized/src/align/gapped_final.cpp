@@ -1,0 +1,163 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include <array>
+#include "target.h"
+#include "dp/dp.h"
+#include "output/output_format.h"
+#include "util/util.h"
+#include "def.h"
+#include "util/memory/mem_profile.h"
+
+using std::array;
+using std::list;
+using std::vector;
+
+namespace Extension {
+
+HspValues filter_hspvalues() {
+	HspValues hsp_values = HspValues::NONE;
+	if (config.max_hsps != 1)
+		hsp_values |= HspValues::QUERY_COORDS | HspValues::TARGET_COORDS;
+	if (config.min_id > 0)
+		hsp_values |= HspValues::IDENT | HspValues::LENGTH;
+	if (config.approx_min_id.get(0.0) > 0)
+		hsp_values |= HspValues::COORDS;
+	if (config.query_cover > 0)
+		hsp_values |= HspValues::QUERY_COORDS;
+	if (config.subject_cover > 0)
+		hsp_values |= HspValues::TARGET_COORDS;
+	if (config.query_or_target_cover > 0)
+		hsp_values |= HspValues::COORDS;
+	return hsp_values;
+}
+
+static bool first_round_filter_all(const Search::Config& cfg, HspValues first_round_hsp_values) {
+	if (config.min_id > 0 && !flag_all(first_round_hsp_values, HspValues::IDENT | HspValues::LENGTH))
+		return false;
+	if (config.approx_min_id.get(0.0) > 0 && !flag_all(first_round_hsp_values, HspValues::COORDS))
+		return false;
+	if (config.query_cover > 0 && !flag_all(first_round_hsp_values, HspValues::QUERY_COORDS))
+		return false;
+	if (config.subject_cover > 0 && !flag_all(first_round_hsp_values, HspValues::TARGET_COORDS))
+		return false;
+	if (config.query_or_target_cover > 0 && !flag_all(first_round_hsp_values, HspValues::COORDS))
+		return false;
+	return true;
+}
+
+static void add_dp_targets(const Target& target, int target_idx, const Sequence* query_seq, array<DP::Targets, MAX_CONTEXT>& dp_targets, DP::Flags flags, const HspValues hsp_values, const Mode mode) {
+	const ::Stats::TargetMatrix* matrix = target.matrix.get();
+	const Loc tlen = target.seq.length();
+	for (int frame = 0; frame < align_mode.query_contexts; ++frame) {
+		const Loc qlen = query_seq[frame].length();
+		for (const Hsp& hsp : target.hsp[frame]) {
+			const int64_t dp_size = flag_any(flags, DP::Flags::FULL_MATRIX)
+				? (int64_t)qlen * (int64_t)tlen
+				: (int64_t)DpTarget::banded_cols(qlen, tlen, hsp.d_begin, hsp.d_end) * int64_t(hsp.d_end - hsp.d_begin);
+			const int b = DP::BandedSwipe::bin(hsp_values, flag_any(flags, DP::Flags::FULL_MATRIX) ? qlen : hsp.d_end - hsp.d_begin, hsp.score, 0, dp_size, matrix ? matrix->score_width() : 0, 0);
+			//dp_targets[frame][b].emplace_back(target.seq, tlen, hsp.d_begin, hsp.d_end, Interval(), 0, target_idx, qlen, matrix);
+			dp_targets[frame][b].emplace_back(target.seq, tlen, hsp.d_begin, hsp.d_end, target_idx, qlen, matrix);
+		}
+	}
+}
+
+vector<Match> align(TargetList& targets, const int64_t previous_matches, const Query& query, DP::Flags flags, const HspValues first_round, const bool first_round_culling, Statistics& stat, const Search::Config& cfg, std::pmr::memory_resource& pool) {
+	MEM_SCOPE("extend/traceback");
+	static const int64_t MIN_STEP = 16;
+	vector<Match> r;
+	if (targets.empty())
+		return r;
+	HspValues hsp_values = cfg.output_format->hsp_values;
+	const bool copy_all = config.max_hsps == 1 && flag_all(first_round, hsp_values) && first_round_filter_all(cfg, first_round);
+	if (copy_all)
+		r.reserve(targets.size());
+	for (Target& t : targets)
+		if (copy_all || t.done)
+			r.emplace_back(t.block_id, t.seq, std::move(t.matrix), t.hsp, t.ungapped_score);
+	if (r.size() == targets.size()) {
+		apply_filters(r.begin(), r.end(), query, cfg);
+		return r;
+	}
+	
+	if (cfg.extension_mode == Mode::FULL)
+		flags |= DP::Flags::FULL_MATRIX;
+	if (cfg.extension_mode == Mode::GLOBAL)
+		flags |= DP::Flags::SEMI_GLOBAL;
+	hsp_values |= filter_hspvalues();
+
+	TargetList::iterator it = targets.begin();
+	auto goon = [&r, &cfg, previous_matches]() { return config.toppercent.blank() ? ((int64_t)r.size() + previous_matches) < cfg.max_target_seqs : true; };
+
+	do {
+		array<DP::Targets, MAX_CONTEXT> dp_targets;
+		const int64_t step_size = !first_round_culling && config.toppercent.blank()
+			? std::min(make_multiple(std::max(cfg.max_target_seqs - (int64_t)r.size(), MIN_STEP), MIN_STEP), int64_t(targets.end() - it))
+			: targets.size();
+		
+		r.reserve(r.size() + step_size);
+
+		const int64_t matches_begin = r.size();
+
+		for (auto i = it; i < it + step_size; ++i) {
+			if (i->done)
+				continue;
+			add_dp_targets(*i, (int32_t)r.size(), query.sequence.data(), dp_targets, flags, hsp_values, cfg.extension_mode);
+			r.emplace_back(i->block_id, i->seq, std::move(i->matrix), i->ungapped_score);
+		}
+
+		for (int frame = 0; frame < align_mode.query_contexts; ++frame) {
+			if (dp_targets[frame].empty())
+				continue;
+			DP::Params params{
+				query.sequence[frame],
+				query.title,
+				Frame(frame),
+				query.source_length,
+				query.composition_bias(frame),
+				flags,
+				false,
+				0,
+				-1,
+				hsp_values,
+				stat,
+				cfg.thread_pool.get(),
+				&pool
+			};
+			list<Hsp> hsp = DP::BandedSwipe::swipe(dp_targets[frame], params);
+			while (!hsp.empty())
+				r[hsp.front().swipe_target].add_hit(hsp, hsp.begin());
+		}
+
+		for (int64_t i = matches_begin; i < (int64_t)r.size(); ++i)
+			r[i].inner_culling();
+
+		apply_filters(r.begin() + matches_begin, r.end(), query, cfg);
+		culling(r, cfg);
+
+		stat.inc(Statistics::TARGET_HITS6, step_size);
+		it += step_size;
+
+	} while (it < targets.end() && goon());
+
+	recompute_alt_hsps(r.begin(), r.end(), query, hsp_values, stat, pool);
+	return r;
+}
+
+}

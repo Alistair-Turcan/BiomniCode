@@ -1,0 +1,16 @@
+This repository contains modified pySCENIC and ctxcore source code.
+
+Upstream projects:
+  https://github.com/aertslab/pySCENIC
+  https://github.com/aertslab/ctxcore
+
+Original authorship, copyright notices, licenses and package metadata are
+retained. The root LICENSE reproduces the pySCENIC license text for convenience;
+the package-specific license files and metadata remain authoritative for their
+respective components. No new license or ownership of upstream code or data is
+asserted.
+
+The modifications are the validated optimized implementation described by the
+source identity and hash manifests. Packaging/install/test helpers are supplied
+with this source distribution. Scientific test datasets are not redistributed
+here; optional downloads remain subject to their applicable upstream terms.

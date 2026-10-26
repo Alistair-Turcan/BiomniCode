@@ -1,0 +1,14 @@
+{
+  "implementation": "best validated optimized pySCENIC and ctxcore",
+  "upstream_commits": {
+    "pySCENIC": "06bafba412792f6efa5a552a23bb221cc3bdea1b",
+    "ctxcore": "f76e0cf48d3262889646fb2d2fabb1df3b87f5df"
+  },
+  "best_delivery": {
+    "file": "pyscenic_optimized_further.tar.gz",
+    "sha256": "5ca44c10e3f48594005688bf744ea31e121b1fa5e1bb9b90d26816a4b82870da"
+  },
+  "evaluation_optimized_source_archive_sha256": "b352f9e47c986d3d1010efe2232582915437e3029cc392a20632391565d17b87",
+  "source_python_files_unchanged": true,
+  "packaging_does_not_change_scientific_code": true
+}

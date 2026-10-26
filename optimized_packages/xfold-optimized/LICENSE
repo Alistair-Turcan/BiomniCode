@@ -1,0 +1,30 @@
+License index for the xfold-optimized repository
+==============================================
+
+This file is an index, not a new blanket permission grant or a relicensing of
+the bundled source.
+
+The original component license texts and third-party notices are preserved:
+
+  af3_torch/LICENSE
+  af3_torch/THIRD_PARTY_NOTICES.md
+  af3_torch/third_party_licenses/
+  common/opt_core/LICENSE
+  common/opt_core/THIRD_PARTY_NOTICES.md
+  common/opt_core/third_party_licenses/
+
+Additional third-party LICENSE and NOTICE files reside beside their components.
+Retain these files and all per-file copyright/license headers on redistribution.
+Consult the applicable component text for each portion of the repository.
+
+Important inherited licensing caveat:
+The af3_torch third-party notices record that xfold's repository-level license
+is Apache-2.0 while some carried AlphaFold-derived files retain CC BY-NC-SA 4.0
+headers. The pinned source preserves that mismatch and links the upstream issue.
+This packaging does not resolve that inconsistency or establish legal
+compatibility for a particular intended use.
+
+Model weights and external featurizer binaries are not included. Their own
+terms apply when obtained separately.
+
+See NOTICE.md for provenance and attribution of the accepted modifications.

@@ -1,0 +1,26 @@
+{
+  "method": "RFdiffusion3",
+  "optimized_iteration": "iter-042",
+  "upstream_repository": "https://github.com/RosettaCommons/foundry",
+  "upstream_commit": "4010e3e2e7350edada3e25a45c908c6bf407df4d",
+  "source_inventory_sha256": "cf22d613d227118b0970ff22c8518510fa59f18ed87bb7463d113bf7192eb9b8",
+  "source_archive_sha256": "a861b1432a1c54403feca806ff00097490543a5a753f206e21292daca2f21819",
+  "optimization_patch_sha256": "667350b9f7cc6a86ffd944d1604c40bd7087bc8aec009a5c7b130e3f605d5810",
+  "checkpoint_sha256": "9b3f85923e0d51e9453e15cdd2f8c666e7ce096a60577f57d11bbc54ae6d67c1",
+  "checkpoint_url": "https://files.ipd.uw.edu/pub/rfd3/rfd3_foundry_2025_12_01_remapped.ckpt",
+  "python": "3.12.12",
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "atomworks": "2.1.1",
+  "created_utc": "2026-10-26T15:29:41.483924+00:00",
+  "code_modified_for_packaging": false,
+  "source_member_count": 920,
+  "packaging_renames": {
+    ".env": ".env.example",
+    "README.md": "README.upstream.md",
+    ".gitignore": ".gitignore.upstream"
+  },
+  "model_weights_included": false,
+  "git_history_included": false,
+  "evaluation_artifacts_included": false
+}

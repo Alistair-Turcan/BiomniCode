@@ -1,0 +1,106 @@
+{
+  ".gitignore": {
+    "bytes": 274,
+    "sha256": "b497bdbc902571fe1d7f442d9a758bf016454fc247972f602d59703a74a1c9c2"
+  },
+  "LICENSE": {
+    "bytes": 35147,
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  "PROVENANCE.json": {
+    "bytes": 45439,
+    "sha256": "86b76caa84f340e1256acbfaf5594416500411c40f26422f5df3e6140ce86fae"
+  },
+  "README.md": {
+    "bytes": 4207,
+    "sha256": "e604965414c301730266582a2cd79f299307a9c26edb60e60acf479a0a8b5db7"
+  },
+  "data/test_data.csv": {
+    "bytes": 258483,
+    "sha256": "a661a99ca42be8f0b1b55b2ec4e221f091244c4697cb5c2f69131fdbac5d2a1b"
+  },
+  "graphtools/__init__.py": {
+    "bytes": 114,
+    "sha256": "c3a12d20c36bec0c2f0d906d067e68efb8c4bc9865b935d1bec4aa48c7618edf"
+  },
+  "graphtools/api.py": {
+    "bytes": 12071,
+    "sha256": "8eef68ac140a70362cc0eb81e38abc4d63f4bcaff03cd667f3c21dd284848f78"
+  },
+  "graphtools/base.py": {
+    "bytes": 44282,
+    "sha256": "d18269acfe84bb361261d328157288e16c760a8a518011b88a23677c4c8245ae"
+  },
+  "graphtools/estimator.py": {
+    "bytes": 13990,
+    "sha256": "1032b0f16ebd391cb2f9aa9920102786ac15fe803d596d29339f8ae54d8c3072"
+  },
+  "graphtools/graphs.py": {
+    "bytes": 73471,
+    "sha256": "40d67001a163e98caa1af6b696c0eae63909608d02104b8581193a395ad566b8"
+  },
+  "graphtools/matrix.py": {
+    "bytes": 2091,
+    "sha256": "b6be6868e589fe561312144dce4f6ef516756e3adb20e3651463590f016f7980"
+  },
+  "graphtools/utils.py": {
+    "bytes": 6474,
+    "sha256": "d8e2fd7d3140bd19995f829897b035d39f41236dad2478e47af22de3cc012785"
+  },
+  "graphtools/version.py": {
+    "bytes": 22,
+    "sha256": "5f26eddac90165a98630d94bb8e5f5206fa1e2e231a940c600ef0c2065ab25a7"
+  },
+  "native/magic_csr_native.c": {
+    "bytes": 4282,
+    "sha256": "87964658c2424f231310480538468c768687991c6d1609cf41226adad1d4dc9a"
+  },
+  "python/README.rst": {
+    "bytes": 3987,
+    "sha256": "d678be7e8ce43595661fe66b708b88eb00936486bb73101df0c50edb53a132a9"
+  },
+  "python/magic/__init__.py": {
+    "bytes": 77,
+    "sha256": "12e68e35fd10d40107a49cec54f520e001153e3958e81851a1107dcc0726e546"
+  },
+  "python/magic/magic.py": {
+    "bytes": 40652,
+    "sha256": "88ce126199b85bee1bb3b61a8746fd2b572e29e12603dd9c3501baaa64611b5f"
+  },
+  "python/magic/plot.py": {
+    "bytes": 6259,
+    "sha256": "29c7aba98db4e5d307c90f4bd278ceb638b936f4e8d37058aee44e3a098f6c34"
+  },
+  "python/magic/utils.py": {
+    "bytes": 5967,
+    "sha256": "ed88121304273b702bee937ed259f185b4a7310e20a108cbdffa2ddc4b0d59da"
+  },
+  "python/magic/version.py": {
+    "bytes": 22,
+    "sha256": "10f9a05ce7562a4b394bffd9307ecdbbac6901e56b6697f1685cb8a7292ec9e2"
+  },
+  "python/requirements.txt": {
+    "bytes": 127,
+    "sha256": "19a1f830e788c2351edf856aa1e822e73ca06ed1c6c8a2a18d339737f3533388"
+  },
+  "python/setup.py": {
+    "bytes": 2092,
+    "sha256": "f9fc1d765263cb8f817038fc7903ee71a8a9f4cbacfd9bb7e9751deb5b70d06f"
+  },
+  "requirements_runtime.txt": {
+    "bytes": 592,
+    "sha256": "a2de99f8c4ee8f6c0068310b677fa67149fd977752ba332e5fcee96a3797555c"
+  },
+  "setup.py": {
+    "bytes": 941,
+    "sha256": "82da09ef007fe5953801be76365713aa704d9f5664353233c3dbba7402b563d8"
+  },
+  "test/test.py": {
+    "bytes": 4340,
+    "sha256": "242a6a62dcd95e1a1e80a9429c226d2249c765579fc9008120d8634ac470f34d"
+  },
+  "test/test_parity_repairs.py": {
+    "bytes": 5009,
+    "sha256": "56fa648c8c2fcf9d36a99c3b1739ca55aa082f2c5b0aa66485e99c96ed58492c"
+  }
+}

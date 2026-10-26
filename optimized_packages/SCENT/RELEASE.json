@@ -1,0 +1,123 @@
+{
+  "method": "SCENT",
+  "release": "Corrected optimized source used in the completed evaluation",
+  "upstream_package_version": "1.0.1",
+  "base_upstream_commit": "e80b5ba6b445f972c7fe28fb41e24ef4f5b2e373",
+  "optimized_patch_sha256": "d6a54c6ae646b216002b83409b589cc1ffc9bc1156f92cc760c60bb35dd37952",
+  "scientific_source_code_unchanged": true,
+  "packaging_only_changes": {
+    "README.md": "Identify the optimized checkout and install this repository rather than upstream.",
+    ".Rbuildignore": "Exclude release provenance metadata from the built R package."
+  },
+  "omitted_OS_metadata": [
+    "Parallelized Bash Script/.DS_Store",
+    "fig/.DS_Store"
+  ],
+  "files": {
+    ".Rbuildignore": {
+      "bytes": 45,
+      "sha256": "62e892527f1f36dc5f9a932c39bdcf5e6ffe0b8dff2a34668c349a8fc0ecb464"
+    },
+    ".gitignore": {
+      "bytes": 105,
+      "sha256": "37e157e03c8820c700a15adc42dbb6ded805765fb50ab1de545763abf27b5265"
+    },
+    "DESCRIPTION": {
+      "bytes": 926,
+      "sha256": "eafea04a13f8dbfe242c1d5f93a76d762d510e0b6f4c50b21d4212134baf743c"
+    },
+    "LICENSE": {
+      "bytes": 46,
+      "sha256": "aea13e9e52f3af7964f2b6b844f515404a77f4b101eb4a37c60deac080eb9ee2"
+    },
+    "NAMESPACE": {
+      "bytes": 526,
+      "sha256": "e47afdd587c5b2e83649e2fd7a93ad8ddef9757c8ce6dd22a463bf6231dd7024"
+    },
+    "Parallelized Bash Script/SCENT_parallelization.R": {
+      "bytes": 1377,
+      "sha256": "c2c9d50e5cd2420022fcbaa9700609e22f95f78185f2f2e05ff2fbda431610c1"
+    },
+    "Parallelized Bash Script/parallelizedSCENT.sh": {
+      "bytes": 497,
+      "sha256": "1cb58b5804923fba8c4348d5275ee15447ce5d3a46d5d51d129e1b160e1d4a5f"
+    },
+    "R/.gitignore": {
+      "bytes": 95,
+      "sha256": "ac8881472e35bc175cb6a24a53ca91b414797f9acae8f8b09282163ea67f6670"
+    },
+    "R/SCENTfunctions.R": {
+      "bytes": 14818,
+      "sha256": "2f0af6a640abfbd2327a160ce68d4a839ecbc51ca8f88219178cde5c5f6ba11c"
+    },
+    "R/import_packages.R": {
+      "bytes": 189,
+      "sha256": "694a965ce643dbca8caf7bfb1b1b63fcf26e849ad050800102c6015bb383f07f"
+    },
+    "README.md": {
+      "bytes": 11919,
+      "sha256": "48a0634307d869e95fef9a2d2c21c2119ae87f7cc988c6acb6a660a3df8cfac4"
+    },
+    "SCENT.Rproj": {
+      "bytes": 396,
+      "sha256": "24bd927789b96b7f321c6f1299510040edc21a9f189bcbcd1b7af680269d908e"
+    },
+    "data/GeneBody_500kb_margin.bed": {
+      "bytes": 732975,
+      "sha256": "b45bd2036fbb0d0679764fea87906914283354ce53eac2ee53b943a316bc9318"
+    },
+    "fig/cover_image.png": {
+      "bytes": 276221,
+      "sha256": "d578af092f50d9b52e4bfd390afcb8e34d131d9009321ef72afe82d20d9d6f25"
+    },
+    "fig/cover_image2.png": {
+      "bytes": 269631,
+      "sha256": "3a6dd096d577b7def92cf8ec6c3c73801e00fcc209b3a41fe2fadb2dc63626d8"
+    },
+    "man/CreatePeakToGeneList.Rd": {
+      "bytes": 895,
+      "sha256": "98bbacca19511a05989571adb43d959a4b839d9aa1ff8c173869eb7486b13314"
+    },
+    "man/SCENT-class.Rd": {
+      "bytes": 1121,
+      "sha256": "ee9c92c5bc9ac512f4788736a46a7e453256c6e2e8624b01e14db98bf83c8e2b"
+    },
+    "man/SCENT_algorithm.Rd": {
+      "bytes": 895,
+      "sha256": "85febda970151d3166e1b43d8642aa7364fd09b0fe3b43e60274b6f4c09a81b9"
+    },
+    "man/assoc_negbin.Rd": {
+      "bytes": 713,
+      "sha256": "e39a2e5340a2fde4740313fa7b2b71fd6e33a0d27f9081bac247674c973af371"
+    },
+    "man/assoc_poisson.Rd": {
+      "bytes": 696,
+      "sha256": "f0b7eec865b019782578e874ad53ebe3cacc4e219173630d5eaacb1573f9a7cc"
+    },
+    "man/basic_p.Rd": {
+      "bytes": 480,
+      "sha256": "9af14126aec50845e39a58d7ed2f824fb2b1de7627d71ed58ca8200c63926264"
+    },
+    "man/check_dimensions.Rd": {
+      "bytes": 556,
+      "sha256": "78ae725c83584fc62e8d2c3b95f903adbccf1ac5f53d8e3820a3ae5d54f8cb69"
+    },
+    "man/interp_pval.Rd": {
+      "bytes": 431,
+      "sha256": "7eb3958053ae8d52909a968af7fb12cc2af73d440595fbaaa5b499e9100fd50e"
+    },
+    "vignettes/.gitignore": {
+      "bytes": 65,
+      "sha256": "ec7cef43faf8a09ce6b7fc11edb7221a045537058e540eb24898fe8110c3b7c3"
+    },
+    "vignettes/SCENT_interactive.Rmd": {
+      "bytes": 2627,
+      "sha256": "efd5be09c4cd6c9890f872ad7d9741d2763dd4a3e5f0b81d1451d9c39bcbd3f6"
+    },
+    "vignettes/SCENT_parallelize.Rmd": {
+      "bytes": 1897,
+      "sha256": "730a7bda80e5c624d78896857bb89bdeac9ae2b6e8c3254f46f703cf1ceaa3b9"
+    }
+  },
+  "inventory_note": "This inventory excludes RELEASE.json itself."
+}

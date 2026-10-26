@@ -1,0 +1,68 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#pragma once
+#include <cstdio>
+#include <exception>
+#include <string>
+
+#ifdef _MSC_VER
+
+typedef __int64 ssize_t;
+#define STDIN_FILENO _fileno(stdin)
+#define STDOUT_FILENO _fileno(stdout)
+#define PACKED_ATTRIBUTE
+#define FORCE_INLINE __forceinline static
+#define FLATTEN
+#define UNLINK _unlink
+#define NO_INLINE
+#define COLD
+#define UNLIKELY(x) x
+#define UNREACHABLE
+
+#else
+
+#ifdef __sparc__
+#define PACKED_ATTRIBUTE
+#else
+#define PACKED_ATTRIBUTE __attribute__((packed))
+#endif
+#define FORCE_INLINE __attribute__((always_inline)) static inline
+#define FLATTEN __attribute__((flatten))
+#define UNLINK unlink
+#define NO_INLINE __attribute__ ((noinline))
+#define COLD __attribute__((cold))
+#define UNLIKELY(x) __builtin_expect((long)x, 0)
+#define UNREACHABLE __builtin_unreachable();
+
+#endif
+
+#ifdef __linux__
+#define POSIX_OPEN(x,y,z) open64(x,y,z)
+#define POSIX_OPEN2(x,y) open64(x,y)
+#else
+#define POSIX_OPEN(x,y,z) open(x,y,z)
+#define POSIX_OPEN2(x,y) open(x,y)
+#endif
+
+#if __cplusplus >= 201703L
+#define NODISCARD [[nodiscard]]
+#else
+#define NODISCARD
+#endif

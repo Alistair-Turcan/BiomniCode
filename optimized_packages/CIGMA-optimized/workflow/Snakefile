@@ -1,0 +1,93 @@
+import colorsys
+import sys, os, re, time, shutil, gzip 
+import numpy as np, pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import sparse
+
+from snakemake.utils import Paramspace 
+
+
+# make a logs folders to save log files
+os.makedirs('./logs/', exist_ok=True)
+
+
+# configure
+configfile: "config/config.yaml"
+
+
+# par
+mycolors = sns.color_palette(config['colorpalette'])
+chrs = range(1, 23)
+
+
+# wildcard constraints
+wildcard_constraints: fixed = '\w+'
+wildcard_constraints: random = '\w+'
+wildcard_constraints: chr='[0-9]+'
+wildcard_constraints: i='[0-9]+'
+wildcard_constraints: k='[0-9]+'
+wildcard_constraints: rep='[0-9]+'
+wildcard_constraints: n='[0-9]+'
+wildcard_constraints: L='[0-9\.]+'
+wildcard_constraints: nL='[0-9]+'
+wildcard_constraints: gset='[a-zA-Z\d]+'
+wildcard_constraints: ngene='[0-9]+'
+wildcard_constraints: geno_pca_n='\d+'
+wildcard_constraints: op_pca_n='\d+'
+wildcard_constraints: maxit='[0-9]+'
+wildcard_constraints: reltol='[^/]+'
+# wildcard_constraints: p='[\d\w\.]+'
+wildcard_constraints: p='[^/]+'
+wildcard_constraints: window='[0-9]+'
+wildcard_constraints: nearbywindow='[a-z0-9]+'
+wildcard_constraints: binsize='[0-9]+'
+wildcard_constraints: l='[^/]+'
+wildcard_constraints: r='[^/]+'
+wildcard_constraints: disease='[^/]+'
+wildcard_constraints: model='\w+'
+wildcard_constraints: var_nu='[^/]+'
+wildcard_constraints: transform='[^/]+'
+wildcard_constraints: alpha='[^/]+'
+wildcard_constraints: prop='[^/]+'
+wildcard_constraints: lam='[^/]+'
+wildcard_constraints: h2='[^/]+'
+wildcard_constraints: anc='\w+'
+wildcard_constraints: status='\w+'
+wildcard_constraints: gwas='\w+'
+wildcard_constraints: ct_random='\w+'
+wildcard_constraints: ct_fixed='\w+'
+wildcard_constraints: ctnu='\w+'
+wildcard_constraints: cell_no='[\w]+'
+wildcard_constraints: cell_prop='[\w\.]+'
+wildcard_constraints: maf='[\w\.-]+'
+wildcard_constraints: min_maf='[\w\.-]+'
+wildcard_constraints: max_cells='\d+'
+wildcard_constraints: prop_reads='[\d\.]+'
+wildcard_constraints: permuted_cts = '\w+'
+wildcard_constraints: dist_g = '\w+'
+wildcard_constraints: dist_v = '\w+'
+wildcard_constraints: gene_prop = '[\d\.]+'
+wildcard_constraints: feature = '\w+'
+wildcard_constraints: cc = '\w+'
+wildcard_constraints: gene = '\w+'
+wildcard_constraints: ld='[^/]+'
+
+
+
+
+############### read parameters ################
+yazar_params = pd.read_table('yazar.params.txt', dtype="str", comment='#')
+yazar_paramspace = Paramspace(yazar_params, filename_params="*")
+
+
+
+############### load rules ################
+
+include: 'rules/common.smk'
+include: 'rules/sim.smk'
+include: 'rules/yazar.smk'
+# include: 'rules/yazar.add.smk'
+include: 'rules/yazar_sim.smk'
+include: 'rules/perez.smk'
+

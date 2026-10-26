@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+
+^PACKAGING\.md$
+^SOURCE_MANIFEST\.json$

@@ -1,0 +1,4 @@
+## iter24: OpenMP for column-parallel kernels (bitwise-safe: per-column FP
+## op order is preserved exactly; see scale_zero_na_scale_cpp comments).
+PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS)
+PKG_LIBS = $(SHLIB_OPENMP_CXXFLAGS)

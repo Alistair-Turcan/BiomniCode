@@ -1,0 +1,22 @@
+# R session and local environment state
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.Rcheck/
+*.Rcheck/
+.Rlib/
+renv/library/
+
+# Generated native build artifacts
+src/*.o
+src/*.so
+src/*.dll
+src/*.a
+src/*.dylib
+src/symbols.rds
+
+# Local package builds and platform metadata
+CellChat_*.tar.gz
+.DS_Store
+Thumbs.db

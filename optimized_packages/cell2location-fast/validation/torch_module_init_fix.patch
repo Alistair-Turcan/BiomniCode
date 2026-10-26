@@ -1,0 +1,28 @@
+--- a/cell2location/models/_cell2location_torch_module.py
++++ b/cell2location/models/_cell2location_torch_module.py
+@@ -14,7 +14,7 @@
+                  N_cells_mean_var_ratio=1.0, alpha_g_phi_hyp_prior=None,
+                  gene_add_alpha_hyp_prior=None, gene_add_mean_hyp_prior=None,
+                  detection_hyp_prior=None, w_sf_mean_var_ratio=5.0,
+-                 init_vals=None, init_alpha=20.0, dropout_p=0.0):
++                 init_vals=None, init_alpha=20.0, dropout_p=0.0, init_scale=0.1):
+         super().__init__()
+         if m_g_gene_level_prior is None: m_g_gene_level_prior = {"mean": 1, "mean_var_ratio": 1.0, "alpha_mean": 3.0}
+         if alpha_g_phi_hyp_prior is None: alpha_g_phi_hyp_prior = {"alpha": 9.0, "beta": 3.0}
+@@ -50,8 +50,14 @@
+         self.register_buffer("eps", torch.tensor(1e-8))
+         if dropout_p and dropout_p != 0: self.dropout = nn.Dropout(p=dropout_p)
+         self.init_alpha = init_alpha; self.init_vals = init_vals
+-        # Variational parameters
+-        def mk(shape): return (nn.Parameter(torch.zeros(shape)), nn.Parameter(torch.ones(shape) * 0.1))
++        # Variational parameters.
++        # Scales are stored unconstrained and passed through softplus in _sl(), exactly like
++        # Pyro AutoNormal's PyroParam(0.1, constraint=softplus_positive). The raw init must
++        # therefore be softplus^{-1}(init_scale) = log(exp(init_scale) - 1) (~ -2.2522 for 0.1);
++        # initialising the raw parameter to 0.1 would give an effective initial scale of
++        # softplus(0.1) ~ 0.744, i.e. ~7.4x more initial posterior noise than the Pyro guide.
++        init_scale_unconstrained = math.log(math.expm1(init_scale))
++        def mk(shape): return (nn.Parameter(torch.zeros(shape)), nn.Parameter(torch.full(shape, init_scale_unconstrained)))
+         (self.locs_m_g_mean, self.scales_m_g_mean) = mk((1, 1))
+         (self.locs_m_g_alpha_e_inv, self.scales_m_g_alpha_e_inv) = mk((1, 1))
+         (self.locs_m_g, self.scales_m_g) = mk((1, n_vars))

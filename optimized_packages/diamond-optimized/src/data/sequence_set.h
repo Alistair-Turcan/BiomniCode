@@ -1,0 +1,58 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#pragma once
+#include "basic/sequence.h"
+#include "string_set.h"
+#include "basic/value.h"
+
+struct SequenceSet : public StringSetBase<Letter, Sequence::DELIMITER, 1>
+{
+
+	SequenceSet();
+	SequenceSet(StringSetBase&& string_set):
+		StringSetBase(std::move(string_set))
+	{}
+	
+	void print_stats() const;
+
+	Sequence operator[](size_t i) const
+	{
+		return Sequence(ptr(i), (Loc)length(i));
+	}
+
+	std::pair<Length, Length> len_bounds(Length min_len) const;
+
+	Length max_len(size_t begin, size_t end) const;
+
+	std::vector<uint32_t> partition(unsigned n_part, bool shortened = false, bool context_reduced = false) const;
+
+	size_t reverse_translated_len(size_t i) const;
+
+	TranslatedSequence translated_seq(const Sequence& source, size_t i) const;
+
+	size_t avg_len() const;
+
+	virtual ~SequenceSet();
+	std::vector<std::pair<Loc, BlockId>> lengths() const;
+	Loc source_length(BlockId i) const;
+
+};
+
+size_t max_id_len(const StringSet& ids);

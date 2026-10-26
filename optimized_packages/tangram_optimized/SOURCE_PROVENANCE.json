@@ -1,0 +1,112 @@
+{
+  "method": "Tangram",
+  "source": "Delivered further-optimized current-best candidate iter030",
+  "upstream_commit": "4c68995a418f41dc8caef567598c4d9b47781a13",
+  "validated_source_archive_sha256": "e80640ae91bcb2508c28d8a51991130ca96c64e021bbd2884161fff412405259",
+  "implementation_python_cpp_and_license_files_verified_unchanged": 23,
+  "implementation_files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "576da33f78a74fe966fdda80b6f8aaa2eafdc2ff0dd856b393e37f5ade1a98f6"
+    },
+    {
+      "path": "cell_selection/__init__.py",
+      "sha256": "f0f6bc38a78af01b60d99a69ed5bdb84ce8a4a92cc979ce633bc59d04e6e7435"
+    },
+    {
+      "path": "cell_selection/cell_sampling.py",
+      "sha256": "f83d9f82e8f2af9afdee473bc7ed4d1a9300dd0efe05756e49fcb13986da439d"
+    },
+    {
+      "path": "docs/source/conf.py",
+      "sha256": "88956deb066cceddec6773ca240cc49a3eb5ac3761a841238cab0b122b51dc0c"
+    },
+    {
+      "path": "gene_selection/__init__.py",
+      "sha256": "b646a3476eeb40fd354551123602f7f2c9ca26417c6c1fdd09b1f05ceb6a190c"
+    },
+    {
+      "path": "gene_selection/celltype_specific_genes.py",
+      "sha256": "eba8feddb9e858eb4ded654bf303de484c9732b2a58ebff179828365b80e2d58"
+    },
+    {
+      "path": "gene_selection/highly_variable_genes.py",
+      "sha256": "a3a16ed5aa65a9a9032fc1bdbdaecc02ab70a30bdbd79822c161119e2a81951a"
+    },
+    {
+      "path": "gene_selection/spapros_genes.py",
+      "sha256": "b3886326b6cbcfd665f9e740e93706de9db351d4d808063950de4a803eea48b6"
+    },
+    {
+      "path": "gene_selection/spatially_variable_genes.py",
+      "sha256": "b4d498c783903abb78386775a63b6f420ce2aef4feac3da79929193c88c81908"
+    },
+    {
+      "path": "setup.py",
+      "sha256": "e04bba6aa7a43ff64228f75553fcaf9d67250a225685f1f4d0b1ee1e0dbc10bf"
+    },
+    {
+      "path": "tangram/__init__.py",
+      "sha256": "e39e6fbc97642604bdb5ef25c8764b48d125676c9f49599f8218e8a7a57946dc"
+    },
+    {
+      "path": "tangram/_cpu_update.cpp",
+      "sha256": "3c624581cdc54048dab3bb30c4b4e11503bb2c93ff3ca225d05d777cbbd59214"
+    },
+    {
+      "path": "tangram/_cpu_update.py",
+      "sha256": "c6eab3820144faa82a0a104168295c90d8c42293c9a243b2a19752781718f06e"
+    },
+    {
+      "path": "tangram/_optim.py",
+      "sha256": "da45e06d05e414ae595608075ef2d9dd244874e08cd9c644d43f61aaa6dccbaf"
+    },
+    {
+      "path": "tangram/_version.py",
+      "sha256": "6b0cdd3e99141c22071f64c23a24084f04f900ef010206bf1c1e5d99ea189eb9"
+    },
+    {
+      "path": "tangram/mapping_optimizer.py",
+      "sha256": "67ebdead3ad1babb128b4cda5745b33b5f8e32d5276bc7f588604ed13b5484ea"
+    },
+    {
+      "path": "tangram/mapping_parameter_tuning.py",
+      "sha256": "24f6be4b4654f7418b43d810da215e90a2aad02848d3be520911049b63357dca"
+    },
+    {
+      "path": "tangram/mapping_utils.py",
+      "sha256": "12cbdf61b6b04e3f87eb3583576b26dfc67d378cec004e1bfaf7a6d022310a63"
+    },
+    {
+      "path": "tangram/plot_utils.py",
+      "sha256": "fd10fd5a9bee359797a54ca4d353c27515648b3caa58486b45d3a40ba32bf7a3"
+    },
+    {
+      "path": "tangram/spatial_weights.py",
+      "sha256": "3aa4c1d71ba611dd5f445037c505c9f9fb4e0c8647d5b2ee6992e9428c7be356"
+    },
+    {
+      "path": "tangram/utils.py",
+      "sha256": "f669754ec5c0d6d3023f6ee60a3a867b2b8d2ad3e5eac9a3172bd953db0cfaa3"
+    },
+    {
+      "path": "tests/tangram_test.py",
+      "sha256": "9c1b12388733bbc2d8df7abad40d9da9138058efa36f018ff57121d2b11404c7"
+    },
+    {
+      "path": "tests/test_numerical_regressions.py",
+      "sha256": "68066fbb9c4d02e30e49416e43175c50f7cd98892b536b8ff12721f39c6b9d00"
+    }
+  ],
+  "repository_only_changes": [
+    "README.md replaced with optimized-fork installation guide; original retained as UPSTREAM_README.md",
+    "VALIDATION.md updated to distinguish current evaluation from earlier repair; original retained as VALIDATION_REPAIR.md",
+    "Old PyPI publishing workflow removed; no automated package publishing",
+    "CI modernized to Python 3.11 and explicit test-process-only legacy NumPy alias",
+    "Minimal pyproject.toml build configuration and expanded local-artifact ignores",
+    "Source provenance and repository checksum manifest added"
+  ],
+  "evaluation_payloads_included": false,
+  "small_upstream_test_fixtures_and_tutorials_preserved": true,
+  "new_biological_benchmarks_or_full_test_reruns_performed_during_packaging": false
+}

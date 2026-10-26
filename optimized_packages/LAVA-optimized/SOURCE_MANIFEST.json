@@ -1,0 +1,258 @@
+{
+  "upstream_commit": "e729a245f7b6923967a96804fbf5246eadf2d6c6",
+  "source_archive_sha256": "eddd07577bf055c92dd4f07d63c8c77a8a5a7e779d0daa7abd43d35e30e2aec2",
+  "files": {
+    ".Rbuildignore": {
+      "bytes": 69,
+      "sha256": "a8d8a5ecc7e676baaea119828eade6223bfefa1e413400916f71c73727966ab5"
+    },
+    ".gitignore": {
+      "bytes": 179,
+      "sha256": "ffadf5d2126f6d9af86d9ff78157c972ec216c884085978d864bc2da80eff0ca"
+    },
+    "DESCRIPTION": {
+      "bytes": 564,
+      "sha256": "16cb4d02105a3e80bcf67edae7d9bc4c69b11b05c0c5270ce2926adeca3d574e"
+    },
+    "NAMESPACE": {
+      "bytes": 323,
+      "sha256": "609cf618934331f968bbc1a389bbcdc4d879f67b8c91e50cd797fb5e6d248203"
+    },
+    "PACKAGING.md": {
+      "bytes": 2244,
+      "sha256": "2e6a96d4ae847918c88c1e55ce424f83260adad2808a8bae5d50d20fe061a16b"
+    },
+    "R/alignment.R": {
+      "bytes": 3672,
+      "sha256": "b911d80254b7e562e7ac8af2b6f00f6dce9feae7cf63b979d6a52cbb9fc027fc"
+    },
+    "R/analysis_functions.R": {
+      "bytes": 25948,
+      "sha256": "cda2d43a84e125b08186665684c3f439bccf2312f9e64ee01c884ad27be32d28"
+    },
+    "R/binary_processing.R": {
+      "bytes": 3589,
+      "sha256": "bd660d696e130063d759c0883d086859f178e336fed329dfa8e722187cf29142"
+    },
+    "R/confidence_intervals.R": {
+      "bytes": 5956,
+      "sha256": "5492c3717e14ba10174d9092bc01aa06580fd3b706b180c025b705ffab165a38"
+    },
+    "R/cpp11.R": {
+      "bytes": 2350,
+      "sha256": "8109614a86a2d2908b73b9781c82f09f2853686afb6f8e0f3e700640dd003123"
+    },
+    "R/input_eqtl.r": {
+      "bytes": 21731,
+      "sha256": "d35815ca5aec76630bd568bd61f4f8ad862f723da564247f50d9fd0df3b62b11"
+    },
+    "R/input_processing.R": {
+      "bytes": 37709,
+      "sha256": "45abc11e6257b2a4c3d3f22a47eee6339acf610f91f60ee117eacd917348c7e4"
+    },
+    "R/iter13_utils.R": {
+      "bytes": 2486,
+      "sha256": "ccd1999ab979d0fa2e9caca39a095331eefe96c3b35900e14f40ba5bb5bcfc73"
+    },
+    "R/on_load.R": {
+      "bytes": 161,
+      "sha256": "fc59a7a4d10cb2b5cfcb14efaa86ae9d12611d29a976e7432d73a5dd5ce2ff3f"
+    },
+    "R/partial_corrs.R": {
+      "bytes": 2642,
+      "sha256": "1bdcab6cf50bcfc35ca25edb4dea19d1e9680d0d4e4fff46dc37ac1d9ffb0069"
+    },
+    "R/wishart.R": {
+      "bytes": 9566,
+      "sha256": "e964e5a213640f594373f57522382634ecd2064896d4e3946771997b18e4299c"
+    },
+    "README.Rmd": {
+      "bytes": 23221,
+      "sha256": "bb11b9e2895325a7f41bc614346cae87d02ce052b85fd4e84aebeb0915e03577"
+    },
+    "README.md": {
+      "bytes": 30681,
+      "sha256": "ea1329c8bb2bf76e0689aaa33f68ec3670f1bbbae61a7965593f19621cccb213"
+    },
+    "REFERENCE.md": {
+      "bytes": 2748,
+      "sha256": "c92ddc8216d15bd45273476105f42dadee268c6a1863c6e6f81360a65c4266d8"
+    },
+    "UPDATES.md": {
+      "bytes": 750,
+      "sha256": "762ac15485c507da6ef6862e6595c750939c8a85884fe5486e3a744e52ef9902"
+    },
+    "man/meta.analyse.locus.Rd": {
+      "bytes": 1536,
+      "sha256": "e1fe6edb200e421fba1070e0a0029ddba71abea8f1194c8135f0598cf71a6072"
+    },
+    "man/process.eqtl.input.Rd": {
+      "bytes": 1868,
+      "sha256": "94c4c8041773a618953c58c99c84cae1a5fe52fc4f98717dc93adc892d3239da"
+    },
+    "man/process.eqtl.input.preprocessed.Rd": {
+      "bytes": 2517,
+      "sha256": "7d0746f13d4e5d271eac2dd554929ad8247a9dbae6f04aebf016a63ef35bd758"
+    },
+    "man/process.eqtl.locus.Rd": {
+      "bytes": 2951,
+      "sha256": "b3a57dcbbff5504ef643bb63152623a4c206825fe7e2e0d23a3f8f4151871d98"
+    },
+    "man/process.input.Rd": {
+      "bytes": 2344,
+      "sha256": "09ae0ba0554c79e22615722be9eba8fa7939604382a99152a85a0caad2073312"
+    },
+    "man/process.locus.Rd": {
+      "bytes": 2931,
+      "sha256": "d85271f1211de3d69220cc04966d8b27908e471ae7ee02bed3404f7219e5b541"
+    },
+    "man/read.loci.Rd": {
+      "bytes": 729,
+      "sha256": "c57c1d384de982888caca82c7d73a062957a28991fd2bd90419beebc9ed73afa"
+    },
+    "man/run.bivar.Rd": {
+      "bytes": 2366,
+      "sha256": "87854bd637a72fdf0462127ef13959bb38f4746ec6d161a657f32bbb0683ae2b"
+    },
+    "man/run.multireg.Rd": {
+      "bytes": 2352,
+      "sha256": "f0abcc7fdbebe7f8911b95494987b0fcb3edd37961f95c33a45298a3e077b980"
+    },
+    "man/run.pcor.Rd": {
+      "bytes": 2716,
+      "sha256": "2d635e842f6076aa84bf09cd3722e0b02a5bc927f8f950e9e8fab59628419efe"
+    },
+    "man/run.univ.Rd": {
+      "bytes": 1192,
+      "sha256": "1b3a1162af5559a6285c738b4829f0e9e7ec2c2ce029bd0cd382a462a2498b05"
+    },
+    "man/run.univ.bivar.Rd": {
+      "bytes": 2331,
+      "sha256": "93616c8c9588c7ed60e793c3b7643443ef286359fdcb9d110a372950ea1cf313"
+    },
+    "man/set.chromosomes.Rd": {
+      "bytes": 1234,
+      "sha256": "0368afd607d7c633ebab6c4ced58b04cfd164f8369f9719be3879a96af8e136e"
+    },
+    "man/set.tissue.Rd": {
+      "bytes": 996,
+      "sha256": "59a86848916d222b8201b366c623601704a0d4df25ac0348e5556f01a849508c"
+    },
+    "src/Makevars": {
+      "bytes": 224,
+      "sha256": "34bb9628a288dac20f020f51d89f6c55c0ceba7a21921c56027ea5f2ab60a250"
+    },
+    "src/cpp11.cpp": {
+      "bytes": 9800,
+      "sha256": "115ed792c9abb07f2fa3d4730ea99a0dee1fc1757841aff91c33b7ebf6178d36"
+    },
+    "src/find_beta.cpp": {
+      "bytes": 8229,
+      "sha256": "cbc4d10391d1c7f5d337b7b36acbba9fbe82af737fb3f992e5212b19a127732d"
+    },
+    "src/global.h": {
+      "bytes": 1572,
+      "sha256": "b3fc64e25b3690f67964ec129f219e4faf7fc0bb07691a14c9a2862039dc9c20"
+    },
+    "src/load_ld.cpp": {
+      "bytes": 17390,
+      "sha256": "ac91a1153cc2a4fe5fb03f9bd99ab1f8b85c937b0e82b7db57bf3de64cf4c9c6"
+    },
+    "src/load_ld.h": {
+      "bytes": 4017,
+      "sha256": "168d3fd884245410f38d39ad7a2b8a29edcb324a069f44ee3729c9c32874f8b4"
+    },
+    "src/load_ld.tpl.h": {
+      "bytes": 3349,
+      "sha256": "2132c318097d3128c208b15dcd7405f2559a2e93f7704b6392b167bb2bacb200"
+    },
+    "src/load_plink.cpp": {
+      "bytes": 12958,
+      "sha256": "cc5abcc553b39b5e3949f5a1d041593369c0269ba9018f9f2bbd031c564eb00d"
+    },
+    "src/load_plink.h": {
+      "bytes": 2197,
+      "sha256": "eba95b4f6bd37034d8a6152effc39c087a4c999a6bed566c28c7694ed5534565"
+    },
+    "src/locus_utils_cpp.cpp": {
+      "bytes": 17781,
+      "sha256": "c9ed834c89c9f896c5f3d3e3cb4e29d67975383e2643e6fe87a91908f2ef94cf"
+    },
+    "src/scale_cpp.cpp": {
+      "bytes": 4762,
+      "sha256": "d0717446b24eac6d7960cc9e318f5e446439389f3e1d7c995a6ac203fc29f952"
+    },
+    "src/utils.h": {
+      "bytes": 5744,
+      "sha256": "c0effd32883cc862c072330f47f687201c7bdd4898c07b49181a735f624e8d5c"
+    },
+    "src/wishart_assembly.cpp": {
+      "bytes": 14490,
+      "sha256": "3722308e8d0ca94ddaaaf76223dd15b6ae654ca94a4988158845ee7f7425eff1"
+    },
+    "support_data/blocks_s2500_m25_f1_w200.GRCh37_hg19.locfile": {
+      "bytes": 63426,
+      "sha256": "462e81bce9ca85c9f11c0feb4d1bda24dd2c0fe095bfcc83fd32f77dff9a0882"
+    },
+    "vignettes/data/asthma.sumstats.txt": {
+      "bytes": 11915784,
+      "sha256": "891e6573fd311dc2769d0b8a5588405cc1f918b064db2e352fa80d3bd211ee35"
+    },
+    "vignettes/data/bmi.sumstats.txt": {
+      "bytes": 12184314,
+      "sha256": "3665ef6bfdf8503d7579b68cec667b21a5d20f62a696257a4f49713e4363a00f"
+    },
+    "vignettes/data/depression.sumstats.txt": {
+      "bytes": 7507899,
+      "sha256": "563f96e6e28417a528f4873fda6b0c1cfd14eadce89b101988c520d4e3761b6f"
+    },
+    "vignettes/data/diabetes.sumstats.txt": {
+      "bytes": 11842889,
+      "sha256": "f5ccd1bc394d9b2f8bcb1abffe18ebd789237781a6cebd2f2c8a368597d53ecb"
+    },
+    "vignettes/data/g1000_test.bed": {
+      "bytes": 44285349,
+      "sha256": "af2965ba505421d3a13720e9ee553dd17ecede6cf2f4773bd7a909d46e0c37bf"
+    },
+    "vignettes/data/g1000_test.bim": {
+      "bytes": 10161129,
+      "sha256": "c20a5812b24539f7186c0b85533c4fda66f255bec16e79098d3453b69c812c70"
+    },
+    "vignettes/data/g1000_test.fam": {
+      "bytes": 12575,
+      "sha256": "79dee21226fd04b5a889cbbeacd08079e1740e7d63b0a4dea115527e8fea4dae"
+    },
+    "vignettes/data/hypothyroidism.sumstats.txt": {
+      "bytes": 11656565,
+      "sha256": "61ae5e14921c0f0c58a2aa6eca3be1baacc332c0b8903fb0cdc3d19e00989991"
+    },
+    "vignettes/data/input.info.txt": {
+      "bytes": 433,
+      "sha256": "27097ff4d63806570affc30a10a33a06d29c838336531b2448a0c34496890c68"
+    },
+    "vignettes/data/neuro.sumstats.txt": {
+      "bytes": 16076656,
+      "sha256": "2a58738947afae2cfd0d8b2ba14d54574b4f3cba348d97ef1278e8294f2134da"
+    },
+    "vignettes/data/rheuma.sumstats.txt": {
+      "bytes": 3067493,
+      "sha256": "707ec939f5c887e4a9ffb25ecf15fb01982896fedff7397e07977099f74c247e"
+    },
+    "vignettes/data/sample.overlap.txt": {
+      "bytes": 462,
+      "sha256": "536e23bf2d9b289298a50de25dfbb46ec49d05f442a0c2310c6fd27676da8925"
+    },
+    "vignettes/data/test.loci": {
+      "bytes": 1069,
+      "sha256": "16450089e06e8658dfb260e632c0d116bfb386a962f83583a3984f90e9e95910"
+    },
+    "vignettes/sample_overlap.Rmd": {
+      "bytes": 2812,
+      "sha256": "0fda10f529ecaaa082ca06fa356298b2f9a84329e81360d91920ad6ada380a20"
+    },
+    "vignettes/sample_overlap.md": {
+      "bytes": 2660,
+      "sha256": "3713f5de6f14d5fdfbb09324765e409e44ab2034642973bfe033eade573c603d"
+    }
+  }
+}

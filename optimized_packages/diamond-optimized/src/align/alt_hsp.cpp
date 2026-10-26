@@ -1,0 +1,142 @@
+/****
+DIAMOND protein sequence aligner
+Copyright (C) 2012-2026 Benjamin J. Buchfink
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+****/
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#include "dp/dp.h"
+#include "extend.h"
+#include "util/sequence/sequence.h"
+#include "stats/hauser_correction.h"
+
+using std::list;
+using std::array;
+using std::vector;
+
+namespace Extension {
+
+struct ActiveTarget {
+	ActiveTarget(vector<Match>::iterator match, SequenceSet& dst) :
+		match(match),
+		active(0)
+	{
+		masked_seq.fill(nullptr);
+		uint32_t active = 0;
+		const auto l = match->seq.length();
+		for (const Hsp& h : match->hsp) {
+			if (!(active & (1 << h.frame))) {
+				dst.reserve(l);
+				active |= 1 << h.frame;
+			}
+		}
+	}
+	ActiveTarget(const ActiveTarget& t):
+		match(t.match),
+		masked_seq(t.masked_seq),
+		active(0)
+	{
+		for (int32_t i = 0; i < align_mode.query_contexts; ++i)
+			if (!(t.active & (1 << i)))
+				masked_seq[i] = nullptr;
+	}
+	void copy_seq(SequenceSet& dst, int64_t& i) {
+		for (const Hsp& h : match->hsp) {
+			if (!masked_seq[h.frame]) {
+				dst.assign(i, match->seq.data(), match->seq.end());
+				masked_seq[h.frame] = dst.ptr(i++);
+			}
+			Letter* seq = masked_seq[h.frame];
+			std::fill(seq + h.subject_range.begin_, seq + h.subject_range.end_, SUPER_HARD_MASK);
+		}
+	}
+	Sequence masked(int32_t context) const {
+		return Sequence(masked_seq[context], match->seq.length());
+	}
+	int32_t check_fully_masked() {
+		int32_t n = 0;
+		for (int32_t i = 0; i < align_mode.query_contexts; ++i)
+			if (active & (1 << i)) {
+				if (Util::Seq::is_fully_masked(masked(i)))
+					active &= ~(1 << i);
+				else
+					++n;
+			}
+		return n;
+	}
+	const vector<Match>::iterator match;
+	array<Letter*, MAX_CONTEXT> masked_seq;
+	uint32_t active;
+};
+
+using TargetVec = vector<ActiveTarget>;
+
+static TargetVec recompute_alt_hsps(const Query& query, TargetVec& targets, const HspValues v, Statistics& stats, std::pmr::memory_resource& pool) {
+	array<DP::Targets, MAX_CONTEXT> dp_targets;
+	const Loc qlen = query.sequence[0].length();
+	for (auto it = targets.begin(); it != targets.end(); ++it) {
+		const int64_t dp_size = (int64_t)qlen * (int64_t)it->match->seq.length();
+		const ::Stats::TargetMatrix* matrix = it->match->matrix.get();
+		const int bin = DP::BandedSwipe::bin(v, qlen, 0, 0, dp_size, matrix ? matrix->score_width() : 0, 0);
+		for (int32_t context = 0; context < align_mode.query_contexts; ++context) {
+			if (it->masked_seq[context]) {
+				const Sequence target = it->masked(context);
+				dp_targets[context][bin].emplace_back(target, target.length(), BlockId(it - targets.begin()), matrix);
+			}
+		}
+	}
+
+	for (int32_t context = 0; context < align_mode.query_contexts; ++context) {
+		DP::Params params{ query.sequence[context], "", Frame(context), query.source_length, query.composition_bias(context), DP::Flags::FULL_MATRIX, false, 0, -1,
+			v, stats, nullptr, &pool };
+		list<Hsp> hsp = DP::BandedSwipe::swipe(dp_targets[context], params);
+		while (!hsp.empty()) {
+			ActiveTarget& t = targets[hsp.front().swipe_target];
+			list<Hsp>& l = t.match->hsp;
+			l.splice(l.end(), hsp, hsp.begin());
+			std::fill(t.masked_seq[context] + l.back().subject_range.begin_, t.masked_seq[context] + l.back().subject_range.end_, SUPER_HARD_MASK);
+			t.active |= 1 << context;
+		}
+	}
+
+	TargetVec out;
+	for (ActiveTarget& t : targets) {
+		if (t.active) {
+			t.match->inner_culling();
+			if (t.check_fully_masked() > 0 && (t.match->hsp.size() < config.max_hsps || config.max_hsps == 0))
+				out.emplace_back(t);
+		}
+	}
+	return out;
+}
+
+void recompute_alt_hsps(vector<Match>::iterator begin, vector<Match>::iterator end, const Query& query, const HspValues v, Statistics& stats, std::pmr::memory_resource& pool) {
+	if (config.max_hsps == 1)
+		return;
+	TargetVec targets;
+	targets.reserve(end - begin);
+	SequenceSet target_seqs;
+	for (auto i = begin; i != end; ++i)
+		targets.emplace_back(i, target_seqs);
+	target_seqs.finish_reserve();
+	int64_t i = 0;
+	for (ActiveTarget& t : targets)
+		t.copy_seq(target_seqs, i);
+
+	while(!targets.empty())
+		targets = recompute_alt_hsps(query, targets, v, stats, pool);
+}
+
+}
