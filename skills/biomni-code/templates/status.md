@@ -1,0 +1,23 @@
+# biomni-code run status
+
+- Run ID:
+- Repo @ commit:
+- Started (ISO) / elapsed:
+- Iteration: N / budget_iterations | Phase 5 elapsed: h (informational)
+- Cumulative speedup vs baseline: x
+- Cumulative peak-RSS delta vs baseline:
+- Benchmark sigma:
+- Current best patch:
+- Top 3 accepted iterations (id, runtime, mem):
+- Active machines (id, type, current task, CPU/RAM utilization at last probe):
+- GPU sandbox (if CUDA-gated):
+- Backlog depth by family:
+- Last decision:
+- Sole active candidate and earliest incomplete stage:
+- Actual queued/running/unknown jobs:
+- Last separately verified checkpoint:
+- Recovery barrier / stable operation retry counts:
+- Original approval or explicit stop/resume source:
+- Next action / idea awaiting reassessment:
+- Check-ins written (25/50/75/90%):
+- Blocker (kind + exact error) and planned recovery, if any:

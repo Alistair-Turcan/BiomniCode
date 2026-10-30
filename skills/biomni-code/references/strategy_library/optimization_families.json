@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "description": "Code-optimization families for the biomni-code diversity portfolio. Each family lists diagnostic questions and example behavior-preserving interventions. Weights and floors live in intervention_weights.json and are adapted by biomni_code_state.py during a run.",
+  "families": [
+    {
+      "name": "algorithmic",
+      "questions": [
+        "Is an O(n^2) or worse algorithm used where an exact O(n log n) or O(n) equivalent exists?",
+        "Is repeated work inside a loop mathematically invariant and hoistable?",
+        "Can early termination or short-circuiting preserve exact outputs?"
+      ],
+      "examples": ["quadratic-to-hashmap membership", "loop-invariant hoisting", "exact early-exit", "dynamic programming over recomputation"]
+    },
+    {
+      "name": "vectorization",
+      "questions": [
+        "Are Python/R-level loops doing elementwise numeric work?",
+        "Can the operation be expressed with NumPy/SciPy/pandas/data.table kernels without changing dtype, order, or rounding?",
+        "Is the reduction order fixed so results stay bitwise-identical?"
+      ],
+      "examples": ["NumPy broadcasting", "pandas vectorized column ops", "scipy.sparse instead of dense", "BLAS-backed matmul"]
+    },
+    {
+      "name": "data_structures",
+      "questions": [
+        "Is membership testing done on lists instead of sets/dicts?",
+        "Are repeated concatenations used where preallocation or a deque/array fits?",
+        "Is an object-dtype or boxed representation used where a fixed-width dtype works?"
+      ],
+      "examples": ["set/dict membership", "collections.deque/Counter/defaultdict", "categorical dtypes", "struct-of-arrays layout"]
+    },
+    {
+      "name": "allocation_memory_layout",
+      "questions": [
+        "Are large temporaries created and discarded inside hot loops?",
+        "Are defensive copies made where the source is never mutated?",
+        "Can buffers be reused or preallocated without aliasing bugs?"
+      ],
+      "examples": ["preallocation", "in-place ops with out= parameters", "copy elision", "memory pools", "cache-friendly layout"]
+    },
+    {
+      "name": "caching_memoization",
+      "questions": [
+        "Is a pure function recomputed on repeated inputs?",
+        "Can parsed metadata, schemas, indexes, or invariant preprocessing be cached?",
+        "Is the cache key a content hash so stale caches are detected?"
+      ],
+      "examples": ["functools.lru_cache on pure functions", "parsed-input caching", "frozen build artifacts", "memoized invariant preprocessing"]
+    },
+    {
+      "name": "io_batching",
+      "questions": [
+        "Are files opened/closed repeatedly in loops?",
+        "Are small reads/writes batched or buffered?",
+        "Is compression/decompression repeated in inner loops?"
+      ],
+      "examples": ["batched writes", "buffered readers", "memory-mapped IO", "streaming instead of load-all", "columnar formats for repeated access"]
+    },
+    {
+      "name": "serialization",
+      "questions": [
+        "Is data serialized/deserialized repeatedly between stages?",
+        "Is a slow text format (CSV/JSON) parsed where a binary format preserves identical values?",
+        "Are pickle/JSON encodings doing redundant validation?"
+      ],
+      "examples": ["parse-once-pass-objects", "Arrow/Parquet for repeated access", "avoiding double serialization"]
+    },
+    {
+      "name": "parallelism_concurrency",
+      "questions": [
+        "Is independent work serialized?",
+        "Is parallel work coarse enough to amortize scheduling overhead?",
+        "Does the parallel reduction order preserve bitwise-identical results?"
+      ],
+      "examples": ["multiprocessing/joblib over shards", "batched GPU inference", "thread pools for IO-bound stages", "deterministic ordered reduction"]
+    },
+    {
+      "name": "compiled_kernels",
+      "questions": [
+        "Is an unavoidable tight loop still in the interpreter?",
+        "Can Numba/Cython/pybind11/Rust/Rcpp replace it without changing numerics?",
+        "Are compiler flags at the appropriate (behavior-preserving) optimization level?"
+      ],
+      "examples": ["Numba njit on hot loops", "Cython/pybind11 extension", "Rust extension via PyO3", "Rcpp hot path"]
+    },
+    {
+      "name": "startup_imports",
+      "questions": [
+        "Do imports or package loading dominate short CLI runs?",
+        "Are heavy dependencies imported at module top level but used rarely?",
+        "Is repeated interpreter startup avoidable via batching or a persistent process?"
+      ],
+      "examples": ["lazy imports", "deferred heavy dependency loading", "CLI batch mode"]
+    },
+    {
+      "name": "build_flags",
+      "questions": [
+        "Is compiled code built in debug mode or without -O2/-O3?",
+        "Are architecture-specific flags (e.g. -march=native) legal for the deployment target?",
+        "Is LTO enabled where it preserves behavior?"
+      ],
+      "examples": ["release builds", "LTO", "legal -march flags", "jemalloc/mimalloc allocator swap (behavior-preserving)"]
+    }
+  ]
+}

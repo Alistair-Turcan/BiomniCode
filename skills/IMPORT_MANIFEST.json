@@ -1,0 +1,19 @@
+{
+  "source_archive": "biomni-code.zip",
+  "archive_sha256": "01c5b4fe7a847226dc07b2e31f8b3803dbb4247ab498d68502caf35677392d8a",
+  "files_imported": 68,
+  "refreshed_manifests": [
+    "manifest.json",
+    "references/manifest.json"
+  ],
+  "original_manifest_mismatches": [
+    "SKILL.md",
+    "references/README.md",
+    "references/VERSION",
+    "references/interruption_recovery.md",
+    "references/state_and_memory.md",
+    "scripts/biomni_code_state.py",
+    "scripts/run_checkpoint.py",
+    "scripts/run_control.py"
+  ]
+}

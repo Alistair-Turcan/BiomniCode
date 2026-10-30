@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "description": "Common hotspot classes, the profiler evidence that identifies them, and the optimization families most likely to pay off. Use during Phase 2 profiling and backlog replenishment.",
+  "hotspot_classes": [
+    {
+      "class": "interpreter_loop",
+      "evidence": "cProfile/line_profiler shows one Python/R loop dominating; high pct in a single function with primitive ops",
+      "likely_families": ["vectorization", "compiled_kernels", "algorithmic"]
+    },
+    {
+      "class": "quadratic_container_op",
+      "evidence": "runtime scales superlinearly with input size; list.count/index/in or repeated concatenation in a loop",
+      "likely_families": ["algorithmic", "data_structures"]
+    },
+    {
+      "class": "allocation_churn",
+      "evidence": "tracemalloc/Massif/heaptrack shows high allocation counts or large transient peaks; RSS far above steady working set",
+      "likely_families": ["allocation_memory_layout", "data_structures"]
+    },
+    {
+      "class": "repeated_parse",
+      "evidence": "same file/schema/metadata parsed many times; IO or parse functions high in cumulative time across calls",
+      "likely_families": ["caching_memoization", "serialization", "io_batching"]
+    },
+    {
+      "class": "syscall_io_pressure",
+      "evidence": "/usr/bin/time -v shows low %CPU and high system time; many small reads/writes/flushes",
+      "likely_families": ["io_batching", "serialization"]
+    },
+    {
+      "class": "startup_dominated",
+      "evidence": "import/startup exceeds 50% of runtime at the per-iteration size",
+      "likely_families": ["startup_imports"],
+      "note": "Also a signal to INCREASE the per-iteration benchmark size; startup-only wins do not scale."
+    },
+    {
+      "class": "serialized_independent_work",
+      "evidence": "low CPU utilization on a multi-core machine; embarrassingly parallel structure in profiles",
+      "likely_families": ["parallelism_concurrency"]
+    },
+    {
+      "class": "unoptimized_build",
+      "evidence": "compiled artifacts built with -O0/debug; no vectorization reports; debug symbols in production path",
+      "likely_families": ["build_flags", "compiled_kernels"]
+    },
+    {
+      "class": "dense_conversion_of_sparse",
+      "evidence": "mostly-zero data materialized dense; memory jumps at a conversion call site",
+      "likely_families": ["data_structures", "allocation_memory_layout", "vectorization"]
+    },
+    {
+      "class": "redundant_serialization_roundtrip",
+      "evidence": "serialize->deserialize between in-process stages; marshal/pickle/json high in profile",
+      "likely_families": ["serialization", "caching_memoization"]
+    }
+  ]
+}

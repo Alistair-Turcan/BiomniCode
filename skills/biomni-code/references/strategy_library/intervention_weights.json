@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "description": "Initial adaptive weights for biomni-code optimization families. Normalized and updated by biomni_code_state.py during a run: accept x1.25, memory-driven x1.15, reject x0.85, infrastructure unchanged; renormalized with floors so plausible under-tested families never die.",
+  "weights": {
+    "algorithmic": 0.16,
+    "vectorization": 0.14,
+    "data_structures": 0.12,
+    "allocation_memory_layout": 0.11,
+    "caching_memoization": 0.10,
+    "io_batching": 0.09,
+    "parallelism_concurrency": 0.08,
+    "serialization": 0.06,
+    "compiled_kernels": 0.06,
+    "startup_imports": 0.04,
+    "build_flags": 0.04
+  },
+  "floors": {
+    "algorithmic": 0.05,
+    "vectorization": 0.05,
+    "data_structures": 0.04,
+    "allocation_memory_layout": 0.04,
+    "caching_memoization": 0.04,
+    "io_batching": 0.03,
+    "parallelism_concurrency": 0.03,
+    "serialization": 0.02,
+    "compiled_kernels": 0.02,
+    "startup_imports": 0.02,
+    "build_flags": 0.02
+  }
+}

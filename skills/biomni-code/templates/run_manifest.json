@@ -1,0 +1,41 @@
+{
+  "run_id": "",
+  "repo_url": "",
+  "commit_hash": "",
+  "created_at": "",
+  "budget": {
+    "iterations": 50
+  },
+  "baseline_command": "",
+  "benchmark_command": "",
+  "correctness_command": "",
+  "build_command": "",
+  "scaling_sizes": [],
+  "benchmark_sigma": null,
+  "baseline": {
+    "runtime_mean": null,
+    "runtime_std": null,
+    "mem_mean": null,
+    "mem_std": null,
+    "output_digest": ""
+  },
+  "current_best": {
+    "patch": "",
+    "runtime_mean": null,
+    "mem_mean": null
+  },
+  "fp_tolerance": "auto",
+  "fp_tolerance_request": "auto",
+  "numerical_policy": null,
+  "numerical_policy_sha256": null,
+  "source_policy": null,
+  "source_policy_sha256": null,
+  "protected_hashes_file": "",
+  "accepted_patches": [],
+  "dependencies": [],
+  "machine_id": "",
+  "policy_version": "2.5.3",
+  "active_candidate": null,
+  "checkpoint_store": "",
+  "verified_snapshot": ""
+}
